@@ -58,6 +58,14 @@ class LappsDocument {
         add(Fields.PATH, path)
     }
 
+    LappsDocument mesh(String mesh) {
+        add(Fields.MESH, mesh)
+    }
+
+    LappsDocument keywords(String keywords) {
+        add(Fields.KEYWORDS, keywords)
+    }
+
     private LappsDocument add(String name, String value) {
         document.addField(name, value)
         return this

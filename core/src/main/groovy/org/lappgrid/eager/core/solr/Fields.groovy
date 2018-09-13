@@ -12,6 +12,8 @@ final class Fields {
     public static final String YEAR = "year"
     public static final String ABSTRACT = "abstract"
     public static final String BODY = "body"
+    public static final String MESH = "mesh"
+    public static final String KEYWORDS = "keywords"
     public static final String PATH = "path"
 
 }

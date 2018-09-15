@@ -9,9 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.lappsgrid.eager</groupId>
+    <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-
 
 </project>

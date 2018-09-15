@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
 
+import groovy.cli.picocli.*
+
 /**
  *  Entry point for the command line indexer program.
  */
@@ -69,11 +71,11 @@ class Indexer {
         cli.pmc('index PubMed Central files')
         cli.h(longOpt:"help", 'display this help message')
         cli.usageMessage.with {
-            headerHeading("@|bold Eager Indexer|@")
+            headerHeading("%n@|bold Description|@%n")
             header("Index files from PubMed or PubMed Central.")
-            synopsisHeading("@|bold Synopsis|@")
-            footerHeading("@|Notes|@")
-            footer("the @|italic -pubmed|@ and @|italic -pmc|@ options are mutually exclusive.  Only one file type can be processed at a time.")
+            synopsisHeading("%n@|bold Synopsis|@%n")
+            footerHeading("%n@|bold Notes|@%n")
+            footer("the @|bold -pubmed|@ and @|bold -pmc|@ options are mutually exclusive.  Only one file type can be processed at a time.")
         }
         OptionAccessor params = cli.parse(args)
         if (params.h) {
@@ -118,6 +120,7 @@ class Indexer {
 //        }
         Indexer app = new Indexer()
         app.directory = file
+        app.extractor = extractor
 //        app.worker = args[1]
         app.run()
     }

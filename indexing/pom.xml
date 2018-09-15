@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.anc.maven</groupId>
-        <artifactId>groovy-parent-pom</artifactId>
-        <version>2.0.0</version>
+        <groupId>org.lappsgrid.maven</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>2.1.0</version>
     </parent>
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>indexer</artifactId>
@@ -16,6 +16,33 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <compilerId>groovy-eclipse-compiler</compilerId>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>2.9.2-01</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-batch</artifactId>
+                        <version>2.5.0-01</version>
+                        <!-- <type>pom</type> -->
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-eclipse-compiler</artifactId>
+                <version>2.9.2-01</version>
+                <extensions>true</extensions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -67,4 +94,25 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-groovy-maven</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/groovy/maven</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-groovy-maven-plugins</id>
+            <name>bintray-plugins</name>
+            <url>https://dl.bintray.com/groovy/maven</url>
+        </pluginRepository>
+    </pluginRepositories>
+
 </project>

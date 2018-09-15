@@ -18,6 +18,7 @@ class LappsDocument {
         }
     }
 
+    SolrDocument solr() { return document }
     LappsDocument id(String id) {
         add(Fields.ID, id)
     }
@@ -64,6 +65,10 @@ class LappsDocument {
 
     LappsDocument keywords(String keywords) {
         add(Fields.KEYWORDS, keywords)
+    }
+
+    LappsDocument journal(String journal) {
+        add(Fields.JOURNAL, journal)
     }
 
     private LappsDocument add(String name, String value) {

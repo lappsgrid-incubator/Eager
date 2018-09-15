@@ -8,7 +8,7 @@
 Use `scrape.sh` to download any range of baseline files and split them into individual documents. 
 Help messages of scripts: 
 
-``` bash 
+```
 Usage: ./scrape.sh output_dir [start_idx [end_dix]]
     output_dir: directory name to store pubmed-medline documents
                 see the python script for information on subdir structure.
@@ -19,7 +19,7 @@ Usage: ./scrape.sh output_dir [start_idx [end_dix]]
                while 928 has ~ 27,000 documents.
 ```
 
-``` bash
+``` 
 Usage: ./split.py input_file output_dir
     Use "-" specifically to use stdin as the input file.
     Documents in the input_file are splitted into each file.

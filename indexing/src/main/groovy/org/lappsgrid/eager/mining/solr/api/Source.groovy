@@ -3,13 +3,19 @@ package org.lappsgrid.eager.mining.solr.api
 import java.util.concurrent.BlockingQueue
 
 /**
- * A Source object provides data and adds it to its queue.
+ * A Source object provides data and adds it to its output queue.  If a <tt>Sink</tt> is supplied
+ * it will be notified of how many objects were placed on the output queue when the <tt>Source</tt>
+ * has finished generating objects.
  */
 abstract class Source extends Haltable {
 
     String name
     BlockingQueue<Object> output
     Sink sink
+
+    public Source(String name, BlockingQueue<Object> output) {
+        this(name, null, output)
+    }
 
     public Source(String name, Sink sink, BlockingQueue<Object> output) {
         this.name = name

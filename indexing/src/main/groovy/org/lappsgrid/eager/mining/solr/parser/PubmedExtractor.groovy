@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining.solr.parser
 
 import org.apache.solr.common.SolrDocument
+import org.lappgrid.eager.core.solr.LappsDocument
 
 /**
  *
@@ -26,8 +27,8 @@ class PubmedExtractor extends XmlDocumentExtractor {
     private final String exprXpathMesh = "//MeshHeadingList/MeshHeading";
      */
 
-    SolrDocument extractValues(File file) {
-        Node pubmed = parser.parse(file)
+    LappsDocument extractValues(Node pubmed) {
+//        Node pubmed = parser.parse(file)
         Node medline = pubmed.MedlineCitation
         Node article = medline.Article
         String title = article.Title.text()
@@ -37,6 +38,11 @@ class PubmedExtractor extends XmlDocumentExtractor {
         //PubmedArticle.PubmedData.ArticleIdList.ArticleId[@IdType = 'pmc'
         Node pmc = pubmed.PubmedData.ArticleIdList.ArticleId.find { it.@IdType == 'pmc' }
 
-
+        LappsDocument document = new LappsDocument()
+                .title(title)
+                .theAbstract(articleAbstract)
+                .journal(journal)
+                .pmid(pmid)
+        return document
     }
 }

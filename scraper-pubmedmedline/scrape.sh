@@ -45,6 +45,14 @@ if ! [ -z $1 ] ; then
 fi
 
 for idx in `seq -f "%04g" $START $END`; do 
-    wget -O - ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed18n${idx}.xml.gz | gunzip -c | python $SPLITTER_PYTHON_CODE - $OUTPUT
+    #wget -O - ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed18n${idx}.xml.gz | gunzip -c | python3 $SPLITTER_PYTHON_CODE - $OUTPUT
+    xml=pubmed18n${idx}.xml
+    gz=${xml}.gz
+    wget ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/$gz
+    echo "Unziping $gz"
+    gunzip $gz
+    echo "Splitting $xml"
+    python3 $SPLITTER_PYTHON_CODE $xml $OUTPUT
+    rm $xml
 done
 

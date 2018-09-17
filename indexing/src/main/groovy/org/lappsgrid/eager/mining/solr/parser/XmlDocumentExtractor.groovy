@@ -1,6 +1,6 @@
 package org.lappsgrid.eager.mining.solr.parser
 
-import org.apache.solr.common.SolrDocument
+import org.lappgrid.eager.core.solr.LappsDocument
 
 /**
  *
@@ -15,7 +15,18 @@ abstract class XmlDocumentExtractor {
         parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
     }
 
-    abstract SolrDocument extractValues(File file);
+    abstract LappsDocument extractValues(Node root);
+
+    String getId(String pmid, String pmc, String doi) {
+        if (pmid) return pmid
+        if (pmc) return pmc
+        if (doi) return doi
+        return UUID.randomUUID()
+    }
+
+    protected String normalize(Node node) {
+        return normalize(node.text())
+    }
 
     protected String normalize(String input) {
         return input.replaceAll('\n', ' ')

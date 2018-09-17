@@ -2,6 +2,7 @@ package org.lappsgrid.eager.mining.solr.parser
 
 import org.apache.solr.common.SolrDocument
 import org.apache.solr.common.SolrInputDocument
+import org.lappgrid.eager.core.solr.LappsDocument
 
 /**
  *
@@ -12,7 +13,7 @@ public class PMCExtractor extends XmlDocumentExtractor
     {
     }
 
-    public SolrDocument extractValues(File file) {
+    public LappsDocument extractValues(Node article) {
         /*
         private final String exprXpathAbstract = "//abstract";
         private final String exprXpathBody = "//body";
@@ -29,11 +30,11 @@ public class PMCExtractor extends XmlDocumentExtractor
         private final String exprXpathYearE = "//pub-date[@pub-type='epub']/year";
         private final String exprXpathFigCaption = "//floats-group";
         */
-        println "PMCExtractor $parserId: parsing ${file.name}"
-        Node article = parser.parse(file)
+//        println "PMCExtractor $parserId: parsing ${file.name}"
+//        Node article = parser.parse(file)
         Node front = article.front[0]
         Node meta = front.'article-meta'[0]
-        String journal = front.'journal-meta'.'journal-title-group'.'journal-title'
+        String journal = front.'journal-meta'.'journal-title-group'.'journal-title'.text()
         String pmid = getIdValue(meta, 'pmid')
         String pmc = getIdValue(meta, 'pmc')
         String doi = getIdValue(meta, 'doi')
@@ -53,17 +54,40 @@ public class PMCExtractor extends XmlDocumentExtractor
             keywords << normalize(kwd)
         }
 
-        SolrInputDocument document = new SolrInputDocument();
-        document.addField("pmid", pmid);
-        document.addField("pmc", pmc);
-        document.addField("doi", doi)
-        document.addField("journal", journal)
-        document.addField("title", title)
-        document.addField("year", year as int)
-        document.addField("keywords", keywords)
-        document.addField("body", article.body.text())
-        document.addField("abstract", meta.abstract.text())
+        LappsDocument document = new LappsDocument()
+            .id(getId(pmid, pmc, doi))
+            .pmid(pmid)
+            .pmc(pmc)
+            .doi(doi)
+            .journal(journal)
+            .title(title)
+            .year(year)
+            .keywords(keywords.join(", "))
+            .body(collectBody(article.body))
+            .theAbstract(meta.abstract.text())
+//        SolrInputDocument document = new SolrInputDocument();
+//        document.addField("pmid", pmid);
+//        document.addField("pmc", pmc);
+//        document.addField("doi", doi)
+//        document.addField("journal", journal)
+//        document.addField("title", title)
+//        document.addField("year", year as int)
+//        document.addField("keywords", keywords)
+//        document.addField("body", article.body.text())
+//        document.addField("abstract", meta.abstract.text())
         return document
+    }
+
+    String collectBody(Node node) {
+        StringWriter writer = new StringWriter()
+        PrintWriter printer = new PrintWriter(writer)
+        node.sec.each { section ->
+            printer.println(section.title.text())
+            section.p.each { paragraph ->
+                printer.println(paragraph.text())
+            }
+        }
+        return writer.toString()
     }
 
     String getIdValue(Node node, String id) {

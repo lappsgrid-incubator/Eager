@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining.solr.parser
 
 import org.apache.solr.common.SolrDocument
+import org.lappgrid.eager.core.solr.LappsDocument
 
 /**
  *
@@ -14,29 +15,35 @@ class PubmedExtractor extends XmlDocumentExtractor {
         parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
         parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
     }
-    /*
-    private final String exprXpathMedline = "//MedlineCitationSet/MedlineCitation";
-    private final String exprXpathPubMed = "//PubmedArticleSet/PubmedArticle";
-    private final String exprXpathAbstract = "//Abstract";
-    private final String exprXpathTitle = "//Journal/Title";
-    private final String exprXpathPmid = "//PMID";
-    private final String exprXpathPmc = "//ArticleId[@IdType='pmc']";
-    private final String exprXpathArticleTitle = "//ArticleTitle";
-    private final String exprXpathAuthor = "//Author[@ValidYN='Y']";
-    private final String exprXpathMesh = "//MeshHeadingList/MeshHeading";
-     */
 
-    SolrDocument extractValues(File file) {
-        Node pubmed = parser.parse(file)
-        Node medline = pubmed.MedlineCitation
-        Node article = medline.Article
-        String title = article.Title.text()
+    LappsDocument extractValues(Node pubmed) {
+        Node medline = pubmed.MedlineCitation[0]
+        def article = medline.Article[0]
+        String title = article.ArticleTitle.text()
         String articleAbstract = article.Abstract.text()
-        String journal = article.Journal.Title.text()
+        def journal = article.Journal
+        //String journal = article.Journal.Title.text()
+        String year = journal.JournalIssue.PubDate.Year.text()
         String pmid = medline.PMID.text()
         //PubmedArticle.PubmedData.ArticleIdList.ArticleId[@IdType = 'pmc'
-        Node pmc = pubmed.PubmedData.ArticleIdList.ArticleId.find { it.@IdType == 'pmc' }
+        def data = pubmed.PubmedData
+        def pmc = data.ArticleIdList.ArticleId.find { it.@IdType == 'pmc' }
 
+        List<String> mesh = []
+        medline.MeshHeadingList.MeshHeading.each { Node heading ->
+            mesh.add(heading.DescriptorName.text())
+        }
 
+        LappsDocument document = new LappsDocument()
+                .title(title)
+                .theAbstract(articleAbstract)
+                .journal(journal.Title.text())
+                .year(year)
+                .pmid(pmid)
+                .pmc(pmc.text())
+                .mesh(mesh.join(" "))
+                .pubmed()
+
+        return document
     }
 }

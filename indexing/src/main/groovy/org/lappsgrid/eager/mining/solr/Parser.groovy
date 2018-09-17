@@ -1,7 +1,10 @@
 package org.lappsgrid.eager.mining.solr
 
 import org.apache.solr.common.SolrInputDocument
+import org.lappsgrid.eager.mining.core.solr.LappsDocument
+import org.lappsgrid.eager.mining.core.Factory
 import org.lappsgrid.eager.mining.solr.api.Worker
+import org.lappsgrid.eager.mining.solr.parser.XmlDocumentExtractor
 
 import java.util.concurrent.BlockingQueue
 
@@ -12,15 +15,18 @@ import java.util.concurrent.BlockingQueue
 class Parser extends Worker {
 
     XmlParser parser
+    XmlDocumentExtractor extractor
     int parserId
     int count
 
-    public Parser(int id, BlockingQueue<Object> input, BlockingQueue<Object> output) {
+    public Parser(int id, BlockingQueue<Object> input, BlockingQueue<Object> output, XmlDocumentExtractor extractor) {
         super("Parser$id", input, output)
         this.parserId = id
-        parser = new XmlParser();
-        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+        this.extractor = extractor
+//        parser = new XmlParser();
+//        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+//        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+        this.parser = Factory.newXmlParser();
         this.count = 0
     }
 
@@ -28,6 +34,7 @@ class Parser extends Worker {
         File file = (File) item
         println "${++count} Parser $parserId: parsing ${file.name}"
         Node article = parser.parse(file)
+        /*
         Node meta = article.front.'article-meta'[0]
         String pmid = getIdValue(meta, 'pmid')
         String pmc = getIdValue(meta, 'pmc')
@@ -55,6 +62,9 @@ class Parser extends Worker {
         document.addField("abstract", abs)
         document.addField("body", article.body.text())
         document.addField("path", file.path)
+        */
+        LappsDocument document = extractor.extractValues(article)
+        document.path(file.getPath()).id()
         return document
     }
 

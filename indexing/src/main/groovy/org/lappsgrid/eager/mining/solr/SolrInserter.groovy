@@ -3,6 +3,7 @@ package org.lappsgrid.eager.mining.solr
 import org.apache.solr.client.solrj.impl.CloudSolrClient
 import org.apache.solr.client.solrj.response.UpdateResponse
 import org.apache.solr.common.SolrInputDocument
+import org.lappgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.solr.api.Sink
 
 import java.util.concurrent.BlockingQueue
@@ -41,8 +42,8 @@ class SolrInserter extends Sink {
 
     void store(Object item) {
         println "${++count} $name storing an item"
-        SolrInputDocument document = (SolrInputDocument) item
-        UpdateResponse response = solr.add(document)
+        LappsDocument document = (LappsDocument) item
+        UpdateResponse response = solr.add(document.solr())
         println "Indexed " + response.toString()
         if (count % interval == 0) {
             solr.commit()

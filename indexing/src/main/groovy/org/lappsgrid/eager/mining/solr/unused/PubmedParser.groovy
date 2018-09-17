@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.mining.solr.parser
+package org.lappsgrid.eager.mining.solr.unused
 
 /**
  *

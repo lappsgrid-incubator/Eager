@@ -34,7 +34,7 @@ public class PMCExtractor extends XmlDocumentExtractor
 //        Node article = parser.parse(file)
         Node front = article.front[0]
         Node meta = front.'article-meta'[0]
-        String journal = front.'journal-meta'.'journal-title-group'.'journal-title'
+        String journal = front.'journal-meta'.'journal-title-group'.'journal-title'.text()
         String pmid = getIdValue(meta, 'pmid')
         String pmc = getIdValue(meta, 'pmc')
         String doi = getIdValue(meta, 'doi')
@@ -62,8 +62,8 @@ public class PMCExtractor extends XmlDocumentExtractor
             .journal(journal)
             .title(title)
             .year(year)
-            .keywords(keywords)
-            .body(article.body.text())
+            .keywords(keywords.join(", "))
+            .body(collectBody(article.body))
             .theAbstract(meta.abstract.text())
 //        SolrInputDocument document = new SolrInputDocument();
 //        document.addField("pmid", pmid);
@@ -76,6 +76,18 @@ public class PMCExtractor extends XmlDocumentExtractor
 //        document.addField("body", article.body.text())
 //        document.addField("abstract", meta.abstract.text())
         return document
+    }
+
+    String collectBody(Node node) {
+        StringWriter writer = new StringWriter()
+        PrintWriter printer = new PrintWriter(writer)
+        node.sec.each { section ->
+            printer.println(section.title.text())
+            section.p.each { paragraph ->
+                printer.println(paragraph.text())
+            }
+        }
+        return writer.toString()
     }
 
     String getIdValue(Node node, String id) {

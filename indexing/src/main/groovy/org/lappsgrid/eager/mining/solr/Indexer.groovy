@@ -109,19 +109,10 @@ class Indexer {
             cli.usage()
             return
         }
-//        if (args.size() != 1) {
-//            println "USAGE: java -jar solr-indexr.jar /directory/to/index"
-//            return
-//        }
-//        File file = new File(args[0])
-//        if (!file.exists()) {
-//            println "ERROR: Input directory not found."
-//            return
-//        }
+
         Indexer app = new Indexer()
         app.directory = file
         app.extractor = extractor
-//        app.worker = args[1]
         app.run()
     }
 }

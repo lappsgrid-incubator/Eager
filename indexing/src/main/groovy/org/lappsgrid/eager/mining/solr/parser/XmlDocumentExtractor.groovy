@@ -24,6 +24,10 @@ abstract class XmlDocumentExtractor {
         return UUID.randomUUID()
     }
 
+    protected String normalize(Node node) {
+        return normalize(node.text())
+    }
+
     protected String normalize(String input) {
         return input.replaceAll('\n', ' ')
                 .replaceAll('\r', ' ')

@@ -6,6 +6,11 @@ import org.apache.solr.common.SolrDocument
  * Manages a SolrDocument instance and provides a fluent API for initialization.
  */
 class LappsDocument {
+    public static final class Type {
+        public static final String PMC = "pmc"
+        public static final String PUBMED = "pubmed"
+    }
+
     SolrDocument document
 
     public LappsDocument() {
@@ -69,6 +74,26 @@ class LappsDocument {
 
     LappsDocument journal(String journal) {
         add(Fields.JOURNAL, journal)
+    }
+
+    LappsDocument type(String type) {
+        add(Fields.TYPE, type)
+    }
+
+    LappsDocument pmc() {
+        type(Type.PMC)
+    }
+
+    LappsDocument pubmed() {
+        type(Type.PUBMED)
+    }
+
+    String getValue(String name) {
+        return document.getFieldValue(name).toString()
+    }
+
+    Collection<Object> getValues(String name) {
+        return document.getFieldValues(name)
     }
 
     private LappsDocument add(String name, String value) {

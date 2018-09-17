@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.mining.solr
 
+import org.lappsgrid.eager.mining.solr.api.DirectoryLister
 import org.lappsgrid.eager.mining.solr.api.Haltable
 import org.lappsgrid.eager.mining.solr.api.Sink
 import org.lappsgrid.eager.mining.solr.parser.PMCExtractor
@@ -20,6 +21,7 @@ class Indexer {
 
     File directory
     XmlDocumentExtractor extractor
+    Closure listerFactory
 
     void run() {
         BlockingQueue<Object> files = new ArrayBlockingQueue<>(10)
@@ -43,7 +45,8 @@ class Indexer {
 //            threads << collector
 //        }
 
-        Haltable lister = new DirectoryLister(directory, collector, files)
+//        Haltable lister = new DirectoryLister(directory, collector, files)
+        Haltable lister = listerFactory(directory, collector, files)
         threads << lister
 
         long startTime = System.currentTimeMillis()
@@ -92,7 +95,8 @@ class Indexer {
             println "More that one directory was specified.  Only the first one will be processed."
         }
         File file = new File(files.get(0))
-        XmlDocumentExtractor extractor = null;
+        XmlDocumentExtractor extractor = null
+        Closure lister = null
         if (params.pubmed && params.pmc) {
             println "ERROR: Only one of -pubmed or -pmc can be specified."
             cli.usage();
@@ -100,9 +104,11 @@ class Indexer {
         }
         else if (params.pubmed) {
             extractor = new PubmedExtractor();
+            lister = { dir, sink, Q -> new PubmedDirectoryLister(dir, sink, Q) }
         }
         else if (params.pmc) {
             extractor = new PMCExtractor();
+            lister = { dir, sink, Q -> new PmcDirectoryLister(dir, sink, Q) }
         }
         else {
             println "ERROR: One of -pubmed or -pmc is required."
@@ -113,6 +119,7 @@ class Indexer {
         Indexer app = new Indexer()
         app.directory = file
         app.extractor = extractor
+        app.listerFactory = lister
         app.run()
     }
 }

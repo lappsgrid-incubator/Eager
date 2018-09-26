@@ -51,7 +51,7 @@ class AskController {
     }
 
     private Map answer(String question) {
-        return answer(question, 5)
+        return answer(question, 10)
     }
 
     private Map answer(String question, int size) {

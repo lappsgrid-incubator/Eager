@@ -14,6 +14,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.1.RELEASE</version>
+        <relativePath></relativePath>
     </parent>
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>web</artifactId>
@@ -25,6 +26,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <groovy.version>2.5.0</groovy.version>
     </properties>
     <build>
         <finalName>eager</finalName>
@@ -46,7 +48,6 @@
                         <groupId>org.codehaus.groovy</groupId>
                         <artifactId>groovy-eclipse-batch</artifactId>
                         <version>2.5.0-01</version>
-                        <!-- <type>pom</type> -->
                     </dependency>
                 </dependencies>
             </plugin>
@@ -119,8 +120,8 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>2.5.0</version>
-            <type>pom</type>
+            <version>2.4.3</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

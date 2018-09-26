@@ -1,8 +1,8 @@
 html {
     head {
         title(title)
-        link rel:'stylesheet', type:'text/css', href:'/css/main.css'
-        script(src:'/js/jquery.min.js', '')
+        link rel:'stylesheet', type:'text/css', href:'css/main.css'
+        script(src:'js/jquery.min.js', '')
         //script(src:'/js/main.js', '')
     }
     body {

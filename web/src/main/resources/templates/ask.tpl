@@ -1,7 +1,7 @@
 layout 'layouts/main.gsp',
 title: 'LAPPS/EAGER',
 content: {
-    form(action:'/ask', method:'post') {
+    form(action:'ask', method:'post') {
         h1 'I am eager to help'
         fieldset {
             div(class:'column') {

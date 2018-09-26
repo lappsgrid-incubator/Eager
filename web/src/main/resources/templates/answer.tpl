@@ -30,11 +30,11 @@ content: {
             tr {
                 td doc.pmid
                 td doc.year
-                td doc.title[0]
+                td doc.title
             }
         }
     }
     p {
-        a href:'/ask', 'Ask another question'
+        a href:'ask', 'Ask another question'
     }
 }

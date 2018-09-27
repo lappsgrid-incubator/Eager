@@ -34,7 +34,6 @@ class MessageQueueTest {
         TaskQueue q = new TaskQueue('queue')
         q.register { msg ->
             println "1 $msg"
-            return true
         }
         new TestWorker(q)
 
@@ -57,9 +56,8 @@ class MessageQueueTest {
         }
 
         @Override
-        boolean work(String message) {
+        void work(String message) {
             println "2 $message"
-            return true
         }
     }
 }

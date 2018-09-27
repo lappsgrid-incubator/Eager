@@ -57,7 +57,9 @@ There are two ways to add a `Consumer` to a message queue:
 **NOTE** Due to the way that RabbitMQ wires together exchanges and queues the `register` methods can not be used with `PostOffice` instances.  The only way to receive messages from a `PostOffice` is to extend the `MailBox` class and implement the `recv(String)` method.
 
 
-#### RabbitMQ.register
+#### RabbitMQ.register()
+
+The `RabbitMQ` class provides two overloaded `register` methods that can be used to add consumers to a message queue; one takes a Groovy Closure and the other a `DefaultConsumer`:
 
 ```
 TaskQueue q = new TaskQueue('example')
@@ -77,7 +79,7 @@ q.register(consumer)
 ```
     // Task Queue workers.
     Worker worker = new Worker('example') {
-        public boolean work(String message) {
+        public void work(String message) {
             System.out.println(message);
         }
     }
@@ -89,7 +91,7 @@ q.register(consumer)
     }
     // Topic queue (routed messages)
     MailBox box = new MailBox('exchange', 'address') {
-        public boolean recv(String message) {
+        public void recv(String message) {
             System.out.println(message)
         }
     }
@@ -109,7 +111,7 @@ queue.send("This is message two.");
 ``` 
 // Worker1.java
 Worker w = new Worker('testing') {
-    public boolean work(String message) {
+    public void work(String message) {
         System.out.println("worker 1: " + message);
     }
 }
@@ -118,7 +120,7 @@ Worker w = new Worker('testing') {
 ``` 
 // Worker2.java
 Worker w = new Worker('testing') {
-    public boolean work(String message) {
+    public void work(String message) {
         System.out.println("worker 2: " + message);
     }
 }
@@ -131,8 +133,8 @@ Use the Publisher/Subscriber classes when messages need to be sent to all of the
 ``` 
 // In Broadcaster.java
 Publisher pub = new Publisher('pub.example');
-pub.send("Message one.");
-pub.send("Message two.");
+pub.publish("Message one.");
+pub.publish("Message two.");
 
 // In Subscriber1.java
 Subscriber sub = new Subscriber('pub.example') {
@@ -159,17 +161,15 @@ office.send("splitter", "Text to sentence split.");
 
 // In Tokenizer.java
 MailBox box = new MailBox('stanford', 'tokenizer') {
-    public boolean recv(String message) {
+    public void recv(String message) {
         // Tokenize the message.
-        return true;
     }
 }
 
 // In Splitter.java
 MailBox box = new MailBox('stanford', 'splitter') {
-    public boolean recv(String message) {
+    public void recv(String message) {
         // Sentence split the message.
-        return true;
     }
 }
 ```

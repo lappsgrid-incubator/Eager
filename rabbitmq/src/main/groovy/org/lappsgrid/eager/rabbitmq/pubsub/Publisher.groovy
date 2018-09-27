@@ -30,7 +30,7 @@ class Publisher extends RabbitMQ {
     }
 
     void publish(String message) {
-        channel.basicPublish(exchange, '', MessageProperties.PERSISTENT_TEXT_PLAIN, message.bytes)
+        channel.basicPublish(exchange, '', null, message.bytes)
     }
 
 }

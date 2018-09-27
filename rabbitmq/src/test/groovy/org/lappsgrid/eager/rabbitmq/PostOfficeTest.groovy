@@ -12,13 +12,13 @@ class PostOfficeTest {
     @Test
     void sendMail() {
         MailBox box1 = new MailBox('test', 'box1') {
-            public boolean recv(String message) {
+            public void recv(String message) {
                 println "Box 1 -> $message"
                 true
             }
         }
         MailBox box2 = new MailBox('test', 'box2') {
-            public boolean recv(String message) {
+            public void recv(String message) {
                 println "Box 2 -> $message"
                 true
             }

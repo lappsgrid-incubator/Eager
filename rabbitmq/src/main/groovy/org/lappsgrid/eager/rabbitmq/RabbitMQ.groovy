@@ -42,9 +42,9 @@ class RabbitMQ {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                boolean success = cl(message)
+                cl(message)
                 if (ack) {
-                    channel.basicAck(envelope.deliveryTag, success)
+                    channel.basicAck(envelope.deliveryTag, false)
                 }
             }
         };
@@ -52,7 +52,11 @@ class RabbitMQ {
     }
 
     void close() {
-        channel.close()
-        connection.close()
+        if (channel.isOpen()) {
+            channel.close()
+        }
+        if (connection.isOpen()) {
+            connection.close()
+        }
     }
 }

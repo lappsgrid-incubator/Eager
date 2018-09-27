@@ -1,8 +1,6 @@
 package org.lappsgrid.eager.mining.solr.parser
 
-import org.apache.solr.common.SolrDocument
-import org.apache.solr.common.SolrInputDocument
-import org.lappgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.core.solr.LappsDocument
 
 /**
  *

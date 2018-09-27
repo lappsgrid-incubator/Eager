@@ -27,6 +27,8 @@
         <module>api</module>
         <module>core</module>
         <module>rabbitmq</module>
+        <module>retrieval</module>
+        <module>error</module>
     </modules>
     <build>
         <plugins>

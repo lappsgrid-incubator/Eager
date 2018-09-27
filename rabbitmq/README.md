@@ -31,7 +31,7 @@ If the `host` parameter is not specified then *localhost* is assumed.
 
 ### Messages
 
-In RabbitMQ messages are simple byte arrays allowing any data to be transmitted.  However, in the `org.lappsgrid.eager.rabbitmq` classes all messages are considered to be sequences of UTF-8 encoded characters (i.e. Strings).  In most cases the message with be an *application/json* payload of some kind. 
+In RabbitMQ messages are simple byte arrays allowing any data to be transmitted.  However, in the `org.lappsgrid.eager.rabbitmq` classes all messages are considered to be sequences of UTF-8 encoded characters (i.e. Strings).  In most cases the message will be an *application/json* payload of some kind. 
 
 ### Creating Queues
 

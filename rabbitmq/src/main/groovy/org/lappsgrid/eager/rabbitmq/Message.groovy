@@ -4,7 +4,7 @@ package org.lappsgrid.eager.rabbitmq
  *
  */
 class Message {
-    String address
-    List<String> route
+    String command
+    String route
     String body
 }

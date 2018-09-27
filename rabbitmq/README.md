@@ -20,7 +20,7 @@ The RabbitMQ administration console will be available on http://localhost:15672 
 
 ## RabbitMQ
 
-All of the message queue types extend the `RabbitMQ` base class which handles the common tasks of opening a connection, creating a channel, and registering `Consumers`.  All queues have at least to constuctors; 
+All of the message queue types extend the `RabbitMQ` base class which handles the common tasks of opening a connection, creating a channel, and registering `Consumers`.  All queues have at least two constuctors; 
 
 ```
 public RabbitMQ(String name) { ... }

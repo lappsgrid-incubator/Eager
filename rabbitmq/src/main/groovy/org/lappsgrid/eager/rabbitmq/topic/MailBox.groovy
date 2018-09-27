@@ -21,10 +21,10 @@ abstract class MailBox extends RabbitMQ {
         channel.exchangeDeclare(exchange, "direct");
         this.queueName = channel.queueDeclare().getQueue();
         this.channel.queueBind(queueName, exchange, address)
-        this.channel.basicConsume(queueName, true, new Consumer(this))
+        this.channel.basicConsume(queueName, false, new Consumer(this))
     }
 
-    public abstract boolean recv(String message);
+    public abstract void recv(String message);
 
     class Consumer extends DefaultConsumer {
         MailBox box
@@ -38,14 +38,14 @@ abstract class MailBox extends RabbitMQ {
                             AMQP.BasicProperties properties, byte[] body)
                 throws IOException {
             String message = new String(body, "UTF-8");
-            boolean success = false
+            println "Consumer handle delivery: $message"
             try {
-                success = box.recv(message)
+                box.recv(message)
+                this.channel.basicAck(envelope.deliveryTag, false)
             }
             catch (Exception e) {
                 e.printStackTrace()
             }
-            this.channel.basicAck(envelope.deliveryTag, success)
         }
 
     }

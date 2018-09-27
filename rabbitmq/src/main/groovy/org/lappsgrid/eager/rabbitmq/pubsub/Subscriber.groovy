@@ -28,13 +28,17 @@ abstract class Subscriber extends DefaultConsumer {
                         AMQP.BasicProperties properties, byte[] body)
             throws IOException {
         String message = new String(body, "UTF-8");
-        boolean success = false
         try {
+//            println "Subscriber recv: $message"
             recv(message)
         }
         catch (Exception e) {
             e.printStackTrace()
         }
+    }
+
+    void close() {
+        broadcaster.close()
     }
 
     abstract void recv(String message)

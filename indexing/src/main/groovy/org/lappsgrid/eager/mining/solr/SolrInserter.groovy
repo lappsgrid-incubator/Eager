@@ -2,8 +2,7 @@ package org.lappsgrid.eager.mining.solr
 
 import org.apache.solr.client.solrj.impl.CloudSolrClient
 import org.apache.solr.client.solrj.response.UpdateResponse
-import org.apache.solr.common.SolrInputDocument
-import org.lappgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.solr.api.Sink
 
 import java.util.concurrent.BlockingQueue

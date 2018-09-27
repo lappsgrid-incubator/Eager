@@ -27,17 +27,16 @@ abstract class Worker extends DefaultConsumer {
                         AMQP.BasicProperties properties, byte[] body)
             throws IOException {
         String message = new String(body, "UTF-8");
-        boolean success = false
         try {
-            success = work(message)
+            work(message)
         }
         catch (Exception e) {
             e.printStackTrace()
         }
-        this.channel.basicAck(envelope.deliveryTag, success)
+        this.channel.basicAck(envelope.deliveryTag, false)
     }
 
-    abstract boolean work(String message)
+    abstract void work(String message)
 
 //    Worker(String name, Closure cl) {
 //       this(name, 'localhost', true, true, cl)

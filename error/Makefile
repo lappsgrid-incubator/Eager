@@ -1,0 +1,25 @@
+JAR=error-handler.jar
+GROUP=mining
+IMAGE=error-handler
+
+jar:
+	mvn package
+	cp target/$(JAR) src/main/docker/
+
+clean:
+	mvn clean
+	rm src/main/docker/$(JAR)
+	
+docker:
+	if [ ! -e src/main/docker/$JAR ] ; then cp target/$JAR src/main/docker ; done
+	cd src/main/docker && docker build -t $(GROUP)/$(IMAGE)
+	docker tag lappsgrid/eager docker.lappsgrid.org/$(GROUP)/$(IMAGE)
+
+start:
+	docker run -d -p 8080:8080 -v /tmp:/var/log/mining --name error $(GROUP)/$(IMAGE)
+
+stop:
+	docker rm -f error
+
+push:
+	docker push docker.lappsgrid.org/$(GROUP)/$(IMAGE)

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="false">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date %-5level [%class{0}.%M:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<encoder>
+			<pattern>%date %-5level [%class{0}.%M:%line] %msg%n</pattern>
+		</encoder>
+		<append>true</append>
+		<file>change-me.log</file>
+	</appender>
+
+	<appender name="ERROR" class="ch.qos.logback.core.FileAppender">
+		<encoder>
+			<pattern>%date %msg%n</pattern>
+		</encoder>
+		<append>true</append>
+		<file>/var/log/mining/error.log</file>
+	</appender>
+
+	<logger name="org.lappsgrid" level="error"/>
+	<logger name="org.lappsgrid.eager.mining" level="info"/>
+	<logger name="error.logger" level="trace">
+		<appender-ref ref="ERROR"/>
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<!-- <appender-ref ref="FILE"/>  -->
+	</root>
+</configuration>

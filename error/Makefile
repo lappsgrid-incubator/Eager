@@ -8,11 +8,11 @@ jar:
 
 clean:
 	mvn clean
-	rm src/main/docker/$(JAR)
+	if [ -e src/main/docker/$(JAR) ] ; then rm src/main/docker/$(JAR) ; fi
 	
 docker:
-	if [ ! -e src/main/docker/$JAR ] ; then cp target/$JAR src/main/docker ; done
-	cd src/main/docker && docker build -t $(GROUP)/$(IMAGE)
+	if [ ! -e src/main/docker/$JAR ] ; then cp target/$(JAR) src/main/docker ; fi
+	cd src/main/docker && docker build -t $(GROUP)/$(IMAGE) .
 	docker tag lappsgrid/eager docker.lappsgrid.org/$(GROUP)/$(IMAGE)
 
 start:

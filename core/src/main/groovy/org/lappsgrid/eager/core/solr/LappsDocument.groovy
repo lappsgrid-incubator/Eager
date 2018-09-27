@@ -45,7 +45,7 @@ class LappsDocument {
     }
 
     LappsDocument year(int year) {
-        add(Fields, Integer.toString(year))
+        add(Fields.YEAR, Integer.toString(year))
     }
 
     LappsDocument year(String year) {

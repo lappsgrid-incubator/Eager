@@ -12,7 +12,7 @@ class Publisher extends RabbitMQ {
     String queue
 
     public Publisher(String exchange) {
-        this(exchange, 'localhost' , true)
+        this(exchange, DEFAULT_HOST , true)
     }
 
     public Publisher(String exchange, String host) {

@@ -3,6 +3,7 @@ package org.lappsgrid.eager.rabbitmq.pubsub
 import com.rabbitmq.client.AMQP
 import com.rabbitmq.client.DefaultConsumer
 import com.rabbitmq.client.Envelope
+import org.lappsgrid.eager.rabbitmq.RabbitMQ
 
 /**
  *
@@ -11,7 +12,7 @@ abstract class Subscriber extends DefaultConsumer {
     private Publisher broadcaster
 
     Subscriber(String name) {
-        this(name, 'localhost')
+        this(name, RabbitMQ.DEFAULT_HOST)
     }
 
     Subscriber(String name, String host) {

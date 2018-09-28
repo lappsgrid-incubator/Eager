@@ -9,7 +9,7 @@ import org.lappsgrid.eager.rabbitmq.RabbitMQ
 class TaskQueue extends RabbitMQ{
 
     public TaskQueue(String name) {
-        this(name, 'localhost' , true, true)
+        this(name, DEFAULT_HOST , true, true)
     }
 
     public TaskQueue(String name, String host) {

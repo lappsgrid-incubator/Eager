@@ -12,20 +12,21 @@ import com.rabbitmq.client.Envelope
  *
  */
 class RabbitMQ {
+    public static final String DEFAULT_HOST = 'rabbitmq.lappsgrid.org/eager'
     String queueName
     Connection connection
     Channel channel
     boolean ack
 
     RabbitMQ(String queueName) {
-        this(queueName, 'localhost')
+        this(queueName, DEFAULT_HOST)
     }
 
     RabbitMQ(String queueName, String host) {
         ConnectionFactory factory = new ConnectionFactory()
         factory.setHost(host)
-        factory.setUsername('admin')
-        factory.setPassword('password')
+        factory.setUsername('eager')
+        factory.setPassword('eager')
         connection = factory.newConnection()
         channel = connection.createChannel()
         this.ack = false

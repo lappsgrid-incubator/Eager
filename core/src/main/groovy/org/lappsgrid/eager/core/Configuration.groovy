@@ -5,6 +5,7 @@ package org.lappsgrid.eager.core
  */
 class Configuration {
 
+    public String HOST
     public String BROADCAST
     public String POSTOFFICE
     public String BOX_ERROR
@@ -12,6 +13,7 @@ class Configuration {
     public String BOX_NLP_STANFORD
 
     Configuration() {
+        HOST = "rabbitmq.lappsgrid.org/eager"
         BROADCAST = "eager.broadcast"
         POSTOFFICE = "eager.postoffice"
         BOX_ERROR = "error"
@@ -30,6 +32,7 @@ class Configuration {
 
     Configuration(String script) {
         ConfigObject config = new ConfigSlurper().parse(script)
+        HOST = config.get('host', '129.114.17.244')
         BROADCAST = config.get('broadcast', 'eager.broadcast')
         POSTOFFICE = config.get('postoffice', 'eager.postoffice')
         BOX_ERROR = config.pobox?.error ?: 'error'

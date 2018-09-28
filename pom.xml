@@ -29,6 +29,7 @@
         <module>rabbitmq</module>
         <module>retrieval</module>
         <module>error</module>
+        <module>nlp</module>
     </modules>
     <build>
         <plugins>

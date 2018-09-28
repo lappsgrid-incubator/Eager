@@ -4,59 +4,75 @@ import org.junit.*
 import org.lappsgrid.eager.rabbitmq.tasks.TaskQueue
 import org.lappsgrid.eager.rabbitmq.tasks.Worker
 
+import java.util.concurrent.atomic.AtomicInteger
+
 /**
  *
  */
 class MessageQueueTest {
+
     @Test
-    void send() {
-//        MessageQueue q = new MessageQueue('queue', 'localhost', false, false)
-        TaskQueue q = new TaskQueue('queue')
-        q.send("1. Hello world.")
-        q.send("2. Hello world.")
-        q.send("3. Hello world.")
-        println "Message sent"
+    void simple() {
+        int n = 0
+        TaskQueue q = new TaskQueue('test.queue')
+        q.register { String message ->
+            println message
+            ++n
+        }
+
+        q.send('hello world')
+        assert 1 == n
     }
 
     @Test
-    void recv() {
+    void send() {
 //        MessageQueue q = new MessageQueue('queue', 'localhost', false, false)
-        TaskQueue q = new TaskQueue('queue')
-        q.register { String message ->
+        AtomicInteger count = new AtomicInteger()
+        TaskQueue r = new TaskQueue('test.queue')
+        r.register { String message ->
+            count.incrementAndGet()
             println "Registered closure: $message"
         }
-        Thread.sleep(2000)
-        println "Done"
+        TaskQueue s = new TaskQueue('test.queue')
+        s.send("1. Hello world.")
+        s.send("2. Hello world.")
+        s.send("3. Hello world.")
+        println "Messages sent"
+        sleep(2000)
+        assert 3 == count.intValue()
     }
 
     @Test
     void workers() {
-        TaskQueue q = new TaskQueue('queue')
+        TaskQueue q = new TaskQueue('test.queue')
+        AtomicInteger n = new AtomicInteger()
         q.register { msg ->
+            n.incrementAndGet()
             println "1 $msg"
         }
-        new TestWorker(q)
+        TestWorker w = new TestWorker(q)
 
         q.send("one")
         q.send("two")
         q.send("three")
         q.send("four")
         Thread.sleep(2000)
+        assert 2 == n.intValue()
+        assert 2 == w.n
+
         println "Done"
     }
 
-    synchronized void sleep() {
-        this.wait()
-    }
-
     class TestWorker extends Worker {
+        int n
+
         TestWorker(TaskQueue q) {
             super(q)
-
         }
 
         @Override
         void work(String message) {
+            ++n
             println "2 $message"
         }
     }

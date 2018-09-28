@@ -3,6 +3,7 @@ package org.lappsgrid.eager.rabbitmq.tasks
 import com.rabbitmq.client.AMQP
 import com.rabbitmq.client.DefaultConsumer
 import com.rabbitmq.client.Envelope
+import org.lappsgrid.eager.rabbitmq.RabbitMQ
 
 /**
  *
@@ -12,7 +13,7 @@ abstract class Worker extends DefaultConsumer {
     private TaskQueue queue
 
     Worker(String name) {
-        this(new TaskQueue(name, 'localhost'))
+        this(new TaskQueue(name, RabbitMQ.DEFAULT_HOST))
     }
     Worker(String name, String host) {
         this(new TaskQueue(name, host))

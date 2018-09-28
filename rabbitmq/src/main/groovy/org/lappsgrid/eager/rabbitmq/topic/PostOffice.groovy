@@ -8,6 +8,8 @@ import com.rabbitmq.client.Consumer
 import com.rabbitmq.client.DefaultConsumer
 import com.rabbitmq.client.Envelope
 import com.rabbitmq.client.MessageProperties
+import groovy.json.JsonOutput
+import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.RabbitMQ
 
 /**
@@ -17,13 +19,22 @@ class PostOffice extends RabbitMQ {
     String exchange
 
     PostOffice(String exchange) {
-        this(exchange, 'localhost')
+        this(exchange, DEFAULT_HOST)
     }
 
     PostOffice(String exchange, String host) {
         super('', host)
         this.exchange = exchange
         channel.exchangeDeclare(exchange, 'direct')
+    }
+
+    void send(Message message) {
+        if (message.route.size() == 0) {
+            return
+        }
+        String address = message.route.remove(0)
+        String json = JsonOutput.toJson(message)
+        send(address, json)
     }
 
     void send(String address, String message) {

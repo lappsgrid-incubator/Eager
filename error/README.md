@@ -6,6 +6,8 @@ Services that encounter an error should consider sending an error message to the
 
 ## Usage
 
+The error message handler uses [RabbitMQ](https://www.rabbitmq.com) to exchange messages.  By default the message handler connects to the RabbitMQ server at *rabbitmq.lappsgrid.org* and listens for messages sent to the **errorr** queue on the **eager.postoffice** message exchange.  See the [rabbitmq module](../rabbitmq/) for information on the RabbitMQ message queues and exchanges used.
+
 ``` 
 PostOffice po = new PostOffice("eager.postoffice");
 po.send("error", "Something really bad happened.");

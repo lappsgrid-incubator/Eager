@@ -7,7 +7,9 @@ import org.apache.solr.client.solrj.response.QueryResponse
 import org.apache.solr.common.SolrDocument
 import org.apache.solr.common.SolrDocumentList
 import org.apache.solr.common.params.MapSolrParams
+import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.api.QueryProcessor
+import org.lappsgrid.eager.model.Document
 import org.lappsgrid.eager.query.SimpleQueryProcessor
 import org.lappsgrid.serialization.Serializer
 import org.springframework.beans.factory.annotation.Autowired
@@ -56,9 +58,9 @@ class AskController {
 
     private Map answer(String question, int size) {
         SolrClient solr = new CloudSolrClient.Builder(["http://149.165.169.127:8983/solr"]).build();
-        String query = queryProcessor.transform(question)
+        Query query = queryProcessor.transform(question)
         Map params = [:]
-        params.q = query
+        params.q = query.query
         params.fl = 'pmid,pmc,doi,year,title,path'
         params.rows = '10000'
 
@@ -69,7 +71,7 @@ class AskController {
 
         int n = documents.size()
         Map result = [:]
-        result.question = question
+//        result.question = question
         result.query = query
         result.size = n
 
@@ -80,6 +82,7 @@ class AskController {
         List docs = []
         for (int i = 0; i < n; ++i) {
             SolrDocument doc = documents.get(i)
+            /*
             Map d = [:]
             d.pmid = doc.getFieldValue('pmid')
             d.pmc = doc.getFieldValue('pmc')
@@ -87,9 +90,14 @@ class AskController {
             d.year = doc.getFieldValue('year')
             d.title = doc.getFieldValue('title')
             d.path = doc.getFieldValue('path')
-            docs << d
+            */
+            docs << new Document(doc)
         }
-        result.documents = docs
+        result.documents = rank(query, docs)
         return result
+    }
+
+    private List rank(Query query, List<Document> documents) {
+        documents.sort { a,b -> a.title.length() <=> b.title.length() }
     }
 }

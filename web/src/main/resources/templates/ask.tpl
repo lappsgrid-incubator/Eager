@@ -15,5 +15,28 @@ content: {
                 }
             }
         }
+        div(class:'rounded-corners') {
+            p "Do you want to check out the system but don't know what to ask?  Try one of these questions:"
+            table(class:'grid') {
+                tr {
+                    td "What kinases phosphorylate AKT1 on threonine 308?"
+                }
+                tr {
+                    td "What regulates the transcription of Myc?"
+                }
+                tr {
+                    td "What are inhibitors of Jak1?"
+                }
+                tr {
+                    td "What transcription factors regulate insulin expression?"
+                }
+                tr {
+                    td "What genes does jmjd3 regulate?"
+                }
+                tr {
+                    td "What proteins bind to the PDGF-alpha receptor in neural stem cells?"
+                }
+            }
+        }
     }
 }

@@ -12,7 +12,9 @@ import com.rabbitmq.client.Envelope
  *
  */
 class RabbitMQ {
-    public static final String DEFAULT_HOST = 'rabbitmq.lappsgrid.org/eager'
+//    public static final String DEFAULT_HOST = 'rabbitmq.lappsgrid.org'
+    public static final String DEFAULT_HOST = 'localhost'
+
     String queueName
     Connection connection
     Channel channel

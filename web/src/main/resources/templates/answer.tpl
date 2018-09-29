@@ -5,11 +5,11 @@ content: {
     table {
         tr {
             td 'Question'
-            td data.question
+            td data.query.question
         }
         tr {
             td 'Query'
-            td data.query
+            td data.query.query
         }
         tr {
             td 'Size'

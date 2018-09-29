@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.query
 
+import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.api.QueryProcessor
 
 /**
@@ -7,7 +8,8 @@ import org.lappsgrid.eager.mining.api.QueryProcessor
  */
 class IdentityProcessor implements QueryProcessor {
 
-    String transform(String question) {
-        return question
+    Query transform(String question) {
+        List<String> terms = question.tokenize(' ')
+        return new Query(question, question, terms)
     }
 }

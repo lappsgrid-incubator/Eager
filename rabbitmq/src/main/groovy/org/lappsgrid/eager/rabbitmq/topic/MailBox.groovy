@@ -21,17 +21,17 @@ abstract class MailBox extends RabbitMQ {
         channel.exchangeDeclare(exchange, "direct");
         this.queueName = channel.queueDeclare().getQueue();
         this.channel.queueBind(queueName, exchange, address)
-        this.channel.basicConsume(queueName, false, new Consumer(this))
+        this.channel.basicConsume(queueName, false, new MailBoxConsumer(channel))
     }
 
     public abstract void recv(String message);
 
-    class Consumer extends DefaultConsumer {
-        MailBox box
+    class MailBoxConsumer extends DefaultConsumer {
+//        MailBox box
 
-        Consumer(MailBox  box) {
-            super(box.channel)
-            this.box = box;
+        MailBoxConsumer(Channel channel) {
+            super(channel)
+//            this.box = box;
         }
 
         void handleDelivery(String consumerTag, Envelope envelope,
@@ -40,8 +40,8 @@ abstract class MailBox extends RabbitMQ {
             String message = new String(body, "UTF-8");
             println "Consumer handle delivery: $message"
             try {
-                box.recv(message)
-                this.channel.basicAck(envelope.deliveryTag, false)
+                MailBox.this.recv(message)
+                channel.basicAck(envelope.deliveryTag, false)
             }
             catch (Exception e) {
                 e.printStackTrace()
@@ -49,4 +49,5 @@ abstract class MailBox extends RabbitMQ {
         }
 
     }
+
 }

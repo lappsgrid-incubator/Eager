@@ -13,7 +13,7 @@ class Configuration {
     public String BOX_NLP_STANFORD
 
     Configuration() {
-        HOST = "rabbitmq.lappsgrid.org/eager"
+        HOST = "rabbitmq.lappsgrid.org"
         BROADCAST = "eager.broadcast"
         POSTOFFICE = "eager.postoffice"
         BOX_ERROR = "error"

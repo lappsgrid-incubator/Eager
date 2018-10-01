@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
  */
 class MessageHandler {
     private static Logger logger = LoggerFactory.getLogger(MessageHandler)
-    private Logger errorLogger = LoggerFactory.getLogger("error.logger")
+    private Logger errorLogger = LoggerFactory.getLogger("error-logger")
 
     // RabbitMQ configuration.
     Configuration configuration
@@ -38,6 +38,7 @@ class MessageHandler {
      * Start the message queue listeners.
      */
     void start() {
+        /*
         broadcaster = new Subscriber(configuration.BROADCAST) {
             @Override
             void recv(String message) {
@@ -55,6 +56,7 @@ class MessageHandler {
                 }
             }
         }
+        */
         box = new MailBox(configuration.POSTOFFICE, configuration.BOX_ERROR) {
             @Override
             void recv(String message) {
@@ -65,6 +67,7 @@ class MessageHandler {
                     }
                 }
                 else {
+                    logger.info("Logging {}", message)
                     errorLogger.info(message)
                 }
             }
@@ -73,7 +76,7 @@ class MessageHandler {
     }
 
     void close() {
-        broadcaster.close()
+//        broadcaster.close()
         box.close()
         logger.info('Closed all connections.')
     }

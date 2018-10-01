@@ -30,6 +30,7 @@
         <module>retrieval</module>
         <module>error</module>
         <module>nlp</module>
+        <module>test</module>
     </modules>
     <build>
         <plugins>

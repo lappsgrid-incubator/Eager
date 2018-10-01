@@ -22,12 +22,14 @@ content: {
 
     table {
         tr {
+            th 'Score'
             th 'PMID'
             th 'Year'
             th 'Title'
         }
         data.documents.each { doc ->
             tr {
+                td String.format("%2.3f", doc.score)
                 td doc.pmid
                 td doc.year
                 td doc.title

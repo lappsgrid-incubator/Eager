@@ -19,7 +19,7 @@
 			<pattern>%date %msg%n</pattern>
 		</encoder>
 		<append>true</append>
-		<file>/var/log/mining/error.log</file>
+		<file>/tmp/eager-error.log</file>
 	</appender>
 
 	<logger name="org.lappsgrid" level="error"/>

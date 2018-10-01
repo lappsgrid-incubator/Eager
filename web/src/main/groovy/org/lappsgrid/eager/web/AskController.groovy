@@ -2,7 +2,6 @@ package org.lappsgrid.eager.web
 
 import org.apache.solr.client.solrj.SolrClient
 import org.apache.solr.client.solrj.impl.CloudSolrClient
-import org.apache.solr.client.solrj.impl.HttpSolrClient
 import org.apache.solr.client.solrj.response.QueryResponse
 import org.apache.solr.common.SolrDocument
 import org.apache.solr.common.SolrDocumentList
@@ -11,14 +10,12 @@ import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.api.QueryProcessor
 import org.lappsgrid.eager.model.Document
 import org.lappsgrid.eager.query.SimpleQueryProcessor
-import org.lappsgrid.serialization.Serializer
-import org.springframework.beans.factory.annotation.Autowired
+import org.lappsgrid.eager.rank.RankingEngine
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.ResponseBody
 
 /**
  *
@@ -39,6 +36,7 @@ class AskController {
         return "ask"
     }
 
+    /*
     @PostMapping(path = "/ask", produces = 'application/json')
     @ResponseBody String post(@RequestParam String question) {
         return Serializer.toPrettyJson(answer(question))
@@ -51,53 +49,54 @@ class AskController {
         model.addAttribute('data', reply)
         return 'answer'
     }
+    */
 
-    private Map answer(String question) {
-        return answer(question, 10)
+    @PostMapping(path="/ask", produces="text/html")
+    String postHtml(@RequestParam Map<String,String> params, Model model) {
+//        model.addAttribute('params', params)
+//        return 'test'
+        Map reply = answer(params, 1000)
+        model.addAttribute('data', reply)
+        return 'answer'
     }
 
-    private Map answer(String question, int size) {
-        SolrClient solr = new CloudSolrClient.Builder(["http://149.165.169.127:8983/solr"]).build();
-        Query query = queryProcessor.transform(question)
-        Map params = [:]
-        params.q = query.query
-        params.fl = 'pmid,pmc,doi,year,title,path'
-        params.rows = '10000'
+    private Map answer(Map params) {
+        return answer(params, 100)
+    }
 
-        MapSolrParams queryParams = new MapSolrParams(params)
+    private Map answer(Map params, int size) {
+        SolrClient solr = new CloudSolrClient.Builder(["http://149.165.169.127:8983/solr"]).build();
+        Query query = queryProcessor.transform(params.question)
+        Map solrParams = [:]
+        solrParams.q = query.query
+        solrParams.fl = 'pmid,pmc,doi,year,title,path'
+        solrParams.rows = '10000'
+
+        MapSolrParams queryParams = new MapSolrParams(solrParams)
 
         final QueryResponse response = solr.query(collection, queryParams);
         final SolrDocumentList documents = response.getResults();
 
         int n = documents.size()
         Map result = [:]
-//        result.question = question
         result.query = query
         result.size = n
-
-        if (n > size) {
-            n = size
-        }
 
         List docs = []
         for (int i = 0; i < n; ++i) {
             SolrDocument doc = documents.get(i)
-            /*
-            Map d = [:]
-            d.pmid = doc.getFieldValue('pmid')
-            d.pmc = doc.getFieldValue('pmc')
-            d.doi = doc.getFieldValue('doi')
-            d.year = doc.getFieldValue('year')
-            d.title = doc.getFieldValue('title')
-            d.path = doc.getFieldValue('path')
-            */
-            docs << new Document(doc)
+             docs << new Document(doc)
         }
-        result.documents = rank(query, docs)
+
+        result.documents = rank(query, docs, params)
+        if (result.documents.size() > size) {
+            result.documents = docs[0..size]
+        }
         return result
     }
 
-    private List rank(Query query, List<Document> documents) {
-        documents.sort { a,b -> a.title.length() <=> b.title.length() }
+    private List rank(Query query, List<Document> documents, Map params) {
+        RankingEngine ranker = new RankingEngine(params)
+        return ranker.rank(query, documents)
     }
 }

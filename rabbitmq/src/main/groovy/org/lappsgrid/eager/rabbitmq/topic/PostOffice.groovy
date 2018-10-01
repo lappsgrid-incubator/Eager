@@ -19,7 +19,7 @@ class PostOffice extends RabbitMQ {
     String exchange
 
     PostOffice(String exchange) {
-        this(exchange, DEFAULT_HOST)
+        this(exchange, RabbitMQ.DEFAULT_HOST)
     }
 
     PostOffice(String exchange, String host) {

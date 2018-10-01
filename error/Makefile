@@ -1,7 +1,8 @@
 JAR=error-handler.jar
 GROUP=mining
 NAME=error-handler
-IMAGE=$(GROUP)/$(IMAGE)
+IMAGE=$(GROUP)/$(NAME)
+TAG=docker.lappsgrid.org/$(IMAGE)
 
 jar:
 	mvn package
@@ -13,8 +14,8 @@ clean:
 	
 docker:
 	if [ ! -e src/main/docker/$JAR ] ; then cp target/$(JAR) src/main/docker ; fi
-	cd src/main/docker && docker build -t (IMAGE) .
-	docker tag $(IMAGE) docker.lappsgrid.org/$(IMAGE)
+	cd src/main/docker && docker build -t $(IMAGE) .
+	docker tag $(IMAGE) $(TAG)
 
 start:
 	docker run -d -p 8080:8080 -v /tmp:/var/log/mining --name error $(IMAGE)
@@ -23,4 +24,4 @@ stop:
 	docker rm -f error
 
 push:
-	docker push docker.lappsgrid.org/$(IMAGE)
+	docker push $(TAG)

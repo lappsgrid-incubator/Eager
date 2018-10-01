@@ -12,8 +12,8 @@ import com.rabbitmq.client.Envelope
  *
  */
 class RabbitMQ {
-//    public static final String DEFAULT_HOST = 'rabbitmq.lappsgrid.org'
-    public static final String DEFAULT_HOST = 'localhost'
+    public static final String DEFAULT_HOST = 'rabbitmq.lappsgrid.org'
+//    public static final String DEFAULT_HOST = 'localhost'
 
     String queueName
     Connection connection
@@ -29,17 +29,28 @@ class RabbitMQ {
         factory.setHost(host)
         factory.setUsername('eager')
         factory.setPassword('eager')
+        println "Connecting to $host"
         connection = factory.newConnection()
         channel = connection.createChannel()
-        this.ack = false
+        this.ack = true
         this.queueName = queueName
+        println "Connected: Using queue: $queueName"
     }
 
     void register(Consumer consumer) {
-        channel.basicConsume(queueName, true, consumer)
+//        register(consumer, false)
+//    }
+//
+//    void register(Consumer consumer, boolean autoAck) {
+//        this.ack = ! autoAck
+        channel.basicConsume(queueName, false, consumer)
     }
 
     void register(Closure cl) {
+//        register(false, cl)
+//    }
+//
+//    void register(boolean autoAck, Closure cl) {
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
@@ -47,10 +58,11 @@ class RabbitMQ {
                 String message = new String(body, "UTF-8");
                 cl(message)
                 if (ack) {
+//                    println "Ack: $message"
                     channel.basicAck(envelope.deliveryTag, false)
                 }
             }
-        };
+        }
         register(consumer)
     }
 

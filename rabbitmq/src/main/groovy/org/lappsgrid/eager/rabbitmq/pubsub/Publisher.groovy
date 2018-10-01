@@ -12,7 +12,7 @@ class Publisher extends RabbitMQ {
     String queue
 
     public Publisher(String exchange) {
-        this(exchange, DEFAULT_HOST , true)
+        this(exchange, RabbitMQ.DEFAULT_HOST , true)
     }
 
     public Publisher(String exchange, String host) {
@@ -24,7 +24,14 @@ class Publisher extends RabbitMQ {
         this.exchange = exchange
 
         channel.exchangeDeclare(exchange, "fanout")
-        queue = channel.queueDeclare().queue
+//        queue = channel.queueDeclare().queue
+        boolean passive = false
+//        boolean durable = true
+        boolean exclusive = false
+        boolean autoDelete = true
+
+        this.queue = channel.queueDeclare('', durable, exclusive, autoDelete, null).getQueue();
+
         String routingKey = ""
         channel.queueBind(queue, exchange, routingKey)
     }

@@ -12,11 +12,19 @@ import org.lappsgrid.serialization.Serializer
  */
 class Main {
 
+    /** The pipeline of Stanford services to be executed. */
     Pipeline pipeline
-    Object semaphore
+
+    /** System configuration. */
     Configuration config
 
+    /** Object used to block/wait until the queue is closed. */
+    Object semaphore
+
+    /** Where outgoing messages are sent. */
     PostOffice post
+
+    /** Where we receive incoming messages. */
     MailBox box
 
     Main() {

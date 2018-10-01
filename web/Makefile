@@ -15,13 +15,16 @@ clean:
 docker:
 	if [ ! -e src/main/docker/$(JAR) ] ; then cp target/$(JAR) src/main/docker ; fi
 	cd src/main/docker && docker build -t $(IMAGE) .
-	docker tag $(IMGAE) $(TAG)
+	docker tag $(IMAGE) $(TAG)
 
 start:
 	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)\
 
 stop:
 	docker rm -f $(NAME)
+
+tag:
+	docker tag $(IMAGE) $(TAG)
 
 push:
 	docker push $(TAG)

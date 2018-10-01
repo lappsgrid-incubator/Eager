@@ -23,7 +23,9 @@ abstract class Worker extends DefaultConsumer {
         this.queue = queue
         this.queue.register(this)
     }
-
+    void close() {
+        queue.close()
+    }
     void handleDelivery(String consumerTag, Envelope envelope,
                         AMQP.BasicProperties properties, byte[] body)
             throws IOException {

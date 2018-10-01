@@ -13,34 +13,37 @@ abstract class MailBox extends RabbitMQ {
     String exchange
 
     MailBox(String exchange, String address) {
-        this(exchange, address, DEFAULT_HOST)
+        this(exchange, address, RabbitMQ.DEFAULT_HOST)
     }
 
     MailBox(String exchange, String address, String host) {
         super('', host)
         channel.exchangeDeclare(exchange, "direct");
-        this.queueName = channel.queueDeclare().getQueue();
+        boolean passive = false
+        boolean durable = true
+        boolean exclusive = false
+        boolean autoDelete = true
+        this.queueName = channel.queueDeclare('', durable, exclusive, autoDelete, null).getQueue();
         this.channel.queueBind(queueName, exchange, address)
-        this.channel.basicConsume(queueName, false, new MailBoxConsumer(channel))
+        this.channel.basicConsume(queueName, false, new MailBoxConsumer(this))
     }
 
-    public abstract void recv(String message);
+    abstract void recv(String message)
 
     class MailBoxConsumer extends DefaultConsumer {
-//        MailBox box
+        MailBox box
 
-        MailBoxConsumer(Channel channel) {
-            super(channel)
-//            this.box = box;
+        MailBoxConsumer(MailBox box) {
+            super(box.channel)
+            this.box = box;
         }
 
         void handleDelivery(String consumerTag, Envelope envelope,
                             AMQP.BasicProperties properties, byte[] body)
                 throws IOException {
             String message = new String(body, "UTF-8");
-            println "Consumer handle delivery: $message"
             try {
-                MailBox.this.recv(message)
+                box.recv(message)
                 channel.basicAck(envelope.deliveryTag, false)
             }
             catch (Exception e) {

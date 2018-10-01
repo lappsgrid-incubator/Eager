@@ -12,6 +12,9 @@ class Document {
     String year
     String title
     String path
+    float score
+    Map<String,Float> scores
+
     /*
                 d.pmid = doc.getFieldValue('pmid')
             d.pmc = doc.getFieldValue('pmc')
@@ -26,5 +29,7 @@ class Document {
         ['pmid','pmc','doi','year','title','path'].each { field ->
             this.setProperty(field, document.getFieldValue(field))
         }
+        score = 0.0f
+        scores = [:]
     }
 }

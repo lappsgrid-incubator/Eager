@@ -11,54 +11,66 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 class MessageQueueTest {
 
+    TaskQueue queue
+
+    @Before
+    void setup() {
+        queue = new TaskQueue('test.queue')
+    }
+
+    @After
+    void teardown() {
+        queue.close()
+        queue = null
+    }
+
     @Test
     void simple() {
         int n = 0
-        TaskQueue q = new TaskQueue('test.queue')
-        q.register { String message ->
-            println message
+//        TaskQueue q = new TaskQueue('test.queue')
+        queue.register { String message ->
+            println "Received: $message"
             ++n
         }
 
-        q.send('hello world')
+        queue.send('hello world')
+        sleep(500)
         assert 1 == n
     }
 
     @Test
     void send() {
-//        MessageQueue q = new MessageQueue('queue', 'localhost', false, false)
         AtomicInteger count = new AtomicInteger()
-        TaskQueue r = new TaskQueue('test.queue')
-        r.register { String message ->
+        queue.register { String message ->
             count.incrementAndGet()
             println "Registered closure: $message"
         }
-        TaskQueue s = new TaskQueue('test.queue')
-        s.send("1. Hello world.")
-        s.send("2. Hello world.")
-        s.send("3. Hello world.")
+        sleep(500)
+        queue.send("1. Hello world.")
+        queue.send("2. Hello world.")
+        queue.send("3. Hello world.")
         println "Messages sent"
-        sleep(2000)
+        sleep(1000)
         assert 3 == count.intValue()
     }
 
     @Test
     void workers() {
-        TaskQueue q = new TaskQueue('test.queue')
+//        TaskQueue q = new TaskQueue('test.queue')
         AtomicInteger n = new AtomicInteger()
-        q.register { msg ->
-            n.incrementAndGet()
-            println "1 $msg"
+        queue.register { msg ->
+            int local_n = n.incrementAndGet()
+            println "worker 1[$local_n] $msg"
         }
-        TestWorker w = new TestWorker(q)
-
-        q.send("one")
-        q.send("two")
-        q.send("three")
-        q.send("four")
-        Thread.sleep(2000)
-        assert 2 == n.intValue()
+        TestWorker w = new TestWorker(queue)
+        sleep(500)
+        queue.send("one")
+        queue.send("two")
+        queue.send("three")
+        queue.send("four")
+        Thread.sleep(1000)
         assert 2 == w.n
+        assert 2 == n.intValue()
 
         println "Done"
     }
@@ -73,7 +85,7 @@ class MessageQueueTest {
         @Override
         void work(String message) {
             ++n
-            println "2 $message"
+            println "worker 2[$n] $message"
         }
     }
 }

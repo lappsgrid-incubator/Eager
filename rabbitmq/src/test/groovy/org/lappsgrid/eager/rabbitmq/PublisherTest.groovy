@@ -17,6 +17,7 @@ class PublisherTest {
         AtomicInteger count = new AtomicInteger()
         String name = 'test.broadcast'
 
+        // Start three subscribers.
         3.times { n ->
             Thread.start {
                 println "Staring listener $n"
@@ -28,12 +29,15 @@ class PublisherTest {
             }
 
         }
+
+        // Broadcast five messages.
         Publisher broadcaster = new Publisher(name)
         5.times { i ->
             broadcaster.publish("$i Hello world")
             sleep(500)
         }
-        sleep(6000)
+        sleep(1000)
+
         assert 15 == count.intValue()
         println "Count: ${count.get()}"
     }
@@ -57,9 +61,9 @@ class PublisherTest {
             broadcaster.publish("$i Hello world")
             sleep(100)
         }
-        sleep(5000)
+        sleep(1000)
         int n = count.intValue()
-        println "Count: $n}"
+        println "Count: $n"
         assert 15 == n
     }
 }

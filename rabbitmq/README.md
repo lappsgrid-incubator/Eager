@@ -78,24 +78,47 @@ q.register(consumer)
 
 ```
     // Task Queue workers.
-    Worker worker = new Worker('example') {
+    TaskQueue q = new TaskQueue('example.queue')
+    Worker worker1 = new Worker(q) {
         public void work(String message) {
             System.out.println(message);
         }
     }
+    Worker worker2 = new Worker('example.queue) {
+        public void work(String message) {
+            System.out.println(message);
+        }
+    }
+```
+
+```    
     // Subscribers to publishers (broadcasters)
     Subscriber subscriber = new Subscriber('example.broadcast') {
         public void recv(String message) {
             System.out.println(message)
         }
     }
-    // Topic queue (routed messages)
-    MailBox box = new MailBox('exchange', 'address') {
+    Publisher pub = new Publisher('example.broadcast')
+    pub.send('Hello world.')
+```
+
+```
+    // Topic queues (routed messages)
+    MailBox box = new MailBox('example.exchange', 'alice') {
         public void recv(String message) {
-            System.out.println(message)
+            System.out.println("alice: $message")
         }
     }
+    MailBox box = new MailBox('example.exchange', 'bob') {
+        public void recv(String message) {
+            System.out.println("bob: $message")
+        }
+    }
+    PostOffice po = new PostOffice('example.exchange')
+    po.send('bob', 'Hi Bob')
+    po.send('alice', 'Hi Alice')
 ```
+
 ## Task Queues
 
 Task queues are used to distribute work to a pool of workers subscribed to the queue.  If the queue is set to be *fair* then tasks are distributed to workers only when they are available to accept a new task, i.e. they have finished their previous task.  If the queue has not been set to be *fair* then tasks are dealt out in a round-robin fashion which may result in one worker receiving most of the long running tasks leaving the other workers under utilized. 

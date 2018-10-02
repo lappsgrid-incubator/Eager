@@ -36,6 +36,9 @@ class PostOfficeTest {
         post.send('box1', "box1 message 2")
         post.send('box2', 'box2 message 3')
         sleep(500)
+        post.close()
+        box1.close()
+        box2.close()
         assert 2 == c1 //box1.count
         assert 3 == c2 //box2.count
         println "Done"

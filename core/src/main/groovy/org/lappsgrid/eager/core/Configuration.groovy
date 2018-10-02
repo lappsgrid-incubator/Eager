@@ -11,6 +11,7 @@ class Configuration {
     public String BOX_ERROR
     public String BOX_LOAD
     public String BOX_NLP_STANFORD
+    public String BOX_REDIS
 
     Configuration() {
         HOST = "rabbitmq.lappsgrid.org"
@@ -18,6 +19,7 @@ class Configuration {
         POSTOFFICE = "eager.postoffice"
         BOX_ERROR = "error"
         BOX_LOAD = "load"
+        BOX_REDIS = "redis"
         BOX_NLP_STANFORD = "nlp.stanford"
     }
 
@@ -37,6 +39,7 @@ class Configuration {
         POSTOFFICE = config.get('postoffice', 'eager.postoffice')
         BOX_ERROR = config.pobox?.error ?: 'error'
         BOX_LOAD = config.pobox?.load ?: 'load'
+        BOX_REDIS = config.pobox?.redis ?: 'redis'
         BOX_NLP_STANFORD = config.pobox?.nlp?.stanford ?: 'nlp.stanford'
     }
 

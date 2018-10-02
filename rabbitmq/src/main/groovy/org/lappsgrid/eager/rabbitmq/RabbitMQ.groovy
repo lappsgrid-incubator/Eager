@@ -29,12 +29,10 @@ class RabbitMQ {
         factory.setHost(host)
         factory.setUsername('eager')
         factory.setPassword('eager')
-        println "Connecting to $host"
         connection = factory.newConnection()
         channel = connection.createChannel()
         this.ack = true
         this.queueName = queueName
-        println "Connected: Using queue: $queueName"
     }
 
     void register(Consumer consumer) {
@@ -58,7 +56,6 @@ class RabbitMQ {
                 String message = new String(body, "UTF-8");
                 cl(message)
                 if (ack) {
-//                    println "Ack: $message"
                     channel.basicAck(envelope.deliveryTag, false)
                 }
             }

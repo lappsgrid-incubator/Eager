@@ -41,7 +41,7 @@ class RankingEngine {
                 total = total + score
             }
             document.score = total
-            printf "%s -> %2.6f\n", document.pmid, total
+//            printf "%s -> %2.6f\n", document.pmid, total
         }
         return documents.sort { a,b -> b.score <=> a.score }
     }

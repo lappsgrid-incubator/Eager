@@ -21,7 +21,7 @@ class IntegrationTest {
 
     @Test
     void load() {
-        String mbox = 'integration.load'
+        String mbox = 'test.integration.load'
         boolean received = false
         String body = 'Hello world.'
         File tmpFile = File.createTempFile('eager', '.txt', new File('/tmp'))
@@ -39,6 +39,7 @@ class IntegrationTest {
                 received = true
             }
         }
+
         Message message = new Message()
                 .command('load')
                 .body(tmpFile.path)
@@ -92,10 +93,10 @@ class IntegrationTest {
         Configuration c = new Configuration()
         String xml = rpc(c.POSTOFFICE, id)
         assert xml
-        File file = new File('/tmp/example.xml')
+//        File file = new File('/tmp/example.xml')
         XmlParser parser = Factory.createXmlParser()
         Node node = parser.parseText(xml)
-        file.text = XmlUtil.serialize(node)
+        println XmlUtil.serialize(node)
 
     }
 

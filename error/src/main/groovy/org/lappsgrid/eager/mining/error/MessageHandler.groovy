@@ -6,6 +6,8 @@ import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import java.util.concurrent.atomic.AtomicLong
+
 /**
  * Logs messages to 'error' on the 'eager.postoffice' exchange.
  */
@@ -25,6 +27,8 @@ class MessageHandler {
     // Semaphore used to signal when the thread should terminate.
     private Object semaphore
 
+    AtomicLong counter
+
     MessageHandler() {
         this(new Configuration())
     }
@@ -32,6 +36,7 @@ class MessageHandler {
     MessageHandler(Configuration config) {
         this.configuration = config
         this.semaphore = new Object()
+        this.counter = new AtomicLong()
     }
 
     /**
@@ -60,6 +65,7 @@ class MessageHandler {
         box = new MailBox(configuration.POSTOFFICE, configuration.BOX_ERROR) {
             @Override
             void recv(String message) {
+                counter.incrementAndGet()
                 if (message == 'shutdown') {
                     logger.info('Received a shutdown message')
                     synchronized (semaphore) {
@@ -73,6 +79,10 @@ class MessageHandler {
             }
         }
         logger.info("Handler waiting for messages")
+    }
+
+    long count() {
+        return counter.get()
     }
 
     void close() {

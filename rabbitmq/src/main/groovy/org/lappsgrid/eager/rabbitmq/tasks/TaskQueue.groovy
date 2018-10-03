@@ -1,7 +1,9 @@
 package org.lappsgrid.eager.rabbitmq.tasks
 
+import com.rabbitmq.client.Consumer
 import com.rabbitmq.client.MessageProperties
 import org.lappsgrid.eager.rabbitmq.RabbitMQ
+import org.lappsgrid.eager.rabbitmq.SimpleConsumer
 
 /**
  *
@@ -31,5 +33,17 @@ class TaskQueue extends RabbitMQ{
         channel.basicPublish('', queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes())
     }
 
+    void register(Consumer consumer) {
+        this.channel.basicConsume(this.queueName, true, consumer)
+    }
 
+    void register(Closure cl) {
+        SimpleConsumer consumer = new SimpleConsumer(this.channel) {
+            @Override
+            void consume(String message) {
+                cl(message)
+            }
+        }
+        this.channel.basicConsume(queueName, true, consumer)
+    }
 }

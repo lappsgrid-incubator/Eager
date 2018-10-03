@@ -9,23 +9,24 @@ import com.rabbitmq.client.DefaultConsumer
 import com.rabbitmq.client.Envelope
 import org.lappsgrid.eager.rabbitmq.RabbitMQ
 
+
 /**
  *
+ * @deprecated This class is used for testing only.  Use the Subscriber class instead.
  */
-class Subscriber {
+@Deprecated
+class Listener {
+
     String exchange
     String queueName
     Connection connection
     Channel channel
+//    Consumer consumer
 
-    Subscriber(String exchange) {
-        this(exchange, RabbitMQ.DEFAULT_HOST)
-    }
-
-    Subscriber(String exchange, String host) {
+    Listener(String exchange) {
         this.exchange = exchange
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost(host);
+        factory.setHost(RabbitMQ.DEFAULT_HOST);
         factory.setUsername('eager')
         factory.setPassword('eager')
 
@@ -35,14 +36,17 @@ class Subscriber {
         channel.exchangeDeclare(exchange, "fanout");
         queueName = channel.queueDeclare().getQueue();
         channel.queueBind(queueName, exchange, "");
+//        channel.basicConsume(queueName, true, this);
     }
 
     void register(Consumer consumer) {
+        println "Registering consumer"
         channel.basicConsume(queueName, true, consumer)
     }
 
     void register(Closure cl) {
-        Consumer consumer = new DefaultConsumer(this.channel) {
+        println "Registering closure"
+        Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                     throws IOException {

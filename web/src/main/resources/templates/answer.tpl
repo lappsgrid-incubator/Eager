@@ -18,7 +18,6 @@ content: {
     }
 
     h1 'The Answers'
-    h2 'In no particular order'
 
     table {
         tr {
@@ -26,13 +25,22 @@ content: {
             th 'PMID'
             th 'Year'
             th 'Title'
+            if (data.keys) {
+                data.keys.each { th(it) }
+            }
+
         }
         data.documents.each { doc ->
             tr {
                 td String.format("%2.3f", doc.score)
-                td doc.pmid
+                td { a(href:"show?path=${doc.path}", doc.pmid) }
                 td doc.year
                 td doc.title
+                if (data.keys) {
+                    data.keys.each { key ->
+                        td String.format("%2.3f", doc.scores[key])
+                    }
+                }
             }
         }
     }

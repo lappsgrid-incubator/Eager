@@ -8,6 +8,10 @@ jar:
 	mvn package
 	cp target/$(JAR) src/main/docker/
 
+offline:
+	mvn -o package
+	cp target/$(JAR) src/main/docker/
+
 clean:
 	mvn clean
 	if [ -e src/main/docker/$(JAR) ] ; then rm src/main/docker/$(JAR) ; fi
@@ -18,7 +22,7 @@ docker:
 	docker tag $(IMAGE) $(TAG)
 
 start:
-	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)
+	docker run -d --name $(NAME) -v /tmp:/tmp $(IMAGE)
 
 stop:
 	docker rm -f $(NAME)

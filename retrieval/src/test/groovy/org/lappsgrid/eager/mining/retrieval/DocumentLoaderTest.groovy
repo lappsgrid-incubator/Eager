@@ -86,6 +86,7 @@ public class DocumentLoaderTest
             fail message.body ?: 'File not loaded.'
         }
         passed = true
+        println "Message received: ${message.body}"
         synchronized (semaphore) {
             semaphore.notifyAll()
         }

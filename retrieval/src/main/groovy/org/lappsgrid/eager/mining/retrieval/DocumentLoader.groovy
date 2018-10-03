@@ -37,7 +37,8 @@ class DocumentLoader {
             @Override
             void recv(String message) {
                 if (message == 'shutdown') {
-                    stop()
+                    //stop()
+                    println 'Shutdown message ignored.'
                     return
                 }
                 process(message)
@@ -56,18 +57,25 @@ class DocumentLoader {
             return
         }
         if (message.command == 'shutdown') {
-            println "Shutdown message received."
-            stop()
+            println "Shutdown message ignored."
+//            stop()
+            return
         }
         else if (message.command == 'load') {
             File file = new File(message.body)
             if (!file.exists()) {
                 // TODO Send a message to the error service.
-                println "File not found: ${file.path}"
+                String error = "File not found: ${file.path}"
+                println error
+                message.command = 'error'
+                message.parameters['document.load.error'] = error
+                office.send(message)
                 return
             }
             message.command = 'loaded'
             message.body = file.text
+            println "Loaded ${file.path}"
+            println "Sending reply to ${message.route[0]}"
             office.send(message)
         }
         else {
@@ -75,14 +83,13 @@ class DocumentLoader {
             String error = "Unknown command: ${message.command}"
             println error
             message.command = 'error'
-            message.body(error)
+            message.parameters['document.load.error'] = error
             office.send(message)
         }
 
     }
 
     void stop() {
-        close()
         synchronized (semaphore) {
             semaphore.notifyAll()
         }
@@ -96,9 +103,11 @@ class DocumentLoader {
     public static void main(String[] args) {
         DocumentLoader loader = new DocumentLoader()
         loader.start()
+
         synchronized (loader.semaphore) {
             loader.semaphore.wait()
         }
+        loader.close()
         println "DocumentLoader has shutdown."
     }
 }

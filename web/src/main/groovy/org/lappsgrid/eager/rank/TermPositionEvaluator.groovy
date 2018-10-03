@@ -25,4 +25,9 @@ class TermPositionEvaluator implements ScoringAlgorithm{
     String name() {
         return 'TermPositionEvaluator'
     }
+
+    @Override
+    String abbrev() {
+        return "position"
+    }
 }

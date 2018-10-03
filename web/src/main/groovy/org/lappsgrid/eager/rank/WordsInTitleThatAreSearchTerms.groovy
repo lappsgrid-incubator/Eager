@@ -22,4 +22,9 @@ class WordsInTitleThatAreSearchTerms implements ScoringAlgorithm, Tokenizer {
     String name() {
         return 'TermFrequencyEvaluator'
     }
+
+    @Override
+    String abbrev() {
+        return "freq"
+    }
 }

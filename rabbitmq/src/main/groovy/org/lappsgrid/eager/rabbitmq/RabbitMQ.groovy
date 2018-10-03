@@ -16,9 +16,9 @@ class RabbitMQ {
 //    public static final String DEFAULT_HOST = 'localhost'
 
     String queueName
+    String exchange
     Connection connection
     Channel channel
-    boolean ack
 
     RabbitMQ(String queueName) {
         this(queueName, DEFAULT_HOST)
@@ -31,24 +31,15 @@ class RabbitMQ {
         factory.setPassword('eager')
         connection = factory.newConnection()
         channel = connection.createChannel()
-        this.ack = true
         this.queueName = queueName
     }
 
+    /*
     void register(Consumer consumer) {
-//        register(consumer, false)
-//    }
-//
-//    void register(Consumer consumer, boolean autoAck) {
-//        this.ack = ! autoAck
         channel.basicConsume(queueName, false, consumer)
     }
 
     void register(Closure cl) {
-//        register(false, cl)
-//    }
-//
-//    void register(boolean autoAck, Closure cl) {
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
@@ -56,18 +47,21 @@ class RabbitMQ {
                 String message = new String(body, "UTF-8");
                 cl(message)
                 if (ack) {
+                    println "ack ${envelope.deliveryTag}"
                     channel.basicAck(envelope.deliveryTag, false)
                 }
             }
         }
         register(consumer)
     }
-
+    */
     void close() {
         if (channel.isOpen()) {
+            println "Closing channel " + channel.channelNumber
             channel.close()
         }
         if (connection.isOpen()) {
+            println "Closing connection " + connection.address
             connection.close()
         }
     }

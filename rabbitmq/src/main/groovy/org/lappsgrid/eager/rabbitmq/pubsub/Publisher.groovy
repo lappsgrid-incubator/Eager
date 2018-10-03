@@ -1,5 +1,12 @@
 package org.lappsgrid.eager.rabbitmq.pubsub
 
+import com.rabbitmq.client.AMQP
+import com.rabbitmq.client.Channel
+import com.rabbitmq.client.Connection
+import com.rabbitmq.client.ConnectionFactory
+import com.rabbitmq.client.Consumer
+import com.rabbitmq.client.DefaultConsumer
+import com.rabbitmq.client.Envelope
 import com.rabbitmq.client.MessageProperties
 import org.lappsgrid.eager.rabbitmq.RabbitMQ
 
@@ -7,37 +14,34 @@ import org.lappsgrid.eager.rabbitmq.RabbitMQ
 /**
  *
  */
-class Publisher extends RabbitMQ {
+class Publisher {
     String exchange
-    String queue
+    Connection connection
+    Channel channel
 
     public Publisher(String exchange) {
-        this(exchange, RabbitMQ.DEFAULT_HOST , true)
+        this(exchange, RabbitMQ.DEFAULT_HOST)
     }
 
     public Publisher(String exchange, String host) {
-        this(exchange, host, true)
-    }
-
-    public Publisher(String exchange, String host, boolean durable) {
-        super('', host)
         this.exchange = exchange
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost(host);
+        factory.setUsername('eager')
+        factory.setPassword('eager')
 
-        channel.exchangeDeclare(exchange, "fanout")
-//        queue = channel.queueDeclare().queue
-        boolean passive = false
-//        boolean durable = true
-        boolean exclusive = false
-        boolean autoDelete = true
-
-        this.queue = channel.queueDeclare('', durable, exclusive, autoDelete, null).getQueue();
-
-        String routingKey = ""
-        channel.queueBind(queue, exchange, routingKey)
+        connection = factory.newConnection();
+        channel = connection.createChannel();
+        channel.exchangeDeclare(exchange, "fanout");
     }
 
     void publish(String message) {
         channel.basicPublish(exchange, '', null, message.bytes)
+    }
+
+    void close() {
+        if (channel.isOpen()) channel.close();
+        if (connection.isOpen()) connection.close();
     }
 
 }

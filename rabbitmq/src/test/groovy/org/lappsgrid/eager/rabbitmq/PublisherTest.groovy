@@ -1,72 +1,144 @@
 package org.lappsgrid.eager.rabbitmq
 
+import com.rabbitmq.client.Consumer
 import org.junit.Test
 import org.lappsgrid.eager.rabbitmq.pubsub.Publisher
 import org.lappsgrid.eager.rabbitmq.pubsub.Subscriber
 
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
+
+import static org.junit.Assert.*
 
 /**
  *
  */
 class PublisherTest {
+    static final String exchange = 'test.broadcast'
 
     @Test
-    void broadcast() {
-        AtomicInteger count = new AtomicInteger()
-        String name = 'test.broadcast'
-
-        List<Publisher> publishers = []
-        // Start three subscribers.
-        3.times { n ->
-            Thread.start {
-                println "Staring listener $n"
-                Publisher b = new Publisher(name)
-                publishers.add(b)
-                b.register { msg ->
-                    count.incrementAndGet()
-                    println "Listener $n -> $msg"
-                }
-            }
-
+    void simple() {
+        CountDownLatch latch = new CountDownLatch(1)
+        boolean passed = false
+        Subscriber subscriber = new Subscriber(exchange)
+        subscriber.register { String message ->
+            println message
+            passed = true
+            latch.countDown()
         }
+        Publisher publisher = new Publisher(exchange)
+        publisher.publish('PublisherTest#simple')
+        assert latch.await(3000, TimeUnit.MILLISECONDS)
+//        assert 0 == latch.getCount()
 
-        // Broadcast five messages.
-        Publisher broadcaster = new Publisher(name)
-        publishers.add(broadcaster)
-        5.times { i ->
-            broadcaster.publish("$i Hello world")
-            sleep(500)
-        }
-        sleep(1000)
-        publishers*.close()
-        assert 15 == count.intValue()
-        println "Count: ${count.get()}"
     }
 
     @Test
-    void subscriber() {
-        AtomicLong count = new AtomicLong()
-        String name = 'test.broadcast'
-        3.times { id ->
-            new Subscriber(name) {
-
-                @Override
-                void recv(String message) {
-                    long n = count.incrementAndGet()
-                    println "Subscriber $id : $n : $message"
-                }
+    void simpleConsumer() {
+        CountDownLatch latch = new CountDownLatch(1)
+        Subscriber subscriber = new Subscriber(exchange)
+        Consumer consumer = new SimpleConsumer(subscriber.channel) {
+            @Override
+            void consume(String message) {
+                println message
+                latch.countDown()
             }
         }
-        Publisher broadcaster = new Publisher(name)
-        5.times { i ->
-            broadcaster.publish("$i Hello world")
+        subscriber.register(consumer)
+
+        Publisher publisher = new Publisher(exchange)
+        publisher.publish("PublisherTest#simpleConsumer")
+        assert latch.await(2, TimeUnit.SECONDS)
+    }
+
+    @Test
+    void closure() {
+        // Number of subscribers
+        int n = 3
+        // number of Messages
+        int m = 5
+
+        // Used to count the total number of messages received.
+        CountDownLatch latch = new CountDownLatch(n * m)
+        // Used to wait for the subscriber threads to start.
+        CountDownLatch ready = new CountDownLatch(n)
+        List<Subscriber> subscribers = []
+        // Start three subscribers.
+        n.times { i ->
+            Thread.start {
+                println "Starting subscriber $i"
+                Subscriber subscriber = new Subscriber(exchange)
+                subscribers.add(subscriber)
+                subscriber.register { msg ->
+                    latch.countDown()
+                    println "Listener $i -> $msg"
+                }
+                ready.countDown()
+            }
+
+        }
+
+        // Wait for the above threads to finish starting before starting the publisher.
+        boolean readyWait = ready.await(5, TimeUnit.SECONDS)
+        if (!readyWait) {
+            fail "There was a problem starting the subscribers."
+        }
+
+        // Broadcast five messages.
+        Publisher broadcaster = new Publisher(exchange)
+        m.times { i ->
+            broadcaster.publish("$i PublisherTest#closure()")
             sleep(100)
         }
-        sleep(1000)
-        int n = count.intValue()
-        println "Count: $n"
-        assert 15 == n
+        boolean passed = latch.await(3, TimeUnit.SECONDS)
+
+        subscribers.each { it.close() }
+        broadcaster.close()
+
+        assert passed
+    }
+
+    @Test
+    void consumer() {
+        int nConsumers = 5
+        int nMessages = 3
+
+        CountDownLatch latch = new CountDownLatch(nConsumers * nMessages)
+        CountDownLatch ready = new CountDownLatch(nConsumers)
+
+        AtomicLong count = new AtomicLong()
+        Publisher publisher = new Publisher(exchange)
+
+        List<Subscriber> subscribers = []
+        nConsumers.times { n ->
+            Consumer consumer = new SimpleConsumer(publisher.channel) {
+                @Override
+                void consume(String message) {
+                    int c = count.incrementAndGet()
+                    println "Consumer ${n}[$c]: $message"
+                    latch.countDown()
+                }
+            }
+            Subscriber subscriber = new Subscriber(exchange)
+            subscriber.register(consumer)
+            subscribers.add(subscriber)
+            ready.countDown()
+        }
+
+        if (!ready.await(2, TimeUnit.SECONDS)) {
+            fail "There was a problem starting the subscribers."
+        }
+        nMessages.times { n ->
+            println "Publishing message $n"
+            publisher.publish("$n PublisherTest#consumer")
+            sleep(100)
+        }
+
+        latch.await(2, TimeUnit.SECONDS)
+        subscribers.each { it.close() }
+        publisher.close()
+        assert latch.count == 0
     }
 }

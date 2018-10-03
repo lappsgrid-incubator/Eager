@@ -37,7 +37,7 @@ class RankingEngine {
             float total = 0.0f
             algorithms.each { algorithm ->
                 float score = algorithm.score(query, document)
-                document.scores[algorithm.algorithm.name()] = score
+                document.scores[algorithm.algorithm.abbrev()] = score
                 total = total + score
             }
             document.score = total

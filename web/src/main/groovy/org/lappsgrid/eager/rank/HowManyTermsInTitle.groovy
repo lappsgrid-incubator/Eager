@@ -23,4 +23,9 @@ class HowManyTermsInTitle implements ScoringAlgorithm {
     String name() {
         return 'TitleTermCountEvaluator'
     }
+
+    @Override
+    String abbrev() {
+        return "term count"
+    }
 }

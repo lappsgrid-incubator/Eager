@@ -4,14 +4,14 @@ import org.lappsgrid.eager.core.Configuration
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
-import org.lappsgrid.serialization.Serializer
+//import org.lappsgrid.serialization.Serializer
 
 import com.lambdaworks.redis.*;
 
 /**
  *
  */
-class Fetch {
+class RedisLoader {
 
     /**
      * Semaphore object used to block the main thread until a shutdown
@@ -25,11 +25,11 @@ class Fetch {
     PostOffice office
     MailBox box
 
-    Fetch() {
+    RedisLoader() {
         this(new Configuration())
     }
 
-    Fetch(Configuration configuration) {
+    RedisLoader(Configuration configuration) {
         this.config = configuration
         office = new PostOffice(config.POSTOFFICE)
         RedisURI uri = RedisURI.create("redis://password@localhost:6379")
@@ -37,7 +37,7 @@ class Fetch {
     }
 
     void start() {
-        box = new MailBox(config.properties, config.BOX_LOAD) {
+        box = new MailBox(config.properties, config.BOX_REDIS) {
             @Override
             void recv(String message) {
                 process(message)
@@ -69,7 +69,7 @@ class Fetch {
     }
 
     public static void main(String[] args) {
-        Fetch fetch = new Fetch()
+        RedisLoader fetch = new RedisLoader()
         fetch.start()
 
         // Wait forever for another thread to notify us that we should exit.

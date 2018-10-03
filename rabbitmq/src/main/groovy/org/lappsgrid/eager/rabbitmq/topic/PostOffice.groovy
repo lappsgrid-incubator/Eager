@@ -30,6 +30,7 @@ class PostOffice extends RabbitMQ {
 
     void send(Message message) {
         if (message.route.size() == 0) {
+            println "Nowhere to send message"
             return
         }
         String address = message.route.remove(0)

@@ -10,4 +10,5 @@ interface ScoringAlgorithm {
 
     float score(Query query, Document document)
     String name()
+    String abbrev()
 }

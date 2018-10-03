@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.mining.solr
 
+import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.solr.api.Worker
 import org.lappsgrid.eager.mining.solr.parser.XmlDocumentExtractor
@@ -21,9 +22,10 @@ class Parser extends Worker {
         super("Parser$id", input, output)
         this.parserId = id
         this.extractor = extractor
-        parser = new XmlParser();
-        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+//        parser = new XmlParser();
+//        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+//        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+        this.parser = Factory.createXmlParser()
         this.count = 0
     }
 

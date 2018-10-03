@@ -30,4 +30,8 @@ class ConsecutiveTermEvaluator implements ScoringAlgorithm, Tokenizer {
     String name() {
         return 'ConsecutiveTermEvaluator'
     }
+    @Override
+    String abbrev() {
+        return "ngrams"
+    }
 }

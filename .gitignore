@@ -3,4 +3,4 @@ target/
 *.ipr
 *.iws
 *.war
-web/src/main/docker/*.jar
+*.jar

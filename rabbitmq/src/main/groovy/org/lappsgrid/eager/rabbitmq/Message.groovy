@@ -5,8 +5,8 @@ package org.lappsgrid.eager.rabbitmq
  */
 class Message {
     String command
-    List<String> route
     String body
+    List<String> route
     Map<String,String> parameters
 
     Message() {
@@ -41,6 +41,9 @@ class Message {
     Message command(String command) { this.command = command ; this }
     Message body(String body)       { this.body = body       ; this }
     Message route(String route)     { this.route.add(route)  ; this}
+    Message route(String... route) {
+        route.each { this.route.add(it) }
+    }
     Message set(String name, String value) { this.parameters[name] = value ;  this }
     String get(String key) {
         return parameters[key]

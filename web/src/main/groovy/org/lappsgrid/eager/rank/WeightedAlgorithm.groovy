@@ -25,4 +25,8 @@ class WeightedAlgorithm implements ScoringAlgorithm {
     String name() {
         return name
     }
+
+    String abbrev() {
+        return algorithm.abbrev()
+    }
 }

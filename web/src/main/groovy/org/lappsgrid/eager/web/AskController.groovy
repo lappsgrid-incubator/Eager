@@ -42,7 +42,7 @@ class AskController {
 
     @GetMapping(path="/show", produces = ['text/html'])
     @ResponseBody String show(@RequestParam String path) {
-        String body = '<body><h1>Error</h1><p>An error occured</p></body>'
+        String body = "<body><h1>Error</h1><p>An error occured retrieving $path</p></body>"
         String xml = fetch(path)
         if (xml) {
             body = transform(xml)
@@ -146,6 +146,9 @@ class AskController {
 //        transformations.xref = { strong([:], null) }
 //        transformations.title = { title([:], null) }
         Node body = article.body[0]
+        if (body == null) {
+            return xml
+        }
 
         List<Node> dfs = body.depthFirst()
         replaceAll(dfs, 'sec', 'div')
@@ -184,19 +187,23 @@ class AskController {
         Object lock = new Object()
         String returnAddress = UUID.randomUUID().toString()
         PostOffice po = new PostOffice(c.POSTOFFICE)
-        String xml = '<body><h1>Error</h1><p>There was a problem loading the document content.</p></body>'
+        String xml = null //'<body><h1>Error</h1><p>There was a problem loading the document content.</p></body>'
         MailBox box = new MailBox(c.POSTOFFICE, returnAddress) {
             void recv(String json) {
                 try {
                     Message message = Serializer.parse(json, Message)
                     xml = message.body
-//                    if (message.command == 'loaded') {
-//                        xml = message.body
-//                    }
-//                    else {
-//                        println "ERROR: ${message.command}"
-//                        println "BODY: " + message.body
-//                    }
+                    if (message.command == 'loaded') {
+                        xml = message.body
+                    }
+                    else {
+                        println "ERROR: ${message.command}"
+                        println "BODY: " + message.body
+                    }
+                }
+                catch (Exception e) {
+                    e.printStackTrace()
+                    throw e
                 }
                 finally {
                     synchronized (lock) {

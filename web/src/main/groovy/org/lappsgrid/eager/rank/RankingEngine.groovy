@@ -47,7 +47,7 @@ class RankingEngine {
                     float score = algorithm.score(query, field)
                     document.scores[algorithm.algorithm.abbrev()] = score
                     total = total + score
-                    println "$document.doi ${algorithm.algorithm.abbrev()} $score"
+//                    println "$document.doi ${algorithm.algorithm.abbrev()} $score"
                 }
                 else if (field instanceof Collection) {
                     //println "Field is a collection size: ${field.size()}"

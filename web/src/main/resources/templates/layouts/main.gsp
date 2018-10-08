@@ -12,6 +12,7 @@ html {
         div(class:'header') {
             h1 'The Language Applications Grid'
             h2 'Ask Me (almost) Anything'
+            p class:'copyright', "version $version"
             /*
             nav {
                 ul {

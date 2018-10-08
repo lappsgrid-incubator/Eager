@@ -8,6 +8,20 @@ $(document).ready(function() {
     $('#none').click(function() {
         $('input:checkbox').prop('checked', false);
     })
+    $('#domain').click(function() {
+        console.log("Domain button clicked.")
+        console.log("Value: " + $('#domain').val())
+        if ($('#domain').val() == 'bio') {
+            console.log("Showing bio questions.")
+            $('#bio-questions').show()
+            $('#geo-questions').hide()
+        }
+        else {
+            console.log("Showing geo questions.")
+            $('#bio-questions').hide()
+            $('#geo-questions').show()
+        }
+    })
 })
 ''',
 content: {
@@ -52,6 +66,15 @@ content: {
                 table {
                     tr {
                         td {
+                            label(for:'domain', 'Domain')
+                            select(id:'domain', name:'domain') {
+                                option(id:'bio', value:'bio', 'Biomedical')
+                                option(id:'geo', value:'geo', 'Geoscience')
+                            }
+                        }
+                    }
+                    tr {
+                        td(colspan:'2') {
                             input(type:'text', name: 'question', id:'question', class:'form-control input-lg', placeholder:'Ask me a question', required:'true', '')
                         }
                     }
@@ -75,7 +98,7 @@ content: {
         }
         div(class:'rounded-corners') {
             p "Do you want to check out the system but don't know what to ask?  Try one of these questions:"
-            table(class:'grid') {
+            table(id:'bio-questions', class:'grid') {
                 tr {
                     td "What kinases phosphorylate AKT1 on threonine 308?"
                 }
@@ -93,6 +116,20 @@ content: {
                 }
                 tr {
                     td "What proteins bind to the PDGF-alpha receptor in neural stem cells?"
+                }
+            }
+            table(id:'geo-questions', class:'grid hidden') {
+                tr {
+                    td "What happened during the Earth's Dark Age?"
+                }
+                tr {
+                    td "Why does Earth have plate tectonics and continents?"
+                }
+                tr {
+                    td "How are Earth processes controlled by material properties?"
+                }
+                tr {
+                    td "How do fluid flow and transport affect the human environment?"
                 }
             }
         }

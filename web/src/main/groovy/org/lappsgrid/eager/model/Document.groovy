@@ -25,6 +25,11 @@ class Document {
 
      */
 
+    Document() {
+        score = 0.0f
+        scores = [:]
+    }
+
     Document(SolrDocument document) {
         ['pmid','pmc','doi','year','title','path'].each { field ->
             this.setProperty(field, document.getFieldValue(field))

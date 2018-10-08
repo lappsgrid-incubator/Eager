@@ -8,10 +8,10 @@ import org.lappsgrid.eager.model.Document
  */
 class ConsecutiveTermEvaluator implements ScoringAlgorithm, Tokenizer {
     @Override
-    float score(Query query, Document document) {
+    float score(Query query, String input) {
         boolean seen = false
         int count = 0
-        String[] tokens = tokenize(document.title)
+        String[] tokens = tokenize(input)
         tokens.each { word ->
             if (query.terms.contains(word)) {
                 if (seen) {

@@ -7,9 +7,9 @@ class AlgorithmRegistry {
 
     Map<String,ScoringAlgorithm> algorithms = [
             '1': { new ConsecutiveTermEvaluator() },
-            '2': { new HowManyTermsInTitle() },
+            '2': { new PercentageOfTermsEvaluator() },
             '3': { new TermPositionEvaluator() },
-            '4': { new WordsInTitleThatAreSearchTerms() }
+            '4': { new TermFrequencyEvaluator() }
     ]
 
     ScoringAlgorithm get(String id) {

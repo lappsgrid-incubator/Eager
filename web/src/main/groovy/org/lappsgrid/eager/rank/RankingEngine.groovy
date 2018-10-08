@@ -14,8 +14,8 @@ class RankingEngine {
     RankingEngine() {
         algorithms = []
         algorithms << new WeightedAlgorithm(new ConsecutiveTermEvaluator())
-        algorithms << new WeightedAlgorithm(new WordsInTitleThatAreSearchTerms())
-        algorithms << new WeightedAlgorithm(new HowManyTermsInTitle())
+        algorithms << new WeightedAlgorithm(new TermFrequencyEvaluator())
+        algorithms << new WeightedAlgorithm(new PercentageOfTermsEvaluator())
         algorithms << new WeightedAlgorithm(new TermPositionEvaluator())
     }
 
@@ -33,12 +33,34 @@ class RankingEngine {
     }
 
     List<Document> rank(Query query, List<Document> documents) {
+        return rank(query, documents, { doc -> doc.title })
+    }
+
+    List<Document> rank(Query query, List<Document> documents, Closure getField) {
+        println "Ranking ${documents.size()} documents."
         documents.each { Document document ->
             float total = 0.0f
             algorithms.each { algorithm ->
-                float score = algorithm.score(query, document)
-                document.scores[algorithm.algorithm.abbrev()] = score
-                total = total + score
+                def field = getField(document)
+                if (field instanceof String) {
+                    println "Scoring string: $field"
+                    float score = algorithm.score(query, field)
+                    document.scores[algorithm.algorithm.abbrev()] = score
+                    total = total + score
+                    println "$document.doi ${algorithm.algorithm.abbrev()} $score"
+                }
+                else if (field instanceof Collection) {
+                    println "Field is a collection size: ${field.size()}"
+                    float thisAlgScore = 0
+                    field.each { item ->
+                        println "Scoring collection field: $item"
+                        float score = algorithm.score(query, item)
+                        total = total + score
+                        thisAlgScore += score
+                    }
+                    document.scores[algorithm.algorithm.abbrev()] = thisAlgScore
+                    println "$document.doi ${algorithm.algorithm.abbrev()} $thisAlgScore"
+                }
             }
             document.score = total
 //            printf "%s -> %2.6f\n", document.pmid, total

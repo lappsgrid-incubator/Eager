@@ -18,8 +18,8 @@ class WeightedAlgorithm implements ScoringAlgorithm {
         this.name = "Weighted " + algorithm.name()
     }
 
-    float score(Query query, Document document) {
-        return weight * algorithm.score(query, document)
+    float score(Query query, String input) {
+        return weight * algorithm.score(query, input)
     }
 
     String name() {

@@ -9,11 +9,11 @@ import org.lappsgrid.eager.model.Document
 class TermPositionEvaluator implements ScoringAlgorithm{
 
     @Override
-    float score(Query query, Document document) {
-        float length = (float) document.title.length()
+    float score(Query query, String input) {
+        float length = (float) input.length()
         float total = 0f
         query.terms.each { term ->
-            int pos = document.title.indexOf(term)
+            int pos = input.indexOf(term)
             if (pos > 0) {
                 total += 1 - (pos / length)
             }

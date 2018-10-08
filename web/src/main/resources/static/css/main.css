@@ -38,6 +38,27 @@ body {
   background-color: white;
   color: black;
 }
+/*
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+*/
+input[type=text],
+select {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 .center {
   text-align: center;
 }
@@ -47,7 +68,7 @@ body {
 div.header {
   font-family: Helvetica, Verdana, sans-serif;
   color: white;
-  background-image: url('/images/background.jpg');
+  background-image: url('../images/background.jpg');
 }
 div.header h1 {
   padding-top: 3.25rem;
@@ -157,6 +178,9 @@ div.content h2 {
 }
 div.content p {
   margin: 10px 20px;
+}
+div.content .hidden {
+  display: none;
 }
 div.content .first-column {
   width: 15%;

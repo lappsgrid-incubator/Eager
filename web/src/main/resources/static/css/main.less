@@ -71,6 +71,27 @@ body {
   color: black;
 }
 
+/*
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+*/
+input[type=text], select {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .center {
   text-align: center;
 }
@@ -82,7 +103,7 @@ body {
 div.header {
   font-family: Helvetica, Verdana, sans-serif;
   color: white;
-  background-image: url('/images/background.jpg');
+  background-image: url('../images/background.jpg');
   h1 {
     padding-top: 3.25rem;
     font-size: 3.25rem;
@@ -203,6 +224,11 @@ div.content {
   //  text-decoration: none;
   //  color: @theme
   //}
+
+  .hidden {
+    display: none;
+  }
+
   // Used to ensure the width of the first column is the same width for
   // all tables.
   .first-column {

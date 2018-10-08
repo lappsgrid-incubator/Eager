@@ -1,6 +1,6 @@
 package org.lappsgrid.eager.mining.solr.parser
 
-import org.lappgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.core.solr.LappsDocument
 
 /**
  *
@@ -22,6 +22,10 @@ abstract class XmlDocumentExtractor {
         if (pmc) return pmc
         if (doi) return doi
         return UUID.randomUUID()
+    }
+
+    protected String normalize(Node node) {
+        return normalize(node.text())
     }
 
     protected String normalize(String input) {

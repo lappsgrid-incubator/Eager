@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.lappsgrid.maven</groupId>
-        <artifactId>parent-pom</artifactId>
-        <version>2.1.0</version>
+        <artifactId>groovy-parent-pom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath></relativePath>
     </parent>
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>indexer</artifactId>
@@ -16,6 +17,7 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <!--
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
@@ -33,7 +35,6 @@
                         <groupId>org.codehaus.groovy</groupId>
                         <artifactId>groovy-eclipse-batch</artifactId>
                         <version>2.5.0-01</version>
-                        <!-- <type>pom</type> -->
                     </dependency>
                 </dependencies>
             </plugin>
@@ -43,6 +44,19 @@
                 <version>2.9.2-01</version>
                 <extensions>true</extensions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.22.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -82,6 +96,14 @@
             <artifactId>solr-solrj</artifactId>
             <version>7.4.0</version>
         </dependency>
+        <!--
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.5.0</version>
+            <type>pom</type>
+        </dependency>
+        -->
         <dependency>
             <groupId>org.lappsgrid.eager.mining</groupId>
             <artifactId>core</artifactId>
@@ -94,6 +116,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <!--
     <repositories>
         <repository>
             <snapshots>
@@ -114,5 +138,5 @@
             <url>https://dl.bintray.com/groovy/maven</url>
         </pluginRepository>
     </pluginRepositories>
-
+    -->
 </project>

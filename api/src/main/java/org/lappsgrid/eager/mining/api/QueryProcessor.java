@@ -12,6 +12,6 @@ public interface QueryProcessor {
 	 * @return A query string suitable to be sent to the underlying
 	 *         search engine (Solr, ElasticSearch, etc).
 	 */
-	public String transform(final String question);
+	public Query transform(final String question);
 }
 

@@ -1,14 +1,17 @@
 html {
     head {
         title(title)
-        link rel:'stylesheet', type:'text/css', href:'/css/main.css'
-        script(src:'/js/jquery.min.js', '')
+        link rel:'stylesheet', type:'text/css', href:'css/main.css'
+        script(src:'js/jquery.min.js', '')
         //script(src:'/js/main.js', '')
+        if (javascript) {
+            script(javascript)
+        }
     }
     body {
         div(class:'header') {
             h1 'The Language Applications Grid'
-            h2 'Ask Me Anything'
+            h2 'Ask Me (almost) Anything'
             /*
             nav {
                 ul {

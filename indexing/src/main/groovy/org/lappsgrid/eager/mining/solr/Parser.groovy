@@ -1,10 +1,10 @@
 package org.lappsgrid.eager.mining.solr
 
 import org.apache.solr.common.SolrInputDocument
-import org.lappsgrid.eager.mining.core.solr.LappsDocument
-import org.lappsgrid.eager.mining.core.Factory
+import org.lappsgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.solr.api.Worker
 import org.lappsgrid.eager.mining.solr.parser.XmlDocumentExtractor
+import org.lappsgrid.eager.core.Factory
 
 import java.util.concurrent.BlockingQueue
 
@@ -26,7 +26,7 @@ class Parser extends Worker {
 //        parser = new XmlParser();
 //        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
 //        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
-        this.parser = Factory.newXmlParser();
+        this.parser = Factory.createXmlParser()
         this.count = 0
     }
 

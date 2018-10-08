@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.query
 
+import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.api.QueryProcessor
 
 /**
@@ -9,12 +10,15 @@ class SimpleQueryProcessor implements QueryProcessor {
 
     StopWords stopwords = new StopWords()
 
-    String transform(String question) {
-        String[] tokens = question.split('\\W+')
+    Query transform(String question) {
+        String[] tokens = question.trim().split('\\W+')
         List<String> terms = removeStopWords(tokens)
         String query = terms.collect { 'body:' + it }.join(' AND ')
 
-        return query
+        return new Query()
+                .query(query)
+                .question(question)
+                .terms(terms);
     }
 
     List<String> removeStopWords(String[] tokens) {

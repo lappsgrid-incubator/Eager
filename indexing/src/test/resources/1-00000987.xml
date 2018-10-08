@@ -1,0 +1,298 @@
+<PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+        <PMID Version="1">9967</PMID>
+        <DateCompleted>
+            <Year>1977</Year>
+            <Month>01</Month>
+            <Day>03</Day>
+        </DateCompleted>
+        <DateRevised>
+            <Year>2013</Year>
+            <Month>11</Month>
+            <Day>21</Day>
+        </DateRevised>
+        <Article PubModel="Print">
+            <Journal>
+                <ISSN IssnType="Print">0306-5251</ISSN>
+                <JournalIssue CitedMedium="Print">
+                    <Volume>3</Volume>
+                    <Issue>5</Issue>
+                    <PubDate>
+                        <Year>1976</Year>
+                        <Month>Oct</Month>
+                    </PubDate>
+                </JournalIssue>
+                <Title>British journal of clinical pharmacology</Title>
+                <ISOAbbreviation>Br J Clin Pharmacol</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>Residual effects and skills related to driving after a single oral administration of diazepam, medazepam or lorazepam.</ArticleTitle>
+            <Pagination>
+                <MedlinePgn>831-41</MedlinePgn>
+            </Pagination>
+            <Abstract>
+                <AbstractText>Psychomotor skills and visual functions related to driving were measured double-blind cross-over in ten healthy volunteers before, and 1,3,5 and 7 h after a single oral administration of diazepam (10mg), medazepam (15 mg) or lorazepam (2.5 mg). The late effects of lorazepam were tested in seven other subjects 12 and 24 h after the administration. Lorazepam impaired almost all the measured skills more (P less than 0.05 to 0.001) than diazepam, medizepam or the placebo. The lorazepam impairment of reactive skills and flicker fusion discrimination remained statistically significant (P less than 0.05) for as long as 12 h. Medazepam impaired only reactive skills and flicker fusion, the latter remaining impaired (P less than 0.05) for as long a 5 h after the administration. The magnitude  and duration of the effects of diazepam were intermediate between those of lorazepam and medazepam. Diazepam impaired perceptual speed and reactive and co-ordinative skills as well as flicker fusion discrimination and visual parameters related to driving. Slight impairments in performance were measurable for up to 5 h after administration but at 7 h the results resembled those measured after the placebo. The lack of alterations in adaptation to darkness, sensitivity to brightness or visual discrimination ability in bright counterlight at a time when flicker fusion discrimination was severely depressed suggests that an impaired ability to discriminate flickering light is of no or little clinical significance to driving ability. It is concluded that patients receiving a 2.5 mg dose of lorazepam should not drive or operate machinery for 24 h after the administration. After diazepam (10 mg) or medazepam (15 mg) patients should refrain from driving or participating inskilled performances for only 5 to 7 hours.</AbstractText>
+            </Abstract>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Seppälä</LastName>
+                    <ForeName>K</ForeName>
+                    <Initials>K</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Korttila</LastName>
+                    <ForeName>K</ForeName>
+                    <Initials>K</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Häkkinen</LastName>
+                    <ForeName>S</ForeName>
+                    <Initials>S</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Linnoila</LastName>
+                    <ForeName>M</ForeName>
+                    <Initials>M</Initials>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <PublicationTypeList>
+                <PublicationType UI="D016430">Clinical Trial</PublicationType>
+                <PublicationType UI="D003160">Comparative Study</PublicationType>
+                <PublicationType UI="D018848">Controlled Clinical Trial</PublicationType>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+                <PublicationType UI="D016449">Randomized Controlled Trial</PublicationType>
+            </PublicationTypeList>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>England</Country>
+            <MedlineTA>Br J Clin Pharmacol</MedlineTA>
+            <NlmUniqueID>7503323</NlmUniqueID>
+            <ISSNLinking>0306-5251</ISSNLinking>
+        </MedlineJournalInfo>
+        <ChemicalList>
+            <Chemical>
+                <RegistryNumber>0</RegistryNumber>
+                <NameOfSubstance UI="D014151">Anti-Anxiety Agents</NameOfSubstance>
+            </Chemical>
+            <Chemical>
+                <RegistryNumber>0</RegistryNumber>
+                <NameOfSubstance UI="D010919">Placebos</NameOfSubstance>
+            </Chemical>
+            <Chemical>
+                <RegistryNumber>O26FZP769L</RegistryNumber>
+                <NameOfSubstance UI="D008140">Lorazepam</NameOfSubstance>
+            </Chemical>
+            <Chemical>
+                <RegistryNumber>P0J3387W3S</RegistryNumber>
+                <NameOfSubstance UI="D008472">Medazepam</NameOfSubstance>
+            </Chemical>
+            <Chemical>
+                <RegistryNumber>Q3JTX2Q7TU</RegistryNumber>
+                <NameOfSubstance UI="D003975">Diazepam</NameOfSubstance>
+            </Chemical>
+        </ChemicalList>
+        <CitationSubset>IM</CitationSubset>
+        <CommentsCorrectionsList>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Anesthesiology. 1975 Jun;42(6):685-91</RefSource>
+                <PMID Version="1">1093458</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Anaesth. 1971 Feb;43(2):110-2</RefSource>
+                <PMID Version="1">5550840</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychopharmacologia. 1975 Jul 23;43(1):75-80</RefSource>
+                <PMID Version="1">1099606</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>J Pharm Pharmacol. 1973 Jan;25(1):87-8</RefSource>
+                <PMID Version="1">4146211</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br Med J. 1974 Dec 21;4(5946):719</RefSource>
+                <PMID Version="1">4155340</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Curr Ther Res Clin Exp. 1973 Jul;15(7):500-7</RefSource>
+                <PMID Version="1">4198313</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Curr Ther Res Clin Exp. 1974 Mar;16(3):149-62</RefSource>
+                <PMID Version="1">4206723</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Ann Med Psychol (Paris). 1973 Jun;2(1):1-12</RefSource>
+                <PMID Version="1">4359453</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Work Environ Health. 1974;11(2):108-13</RefSource>
+                <PMID Version="1">4456888</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>SSO Schweiz Monatsschr Zahnheilkd. 1972;82(3):299-306</RefSource>
+                <PMID Version="1">4501867</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Dtsch Zahnarztl Z. 1973 May;28(5):618-22</RefSource>
+                <PMID Version="1">4513568</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Acta Psychiatr Belg. 1972 Mar;72(2):185-98</RefSource>
+                <PMID Version="1">4560256</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Curr Med Res Opin. 1973;1(5):265-8</RefSource>
+                <PMID Version="1">4589712</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Curr Med Res Opin. 1973;1(5):272-5</RefSource>
+                <PMID Version="1">4589714</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Ann Med Exp Biol Fenn. 1973 Mar;51(3):118-24</RefSource>
+                <PMID Version="1">4590099</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Clin Pharmacol Ther. 1974 Apr;15(4):368-73</RefSource>
+                <PMID Version="1">4595291</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Eur J Clin Pharmacol. 1974 Aug 23;7(5):337-42</RefSource>
+                <PMID Version="1">4607750</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Anaesth. 1974 Dec;46(12):961-9</RefSource>
+                <PMID Version="1">4621308</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Acta Pharm Suec. 1972 Nov;9(5):447-56</RefSource>
+                <PMID Version="1">4650121</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nervenarzt. 1973 Sep;44(9):499-500</RefSource>
+                <PMID Version="1">4750032</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>J Clin Pharmacol J New Drugs. 1967 Nov-Dec;7(6):330-5</RefSource>
+                <PMID Version="1">4863759</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br Med J. 1971 Jan 16;1(5741):151-2</RefSource>
+                <PMID Version="1">4923930</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Clin Pharmacol Ther. 1971 May-Jun;12(3):468-81</RefSource>
+                <PMID Version="1">4936036</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Psychiatry. 1971 Dec;119(553):599-600</RefSource>
+                <PMID Version="1">4947167</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Arzneimittelforschung. 1971 Jul;21(7):1055-9</RefSource>
+                <PMID Version="1">5109347</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Ind Med. 1971 Oct;28(4):374-81</RefSource>
+                <PMID Version="1">5124838</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>J Clin Pharmacol New Drugs. 1971 Nov-Dec;11(6):423-7</RefSource>
+                <PMID Version="1">5211289</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Anaesth. 1975 Apr;47(4):457-63</RefSource>
+                <PMID Version="1">1095040</PMID>
+            </CommentsCorrections>
+        </CommentsCorrectionsList>
+        <MeshHeadingList>
+            <MeshHeading>
+                <DescriptorName UI="D000328" MajorTopicYN="N">Adult</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D014151" MajorTopicYN="N">Anti-Anxiety Agents</DescriptorName>
+                <QualifierName UI="Q000494" MajorTopicYN="Y">pharmacology</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D001334" MajorTopicYN="Y">Automobile Driving</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D003623" MajorTopicYN="N">Dark Adaptation</DescriptorName>
+                <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D003975" MajorTopicYN="N">Diazepam</DescriptorName>
+                <QualifierName UI="Q000494" MajorTopicYN="Y">pharmacology</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D005425" MajorTopicYN="N">Flicker Fusion</DescriptorName>
+                <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D008140" MajorTopicYN="N">Lorazepam</DescriptorName>
+                <QualifierName UI="Q000494" MajorTopicYN="Y">pharmacology</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D008297" MajorTopicYN="N">Male</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D008472" MajorTopicYN="N">Medazepam</DescriptorName>
+                <QualifierName UI="Q000494" MajorTopicYN="Y">pharmacology</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D009048" MajorTopicYN="N">Motor Skills</DescriptorName>
+                <QualifierName UI="Q000187" MajorTopicYN="Y">drug effects</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D010919" MajorTopicYN="N">Placebos</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D011930" MajorTopicYN="N">Reaction Time</DescriptorName>
+                <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D013997" MajorTopicYN="N">Time Factors</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D014796" MajorTopicYN="N">Visual Perception</DescriptorName>
+                <QualifierName UI="Q000187" MajorTopicYN="Y">drug effects</QualifierName>
+            </MeshHeading>
+        </MeshHeadingList>
+        <OtherID Source="NLM">PMC1428951</OtherID>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="pubmed">
+                <Year>1976</Year>
+                <Month>10</Month>
+                <Day>1</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="medline">
+                <Year>1976</Year>
+                <Month>10</Month>
+                <Day>1</Day>
+                <Hour>0</Hour>
+                <Minute>1</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="entrez">
+                <Year>1976</Year>
+                <Month>10</Month>
+                <Day>1</Day>
+                <Hour>0</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">9967</ArticleId>
+            <ArticleId IdType="pmc">PMC1428951</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>

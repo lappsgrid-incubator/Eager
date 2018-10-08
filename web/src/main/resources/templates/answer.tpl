@@ -5,11 +5,11 @@ content: {
     table {
         tr {
             td 'Question'
-            td data.question
+            td data.query.question
         }
         tr {
             td 'Query'
-            td data.query
+            td data.query.query
         }
         tr {
             td 'Size'
@@ -18,23 +18,32 @@ content: {
     }
 
     h1 'The Answers'
-    h2 'In no particular order'
-
     table {
         tr {
+            th 'Score'
             th 'PMID'
             th 'Year'
             th 'Title'
+            if (data.keys) {
+                data.keys.each { th(it) }
+            }
+
         }
         data.documents.each { doc ->
             tr {
-                td doc.pmid
+                td String.format("%2.3f", doc.score)
+                td { a(href:"show?path=${doc.path}", doc.pmid) }
                 td doc.year
-                td doc.title[0]
+                td doc.title
+                if (data.keys) {
+                    data.keys.each { key ->
+                        td String.format("%2.3f", doc.scores[key])
+                    }
+                }
             }
         }
     }
     p {
-        a href:'/ask', 'Ask another question'
+        a href:'ask', 'Ask another question'
     }
 }

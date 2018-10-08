@@ -1,11 +1,33 @@
+NAME=eager
+ORG=lappsgrid
+IMAGE=$(ORG)/$(NAME)
+TAG=docker.lappsgrid.org/$(IMAGE)
+JAR=$(NAME).jar
 
 jar:
 	mvn package
-	cp target/eager.jar src/main/docker/
+	cp target/$(JAR) src/main/docker/
 
 clean:
 	mvn clean
-
+	rm src/main/docker/$(JAR)
+	
 docker:
-	cd src/main/docker && docker build -t lappsgrid/eager .
+	if [ ! -e src/main/docker/$(JAR) ] ; then cp target/$(JAR) src/main/docker ; fi
+	cd src/main/docker && docker build -t $(IMAGE) .
+	docker tag $(IMAGE) $(TAG)
 
+run:
+	java -jar target/$(JAR)
+
+start:
+	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)\
+
+stop:
+	docker rm -f $(NAME)
+
+tag:
+	docker tag $(IMAGE) $(TAG)
+
+push:
+	docker push $(TAG)

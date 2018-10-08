@@ -179,6 +179,9 @@ div.content h2 {
 div.content p {
   margin: 10px 20px;
 }
+div.content .hidden {
+  display: none;
+}
 div.content .first-column {
   width: 15%;
 }

@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.web
 
+import groovy.json.JsonSlurper
 import org.apache.solr.client.solrj.SolrClient
 import org.apache.solr.client.solrj.impl.CloudSolrClient
 import org.apache.solr.client.solrj.response.QueryResponse
@@ -9,10 +10,14 @@ import org.apache.solr.common.params.MapSolrParams
 import org.lappsgrid.eager.core.Configuration
 import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.core.ssl.SSL
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.api.QueryProcessor
 import org.lappsgrid.eager.model.Document
+import org.lappsgrid.eager.model.GDDDocument
 import org.lappsgrid.eager.query.SimpleQueryProcessor
+import org.lappsgrid.eager.query.elasticsearch.ESQueryProcessor
+import org.lappsgrid.eager.query.elasticsearch.GDDSnippetQueryProcessor
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
@@ -33,11 +38,14 @@ class AskController {
     private static final Configuration c = new Configuration()
 
     QueryProcessor queryProcessor
+    QueryProcessor geoProcessor
     String collection
 
     public AskController() {
         queryProcessor = new SimpleQueryProcessor()
+        geoProcessor = new GDDSnippetQueryProcessor()
         collection = "pubmed"
+        SSL.enable()
     }
 
     @GetMapping(path="/show", produces = ['text/html'])
@@ -85,11 +93,19 @@ class AskController {
 
     @PostMapping(path="/ask", produces="text/html")
     String postHtml(@RequestParam Map<String,String> params, Model model) {
-//        model.addAttribute('params', params)
-//        return 'test'
+        if (params.domain == 'geo') {
+            //TODO Check that a question has been entered
+            model.data = geodeepdive(params, 1000)
+            return 'test'
+        }
+
         Map reply = answer(params, 1000)
         model.addAttribute('data', reply)
         return 'answer'
+    }
+
+    private String elasticsearch(String question) {
+        return new ESQueryProcessor().transform(question)
     }
 
     private Map answer(Map params) {
@@ -134,6 +150,11 @@ class AskController {
     private List rank(Query query, List<Document> documents, Map params) {
         RankingEngine ranker = new RankingEngine(params)
         return ranker.rank(query, documents)
+    }
+
+    private List rank(Query query, List<Document> documents, Map params, Closure getter) {
+        RankingEngine ranker = new RankingEngine(params)
+        return ranker.rank(query, documents, getter)
     }
 
     private String transform(String xml) {
@@ -226,5 +247,47 @@ class AskController {
         po.close()
         box.close()
         return xml
+    }
+
+    Map geodeepdive(Map params, int size) {
+        println "GeoDeepDive limit: $size"
+        geoProcessor.limit = size
+        Query query = geoProcessor.transform(params.question)
+        println "Query: ${query.query}"
+        println "Terms: ${query.terms.join", "}"
+        String json = new URL(query.query).text
+        Map data = new JsonSlurper().parseText(json)
+        if (data.size() == 0) {
+            return null
+        }
+
+        List<Document> docs = []
+        data.success.data.each { record ->
+            GDDDocument doc = new GDDDocument()
+            doc.title = record.title
+            doc.highlight = record.highlight
+            doc.hits = record.hits
+            doc.doi = record.doi
+            doc.year = record.coverDate
+            docs.add(doc)
+        }
+
+        Map result = [:]
+        result.query = query
+        result.size = docs.size()
+
+        List<Document> ranked = rank(query, docs, params, { it.highlight })
+        if (ranked.size() > size) {
+            result.documents = ranked[0..size]
+        }
+        else {
+            result.documents = ranked
+        }
+        if (result.documents.size() > 0) {
+            Document exemplar = result.documents[0]
+            result.keys = exemplar.scores?.keySet()
+        }
+        return result
+
     }
 }

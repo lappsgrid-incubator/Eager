@@ -18,7 +18,6 @@ content: {
     }
 
     h1 'The Answers'
-
     table {
         tr {
             th 'Score'

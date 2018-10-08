@@ -8,7 +8,7 @@ import org.lappsgrid.eager.model.Document
  */
 interface ScoringAlgorithm {
 
-    float score(Query query, Document document)
+    float score(Query query, String input)
     String name()
     String abbrev()
 }

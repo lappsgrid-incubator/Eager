@@ -4,3 +4,4 @@ target/
 *.iws
 *.war
 *.jar
+*.gz

@@ -31,6 +31,7 @@
         <module>error</module>
         <module>nlp</module>
         <module>test</module>
+        <module>elasticsearch</module>
     </modules>
     <build>
         <plugins>

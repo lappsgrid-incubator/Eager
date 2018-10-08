@@ -17,6 +17,9 @@ docker:
 	cd src/main/docker && docker build -t $(IMAGE) .
 	docker tag $(IMAGE) $(TAG)
 
+run:
+	java -jar target/$(JAR)
+
 start:
 	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)\
 

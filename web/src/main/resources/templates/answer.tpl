@@ -32,7 +32,7 @@ content: {
         data.documents.each { doc ->
             tr {
                 td String.format("%2.3f", doc.score)
-                td { a(href:"show?path=${doc.path}", doc.pmid) }
+                td { a(href:"https://www.ncbi.nlm.nih.gov/pmc/articles/${doc.pmc}/?report=classic", doc.pmc) }
                 td doc.year
                 td doc.title
                 if (data.keys) {

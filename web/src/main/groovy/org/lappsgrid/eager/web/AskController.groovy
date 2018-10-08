@@ -22,6 +22,7 @@ import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 import org.lappsgrid.eager.rank.RankingEngine
+import org.lappsgrid.eager.service.Version
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -72,7 +73,8 @@ class AskController {
     }
 
     @GetMapping(path = "/ask", produces = ['text/html'])
-    String get() {
+    String get(Model model) {
+        updateModel(model)
         return "ask"
     }
 
@@ -93,6 +95,7 @@ class AskController {
 
     @PostMapping(path="/ask", produces="text/html")
     String postHtml(@RequestParam Map<String,String> params, Model model) {
+        updateModel(model)
         if (params.domain == 'geo') {
             //TODO Check that a question has been entered
             model.data = geodeepdive(params, 1000)
@@ -289,5 +292,9 @@ class AskController {
         }
         return result
 
+    }
+
+    private void updateModel(Model model) {
+        model.addAttribute('version', Version.version)
     }
 }

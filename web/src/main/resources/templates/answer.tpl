@@ -1,5 +1,6 @@
 layout 'layouts/main.gsp',
 title: 'LAPPS/EAGER',
+version: version,
 content: {
     h1 'The Question'
     table {

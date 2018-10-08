@@ -1,5 +1,6 @@
 layout 'layouts/main.gsp',
 title: 'LAPPS/EAGER',
+version: version,
 javascript: '''
 $(document).ready(function() {
     $('#all').click(function() {

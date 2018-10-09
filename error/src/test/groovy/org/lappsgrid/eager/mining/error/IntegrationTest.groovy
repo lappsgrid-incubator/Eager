@@ -7,6 +7,9 @@ import org.lappsgrid.eager.rabbitmq.pubsub.Publisher
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+
 /**
  *
  */
@@ -20,8 +23,9 @@ class IntegrationTest {
         // Send some error messages to the error logger.
         PostOffice po = new PostOffice(c.POSTOFFICE)
         10.times { n ->
-            po.send(c.BOX_ERROR,"Another Message ${n}")
-//            sleep(1000)
+            println "Sending $n"
+            po.send(c.BOX_ERROR,"More messages - ${n}")
+            sleep(500)
         }
         po.close()
     }
@@ -41,6 +45,27 @@ class IntegrationTest {
         po.close()
     }
 
+    @Test
+    void collect() {
+        CountDownLatch latch = new CountDownLatch(1)
+
+        String mbox = 'error-collector'
+        MailBox box = new MailBox(c.POSTOFFICE, mbox) {
+            @Override
+            void recv(String message) {
+                println message
+                latch.countDown()
+            }
+        }
+
+        PostOffice po = new PostOffice(c.POSTOFFICE)
+        po.send(c.BOX_ERROR, "collect $mbox")
+        po.close()
+        if (!latch.await(5, TimeUnit.SECONDS)) {
+            println "No response from the error service!"
+        }
+        println "Done."
+    }
     @Test
     void drain() {
         Configuration c = new Configuration()

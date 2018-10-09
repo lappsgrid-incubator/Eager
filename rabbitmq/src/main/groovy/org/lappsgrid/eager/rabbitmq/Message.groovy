@@ -43,6 +43,7 @@ class Message {
     Message route(String route)     { this.route.add(route)  ; this}
     Message route(String... route) {
         route.each { this.route.add(it) }
+        return this
     }
     Message set(String name, String value) { this.parameters[name] = value ;  this }
     String get(String key) {

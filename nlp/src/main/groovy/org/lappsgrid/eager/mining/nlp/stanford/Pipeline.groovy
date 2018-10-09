@@ -6,13 +6,15 @@ import edu.stanford.nlp.pipeline.CoreEntityMention
 import edu.stanford.nlp.pipeline.CoreSentence
 import edu.stanford.nlp.pipeline.StanfordCoreNLP
 import edu.stanford.nlp.util.Pair
+import org.lappsgrid.discriminator.Discriminators
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.LifException
 import org.lappsgrid.serialization.lif.Annotation
 import org.lappsgrid.serialization.lif.Container
 import org.lappsgrid.serialization.lif.View
 
-import org.lappsgrid.discriminator.Discriminators.*;
+import static org.lappsgrid.discriminator.Discriminators.*;
+import org.lappsgrid.vocabulary.Features
 
 /**
  *
@@ -27,7 +29,7 @@ public class Pipeline
         pipeline = new StanfordCoreNLP(props);
     }
 
-    public String process(String text) throws LifException
+    public Container process(String text) throws LifException
     {
         Container container = new Container();
         container.setText(text);

@@ -56,6 +56,7 @@ class Main {
                 DataContainer data
                 try {
                     data = Serializer.parse(message.body, DataContainer)
+                    // TODO Check the discriminator
                     data.payload = pipeline.process(data.payload)
 
                 }

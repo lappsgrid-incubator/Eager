@@ -29,7 +29,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>stanford-nlp</finalName>
+                            <finalName>stanford</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>

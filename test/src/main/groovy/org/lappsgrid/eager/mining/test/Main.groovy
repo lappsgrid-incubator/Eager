@@ -1,6 +1,5 @@
 package org.lappsgrid.eager.mining.test
 
-import groovy.cli.picocli.CliBuilder
 import groovy.json.JsonOutput
 import groovy.json.JsonParser
 import groovy.json.JsonParserType
@@ -20,13 +19,8 @@ import javax.security.auth.login.AppConfigurationEntry
  */
 class Main {
 
-    static final Configuration c = new Configuration()
-    void error(String message) {
-        PostOffice po = new PostOffice()
-    }
 
     static void main(String[] args) {
-        CliBuilder cli = new CliBuilder('messanger')
 
     }
 }

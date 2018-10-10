@@ -1,8 +1,7 @@
 FROM openjdk:8-jdk
-ARG JAR=stanford.jar
 RUN useradd -ms /bin/bash eager
 USER eager
-COPY $JAR /home/eager
+COPY *.jar /home/eager
 WORKDIR /home/eager
-CMD ["java","-jar", "$JAR"]
+CMD ["java","-jar", "stanford.jar"]
 

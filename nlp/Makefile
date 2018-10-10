@@ -16,7 +16,7 @@ clean:
 
 docker:
 	if [ ! -e src/main/docker/$(JAR) ] ; then cp target/$(JAR) src/main/docker ; fi
-	cd src/main/docker && docker build --build-arg "JAR=$(JAR)" -t $(IMAGE) .
+	cd src/main/docker && docker build -t $(IMAGE) .
 	docker tag $(IMAGE) $(TAG)
 
 start:

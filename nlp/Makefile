@@ -1,7 +1,7 @@
 JAR=stanford.jar
 REPO=docker.lappsgrid.org
 GROUP=mining
-NAME=stanford
+NAME=nlp
 IMAGE=$(GROUP)/$(NAME)
 TAG=$(REPO)/$(IMAGE)
 VERSION=$(shell cat VERSION)
@@ -16,7 +16,7 @@ clean:
 
 docker:
 	if [ ! -e src/main/docker/$(JAR) ] ; then cp target/$(JAR) src/main/docker ; fi
-	cd src/main/docker && docker build --build-arg "JAR=$(JAR)"" -t $(IMAGE) .
+	cd src/main/docker && docker build --build-arg "JAR=$(JAR)" -t $(IMAGE) .
 	docker tag $(IMAGE) $(TAG)
 
 start:

@@ -24,7 +24,7 @@ class IntegrationTest {
         PostOffice po = new PostOffice(c.POSTOFFICE)
         10.times { n ->
             println "Sending $n"
-            po.send(c.BOX_ERROR,"More messages - ${n}")
+            po.send(c.BOX_ERROR,"Even moar messages - ${n}")
             sleep(500)
         }
         po.close()

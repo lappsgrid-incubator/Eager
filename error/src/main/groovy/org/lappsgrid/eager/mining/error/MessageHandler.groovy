@@ -22,8 +22,7 @@ class MessageHandler {
     // RabbitMQ configuration.
     Configuration configuration
 
-    // Listen for broadcast messages.
-//    Subscriber broadcaster
+    String shutdownKey
 
     // The mail box log messages will be sent to.
     MailBox box
@@ -41,6 +40,7 @@ class MessageHandler {
         this.configuration = config
         this.semaphore = new Object()
         this.counter = new AtomicLong()
+        this.shutdownKey = UUID.randomUUID().toString()
     }
 
     /**
@@ -51,18 +51,38 @@ class MessageHandler {
             @Override
             void recv(String message) {
                 counter.incrementAndGet()
-                if (message == 'shutdown') {
+                if (message.startsWith('shutdown')) {
+                    String key = parseCommand(message)
+                    if (key == null) {
+                        logger.warn("Invalid shutdown message received: {}", message)
+                        return
+                    }
+                    if (key != shutdownKey) {
+                        logger.warn("Shutdown with invalid key.")
+                        logger.warn("Expected: {} Received: {}", shutdownKey, key)
+                        return
+                    }
                     logger.info('Received a shutdown message')
                     synchronized (semaphore) {
                         semaphore.notifyAll()
                     }
                 }
+                else if (message.startsWith('key')) {
+                    String address = parseCommand(message)
+                    if (address == null) {
+                        logger.warn("Invalid key command")
+                        return
+                    }
+                    logger.info("Sending shutdown key to {}", address)
+                    PostOffice po = new PostOffice(configuration.POSTOFFICE)
+                    po.send(address, shutdownKey)
+                    po.close()
+                }
                 else if (message.startsWith('collect')) {
-                    logger.info("Received a collect message")
-                    String[] parts = message.split("\\s+")
-                    if (parts.size() == 2) {
-                        String command = parts[0]
-                        String returnAddress = parts[1]
+                    logger.info("Received a collect messag")
+//                    String[] parts = message.split("\\s+")
+                    String address = parseCommand(message)
+                    if (address != null) {
                         File logFile = new File(LOG_FILE)
                         String response
                         if (!logFile.exists()) {
@@ -71,10 +91,10 @@ class MessageHandler {
                         else {
                             response = logFile.text
                         }
-                        send(returnAddress, response)
+                        send(address, response)
                     }
                     else {
-                        logger.error("Received and invalid collect message: {}", message)
+                        logger.error("Received an invalid collect message: {}", message)
                     }
                 }
                 else {
@@ -100,6 +120,14 @@ class MessageHandler {
 //        broadcaster.close()
         box.close()
         logger.info('Closed all connections.')
+    }
+
+    private String parseCommand(String input) {
+        String[] parts = input.split("\\s+")
+        if (parts.length != 2) {
+            return null
+        }
+        return parts[1]
     }
 
     static void main(String[] args) {

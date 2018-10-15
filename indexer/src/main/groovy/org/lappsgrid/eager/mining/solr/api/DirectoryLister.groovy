@@ -11,8 +11,8 @@ import java.util.concurrent.BlockingQueue
  */
 abstract class DirectoryLister extends Source {
 
-    private Stack<File> stack
-    private int count
+    Stack<File> stack
+    int count
 
     public DirectoryLister(File directory, Sink sink, BlockingQueue<Object> output) {
         super("DirectoryLister", sink, output)

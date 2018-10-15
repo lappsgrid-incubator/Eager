@@ -24,7 +24,7 @@ class SectionExtractor extends Worker {
         article.body.sec.each { Node section ->
             sections.add(section.attribute("sec-type"))
         }
-        println "Found ${sections.size()} section types"
+//        println "Found ${sections.size()} section types"
         return sections
     }
 }

@@ -22,11 +22,12 @@ class SectionSink extends Sink {
             println "Invalid into to SectionSink: ${item}"
             return
         }
-        println "Adding ${((Set)item).size()} section names"
+//        println "Adding ${((Set)item).size()} section names"
         sections.addAll((Set) item)
     }
 
     void save(File destination) {
+        println "Writing ${destination.path}"
         destination.withWriter { writer ->
             sections.sort().each { section ->
                 writer.println(section)

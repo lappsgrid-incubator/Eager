@@ -115,7 +115,6 @@
         </dependency>
     </dependencies>
 
-    <!--
     <repositories>
         <repository>
             <snapshots>
@@ -136,5 +135,4 @@
             <url>https://dl.bintray.com/groovy/maven</url>
         </pluginRepository>
     </pluginRepositories>
-    -->
 </project>

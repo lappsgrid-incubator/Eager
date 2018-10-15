@@ -7,7 +7,7 @@ import org.lappsgrid.eager.mining.solr.api.Worker
 import java.util.concurrent.BlockingQueue
 
 /**
- * Traverse a directory heirrarchy
+ * Traverse a directory hierarchy
  */
 abstract class DirectoryLister extends Source {
 

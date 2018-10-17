@@ -10,10 +10,14 @@ import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import javax.management.MBeanServer
+import javax.management.ObjectName
+import java.lang.management.ManagementFactory
+
 /**
  *
  */
-class DocumentLoader {
+class DocumentLoader implements DocumentLoaderMBean {
 
     static final MetricRegistry metrics = new MetricRegistry()
 
@@ -57,6 +61,8 @@ class DocumentLoader {
         exceptions = metrics.meter(name("loader", "exceptions"))
         errors = metrics.meter(name("loader", "errors"))
 
+        MBeanServer server = ManagementFactory.getPlatformMBeanServer()
+        server.registerMBean(this, new ObjectName("org.lappsgrid.eager.mining.retrieval:type=DocumentLoader"))
     }
 
     void process(String json) {

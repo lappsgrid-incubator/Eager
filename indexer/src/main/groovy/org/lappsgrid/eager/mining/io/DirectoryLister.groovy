@@ -1,8 +1,8 @@
-package org.lappsgrid.eager.mining.solr.api
+package org.lappsgrid.eager.mining.io
 
-import org.lappsgrid.eager.mining.solr.api.Source
-import org.lappsgrid.eager.mining.solr.api.Sink
-import org.lappsgrid.eager.mining.solr.api.Worker
+import org.lappsgrid.eager.mining.api.Sink
+import org.lappsgrid.eager.mining.api.Source
+import org.lappsgrid.eager.mining.api.Worker
 
 import java.util.concurrent.BlockingQueue
 
@@ -32,7 +32,6 @@ abstract class DirectoryLister extends Source {
             File item = stack.pop()
             if (item.isFile()) {
                 if (item.name.endsWith(suffix())) {
-                    println "${++count} DirectortLister queueing ${item.name}"
                     return item
                 }
             }

@@ -1,9 +1,9 @@
-package org.lappsgrid.eager.mining.solr
+package org.lappsgrid.eager.mining
 
 import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.core.solr.LappsDocument
-import org.lappsgrid.eager.mining.solr.api.Worker
-import org.lappsgrid.eager.mining.solr.parser.XmlDocumentExtractor
+import org.lappsgrid.eager.mining.api.Worker
+import org.lappsgrid.eager.mining.parser.XmlDocumentExtractor
 
 import java.util.concurrent.BlockingQueue
 

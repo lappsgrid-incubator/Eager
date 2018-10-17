@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.mining.solr.api
+package org.lappsgrid.eager.mining.api
 
 /**
  * The Haltable class maintains the running flag and provides a halt method that

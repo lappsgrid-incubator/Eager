@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.mining.solr.parser
+package org.lappsgrid.eager.mining.parser
 
 import org.junit.*
 import org.lappsgrid.eager.core.solr.Fields

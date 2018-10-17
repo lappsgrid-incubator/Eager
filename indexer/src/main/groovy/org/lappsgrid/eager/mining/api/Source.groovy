@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.mining.solr.api
+package org.lappsgrid.eager.mining.api
 
 import java.util.concurrent.BlockingQueue
 

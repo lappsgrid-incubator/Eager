@@ -1,6 +1,6 @@
 package org.lappsgrid.eager.mining.solr.unused
 
-import org.lappsgrid.eager.mining.solr.api.Sink
+import org.lappsgrid.eager.mining.api.Sink
 
 import java.util.concurrent.BlockingQueue
 

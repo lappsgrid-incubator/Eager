@@ -1,7 +1,6 @@
-package org.lappsgrid.eager.mining.solr
+package org.lappsgrid.eager.mining.io
 
-import org.lappsgrid.eager.mining.solr.api.DirectoryLister
-import org.lappsgrid.eager.mining.solr.api.Sink
+import org.lappsgrid.eager.mining.api.Sink
 
 import java.util.concurrent.BlockingQueue
 

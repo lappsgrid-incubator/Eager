@@ -1,11 +1,13 @@
-package org.lappsgrid.eager.mining.solr
+package org.lappsgrid.eager.mining
 
-import org.lappsgrid.eager.mining.solr.api.DirectoryLister
-import org.lappsgrid.eager.mining.solr.api.Haltable
-import org.lappsgrid.eager.mining.solr.api.Sink
-import org.lappsgrid.eager.mining.solr.parser.PMCExtractor
-import org.lappsgrid.eager.mining.solr.parser.PubmedExtractor
-import org.lappsgrid.eager.mining.solr.parser.XmlDocumentExtractor
+import org.lappsgrid.eager.mining.api.Haltable
+import org.lappsgrid.eager.mining.api.Sink
+import org.lappsgrid.eager.mining.io.PmcDirectoryLister
+import org.lappsgrid.eager.mining.io.PubmedDirectoryLister
+import org.lappsgrid.eager.mining.parser.PMCExtractor
+import org.lappsgrid.eager.mining.parser.PubmedExtractor
+import org.lappsgrid.eager.mining.parser.XmlDocumentExtractor
+import org.lappsgrid.eager.mining.solr.SolrInserter
 import org.lappsgrid.eager.mining.solr.unused.IDCollector
 
 import java.text.SimpleDateFormat

@@ -96,7 +96,7 @@ class Main {
         return "org.lappsgrid.eager.mining." + parts.join(".")
     }
 
-    String format(long input) {
+    static String format(long input) {
         long msec = input % 1000
         long seconds = input / 1000
         long minutes = seconds / 60

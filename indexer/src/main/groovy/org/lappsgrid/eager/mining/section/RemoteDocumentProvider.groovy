@@ -30,11 +30,13 @@ class RemoteDocumentProvider extends Source {
 
     RemoteDocumentProvider(BlockingQueue<String> output) {
         super("RemoteDocumentProvider", output)
+        queue = new ArrayBlockingQueue<>(1024)
         Thread.start { init() }
     }
 
     RemoteDocumentProvider(Sink sink, BlockingQueue<String> output) {
         super("RemoteDocumentProvider", sink, output)
+        queue = new ArrayBlockingQueue<>(1024)
         Thread.start {
             init()
         }
@@ -46,7 +48,7 @@ class RemoteDocumentProvider extends Source {
             println "RemoteDocumentProvider has run out of data."
             return Worker.DONE
         }
-        println "RemoteDocumentProvider.produce"
+//        println "RemoteDocumentProvider.produce"
         return next
     }
 
@@ -56,13 +58,12 @@ class RemoteDocumentProvider extends Source {
         random.seed = System.currentTimeMillis()
 
         conf = new Configuration()
-        queue = new ArrayBlockingQueue<>(1024)
         index = new ArrayList<>()
 
         InputStream stream = this.class.getResourceAsStream("/pmc-index.txt")
         stream.eachLine { index.add(it) }
 
-        int count = 1000
+        int count = 5000
 
         CountDownLatch latch = new CountDownLatch(count)
         MailBox box = new MailBox(conf.POSTOFFICE, MAILBOX) {
@@ -70,7 +71,10 @@ class RemoteDocumentProvider extends Source {
                 Message message = Serializer.parse(json, Message)
                 if (message.command == 'loaded') {
                     //println message.body
-                    queue.put(message.body)
+                    Packet packet = new Packet()
+                        .xml(message.body)
+                        .path(message.parameters.path)
+                    queue.put(packet)
                 }
                 latch.countDown()
                 if (latch.count == 0) {

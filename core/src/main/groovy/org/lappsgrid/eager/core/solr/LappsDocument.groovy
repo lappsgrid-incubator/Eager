@@ -60,6 +60,14 @@ class LappsDocument {
         add(Fields.BODY, body)
     }
 
+    LappsDocument intro(String intro) {
+        add(Fields.INTRO, intro)
+    }
+
+    LappsDocument results(String results) {
+        add(Fields.RESULTS, results)
+    }
+
     LappsDocument path(String path) {
         add(Fields.PATH, path)
     }

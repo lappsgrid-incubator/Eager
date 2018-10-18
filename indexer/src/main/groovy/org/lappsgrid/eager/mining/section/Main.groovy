@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.mining.section
 
+import groovy.util.logging.Slf4j
 import org.lappsgrid.eager.mining.api.Haltable
 import org.lappsgrid.eager.mining.api.Worker
 import org.lappsgrid.eager.mining.jmx.Manager
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit
 /**
  *
  */
+@Slf4j("logger")
 class Main {
     static final String MANAGER_NAME = "org.lappsgrid.eager.mining:type=Manager"
     public static final MetricRegistry metrics = new MetricRegistry()
@@ -47,11 +49,11 @@ class Main {
         JmxReporter jmx = JmxReporter.forRegistry(metrics).build()
         jmx.start()
 
-        ConsoleReporter console = ConsoleReporter.forRegistry(metrics)
-            .convertRatesTo(TimeUnit.SECONDS)
-            .convertDurationsTo(TimeUnit.MILLISECONDS)
-            .build()
-        console.start(10, TimeUnit.SECONDS)
+//        ConsoleReporter console = ConsoleReporter.forRegistry(metrics)
+//            .convertRatesTo(TimeUnit.SECONDS)
+//            .convertDurationsTo(TimeUnit.MILLISECONDS)
+//            .build()
+//        console.start(10, TimeUnit.SECONDS)
 
         Worker parser = new SectionParser(files, nodes)
         Worker extractor = new SectionExtractor(nodes, sections)
@@ -66,15 +68,20 @@ class Main {
 
         // Wait on the sink. When it is done the pipeline has completed.
         sink.join()
+
+        logger.info("Sink has finished. Saving results to {}", target.path)
         sink.save(target)
 
         // Shut everything down.
+        logger.debug("Halting all threads")
         threads.each { it.halt() }
+
+        logger.debug("Closing JMX reporter")
         jmx.stop()
-        console.stop()
+//        console.stop()
 
         long elapsed = System.currentTimeMillis() - startTime
-
+        logger.info("Elapsed time {}", format(elapsed))
 //        File parent = target.parentFile
 //        File stats = new File(parent, "stats.txt")
 //        stats.withWriter { writer ->
@@ -89,7 +96,7 @@ class Main {
 //            metrics.timers.each { String name, Timer timer ->
 //            }
 //        }
-        println "Section collection finished in " + format(elapsed)
+//        println "Section collection finished in " + format(elapsed)
     }
 
     static String name(String... parts) {

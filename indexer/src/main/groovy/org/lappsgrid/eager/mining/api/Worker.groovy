@@ -1,11 +1,14 @@
 package org.lappsgrid.eager.mining.api
 
+import groovy.util.logging.Slf4j
+
 import java.util.concurrent.BlockingQueue
 
 /**
  * Workers read data from an input queue, transform the data, and then write
  * the result to an output queue.
  */
+@Slf4j("logger")
 abstract class Worker extends Haltable {
     public static final Object DONE = new Object()
 
@@ -17,31 +20,27 @@ abstract class Worker extends Haltable {
         this.name = name
         this.input = input
         this.output = output
-        println "Worker $name input $input  output $output"
     }
 
     @Override
     void run() {
-        println "Starting worker $name"
+        logger.info("Starting worker {}", name)
         running = true
         while(running) {
             try {
+                // Take an item from the input queue
                 Object item = input.take()
-                output.put(work(item))
-//                if (item == DONE) {
-//                    output.put(DONE)
-//                    running = false
-//                }
-//                else {
-//                    output.put(work(item))
-//                }
+                // Process it
+                item = work(item)
+                // And put it on the output queue
+                output.put(item)
             }
             catch (InterruptedException e) {
                 running = false
                 Thread.currentThread().interrupt()
             }
         }
-        println "Thread $name terminated."
+        logger.info("Thread {} terminated.", name)
     }
 
     abstract Object work(Object item);

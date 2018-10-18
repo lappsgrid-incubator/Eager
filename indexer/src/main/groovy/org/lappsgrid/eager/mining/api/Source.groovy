@@ -1,5 +1,7 @@
 package org.lappsgrid.eager.mining.api
 
+import groovy.util.logging.Slf4j
+
 import java.util.concurrent.BlockingQueue
 
 /**
@@ -7,6 +9,7 @@ import java.util.concurrent.BlockingQueue
  * it will be notified of how many objects were placed on the output queue when the <tt>Source</tt>
  * has finished generating objects.
  */
+@Slf4j("logger")
 abstract class Source extends Haltable {
 
     String name
@@ -27,7 +30,7 @@ abstract class Source extends Haltable {
 
     @Override
     void run() {
-        println "Source $name starting"
+        logger.info("Source {} starting", name)
         int count = 0
         running = true
         while (running) {
@@ -48,9 +51,9 @@ abstract class Source extends Haltable {
         }
         // Tell the sink how many items it should expect.
         if (sink != null) {
-            println "Sent notification $count to ${sink.name}"
+            logger.info("Sent notification {} to {}", count, sink.name)
             sink.total = count
         }
-        println "Source $name terminated"
+        logger.info("Source {} terminated", name)
     }
 }

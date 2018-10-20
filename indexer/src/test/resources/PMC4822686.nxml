@@ -1,0 +1,331 @@
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.0 20120330//EN" "JATS-archivearticle1.dtd">
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article"><?properties open_access?><front><journal-meta><journal-id journal-id-type="nlm-ta">Rev Lat Am Enfermagem</journal-id><journal-id journal-id-type="iso-abbrev">Rev Lat Am Enfermagem</journal-id><journal-id journal-id-type="publisher-id">rlae</journal-id><journal-title-group><journal-title>Revista Latino-Americana de Enfermagem</journal-title></journal-title-group><issn pub-type="ppub">0104-1169</issn><issn pub-type="epub">1518-8345</issn><publisher><publisher-name>Escola de Enfermagem de Ribeir&#x000e3;o Preto / Universidade de S&#x000e3;o
+Paulo</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type="pmid">26959329</article-id><article-id pub-id-type="pmc">4822686</article-id><article-id pub-id-type="doi">10.1590/1518-8345.1082.2669</article-id><article-id pub-id-type="other">00301</article-id><article-categories><subj-group subj-group-type="heading"><subject>Original Articles</subject></subj-group></article-categories><title-group><article-title>Coverage, universal access and equity in health: a characterization of
+scientific production in nursing</article-title></title-group><contrib-group><contrib contrib-type="author"><name><surname>Mendoza-Parra</surname><given-names>Sara</given-names></name><xref ref-type="aff" rid="aff1">
+<sup>1</sup>
+</xref></contrib><aff id="aff1"><label>1</label>PhD, Professor, Facultad de Enfermer&#x000ed;a, Universidad de Concepci&#x000f3;n,
+Concepci&#x000f3;n, Chile</aff></contrib-group><author-notes><corresp id="c01">Corresponding Author: Sara Mendoza-Parra Universidad de Concepci&#x000f3;n.
+Facultad de Enfermer&#x000ed;a Departamento Fundamentos de Enfermer&#x000ed;a Casilla 160 C Barrio
+Universitario Concepci&#x000f3;n, Regi&#x000f3;n del B&#x000ed;o-B&#x000ed;o, Chile. E-mail:
+<email>smendoza@udec.cl</email></corresp></author-notes><pub-date pub-type="epub"><day>04</day><month>3</month><year>2016</year></pub-date><pub-date pub-type="collection"><year>2016</year></pub-date><volume>24</volume><elocation-id>e2669</elocation-id><history><date date-type="received"><day>07</day><month>6</month><year>2015</year></date><date date-type="accepted"><day>28</day><month>7</month><year>2015</year></date></history><permissions><license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0"><license-p>This is an open-access article distributed under the terms of the Creative
+Commons Attribution License</license-p></license></permissions><abstract><sec><title>Objectives:</title><p> to characterize the scientific contribution nursing has made regarding coverage,
+universal access and equity in health, and to understand this production in terms
+of subjects and objects of study. </p></sec><sec><title>Material and methods:</title><p> this was cross-sectional, documentary research; the units of analysis were 97
+journals and 410 documents, retrieved from the Web of Science in the category,
+"nursing". Descriptors associated to coverage, access and equity in health, and
+the Mesh thesaurus, were applied. We used bibliometric laws and indicators, and
+analyzed the most important articles according to amount of citations and
+collaboration. </p></sec><sec><title>Results:</title><p> the document retrieval allowed for 25 years of observation of production, an
+institutional and an international collaboration of 31% and 7%, respectively. The
+mean number of coauthors per article was 3.5, with a transience rate of 93%. The
+visibility index was 67.7%, and 24.6% of production was concentrated in four core
+journals. A review from the nursing category with 286 citations, and a Brazilian
+author who was the most productive, are issues worth highlighting. </p></sec><sec><title>Conclusions:</title><p> the nursing collective should strengthen future research on the subject, defining
+lines and sub-lines of research, increasing internationalization and building it
+with the joint participation of the academy and nursing community.</p></sec></abstract><kwd-group><kwd>Universal Coverage</kwd><kwd>Universal Access to Health Care Services</kwd><kwd>Equity in Health</kwd><kwd>Bibliometrics</kwd><kwd>Nursing</kwd></kwd-group><counts><fig-count count="9"/><table-count count="9"/><equation-count count="0"/><ref-count count="29"/><page-count count="1"/></counts></article-meta></front><body><sec sec-type="intro"><title>Introduction</title><p>Under the assumption that universal health coverage cannot be achieved without
+scientific data provided by research - therefore, research becomes an undeniable
+instrument to solve the diversity of questions about how to achieve the universality of
+care health<sup>(</sup>
+<xref rid="B01" ref-type="bibr">1</xref>
+<sup>)</sup> - the present investigation formulated the following question: What are the
+characteristics of the nursing contribution in terms of scientific production, subjects
+and events of interest, regarding coverage, access and universal health equity? Two
+conceptual references were used to answer this question: universal health coverage and
+bibliometrics. </p><p>Universal coverage or universal health coverage consists of the development of health
+financing systems that enable all people to have access to health services, including
+advocacy, prevention, treatment and rehabilitation activities, and that their having
+access incurs no financial difficulties for them in terms of paying for those services.
+In other words, it involves solving how the health system is financed, how it protects
+people from the financial consequences that facing an illness brings to them for the
+needed care, as well as how the resources available in that system are optimally
+used<sup>(</sup>
+<xref rid="B02" ref-type="bibr">2</xref>
+<sup>-</sup>
+<xref rid="B03" ref-type="bibr">3</xref>
+<sup>)</sup>. Thus two other essential concepts arise: access and equity. Universal
+access in health means an absence of geographic, economic, sociocultural, and
+organizational or gender barriers, and this is achieved through the progressive removal
+of barriers that prevent people from using all comprehensive health services, determined
+equitably and at a national level<sup>(</sup>
+<xref rid="B04" ref-type="bibr">4</xref>
+<sup>)</sup>. In turn, universal health equity is a broad, inclusive, and
+multidimensional concept, consisting of aspects related to achieving good health through
+processes that not only have to do with the distribution of health care, but also with
+social justice and non-discrimination in the delivery of such care<sup>(</sup>
+<xref rid="B05" ref-type="bibr">5</xref>
+<sup>)</sup>. Health is not only a function of the health sector; in order to achieve
+it, other factors such as living conditions and working conditions, psychosocial factors
+and socioeconomic status are involved<sup>(</sup>
+<xref rid="B06" ref-type="bibr">6</xref>
+<sup>)</sup>. In other words, universal equity in health means achieving health without
+any social circumstance to prevent it<sup>(5).</sup>
+</p><p>Once the conceptual contribution of the study was determined, a bibliometric analysis
+was used for characterization because, while it allows us to look back at how scientific
+advances have been achieved and released, it also reveals the generation of useful
+results and measures the development of scientific disciplines on certain research
+lines<sup>(</sup>
+<xref rid="B07" ref-type="bibr">7</xref>
+<sup>)</sup>. Bibliometric indicators of production quantify both the number of
+documents published, by country, institution and authors, as well as the citations of
+those documents as a measure of their impact or importance<sup>(</sup>
+<xref rid="B08" ref-type="bibr">8</xref>
+<sup>)</sup>. These are measurements obtained from the statistical analysis of the basic
+elements of journals or articles with which indicators are built to measure the quality,
+impact, relationships or collaboration and scientific activity, i.e., the quantification
+and temporal evolution of the production<sup>(</sup>
+<xref rid="B09" ref-type="bibr">9</xref>
+<sup>)</sup> . Thus, the information stored in databases represents raw material which,
+once analyzed, allows for the extraction of knowledge that can contribute to
+understanding scientific efforts and making strategic decisions in a particular field of
+knowledge<sup>(</sup>
+<xref rid="B10" ref-type="bibr">10</xref>
+<sup>)</sup>. </p><p>Based on the information above, this study had two objectives: first, to characterize
+the scientific contribution of nursing in coverage, universal access and equity in
+health through bibliometric indicators; and, second, to understand the trends of this
+production in terms of studied subjects and phenomena .</p></sec><sec sec-type="materials|methods"><title>Materials and methods</title><p>The type of study and unit of analyze was: bibliometric, descriptive and exploratory
+research, whose unit of analysis was serial publications and documents recovered from
+the category, "Nursing", in the Web of Science, henceforth WOS. </p><p>Search strategies (<xref ref-type="fig" rid="f01">Figure 1</xref>) were: a consultation
+of DeCS (Descriptors in Health Sciences) and MeSH (Medical Subject Heading) thesaurus
+was conducted to recover those controlled terms or descriptors that were related to the
+natural terms of the research problem, i.e. "coverage", "access" and "equity", and each
+separately associated with the terms "health", "health care", "health services" and
+"universal". </p><p>
+<fig id="f01" orientation="portrait" position="float"><label>Figure 1</label><caption><title>- Descriptors and search strategies, Nursing Category, Web of Science,
+2015</title></caption><graphic xlink:href="0104-1169-rlae-02669-gf01"/></fig>
+</p><p>The universe consisted of: 97 magazines and 410 documents (articles, reviews, letters,
+notes, editorials, etc.). Data analysis used was: frequency distribution and measures of
+central tendency and dispersion for exploratory univariate analysis of unidimensional or
+descriptive bibliometric indicators. For the behavior of authors and journals, the laws
+of Lotka and Bradford were calculated.</p></sec><sec sec-type="results"><title>Results</title><sec><title>Document characteristics</title><p>Magnitude, evolution and document types (<xref ref-type="fig" rid="f02">Figure
+2</xref>): registration of documents in the WOS starting in the 1990s, with an
+article, reaching an average of 47.5, from 2011 on. By 2015, there were already a
+total of 410 records. According to the type of documents, in the 25 years studied,
+91.5% (375) were articles, 3.7% (15) were reviews and 2.2% (9) were editorials. The
+rest were brief reports, news, and letters to the editor. </p><p>
+<fig id="f02" orientation="portrait" position="float"><label>Figure 2</label><caption><title>- Scientific production of nurses in subjects on Coverage, Access and
+Universal Equity in health, Web of Science, 1990-2015 (N = 410).</title></caption><graphic xlink:href="0104-1169-rlae-02669-gf02"/></fig>
+</p><p>Collaboration: only 31% of this production (127) had institutional collaboration; the
+most common partnership (27) was university/hospital. The rate of collaboration or
+co-authorship, i.e., the average number of authors per paper, throughout the period
+was 3.5. The highest value was obtained by a co-authored article from
+2007,<sup>(</sup>
+<xref rid="B11" ref-type="bibr">11</xref>
+<sup>)</sup> with 12 Canadian authors, which described how the real-time access that
+hospital or community nurses had to electronic resources could not only obtain
+information simultaneously about patient results or about the best evidence to
+support the practice, but also revealed the close relationship between nursing
+interventions and patient outcomes. This is a key issue in planning the best
+interventions in a timely manner, and thereby facilitates access to better health
+care in the short term<sup>(</sup>
+<xref rid="B11" ref-type="bibr">11</xref>
+<sup>)</sup>. Collaboration at a national level exceeded this indicator in 93.4% of
+the manuscripts (383), of which, the document with the highest number of authors'
+participating affiliations was from 2009, in which nine academic Australian
+philanthropic, research and care institutions were identified; their purpose was to
+conduct a mapping of rural and regional cancer services in that country. Among other
+things, significant deficiencies in the provision of oncological services, limited
+availability of nurses, and significant differences in their training to provide
+similar care were identified. It was concluded that these deficiencies could
+contribute to disadvantage the progress of cancer patients living in regional, rural
+and remote areas, and that it was imperative to take short-term measures to improve
+access to better oncological services and thereby eliminate inequalities in the care
+of these patients in Australia<sup>(</sup>
+<xref rid="B12" ref-type="bibr">12</xref>
+<sup>)</sup>. International collaboration only reached 7%, led by the United States,
+with ten publications along with European, Asian, African and Latin American
+countries. Notable in this group was a manuscript, with the increased presence of
+participating countries, with authors from England, Norway, Australia, Switzerland,
+Germany and Greece. It was a review published in 2013, from 16 studies, describing
+the perceptions, needs and experiences of pregnant migrant women. It was concluded
+that although all member states of the European Union had ratified resolutions based
+on human rights, a connection remained between social inequality and barriers to
+accessing pre-, intra- and post-partum care. The results showed that migrant women
+were a very vulnerable group during pregnancy and childbirth, and it was necessary to
+improve access to health services to better meet their actual needs<sup>(</sup>
+<xref rid="B13" ref-type="bibr">13</xref>
+<sup>)</sup>. </p><p>Authors, occasional production and Lotka law: 1197 authors were identified in all of
+the papers. Of these, 1109 had only one article, so the occasional production or
+transience rate was 93%. Because of this ratio, we could not get a predictable
+standard distribution of authors and studies. In accordance with the foregoing, by
+calculating the Lotka coefficient (-3.4), it was found that the community of authors
+in regards to coverage, universal access and health equity in the WOS Nursing
+category remains a community of researchers with poor scientific productivity,
+represented by an elite group of 34 researchers (&#x0221a;1197) who have written three or
+more papers. Herein, the author Tereza Cristina Scatena Villa stands out, who heads
+the elite as a co-author of nine articles published from 2011 to 2014, which cover
+various topics regarding accessibility to tuberculosis care services.</p><p>Quotations: visibility index, i.e., the relative weight that had the number of
+citable documents (articles, reviews, letters and notes), in this case 394, which
+were cited during the period, was 67.7% (267). It seemed important to investigate the
+behavior of scientific citation by scientific category, given that 118 of the citable
+documents (29.9%) were linked to one or more of the 18 categories found, other than
+"Nursing". <xref ref-type="table" rid="t01">Table 1</xref> shows the average citation
+per category. The highest average number of citation (7.7) reached up to six
+documents, related to the Obstetrics &#x00026; Gynecology categories, followed by two
+related to Public, Environment &#x00026; Occupational Health and thirdly, those linked to
+Cardiology &#x00026; Cardiovascular System. The Nursing category, in the 25 years
+studied, ranked fourth with an average of six citations for 394 documents. </p><p>
+<table-wrap id="t01" orientation="portrait" position="float"><label>Table 1</label><caption><title>- scientific categories according to the average number of citations and
+documents, Nursing Category, Web of Science, 2015</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col span="1"/><col span="1"/><col span="1"/></colgroup><thead><tr><th align="left" rowspan="1" colspan="1">
+<bold>Scientific category</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Quote X</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Number of quotable documents</bold>
+</th></tr></thead><tbody><tr><td align="left" rowspan="1" colspan="1">Obstetrics &#x00026; Gynecology</td><td align="left" rowspan="1" colspan="1">7.7</td><td align="left" rowspan="1" colspan="1">6</td></tr><tr><td align="left" rowspan="1" colspan="1">Public, Environmental &#x00026;
+Occupational Health</td><td align="left" rowspan="1" colspan="1">7.5</td><td align="left" rowspan="1" colspan="1">51</td></tr><tr><td align="left" rowspan="1" colspan="1">Cardiovascular System &#x00026;
+Cardiology</td><td align="left" rowspan="1" colspan="1">6.8</td><td align="left" rowspan="1" colspan="1">5</td></tr><tr><td align="left" rowspan="1" colspan="1">Nursing</td><td align="left" rowspan="1" colspan="1">6</td><td align="left" rowspan="1" colspan="1">394</td></tr><tr><td align="left" rowspan="1" colspan="1">Oncology</td><td align="left" rowspan="1" colspan="1">5</td><td align="left" rowspan="1" colspan="1">15</td></tr><tr><td align="left" rowspan="1" colspan="1">Pediatrics</td><td align="left" rowspan="1" colspan="1">4.7</td><td align="left" rowspan="1" colspan="1">9</td></tr><tr><td align="left" rowspan="1" colspan="1">Health Care Sciences &#x00026;
+Services</td><td align="left" rowspan="1" colspan="1">4.5</td><td align="left" rowspan="1" colspan="1">13</td></tr><tr><td align="left" rowspan="1" colspan="1">Psychiatry</td><td align="left" rowspan="1" colspan="1">4</td><td align="left" rowspan="1" colspan="1">5</td></tr><tr><td align="left" rowspan="1" colspan="1">Medical Informatics</td><td align="left" rowspan="1" colspan="1">3.6</td><td align="left" rowspan="1" colspan="1">5</td></tr><tr><td align="left" rowspan="1" colspan="1">Computer Science</td><td align="left" rowspan="1" colspan="1">3.6</td><td align="left" rowspan="1" colspan="1">5</td></tr><tr><td align="left" rowspan="1" colspan="1">Gastroenterology &#x00026;
+Hepatology</td><td align="left" rowspan="1" colspan="1">3</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">Rehabilitation</td><td align="left" rowspan="1" colspan="1">2.9</td><td align="left" rowspan="1" colspan="1">8</td></tr><tr><td align="left" rowspan="1" colspan="1">Education &#x00026; Educational
+Research</td><td align="left" rowspan="1" colspan="1">2.5</td><td align="left" rowspan="1" colspan="1">2</td></tr><tr><td align="left" rowspan="1" colspan="1">Geriatrics &#x00026;
+Gerontology</td><td align="left" rowspan="1" colspan="1">1.2</td><td align="left" rowspan="1" colspan="1">5</td></tr><tr><td align="left" rowspan="1" colspan="1">Substance Abuse</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">3</td></tr><tr><td align="left" rowspan="1" colspan="1">Emergency Medicine</td><td align="left" rowspan="1" colspan="1">0</td><td align="left" rowspan="1" colspan="1">2</td></tr><tr><td align="left" rowspan="1" colspan="1">Urology &#x00026; Nephrology</td><td align="left" rowspan="1" colspan="1">0</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">Criminology &#x00026; Penology</td><td align="left" rowspan="1" colspan="1">0</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">Life Sciences &#x00026; Biomedicine
+- Other Topics</td><td align="left" rowspan="1" colspan="1">0</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">Integrative &#x00026; Complementary
+Medicine</td><td align="left" rowspan="1" colspan="1">0</td><td align="left" rowspan="1" colspan="1">1</td></tr></tbody></table></table-wrap>
+</p></sec><sec><title>Journal characteristics</title><p>Country of Origin: <xref ref-type="table" rid="t02">Table 2</xref> identifies 97
+journals originating from 15 countries. Four countries stand out with the largest
+number of source journals on the subject: USA, England, Brazil and Australia. </p><p>
+<table-wrap id="t02" orientation="portrait" position="float"><label>Table 2</label><caption><title>- Distribution of countries of source journals by number of journals and
+documents, Nursing Category, Web of Science, 2015</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col span="1"/><col span="1"/><col span="1"/></colgroup><thead><tr><th align="left" rowspan="1" colspan="1">
+<bold>Country</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Number of Journals</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Number of Documents</bold>
+</th></tr></thead><tbody><tr><td align="left" rowspan="1" colspan="1">USA</td><td align="left" rowspan="1" colspan="1">55</td><td align="left" rowspan="1" colspan="1">207</td></tr><tr><td align="left" rowspan="1" colspan="1">UK</td><td align="left" rowspan="1" colspan="1">13</td><td align="left" rowspan="1" colspan="1">73</td></tr><tr><td align="left" rowspan="1" colspan="1">Brazil</td><td align="left" rowspan="1" colspan="1">7</td><td align="left" rowspan="1" colspan="1">72</td></tr><tr><td align="left" rowspan="1" colspan="1">Australia</td><td align="left" rowspan="1" colspan="1">5</td><td align="left" rowspan="1" colspan="1">33</td></tr><tr><td align="left" rowspan="1" colspan="1">Switzerland</td><td align="left" rowspan="1" colspan="1">2</td><td align="left" rowspan="1" colspan="1">6</td></tr><tr><td align="left" rowspan="1" colspan="1">Spain</td><td align="left" rowspan="1" colspan="1">3</td><td align="left" rowspan="1" colspan="1">4</td></tr><tr><td align="left" rowspan="1" colspan="1">Japan</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">3</td></tr><tr><td align="left" rowspan="1" colspan="1">Korea</td><td align="left" rowspan="1" colspan="1">3</td><td align="left" rowspan="1" colspan="1">3</td></tr><tr><td align="left" rowspan="1" colspan="1">Scotland</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">2</td></tr><tr><td align="left" rowspan="1" colspan="1">Portugal</td><td align="left" rowspan="1" colspan="1">2</td><td align="left" rowspan="1" colspan="1">2</td></tr><tr><td align="left" rowspan="1" colspan="1">Colombia</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">Cuba</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">The Netherlands</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">South Africa</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">Taiwan</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">1</td></tr><tr><td align="left" rowspan="1" colspan="1">Total</td><td align="left" rowspan="1" colspan="1">97</td><td align="left" rowspan="1" colspan="1">410</td></tr></tbody></table></table-wrap>
+</p><p>Core journals (Bradford Law): based on the number of documents per journal, four
+Bradford areas were identified (<xref ref-type="table" rid="t03">Table 3</xref>),
+each with a production rate ranging between 23% and 26%. There were five core
+journals, i.e., those in which the largest scientific production regarding coverage,
+universal access and equity in health was concentrated: Public Health Nursing from
+the USA, with 32 documents; Journal of Advanced Nursing from the UK, with 23
+documents; Australian Journal of Rural Health with 17 documents; and two Brazilian
+journals, <italic>Revista da Escola de Enfermagem da USP</italic> and <italic>Acta
+Paulista de Enfermagem</italic>, with 15 and 14 articles, respectively.</p><p>
+<table-wrap id="t03" orientation="portrait" position="float"><label>Table 3</label><caption><title>- Areas of Bradford, concerning coverage, universal access and equity in
+health, Category Nursing, Web of Science, 2015</title></caption><table frame="hsides" rules="groups"><colgroup span="1"><col span="1"/><col span="1"/><col span="1"/><col span="1"/><col span="1"/></colgroup><thead><tr><th align="left" rowspan="1" colspan="1">
+<bold>Number ofjournals</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Number of articles per journal</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Accumulated journals, r</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Accumulated articles, R ( r )</bold>
+</th><th align="left" rowspan="1" colspan="1">
+<bold>Bradford Areas</bold>
+</th></tr></thead><tbody><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">32</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">32</td><td align="left" rowspan="5" colspan="1">Zone 1 Nucleus 5 journals
+(24.6%)</td></tr><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">23</td><td align="left" rowspan="1" colspan="1">2</td><td align="left" colspan="2" rowspan="1">55</td></tr><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">15</td><td align="left" rowspan="1" colspan="1">3</td><td align="left" colspan="2" rowspan="1">70</td></tr><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">17</td><td align="left" rowspan="1" colspan="1">4</td><td align="left" colspan="2" rowspan="1">87</td></tr><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">14</td><td align="left" rowspan="1" colspan="1">5</td><td align="left" colspan="2" rowspan="1">101</td></tr><tr><td align="left" rowspan="1" colspan="1">2</td><td align="left" rowspan="1" colspan="1">13</td><td align="left" rowspan="1" colspan="1">7</td><td align="left" rowspan="1" colspan="1">127</td><td align="left" rowspan="5" colspan="1">Zone 2 9 journals (23.2%)</td></tr><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">12</td><td align="left" rowspan="1" colspan="1">8</td><td align="left" colspan="2" rowspan="1">139</td></tr><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">11</td><td align="left" rowspan="1" colspan="1">9</td><td align="left" colspan="2" rowspan="1">150</td></tr><tr><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">10</td><td align="left" rowspan="1" colspan="1">10</td><td align="left" colspan="2" rowspan="1">160</td></tr><tr><td align="left" rowspan="1" colspan="1">4</td><td align="left" rowspan="1" colspan="1">9</td><td align="left" rowspan="1" colspan="1">14</td><td align="left" colspan="2" rowspan="1">196</td></tr><tr><td align="left" rowspan="1" colspan="1">3</td><td align="left" rowspan="1" colspan="1">8</td><td align="left" rowspan="1" colspan="1">17</td><td align="left" rowspan="1" colspan="1">220</td><td align="left" rowspan="5" colspan="1">Zone 3 19 journals (26.3%)</td></tr><tr><td align="left" rowspan="1" colspan="1">3</td><td align="left" rowspan="1" colspan="1">7</td><td align="left" rowspan="1" colspan="1">20</td><td align="left" colspan="2" rowspan="1">241</td></tr><tr><td align="left" rowspan="1" colspan="1">3</td><td align="left" rowspan="1" colspan="1">6</td><td align="left" rowspan="1" colspan="1">23</td><td align="left" colspan="2" rowspan="1">259</td></tr><tr><td align="left" rowspan="1" colspan="1">5</td><td align="left" rowspan="1" colspan="1">5</td><td align="left" rowspan="1" colspan="1">28</td><td align="left" colspan="2" rowspan="1">284</td></tr><tr><td align="left" rowspan="1" colspan="1">5</td><td align="left" rowspan="1" colspan="1">4</td><td align="left" rowspan="1" colspan="1">33</td><td align="left" colspan="2" rowspan="1">304</td></tr><tr><td align="left" rowspan="1" colspan="1">13</td><td align="left" rowspan="1" colspan="1">3</td><td align="left" rowspan="1" colspan="1">46</td><td align="left" rowspan="1" colspan="1">343</td><td align="left" rowspan="3" colspan="1">Zone 4 64 journals (25.9%)</td></tr><tr><td align="left" rowspan="1" colspan="1">16</td><td align="left" rowspan="1" colspan="1">2</td><td align="left" rowspan="1" colspan="1">62</td><td align="left" colspan="2" rowspan="1">375</td></tr><tr><td align="left" rowspan="1" colspan="1">35</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">97</td><td align="left" colspan="2" rowspan="1">410</td></tr></tbody></table></table-wrap>
+</p></sec><sec><title>Study subjects and phenomena</title><p>To monitor trends on topics of interest, it seemed important to retrieve and analyze,
+by years, the most cited documents separated by scientific categories, and separate
+from them the phenomena and study subjects (<xref ref-type="fig" rid="f03">Figure
+3</xref>). A total of 15 categories in the 394 scientific papers, and 14 citable
+documents with the highest number of citations by category were identified. In the
+most cited group, a 2005 review with 286 citations supporting the Nursing category is
+highlighted.</p><p>
+<fig id="f03" orientation="portrait" position="float"><label>Figure 3</label><caption><title>- Summary of documents related to coverage, universal access and equity
+in health, by years, citations, subject and journal, Nursing Category, Web
+of Science, 2015</title></caption><graphic xlink:href="0104-1169-rlae-02669-gf03"/></fig>
+</p><p>In the UK, based on growing American evidence that men seek help to solve several
+health problems, such as depression, substance abuse, physical disabilities or
+stressful life events less frequently than women and that men were more reluctant to
+seek help and access health services, there was a need to retrieve scientific
+literature to describe such behavior. A growing number of gender studies were found
+that showed a tendency for men to delay seeking help when they got sick. Under this
+approach, white middle-class men, for example, had a<italic>traditional male
+behavior</italic> that prevented them from accessing timely health care. It was
+concluded that, primarily, the role of male beliefs and the similarities and
+differences between different male profiles required more attention and research;
+especially taking into account health inequalities that existed between men of
+different socio-economic status and ethnicity. The authors suggested further research
+with heterogeneous samples to obtain a better understanding of the triggers and
+barriers associated with the process of making decisions about men seeking care
+health. They emphasized that, with more evidence, not only could it improve the
+access of men to health care, but it would also improve the quality of life of the
+women who informally have to take over that care, and therefore also reduce national
+health costs associated with delayed health care<sup>(</sup>
+<xref rid="B18" ref-type="bibr">18</xref>
+<sup>)</sup>. </p></sec></sec><sec><title>Discussion and conclusions</title><p>It is worth highlighting that the entry of Scielo and KCI-Korean collections in the Web
+of Science enables the performance of global bibliometric studies, in order to observe
+the behavior of particular scientific fields and study phenomena. While it is arguable
+that this study does not include everything the nursing community has produced regarding
+coverage, access and universal equity in health, from WOS, we can separate the
+collection of documents with the best scientific quality about the subject, and have an
+overview of their contribution. </p><p>With respect to documents, specifically regarding the evolution of magnitude, it is
+clearly shown that the issue has not entered the phase of linear growth. This is a
+characteristic that lends to investigative work with a scientific maturity of an area of
+knowledge, even if the 25-year period studied was enough to strengthen this line of
+research. Evidence that reinforces this includes the small amount of retrieved reviews
+(3.7%) and primarily national collaboration (93.4%) which originated from the university
+environment with high levels of transience. This coincides with the point made by
+Trzesniak<sup>(</sup>
+<xref rid="B28" ref-type="bibr">28</xref>
+<sup>)</sup> to establish that nursing, as with other emerging sciences, is still in
+transition from technology/profession into science/research, and the behavior of the
+group that has researched coverage, access and equity in health, proves it. </p><p>It is remarkable that, despite the increased productivity originating in countries such
+as the USA and UK, it is a Brazilian author that leads the productivity rates by author.
+Indeed, Scatena Villa has had a continuing involvement over time with nine articles that
+may well represent a research subline regarding coverage, access and equity in patients
+with tuberculosis.</p><p>The visibility achieved by the citable documents (67%) is also important, and almost 30%
+are categorized in other scientific fields, indicating that those papers produced by
+Nursing on the issue not only impact its own group, but also contribute to the knowledge
+of other scientific areas<sup>(</sup>
+<xref rid="B09" ref-type="bibr">9</xref>
+<sup>)</sup> .</p><p>Regarding the journals, it is expected that countries with a lot of data in the WOS
+occupy the greatest amount of indexed journals, which makes it more relevant that Brazil
+is integrated into the group of core journals, and ranks third with seven journals which
+accumulate 72 full text documents with free access. No doubt, this free access
+incorporated into a global database such as the WOS could be called<italic>global
+scientific accessibility</italic>. This is a key and important feature in order to
+ethically meet universal health coverage. Without access to relevant science produced
+around the world, one cannot speak of universality or coverage or access, and, even
+less, of equity in health. </p><p>Regarding the featured articles, either in collaboration or citations, the set of
+documents indicates that nursing has understood very well the concepts of coverage,
+access and universal equity in health. The fact that the study subjects are elderly in
+rural areas, cancer patients, patients with psychiatric illnesses, pregnant migrant
+women, homeless adults, children living in slums, adult men hospitalized or unwilling to
+access health care, and many other types of groups, reflects an understanding of the
+need to progressively remove all barriers that prevent people from using the
+comprehensive health services, organized by the countries to which they
+belong<sup>(</sup>
+<xref rid="B29" ref-type="bibr">29</xref>
+<sup>)</sup>. Likewise, the fact that the research phenomena most frequently cited
+related to decision-making in health, use of health services, factors affecting
+diagnostics, mean usage, user satisfaction, attitudes of nursing students confronting
+vulnerable groups, or use of computer networks and tools to educate or connect the
+family with the inpatient, indicate that nursing seeks, through its research, those
+niches of inequality and inequity in care as a mechanism to clearly observe reality and
+reduce those gaps that impede universality in health care. </p><p>Although neither the methodological framework nor the theoretical research in the study
+were part of this investigation, we observed a variety of qualitative and quantitative
+approaches to solve research problems, and the gender perspective as a fundamental
+perspective to build knowledge in this area. Gender and universal coverage, access and
+equity in health care perspectives have their fundamental livelihood in human rights and
+ethics.</p><p>It is a fact that the worldwide nursing community already has core journals in the area,
+but there remains a need to strengthen future research by better organizing it in terms
+of research lines and sub lines, internationalization, and creating a close link between
+academia, now linked to nursing, which is developed at a community level.</p></sec></body><back><ref-list><title>References</title><ref id="B01"><label>1</label><element-citation publication-type="book"><person-group person-group-type="author"><collab>Organizaci&#x000f3;n Mundial de la Salud (OMS)</collab></person-group><source>Informe sobre la salud en el mundo 2013: Investigaciones para una cobertura
+universal de salud</source><year>2015</year><ext-link ext-link-type="uri" xlink:href="http://apps.who.int/iris/bitstream/10665/85763/1/9789240691223_spa.pdf">http://apps.who.int/iris/bitstream/10665/85763/1/9789240691223_spa.pdf</ext-link></element-citation></ref><ref id="B02"><label>2</label><element-citation publication-type="book"><person-group person-group-type="author"><collab>Organizaci&#x000f3;n Mundial de la Salud (OMS)</collab></person-group><source>Resumen Informe sobre la salud en el mundo 2010: La financiaci&#x000f3;n de los
+sistemas de salud el camino hacia la cobertura universal</source><year>2015</year><ext-link ext-link-type="uri" xlink:href="http://www.who.int/whr/2010/10_summary_es.pdf?ua=1">http://www.who.int/whr/2010/10_summary_es.pdf?ua=1</ext-link></element-citation></ref><ref id="B03"><label>3</label><element-citation publication-type="book"><person-group person-group-type="author"><collab>World Health Organization (WHO)</collab></person-group><source>Fiftyeighth World Health Assembly: Sustainable health financing, universal
+coverage and social health insurance</source><publisher-loc>Geneva</publisher-loc><year>2005</year><ext-link ext-link-type="uri" xlink:href="http://apps._who.int/gb/ebwha/pdf_files/WHA58/WHA58_33-en.pdf">http://apps._who.int/gb/ebwha/pdf_files/WHA58/WHA58_33-en.pdf</ext-link></element-citation></ref><ref id="B04"><label>4</label><element-citation publication-type="book"><person-group person-group-type="author"><collab>Organizaci&#x000f3;n Mundial de la Salud (OMS)</collab></person-group><source>66&#x000aa; Sesi&#x000f3;n del Comit&#x000e9; Regional de la OMS para Las Am&#x000e9;ricas Washington.
+CD53/5, Rev. 2: Estrategia para el acceso universal a la salud y la cobertura
+universal de salud</source><year>2015</year><ext-link ext-link-type="uri" xlink:href="http://www.paho.org/HQ/index.php?option=com_content&#x00026;view=article&#x00026;id=9774:53rd-directing-council&#x00026;Itemid=41062&#x00026;lang=es#InformeFinal">http://www.paho.org/HQ/index.php?option=com_content&#x00026;view=article&#x00026;id=9774:53rd-directing-council&#x00026;Itemid=41062&#x00026;lang=es#InformeFinal</ext-link></element-citation></ref><ref id="B05"><label>5</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Sen</surname><given-names>A</given-names></name></person-group><article-title>&#x000bf;Porqu&#x000e9; la equidad en salud?</article-title><source>Rev Panam Salud Publica</source><year>2002</year><volume>11</volume><issue>5/6</issue><fpage>302</fpage><lpage>309</lpage><pub-id pub-id-type="pmid">12162827</pub-id></element-citation></ref><ref id="B06"><label>6</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Bachellet</surname><given-names>M</given-names></name></person-group><article-title>Hacia una cobertura universal de salud: aplicaci&#x000f3;n de una perspectiva
+de g&#x000e9;nero</article-title><source>MEDICC Rev</source><year>2015</year><volume>17</volume><issue>1</issue><fpage>19</fpage><lpage>20</lpage></element-citation></ref><ref id="B07"><label>7</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Sanz-Valero</surname><given-names>J</given-names></name><name><surname>Tom&#x000e1;s Caster&#x000e1;</surname><given-names>V</given-names></name><name><surname>Wanden-Berghe</surname><given-names>C</given-names></name></person-group><article-title>Estudio bibliom&#x000e9;trico de la producci&#x000f3;n cient&#x000ed;fica en el per&#x000ed;odo de
+1997 a 2012</article-title><source>Rev Panam Salud Publica</source><year>2014</year><volume>35</volume><issue>2</issue><fpage>81</fpage><lpage>88</lpage><pub-id pub-id-type="pmid">24781088</pub-id></element-citation></ref><ref id="B08"><label>8</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>De Arenas</surname><given-names>J</given-names></name><name><surname>Santillan-Rivero</surname><given-names>E</given-names></name></person-group><article-title>Bibliometr&#x000ed;a &#x000bf;para qu&#x000e9;?</article-title><source>Nueva Epoca</source><year>2002</year><volume>5</volume><issue>1</issue><fpage>3</fpage><lpage>10</lpage></element-citation></ref><ref id="B09"><label>9</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Mendoza-Parra</surname><given-names>S</given-names></name><name><surname>Paravic-Klijn</surname><given-names>T</given-names></name><name><surname>Mu&#x000f1;oz-Mu&#x000f1;oz</surname><given-names>AM</given-names></name><name><surname>Barriga</surname><given-names>O</given-names></name><name><surname>Jimenez-Contreras</surname><given-names>E</given-names></name></person-group><article-title>Visibility of Latin American Nursing Research
+(1959-2005)</article-title><source>J Nurs Scholarsh</source><year>2009</year><volume>41</volume><issue>1</issue><fpage>54</fpage><lpage>63</lpage><pub-id pub-id-type="pmid">19335678</pub-id></element-citation></ref><ref id="B10"><label>10</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Castiel</surname><given-names>L</given-names></name><name><surname>Sanz-Valero</surname><given-names>J</given-names></name></person-group><article-title>Pol&#x000ed;tica cient&#x000ed;fica: manejar la precariedad de los excesos y
+desnaturalizar la ideolog&#x000ed;a "publicacionista" todopoderosa</article-title><source>[Editorial]. Salud Colect</source><year>2009</year><volume>5</volume><issue>1</issue><fpage>5</fpage><lpage>11</lpage></element-citation></ref><ref id="B11"><label>11</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Doran</surname><given-names>DM</given-names></name><name><surname>Mylopoulos</surname><given-names>J</given-names></name><name><surname>Kushniruk</surname><given-names>A</given-names></name><name><surname>Nagle</surname><given-names>L</given-names></name><name><surname>Laurie-Shaw</surname><given-names>B</given-names></name><name><surname>Sidani</surname><given-names>S</given-names></name></person-group><article-title>Evidence in the palm of your hand: development of an outcomes-focused
+knowledge translation intervention</article-title><source>Worldviews Evid Based Nurs</source><year>2007</year><volume>4</volume><issue>2</issue><fpage>69</fpage><lpage>77</lpage><pub-id pub-id-type="pmid">17553107</pub-id></element-citation></ref><ref id="B12"><label>12</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Underhill</surname><given-names>C</given-names></name><name><surname>Bartel</surname><given-names>R</given-names></name><name><surname>Goldstein</surname><given-names>D</given-names></name><name><surname>Snodgrass</surname><given-names>H</given-names></name><name><surname>Begbie</surname><given-names>S</given-names></name><name><surname>Yates</surname><given-names>P</given-names></name></person-group><article-title>Mapping Oncology Services in Regional and Rural
+Australia</article-title><source>Aust J Rural Health</source><year>2009</year><volume>17</volume><issue>6</issue><fpage>321</fpage><lpage>329</lpage><pub-id pub-id-type="pmid">19930199</pub-id></element-citation></ref><ref id="B13"><label>13</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Balaam</surname><given-names>MC</given-names></name><name><surname>Akerjordet</surname><given-names>K</given-names></name><name><surname>Lyberg</surname><given-names>A</given-names></name><name><surname>Kaiser</surname><given-names>B</given-names></name><name><surname>Schoening</surname><given-names>E</given-names></name><name><surname>Fredriksen</surname><given-names>AM</given-names></name></person-group><article-title>A Qualitative Review of Migrant Women's Perceptions of Their Needs and
+Experiences Related to Pregnancy and Childbirth</article-title><source>J Adv Nurs</source><year>2013</year><volume>69</volume><issue>9</issue><fpage>1919</fpage><lpage>1930</lpage><pub-id pub-id-type="pmid">23560897</pub-id></element-citation></ref><ref id="B14"><label>14</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Neese</surname><given-names>J</given-names></name><name><surname>Abraham</surname><given-names>I</given-names></name><name><surname>Buckwalter</surname><given-names>K</given-names></name></person-group><article-title>Utilization of Mental Health Services Among Rural
+Elderly</article-title><source>Arch Psychiatr Nurs</source><year>1999</year><volume>13</volume><issue>1</issue><fpage>30</fpage><lpage>40</lpage><pub-id pub-id-type="pmid">10069100</pub-id></element-citation></ref><ref id="B15"><label>15</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Magilvy</surname><given-names>J</given-names></name><name><surname>Congdon</surname><given-names>J</given-names></name></person-group><article-title>The Crisis Nature of Health Care Transitions for Rural Older
+Adults</article-title><source>Public Health Nurs</source><year>2000</year><volume>17</volume><issue>5</issue><fpage>336</fpage><lpage>345</lpage><pub-id pub-id-type="pmid">11012996</pub-id></element-citation></ref><ref id="B16"><label>16</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Verhoef</surname><given-names>M</given-names></name><name><surname>White</surname><given-names>M</given-names></name></person-group><article-title>Factors in Making the Decision to Forgo Conventional Cancer
+Treatment</article-title><source>Cancer Pract</source><year>2002</year><volume>10</volume><issue>4</issue><fpage>201</fpage><lpage>207</lpage><pub-id pub-id-type="pmid">12100104</pub-id></element-citation></ref><ref id="B17"><label>17</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Yu</surname><given-names>M</given-names></name><name><surname>Wu</surname><given-names>T</given-names></name></person-group><article-title>Factors Influencing Mammography Screening of Chinese American
+Women</article-title><source>JOGNN</source><year>2005</year><volume>34</volume><issue>3</issue><fpage>386</fpage><lpage>394</lpage><pub-id pub-id-type="pmid">15890839</pub-id></element-citation></ref><ref id="B18"><label>18</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Galdas</surname><given-names>P</given-names></name><name><surname>Cheater</surname><given-names>F</given-names></name><name><surname>Marshall</surname><given-names>P</given-names></name></person-group><article-title>Men and Health Help-Seeking Behaviour: Literature
+Review</article-title><source>J Adv Nurs</source><year>2005</year><volume>49</volume><issue>6</issue><fpage>616</fpage><lpage>623</lpage><pub-id pub-id-type="pmid">15737222</pub-id></element-citation></ref><ref id="B19"><label>19</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Artinian</surname><given-names>N</given-names></name></person-group><article-title>Telehealth as a Tool for Enhancing Care for Patients With
+Cardiovascular Disease</article-title><source>J Cardiovasc Nurs</source><year>2007</year><volume>22</volume><issue>1</issue><fpage>25</fpage><lpage>31</lpage><pub-id pub-id-type="pmid">17224694</pub-id></element-citation></ref><ref id="B20"><label>20</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Martins</surname><given-names>D</given-names></name></person-group><article-title>Experiences of Homeless People in the Health Care Delivery System: a
+Descriptive Phenomenological Study</article-title><source>Public Health Nurs</source><year>2008</year><volume>25</volume><issue>5</issue><fpage>420</fpage><lpage>430</lpage><pub-id pub-id-type="pmid">18816359</pub-id></element-citation></ref><ref id="B21"><label>21</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Ndugwa</surname><given-names>R</given-names></name><name><surname>Zulu</surname><given-names>E</given-names></name></person-group><article-title>Child Morbidity and Care-Seeking in Nairobi Slum Settlements: the Role
+of Environmental and Socio-Economic Factors</article-title><source>J Child Health Care</source><year>2008</year><volume>12</volume><issue>4</issue><fpage>314</fpage><lpage>328</lpage><pub-id pub-id-type="pmid">19052189</pub-id></element-citation></ref><ref id="B22"><label>22</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Atack</surname><given-names>L</given-names></name><name><surname>Luke</surname><given-names>R</given-names></name><name><surname>Chien</surname><given-names>E</given-names></name></person-group><article-title>Evaluation of Patient Satisfaction With Tailored Online Patient
+Education Information</article-title><source>Cin-Comput Inform Nurs</source><year>2008</year><volume>26</volume><issue>5</issue><fpage>258</fpage><lpage>264</lpage></element-citation></ref><ref id="B23"><label>23</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Hamlyn</surname><given-names>S</given-names></name></person-group><article-title>Reducing the Incidence of Colorectal Cancer in African
+Americans</article-title><source>Gastroenterol Nurs</source><year>2008</year><volume>31</volume><issue>1</issue><fpage>39</fpage><lpage>42</lpage><pub-id pub-id-type="pmid">18300824</pub-id></element-citation></ref><ref id="B24"><label>24</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wray</surname><given-names>J</given-names></name><name><surname>Walker</surname><given-names>L</given-names></name></person-group><article-title>Student Nurses' Attitudes to Vulnerable Groups: a Study Examining the
+Impact of a Social Inclusion Module</article-title><source>Nurse Educ Today</source><year>2008</year><volume>28</volume><issue>4</issue><fpage>513</fpage><lpage>520</lpage><pub-id pub-id-type="pmid">17981374</pub-id></element-citation></ref><ref id="B25"><label>25</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Savage</surname><given-names>C</given-names></name><name><surname>Gillespie</surname><given-names>G</given-names></name><name><surname>Lindsell</surname><given-names>C</given-names></name></person-group><article-title>Health Status and Access to Care for Homeless Adults With Problem
+Alcohol and Drug Use</article-title><source>J Addict Nurs</source><year>2008</year><volume>19</volume><issue>1</issue><fpage>27</fpage><lpage>33</lpage></element-citation></ref><ref id="B26"><label>26</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Logan</surname><given-names>L</given-names></name><name><surname>Mcilfatrick</surname><given-names>S</given-names></name></person-group><article-title>Exploring Women's Knowledge, Experiences and Perceptions of Cervical
+Cancer Screening in an Area of Social Deprivation</article-title><source>Eur J Cancer Care</source><year>2011</year><volume>20</volume><issue>6</issue><fpage>720</fpage><lpage>727</lpage></element-citation></ref><ref id="B27"><label>27</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Dykes</surname><given-names>P</given-names></name><name><surname>Carroll</surname><given-names>D</given-names></name><name><surname>Hurley</surname><given-names>A</given-names></name><name><surname>Benoit</surname><given-names>A</given-names></name><name><surname>Chang</surname><given-names>F</given-names></name><name><surname>Pozzar R et</surname><given-names>al</given-names></name></person-group><article-title>Building and Testing a Patient-Centric Electronic Bedside
+Communication Center</article-title><source>J Gerontol Nurs</source><year>2013</year><volume>39</volume><issue>1</issue><fpage>15</fpage><lpage>19</lpage><pub-id pub-id-type="pmid">23244060</pub-id></element-citation></ref><ref id="B28"><label>28</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Trzesniak</surname><given-names>P</given-names></name></person-group><article-title>Confer&#x000ea;ncias com o esp&#x000ed;rito Solvay em &#x000e1;reas cientificamente
+emergentes: um impulso not&#x000e1;vel para a constru&#x000e7;&#x000e3;o de conhecimento</article-title><source>Rev Esc Enferm USP</source><year>2015</year><volume>49</volume><issue>2</issue><fpage>184</fpage><lpage>186</lpage><pub-id pub-id-type="pmid">25992815</pub-id></element-citation></ref><ref id="B29"><label>29</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>De Bortoli</surname><given-names>SH</given-names></name></person-group><article-title>Strategy for universal access to health and universal health coverage
+and the contribution of the International Nursing Networks</article-title><source>Editorial. Rev. Latino-Am. Enfermagem</source><year>2014</year><volume>22</volume><issue>6</issue><fpage>891</fpage><lpage>892</lpage></element-citation></ref></ref-list></back></article>

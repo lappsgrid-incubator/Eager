@@ -1,6 +1,6 @@
 package org.lappsgrid.eager.mining.ranking
 
-import org.lappgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.api.Ranker
 
 /**
@@ -8,7 +8,7 @@ import org.lappsgrid.eager.mining.api.Ranker
  */
 class IdentityRanker implements Ranker {
     @Override
-    List<LappsDocument> rank(List<LappsDocument> documents) {
+    List<Object> rank(List<Object> documents) {
         return documents
     }
 }

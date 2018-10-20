@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining.retrieval
 
 import org.lappsgrid.eager.core.Configuration
+import org.lappsgrid.eager.core.json.Serializer
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
@@ -19,7 +20,7 @@ class RedisLoader {
      */
     private Object semaphore
 
-    RedisClient redis
+//    RedisClient redis
 
     Configuration config
     PostOffice office
@@ -32,8 +33,8 @@ class RedisLoader {
     RedisLoader(Configuration configuration) {
         this.config = configuration
         office = new PostOffice(config.POSTOFFICE)
-        RedisURI uri = RedisURI.create("redis://password@localhost:6379")
-        redis = new RedisClient(uri)
+//        RedisURI uri = RedisURI.create("redis://password@localhost:6379")
+//        redis = new RedisClient(uri)
     }
 
     void start() {

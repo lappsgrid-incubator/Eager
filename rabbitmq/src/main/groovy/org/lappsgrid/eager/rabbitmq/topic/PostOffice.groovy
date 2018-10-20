@@ -39,7 +39,7 @@ class PostOffice extends RabbitMQ {
     }
 
     void send(String address, String message) {
-        println "Sending ${message.bytes.length} bytes to $address"
+//        println "Sending ${message.bytes.length} bytes to $address"
         channel.basicPublish(exchange, address, MessageProperties.PERSISTENT_TEXT_PLAIN, message.bytes)
     }
 }

@@ -4,7 +4,7 @@ import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.model.Document
 
 /**
- * How many words in the title are terms in the question.
+ * How many words in the passage are terms in the question.
  */
 class TermFrequencyEvaluator implements ScoringAlgorithm, Tokenizer {
     @Override

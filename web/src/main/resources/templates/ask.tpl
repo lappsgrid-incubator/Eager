@@ -1,12 +1,19 @@
 layout 'layouts/main.gsp',
 title: 'LAPPS/EAGER',
+version: version,
 javascript: '''
 $(document).ready(function() {
-    $('#all').click(function() {
-        $('input:checkbox').prop('checked', true);
+    $('#all-title').click(function() {
+        $('.title-box').prop('checked', true);
     })
-    $('#none').click(function() {
-        $('input:checkbox').prop('checked', false);
+    $('#none-title').click(function() {
+        $('.title-box').prop('checked', false);
+    })
+    $('#all-abs').click(function() {
+        $('.abs-box').prop('checked', true);
+    })
+    $('#none-abs').click(function() {
+        $('.abs-box').prop('checked', false);
     })
     $('#domain').click(function() {
         console.log("Domain button clicked.")
@@ -28,7 +35,8 @@ content: {
     form(action:'ask', method:'post') {
         h1 'I am eager to help'
         fieldset {
-            div {
+            div(class:'column') {
+                h3 'Title Scoring'
                 table {
                     tr {
                         th 'Enable'
@@ -36,33 +44,70 @@ content: {
                         th 'Weight'
                     }
                     tr {
-                        td { input(type:'checkbox', name:'alg1', value:'1', checked:true) }
+                        td { input(type:'checkbox', name:'alg1-title', class:'title-box', value:'1', checked:true) }
                         td 'Number of consecutive terms in title'
-                        td { input(type:'text', name:'weight1', value:'1.0') }
+                        td { input(type:'text', name:'weight1-title', value:'1.0') }
                     }
                     tr {
-                        td { input(type:'checkbox', name:'alg2', value:'2', checked:true) }
+                        td { input(type:'checkbox', name:'alg2-title', class:'title-box', value:'2', checked:true) }
                         td 'Total number of search terms in title'
-                        td { input(type:'text', name:'weight2', value:'1.0') }
+                        td { input(type:'text', name:'weight2-title', value:'1.0') }
                     }
                     tr {
-                        td { input(type:'checkbox', name:'alg3', value:'3', checked:true) }
+                        td { input(type:'checkbox', name:'alg3-title', class:'title-box', value:'3', checked:true) }
                         td 'Term position in title, earlier in the text == better score'
-                        td { input(type:'text', name:'weight3', value:'1.0') }
+                        td { input(type:'text', name:'weight3-title', value:'1.0') }
                     }
                     tr {
-                        td { input(type:'checkbox', name:'alg4', value:'4', checked:true) }
+                        td { input(type:'checkbox', name:'alg4-title', class:'title-box', value:'4', checked:true) }
                         td 'Words in the title that are search terms'
-                        td { input(type:'text', name:'weight4', value:'1.0') }
+                        td { input(type:'text', name:'weight4-title', value:'1.0') }
                     }
                     tr {
                         td(colspan:'3') {
-                            input(type:'button', id:'all', value:'Select All')
-                            input(type:'button', id:'none', value:'Clear All')
+                            input(type:'button', id:'all-title', value:'Select All')
+                            input(type:'button', id:'none-title', value:'Clear All')
                         }
                     }
                 }
-
+            }
+            div(class:'column') {
+                h3 'Abstract Scoring'
+                table {
+                    tr {
+                        th 'Enable'
+                        th 'Algorithm'
+                        th 'Weight'
+                    }
+                    tr {
+                        td { input(type:'checkbox', name:'alg1-abs', class:'abs-box', value:'1', checked:true) }
+                        td 'Number of consecutive terms in abstract'
+                        td { input(type:'text', name:'weight1-abs', value:'1.0') }
+                    }
+                    tr {
+                        td { input(type:'checkbox', name:'alg2-abs', class:'abs-box', value:'2', checked:true) }
+                        td 'Total number of search terms in abstract'
+                        td { input(type:'text', name:'weight2-abs', value:'1.0') }
+                    }
+                    tr {
+                        td { input(type:'checkbox', name:'alg3-abs', class:'abs-box', value:'3', checked:true) }
+                        td 'Term position in abstract, earlier in the text == better score'
+                        td { input(type:'text', name:'weight3-abs', value:'1.0') }
+                    }
+                    tr {
+                        td { input(type:'checkbox', name:'alg4-abs', class:'abs-box', value:'4', checked:true) }
+                        td 'Words in the abstract that are search terms'
+                        td { input(type:'text', name:'weight4-abs', value:'1.0') }
+                    }
+                    tr {
+                        td(colspan:'3') {
+                            input(type:'button', id:'all-abs', value:'Select All')
+                            input(type:'button', id:'none-abs', value:'Clear All')
+                        }
+                    }
+                }
+            }
+            div {
                 table {
                     tr {
                         td {

@@ -1,0 +1,116 @@
+package org.lappsgrid.eager.mining.section
+
+//import groovy.util.logging.Log4j
+import org.lappsgrid.eager.core.Configuration
+import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.api.Sink
+import org.lappsgrid.eager.mining.api.Source
+import org.lappsgrid.eager.mining.api.Worker
+import org.lappsgrid.eager.mining.index.PMCIndex
+import org.lappsgrid.eager.rabbitmq.Message
+import org.lappsgrid.eager.rabbitmq.topic.MailBox
+import org.lappsgrid.eager.rabbitmq.topic.PostOffice
+
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.CountDownLatch
+
+/**
+ *
+ */
+//@Log4j('logger')
+class RemoteDocumentProvider extends Source {
+    static final String MAILBOX = "document-provider"
+//    static final Logger logger = LoggerFactory.getLogger(RemoteDocumentProvider)
+
+    private static final Packet END = new Packet()
+    private Configuration conf
+
+    /** The queue used to hold items returned by the produce() method. */
+    BlockingQueue<Packet> queue
+
+    /** The list of all PMC files. */
+    PMCIndex index
+
+    RemoteDocumentProvider(BlockingQueue<String> output) {
+        super("RemoteDocumentProvider", output)
+        queue = new ArrayBlockingQueue<>(1024)
+        Thread.start { init() }
+    }
+
+    RemoteDocumentProvider(Sink sink, BlockingQueue<String> output) {
+        super("RemoteDocumentProvider", sink, output)
+        queue = new ArrayBlockingQueue<>(1024)
+        Thread.start {
+            init()
+        }
+    }
+
+    Object produce() {
+        Packet next = queue.take()
+        if (END == next) {
+            //logger.info("RemoteDocumentProvider has run out of data.")
+            return Worker.DONE
+        }
+        return next
+    }
+
+    void init() {
+        //logger.debug("Initializing the input queue")
+        Random random = new Random()
+        random.seed = System.currentTimeMillis()
+
+        conf = new Configuration()
+        index = new PMCIndex()
+
+        int count = 500
+        //logger.debug("Requesting {} documents", count)
+        CountDownLatch latch = new CountDownLatch(count)
+        MailBox box = new MailBox(conf.POSTOFFICE, MAILBOX) {
+            void recv(String json) {
+                Message message = Serializer.parse(json, Message)
+                if (message.command == 'loaded') {
+                    //println message.body
+                    Packet packet = new Packet()
+                        .xml(message.body)
+                        .path(message.parameters.path)
+                    //logger.debug("Received {}", packet.path)
+                    queue.put(packet)
+                }
+                latch.countDown()
+                if (latch.count == 0) {
+                    //logger.debug("Adding END to the queue")
+                    queue.put(END)
+                }
+            }
+        }
+
+        PostOffice po = new PostOffice(conf.POSTOFFICE)
+        count.times { i ->
+            int offset = random.nextInt(index.size())
+            String path = index[offset]
+            //logger.trace("Fetching {}", path)
+            Message message = new Message()
+                .command("load")
+                .body(path)
+                .route(conf.BOX_LOAD, MAILBOX)
+            po.send(message)
+        }
+        //logger.debug("closing the post office.")
+        po.close()
+
+        try {
+            if (!latch.await()) {
+                //logger.error("There was an error waiting for the count down latch.")
+            }
+        }
+        catch (InterruptedException e) {
+            // If we were interrupted we need to pass that fact along to any other threads
+            // that are waiting on us.
+            //logger.info("Latch was interrupted.")
+            Thread.currentThread().interrupt()
+        }
+        box.close()
+    }
+
+}

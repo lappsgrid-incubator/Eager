@@ -1,7 +1,10 @@
 JAR=stanford.jar
+REPO=docker.lappsgrid.org
 GROUP=mining
-NAME=stanford
-IMAGE=$(GROUP)/$(IMAGE)
+NAME=nlp
+IMAGE=$(GROUP)/$(NAME)
+TAG=$(REPO)/$(IMAGE)
+VERSION=$(shell cat VERSION)
 
 jar:
 	mvn package
@@ -12,15 +15,20 @@ clean:
 	if [ -e src/main/docker/$(JAR) ] ; then rm src/main/docker/$(JAR) ; fi
 
 docker:
-	if [ ! -e src/main/docker/$JAR ] ; then cp target/$(JAR) src/main/docker ; fi
-	cd src/main/docker && docker build -t (IMAGE) .
-	docker tag $(IMAGE) docker.lappsgrid.org/$(IMAGE)
+	if [ ! -e src/main/docker/$(JAR) ] ; then cp target/$(JAR) src/main/docker ; fi
+	cd src/main/docker && docker build -t $(IMAGE) .
+	docker tag $(IMAGE) $(TAG)
 
 start:
-	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)
+	docker run -d --name $(NAME) $(IMAGE)
 
 stop:
 	docker rm -f $(NAME)
 
 push:
-	docker push docker.lappsgrid.org/$(IMAGE)
+	docker push $(TAG)
+
+tag:
+	docker tag $(IMAGE) $(TAG):$(VERSION)
+	docker push $(TAG):$(VERSION)
+

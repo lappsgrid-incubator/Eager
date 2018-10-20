@@ -9,6 +9,7 @@ import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 /**
  *
  */
+@Ignore
 class MessageHandlerTest {
 
     // The MessageHandler does not listen for broadcasts.
@@ -47,7 +48,7 @@ class MessageHandlerTest {
         PostOffice po = new PostOffice(c.POSTOFFICE)
         po.send(c.BOX_ERROR, "Error message 1")
         po.send(c.BOX_ERROR, "Error message 2")
-        po.send(c.BOX_ERROR, "shutdown")
+        //po.send(c.BOX_ERROR, "shutdown")
 
         sleep(2000)
         po.close()

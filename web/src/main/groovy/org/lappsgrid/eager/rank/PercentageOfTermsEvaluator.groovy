@@ -4,7 +4,7 @@ import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.model.Document
 
 /**
- *  How many terms appear in the title
+ *  How many terms appear in the passage.
  */
 class PercentageOfTermsEvaluator implements ScoringAlgorithm {
     @Override

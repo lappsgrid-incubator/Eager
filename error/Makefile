@@ -12,13 +12,16 @@ clean:
 	mvn clean
 	if [ -e src/main/docker/$(JAR) ] ; then rm src/main/docker/$(JAR) ; fi
 	
+run:
+	java -jar target/$(JAR)
+
 docker:
-	if [ ! -e src/main/docker/$JAR ] ; then cp target/$(JAR) src/main/docker ; fi
+	if [ ! -e src/main/docker/$(JAR) ] ; then cp target/$(JAR) src/main/docker ; fi
 	cd src/main/docker && docker build -t $(IMAGE) .
 	docker tag $(IMAGE) $(TAG)
 
 start:
-	docker run -d -p 8080:8080 -v /tmp:/var/log/mining --name error $(IMAGE)
+	docker run -d --name error $(IMAGE)
 
 stop:
 	docker rm -f error

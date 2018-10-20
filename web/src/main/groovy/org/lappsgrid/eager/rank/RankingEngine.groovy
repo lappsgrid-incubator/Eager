@@ -43,23 +43,23 @@ class RankingEngine {
             algorithms.each { algorithm ->
                 def field = getField(document)
                 if (field instanceof String) {
-                    println "Scoring string: $field"
+                    //println "Scoring string: $field"
                     float score = algorithm.score(query, field)
                     document.scores[algorithm.algorithm.abbrev()] = score
                     total = total + score
-                    println "$document.doi ${algorithm.algorithm.abbrev()} $score"
+//                    println "$document.doi ${algorithm.algorithm.abbrev()} $score"
                 }
                 else if (field instanceof Collection) {
-                    println "Field is a collection size: ${field.size()}"
+                    //println "Field is a collection size: ${field.size()}"
                     float thisAlgScore = 0
                     field.each { item ->
-                        println "Scoring collection field: $item"
+//                        println "Scoring collection field: $item"
                         float score = algorithm.score(query, item)
                         total = total + score
                         thisAlgScore += score
                     }
                     document.scores[algorithm.algorithm.abbrev()] = thisAlgScore
-                    println "$document.doi ${algorithm.algorithm.abbrev()} $thisAlgScore"
+                    //println "$document.doi ${algorithm.algorithm.abbrev()} $thisAlgScore"
                 }
             }
             document.score = total

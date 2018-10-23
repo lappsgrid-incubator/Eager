@@ -27,7 +27,7 @@ public class Pipeline
 
     StanfordCoreNLP pipeline;
 
-    public Pipeline() {
+    public  Pipeline() {
         Properties props = new Properties();
         props.setProperty("annotators", "tokenize,ssplit,pos,lemma");
         pipeline = new StanfordCoreNLP(props);

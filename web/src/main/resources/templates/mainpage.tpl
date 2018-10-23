@@ -32,36 +32,23 @@ $(document).ready(function() {
 })
 ''',
 content: {
-    form(action:'ask', method:'post') {
+    form(action:'question', method:'post') {
         h1 'I am eager to help'
         fieldset {
-            div(class:'column') {
-                h3 'Title Scoring'
+            div(class:"column") {
+                h3 "Title"
                 table {
                     tr {
                         th 'Enable'
                         th 'Algorithm'
                         th 'Weight'
                     }
-                    tr {
-                        td { input(type:'checkbox', name:'alg1-title', class:'title-box', value:'1', checked:true) }
-                        td 'Number of consecutive terms in title'
-                        td { input(type:'text', name:'weight1-title', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg2-title', class:'title-box', value:'2', checked:true) }
-                        td 'Total number of search terms in title'
-                        td { input(type:'text', name:'weight2-title', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg3-title', class:'title-box', value:'3', checked:true) }
-                        td 'Term position in title, earlier in the text == better score'
-                        td { input(type:'text', name:'weight3-title', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg4-title', class:'title-box', value:'4', checked:true) }
-                        td 'Words in the title that are search terms'
-                        td { input(type:'text', name:'weight4-title', value:'1.0') }
+                    descriptions.eachWithIndex { desc, i ->
+                        tr {
+                            td { input(type:"checkbox", name:"title-checkbox-${i+1}", class:"title-box", value:(i+1), checked:true) }
+                            td desc
+                            td { input(type:'text', name:"title-weight-${i+1}", value:"1.0") }
+                        }
                     }
                     tr {
                         td(colspan:'3') {
@@ -69,40 +56,39 @@ content: {
                             input(type:'button', id:'none-title', value:'Clear All')
                         }
                     }
+                    tr {
+                        td(colspan:'2') { label(for:'title-weight', 'Weight') }
+                        td {
+                            input(id:'title-weight', type:'text', name:'title-weight-x', value:'0.9')
+                        }
+                    }
                 }
             }
-            div(class:'column') {
-                h3 'Abstract Scoring'
+            div(class:"column") {
+                h3 "Abstract"
                 table {
                     tr {
                         th 'Enable'
                         th 'Algorithm'
                         th 'Weight'
                     }
-                    tr {
-                        td { input(type:'checkbox', name:'alg1-abs', class:'abs-box', value:'1', checked:true) }
-                        td 'Number of consecutive terms in abstract'
-                        td { input(type:'text', name:'weight1-abs', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg2-abs', class:'abs-box', value:'2', checked:true) }
-                        td 'Total number of search terms in abstract'
-                        td { input(type:'text', name:'weight2-abs', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg3-abs', class:'abs-box', value:'3', checked:true) }
-                        td 'Term position in abstract, earlier in the text == better score'
-                        td { input(type:'text', name:'weight3-abs', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg4-abs', class:'abs-box', value:'4', checked:true) }
-                        td 'Words in the abstract that are search terms'
-                        td { input(type:'text', name:'weight4-abs', value:'1.0') }
+                    descriptions.eachWithIndex { desc, i ->
+                        tr {
+                            td { input(type:"checkbox", name:"abstract-checkbox-${i+1}", class:"abs-box", value:(i+1), checked:true) }
+                            td desc
+                            td { input(type:'text', name:"abstract-weight-${i+1}", value:"1.0") }
+                        }
                     }
                     tr {
                         td(colspan:'3') {
                             input(type:'button', id:'all-abs', value:'Select All')
                             input(type:'button', id:'none-abs', value:'Clear All')
+                        }
+                    }
+                    tr {
+                        td(colspan:'2') { label(for:'abstract-weight', 'Weight') }
+                        td {
+                            input(id:'abstract-weight', type:'text', name:'abstract-weight-x', value:'1.1')
                         }
                     }
                 }

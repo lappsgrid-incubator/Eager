@@ -21,6 +21,7 @@ import org.lappsgrid.eager.query.elasticsearch.GDDSnippetQueryProcessor
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
+import org.lappsgrid.eager.rank.CompositeRankingEngine
 import org.lappsgrid.eager.rank.RankingEngine
 import org.lappsgrid.eager.service.Version
 import org.springframework.stereotype.Controller
@@ -72,10 +73,23 @@ class AskController {
 """
     }
 
+    /*
+                        td 'Number of consecutive terms in title'
+                        td 'Total number of search terms in title'
+                        td 'Term position in title, earlier in the text == better score'
+                        td 'Words in the title that are search terms'
+     */
     @GetMapping(path = "/ask", produces = ['text/html'])
     String get(Model model) {
         updateModel(model)
-        return "ask"
+        List<String> descriptions = [
+                "consecutive terms",
+                "total search terms",
+                "position",
+                "% search terms"
+        ]
+        model.addAttribute("descriptions", descriptions)
+        return "mainpage"
     }
 
     /*
@@ -93,13 +107,17 @@ class AskController {
     }
     */
 
-    @PostMapping(path="/ask", produces="text/html")
+    @PostMapping(path="/question", produces="text/html")
     String postHtml(@RequestParam Map<String,String> params, Model model) {
         updateModel(model)
+//        if (true) {
+//            model.addAttribute("params", params)
+//            return "dump"
+//        }
         if (params.domain == 'geo') {
             //TODO Check that a question has been entered
-            model.data = geodeepdive(params, 1000)
-            return 'test'
+            model.addAttribute('data', geodeepdive(params, 1000))
+            return 'geodd'
         }
 
         Map reply = answer(params, 1000)
@@ -151,7 +169,9 @@ class AskController {
     }
 
     private List rank(Query query, List<Document> documents, Map params) {
-        RankingEngine ranker = new RankingEngine(params)
+//        RankingEngine ranker = new RankingEngine(params)
+//        return ranker.rank(query, documents)
+        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
         return ranker.rank(query, documents)
     }
 

@@ -25,9 +25,7 @@
         <metrics.version>3.2.6</metrics.version>
     </properties>
     <modules>
-        <!--
         <module>web</module>
-        -->
         <module>indexer</module>
         <module>query</module>
         <module>api</module>

@@ -38,7 +38,7 @@ content: {
                 td doc.title
                 if (data.keys) {
                     data.keys.each { key ->
-                        td String.format("%2.3f", doc.scores[key])
+                        td String.format("%2.3f", doc.scores[key].sum())
                     }
                 }
             }

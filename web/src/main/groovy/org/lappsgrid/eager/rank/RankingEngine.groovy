@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.rank
 
+import groovy.util.logging.Slf4j
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.model.Document
 import org.lappsgrid.eager.model.Scores
@@ -7,6 +8,7 @@ import org.lappsgrid.eager.model.Scores
 /**
  *
  */
+@Slf4j("logger")
 class RankingEngine {
 
     String section
@@ -58,11 +60,13 @@ class RankingEngine {
 //    }
 //
 //    List<Document> rank(Query query, List<Document> documents, Closure getField, Float weight) {
-        println "Ranking ${documents.size()} documents."
+        logger.info("Ranking {} documents.", documents.size())
         documents.each { Document document ->
+//            logger.trace("Document {}", document.path)
             float total = 0.0f
             algorithms.each { algorithm ->
                 def field = field(document)
+
                 float score = 0.0f
                 if (field instanceof String) {
                     score = algorithm.score(query, field)
@@ -72,10 +76,12 @@ class RankingEngine {
                         score += algorithm.score(query, item)
                     }
                 }
+                logger.trace("{} -> {}", algorithm.abbrev(), score)
                 total += score
                 document.addScore(section, algorithm.abbrev(), score)
             }
             document.score += total * weight
+            logger.debug("Document {} {}", document.path, document.score)
         }
     }
 }

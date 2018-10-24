@@ -124,7 +124,8 @@
    <field name="bm" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
    <field name="fm" type="plong" indexed="true" stored="true" required="false" multiValued="false"/>
    <!-- HA: article document fields -->
-   <field name="abstract" type="text_en" indexed="true" stored="false" required="false" multiValued="false"/>
+   <field name="abstract" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
+   <field name="intro" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
    <field name="body" type="text_en" indexed="true" stored="false" required="false" multiValued="false"/>
    <field name="journalTitle" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
    <field name="journalTitleStr" type="string" indexed="true" stored="true" required="false" multiValued="false" docValues="true"/>

@@ -56,6 +56,14 @@ class LappsDocument {
         add(Fields.ABSTRACT, theAbstract)
     }
 
+    LappsDocument introduction(String intro) {
+        add(Fields.INTRO, intro)
+    }
+
+    LappsDocument discussion(String discussion) {
+        add(Fields.DISCUSSION, discussion)
+    }
+
     LappsDocument body(String body) {
         add(Fields.BODY, body)
     }

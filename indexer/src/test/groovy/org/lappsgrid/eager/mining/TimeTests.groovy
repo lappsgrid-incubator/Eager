@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining
 
 import com.codahale.metrics.*
+import org.junit.Ignore
 import org.junit.Test
 import org.lappsgrid.eager.mining.jmx.TimerTask
 
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit
 /**
  *
  */
+@Ignore
 class TimeTests {
 
     @Test

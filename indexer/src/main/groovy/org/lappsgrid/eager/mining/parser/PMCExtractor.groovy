@@ -63,6 +63,7 @@ public class PMCExtractor extends XmlDocumentExtractor
             .keywords(keywords.join(", "))
             .body(collectBody(article.body))
             .theAbstract(meta.abstract.text())
+            .introduction(collectSection("intro", article.body))
 //        SolrInputDocument document = new SolrInputDocument();
 //        document.addField("pmid", pmid);
 //        document.addField("pmc", pmc);
@@ -83,6 +84,21 @@ public class PMCExtractor extends XmlDocumentExtractor
             printer.println(section.title.text())
             section.p.each { paragraph ->
                 printer.println(paragraph.text())
+            }
+        }
+        return writer.toString()
+    }
+
+    String collectSection(String type, Node node) {
+        StringWriter writer = new StringWriter()
+        PrintWriter printer = new PrintWriter(writer)
+        node.sec.each { section ->
+            String secType = section.attribute('sec-type')
+            if (secType.startsWith(type)) {
+                printer.println(section.title.text())
+                section.p.each { paragraph ->
+                    printer.println(paragraph.text())
+                }
             }
         }
         return writer.toString()

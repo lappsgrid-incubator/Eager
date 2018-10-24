@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining.solr
 
 import org.apache.solr.client.solrj.impl.CloudSolrClient
+import org.apache.solr.client.solrj.request.UpdateRequest
 import org.apache.solr.client.solrj.response.UpdateResponse
 import org.lappsgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.api.Sink
@@ -13,9 +14,12 @@ import java.util.concurrent.BlockingQueue
 class SolrInserter extends Sink {
 
     public static final int COMMIT_INTERVAL = 100
-    public static final String SOLR_ADDRESS = "http://149.165.169.127"
+//    public static final String SOLR_ADDRESS = "http://149.165.169.127"
+//    public static final String SOLR_ADDRESS = "http://solr1.lappsgrid.org"
+
     public static final int SOLR_PORT = 8983
 
+    public static final List SERVERS = [1,2].collect { "solr${it}.lappsgrid.org:8983/solr".toString() }
 //    SolrClient solr
     CloudSolrClient solr
     int interval
@@ -34,15 +38,19 @@ class SolrInserter extends Sink {
         super("Inserter", input)
         this.interval = interval
 //        solr = new HttpSolrClient.Builder("/solr/$core").build();
-        List servers = [ "http://localhost:8983/solr" ]
-        solr = new CloudSolrClient.Builder(servers).build()
+//        List servers = [ "http://localhost:8983/solr" ]
+        solr = new CloudSolrClient.Builder(SERVERS).build()
         solr.setDefaultCollection(core)
     }
 
     void store(Object item) {
         println "${++count} $name storing an item"
         LappsDocument document = (LappsDocument) item
-        UpdateResponse response = solr.add(document.solr())
+        UpdateRequest request = new UpdateRequest()
+        request.setBasicAuthCredentials("eager", "eagerbiominingqa")
+        request.add(document.solr())
+//        UpdateResponse response = solr.add(document.solr())
+        UpdateResponse response = request.process(solr)
         println "Indexed " + response.toString()
         if (count % interval == 0) {
             solr.commit()

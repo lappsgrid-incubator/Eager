@@ -5,9 +5,8 @@ import com.codahale.metrics.Timer
 import org.lappsgrid.eager.mining.api.Worker
 
 import java.util.concurrent.BlockingQueue
-
-import static Main.metrics
-import static Main.name
+import static org.lappsgrid.eager.mining.section.Main.metrics
+import static org.lappsgrid.eager.mining.section.Main.name
 
 /**
  *

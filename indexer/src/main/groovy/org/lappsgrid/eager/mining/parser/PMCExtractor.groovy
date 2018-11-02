@@ -54,9 +54,10 @@ public class PMCExtractor extends XmlDocumentExtractor
 
         LappsDocument document = new LappsDocument()
             .id(getId(pmid, pmc, doi))
+//            .id(UUID.randomUUID().toString())
             .pmid(pmid)
             .pmc(pmc)
-            .doi(doi)
+//            .doi(doi)
             .journal(journal)
             .title(title)
             .year(year)
@@ -89,12 +90,12 @@ public class PMCExtractor extends XmlDocumentExtractor
         return writer.toString()
     }
 
-    String collectSection(String type, Node node) {
+    String collectSection(String type, NodeList node) {
         StringWriter writer = new StringWriter()
         PrintWriter printer = new PrintWriter(writer)
         node.sec.each { section ->
             String secType = section.attribute('sec-type')
-            if (secType.startsWith(type)) {
+            if (secType && secType.startsWith(type)) {
                 printer.println(section.title.text())
                 section.p.each { paragraph ->
                     printer.println(paragraph.text())

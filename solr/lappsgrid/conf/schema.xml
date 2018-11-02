@@ -131,6 +131,7 @@
    <field name="journalTitleStr" type="string" indexed="true" stored="true" required="false" multiValued="false" docValues="true"/>
    <field name="pmid" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
    <field name="pmc" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+   <field name="doi" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
    <field name="title" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
    <field name="author" type="text_general" indexed="true" stored="false" required="false" multiValued="true"/>
    <field name="keywords" type="text_general" indexed="true" stored="true" required="false" multiValued="true"/>

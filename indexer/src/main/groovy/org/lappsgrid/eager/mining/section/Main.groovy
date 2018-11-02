@@ -2,9 +2,9 @@ package org.lappsgrid.eager.mining.section
 
 import com.codahale.metrics.JmxReporter
 import com.codahale.metrics.MetricRegistry
-import groovy.util.logging.Log4j2
 import org.lappsgrid.eager.mining.api.Haltable
 import org.lappsgrid.eager.mining.api.Worker
+import org.lappsgrid.eager.mining.io.IndexLister
 import org.lappsgrid.eager.mining.jmx.Manager
 import org.lappsgrid.eager.mining.jmx.SizeGauge
 
@@ -59,7 +59,7 @@ class Main {
         Worker extractor = new SectionExtractor(nodes, sections)
         SectionSink sink = new SectionSink(sections)
 //        DirectoryLister lister = new PmcDirectoryLister(source, sink, files)
-        RemoteDocumentProvider lister = new RemoteDocumentProvider(sink, files)
+        IndexLister lister = new IndexLister(sink, files)
 
         List<Haltable> threads = [ parser, extractor, sink, lister ]
 

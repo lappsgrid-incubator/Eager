@@ -2,6 +2,7 @@ package org.lappsgrid.eager.mining
 
 import org.lappsgrid.eager.mining.api.Haltable
 import org.lappsgrid.eager.mining.api.Sink
+import org.lappsgrid.eager.mining.io.IndexLister
 import org.lappsgrid.eager.mining.io.PmcDirectoryLister
 import org.lappsgrid.eager.mining.io.PubmedDirectoryLister
 import org.lappsgrid.eager.mining.parser.PMCExtractor
@@ -74,6 +75,9 @@ class Indexer {
         CliBuilder cli = new CliBuilder()
         cli.pubmed('index PubMed baseline files')
         cli.pmc('index PubMed Central files')
+        cli.i(longOpt:'indexed', 'use the PMC index to retrieve documents')
+        cli.r(longOpt:'random', 'extract a random sample from PMC')
+        cli.s(longOpt:'size', args:1, argName: 'sampleSize', 'sample size')
         cli.h(longOpt:"help", 'display this help message')
         cli.usageMessage.with {
             headerHeading("%n@|bold Description|@%n")
@@ -88,7 +92,7 @@ class Indexer {
             return;
         }
         List<String> files = params.arguments()
-        if (files.size() == 0) {
+        if (files.size() == 0 && !params.i) {
             println "No input file/directory was given."
             cli.usage();
             return;
@@ -96,7 +100,10 @@ class Indexer {
         if (files.size() > 1) {
             println "More that one directory was specified.  Only the first one will be processed."
         }
-        File file = new File(files.get(0))
+        File file = null
+        if (files.size() > 0) {
+            file = new File(files.get(0))
+        }
         XmlDocumentExtractor extractor = null
         Closure lister = null
         if (params.pubmed && params.pmc) {
@@ -112,8 +119,16 @@ class Indexer {
             extractor = new PMCExtractor();
             lister = { dir, sink, Q -> new PmcDirectoryLister(dir, sink, Q) }
         }
+        else if (params.i) {
+            extractor = new PMCExtractor()
+            int size = -1
+            if (params.s) {
+                size = params.s as int
+            }
+            lister = { dir, sink, Q -> new IndexLister(sink, Q, size)}
+        }
         else {
-            println "ERROR: One of -pubmed or -pmc is required."
+            println "ERROR: One of -pubmed or -pmc or -indexed is required."
             cli.usage()
             return
         }

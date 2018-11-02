@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.mining.section
 
+import org.junit.Ignore
 import org.junit.Test
 import org.lappsgrid.eager.core.Configuration
 import org.lappsgrid.eager.rabbitmq.Message
@@ -12,6 +13,7 @@ import java.util.concurrent.CountDownLatch
 /**
  *
  */
+@Ignore
 class FetchTest {
 
     @Test
@@ -40,10 +42,10 @@ class FetchTest {
                 .command("load")
                 .route(conf.BOX_LOAD, mailbox)
         po.send(message)
-        po.close()
         if (!latch.await()) {
             println "There was a problem waiting for the latch."
         }
+        po.close()
         println "Done"
     }
 }

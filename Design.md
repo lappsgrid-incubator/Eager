@@ -1,5 +1,8 @@
 # Design Notes
 
+**NOTE** This is a work in progress and is likely already out of date...
+
+
 ## RabbitMQ
 
 Most of the backend services use RabbitMQ to coordinate processing.

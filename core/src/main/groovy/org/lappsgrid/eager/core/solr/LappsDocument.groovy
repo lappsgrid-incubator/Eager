@@ -6,6 +6,7 @@ import org.apache.solr.common.SolrInputDocument
  * Manages a SolrDocument instance and provides a fluent API for initialization.
  */
 class LappsDocument {
+
     public static final class Type {
         public static final String PMC = "pmc"
         public static final String PUBMED = "pubmed"
@@ -25,13 +26,12 @@ class LappsDocument {
 
     SolrInputDocument solr() { return document }
 
-    LappsDocument id(def id) {
-        if (id instanceof Collection) {
-            add(Fields.ID, id[0])
+    LappsDocument id(String id) {
+        if (id == null || id == 'null') {
+//            println "WARNING: ID is null. Generating a UUID"
+            id = UUID.randomUUID().toString()
         }
-        else {
-            add(Fields.ID, id.toString())
-        }
+        add(Fields.ID, id)
     }
 
     LappsDocument pmid(String id) {

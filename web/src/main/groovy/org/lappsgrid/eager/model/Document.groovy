@@ -7,6 +7,7 @@ import org.lappsgrid.eager.core.solr.Fields
  *
  */
 class Document {
+    String id
     String pmid
     String pmc
     String doi
@@ -38,7 +39,7 @@ class Document {
     }
 
     Document(SolrDocument document) {
-        ['pmid','pmc','doi','year','title','path'].each { field ->
+        ['id', 'pmid','pmc','doi','year','title','path'].each { field ->
             this.setProperty(field, document.getFieldValue(field))
         }
         intro = document.getFieldValue(Fields.INTRO)

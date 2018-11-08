@@ -12,24 +12,6 @@ public class PMCExtractor extends XmlDocumentExtractor
     }
 
     public LappsDocument extractValues(Node article) {
-        /*
-        private final String exprXpathAbstract = "//abstract";
-        private final String exprXpathBody = "//body";
-        private final String exprXpathTitle = "//journal-meta/journal-title-group/journal-title";
-        private final String exprXpathPmid = "//article-id[@pub-id-type='pmid']";
-        private final String exprXpathPmc = "//article-id[@pub-id-type='pmc']";
-        private final String exprXpathArticleTitle = "//article-title";
-
-        private final String exprXpathAuthor = "//contrib[@contrib-type='author']/name";
-        private final String exprXpathKeywords = "//kwd-group/kwd";
-        private final String exprXpathSectionTitle = "//sec/title";
-        private final String exprXpathRef = "//ref/mixed-citation|//ref/element-citation";
-        private final String exprXpathYearP = "//pub-date[@pub-type='ppub']/year";
-        private final String exprXpathYearE = "//pub-date[@pub-type='epub']/year";
-        private final String exprXpathFigCaption = "//floats-group";
-        */
-//        println "PMCExtractor $parserId: parsing ${file.name}"
-//        Node article = parser.parse(file)
         Node front = article.front[0]
         Node meta = front.'article-meta'[0]
         String journal = front.'journal-meta'.'journal-title-group'.'journal-title'.text()
@@ -52,31 +34,46 @@ public class PMCExtractor extends XmlDocumentExtractor
             keywords << normalize(kwd)
         }
 
-        LappsDocument document = new LappsDocument()
-            .id(getId(pmid, pmc, doi))
-//            .id(UUID.randomUUID().toString())
-            .pmid(pmid)
-            .pmc(pmc)
-//            .doi(doi)
-            .journal(journal)
-            .title(title)
-            .year(year)
-            .keywords(keywords.join(", "))
-            .body(collectBody(article.body))
-            .theAbstract(meta.abstract.text())
-            .introduction(collectSection("intro", article.body))
-//        SolrInputDocument document = new SolrInputDocument();
-//        document.addField("pmid", pmid);
-//        document.addField("pmc", pmc);
-//        document.addField("doi", doi)
-//        document.addField("journal", journal)
-//        document.addField("title", title)
-//        document.addField("year", year as int)
-//        document.addField("keywords", keywords)
-//        document.addField("body", article.body.text())
-//        document.addField("abstract", meta.abstract.text())
+        def bodyNode = article.body
+        String body = collectBody(bodyNode)
+        LappsDocument document
+        try {
+            document = new LappsDocument()
+                    .id(getId(pmid, pmc, doi))
+                    .pmid(pmid)
+                    .pmc(pmc)
+                    .doi(doi)
+                    .journal(journal)
+                    .title(title)
+                    .year(year.trim())
+                    .keywords(keywords.join(", "))
+                    .body(body)
+                    .theAbstract(meta.abstract.text())
+                    .introduction(collectSection("intro", bodyNode))
+                    .results(collectSection("result", bodyNode))
+                    .discussion(collectSection('discuss', bodyNode))
+        }
+        catch (Exception e) {
+            e.printStackTrace()
+            document = new LappsDocument()
+        }
         return document
     }
+
+    String collectBody(NodeList nodes) {
+        StringWriter writer = new StringWriter()
+        PrintWriter printer = new PrintWriter(writer)
+        nodes.each { node ->
+            node.sec.each { section ->
+                printer.println(section.title.text())
+                section.p.each { paragraph ->
+                    printer.println(paragraph.text())
+                }
+            }
+        }
+        return writer.toString()
+    }
+
 
     String collectBody(Node node) {
         StringWriter writer = new StringWriter()
@@ -90,15 +87,17 @@ public class PMCExtractor extends XmlDocumentExtractor
         return writer.toString()
     }
 
-    String collectSection(String type, NodeList node) {
+    String collectSection(String type, NodeList nodes) {
         StringWriter writer = new StringWriter()
         PrintWriter printer = new PrintWriter(writer)
-        node.sec.each { section ->
-            String secType = section.attribute('sec-type')
-            if (secType && secType.startsWith(type)) {
-                printer.println(section.title.text())
-                section.p.each { paragraph ->
-                    printer.println(paragraph.text())
+        nodes.each { node ->
+            node.sec.each { section ->
+                String secType = section.attribute('sec-type')
+                if (secType && secType.startsWith(type)) {
+                    printer.println(section.title.text())
+                    section.p.each { paragraph ->
+                        printer.println(paragraph.text())
+                    }
                 }
             }
         }
@@ -108,11 +107,11 @@ public class PMCExtractor extends XmlDocumentExtractor
     String getIdValue(Node node, String id) {
         Node result = node.'article-id'.find { it.@'pub-id-type' == id }
         if (result == null) {
-            return ""
+            return null
         }
         def value = result.value()
         if (value == null) {
-            return ""
+            return null
         }
         return value[0]
     }

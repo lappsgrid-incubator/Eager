@@ -69,11 +69,13 @@ class RankingEngine {
 
                 float score = 0.0f
                 if (field instanceof String) {
-                    score = algorithm.score(query, field)
+//                    score = algorithm.score(query, field)
+                    score = calculate(algorithm, query, field)
                 }
                 else if (field instanceof Collection) {
                     field.each { item ->
-                        score += algorithm.score(query, item)
+//                        score += algorithm.score(query, item)
+                        score += calculate(algorithm, query, item)
                     }
                 }
                 logger.trace("{} -> {}", algorithm.abbrev(), score)
@@ -81,7 +83,15 @@ class RankingEngine {
                 document.addScore(section, algorithm.abbrev(), score)
             }
             document.score += total * weight
-            logger.debug("Document {} {}", document.path, document.score)
+            logger.trace("Document {} {}", document.id, document.score)
         }
+    }
+
+    float calculate(WeightedAlgorithm algorithm, Query query, field) {
+        float result = algorithm.score(query, field)
+        if (Float.isNaN(result)) {
+            return 0f
+        }
+        return result
     }
 }

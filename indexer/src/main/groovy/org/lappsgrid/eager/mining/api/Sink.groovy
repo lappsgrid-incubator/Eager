@@ -1,11 +1,13 @@
 package org.lappsgrid.eager.mining.api
 
+import groovy.util.logging.Slf4j
+
 import java.util.concurrent.BlockingQueue
 
 /**
  * A Sink takes objects from its input queue and stores them somewhere.
  */
-//@Log4j2
+@Slf4j("logger")
 abstract class Sink extends Haltable {
 //    static final Logger logger = LoggerFactory.getLogger(Sink)
     String name
@@ -20,7 +22,7 @@ abstract class Sink extends Haltable {
 
     @Override
     void run() {
-        //logger.info("Starting sink {}", name)
+        logger.info("Starting sink {}", name)
         int count = 0
         running = true
         while(running) {
@@ -29,7 +31,7 @@ abstract class Sink extends Haltable {
                 Object item = input.take()
                 //println "$name took an item."
                 if (item == Worker.DONE) {
-                    //logger.info("Sink is finished.")
+                    logger.info("Sink is finished.")
                     running = false
                 }
                 else {
@@ -45,8 +47,14 @@ abstract class Sink extends Haltable {
                 Thread.currentThread().interrupt()
             }
         }
-        //logger.info("Sink {} terminated.", name)
+        finish()
+        logger.info("Sink {} terminated.", name)
     }
 
     abstract void store(Object item)
+
+    /**
+     * Subclasses can overide this method to perform any clean up that is required.
+     */
+    void finish() { }
 }

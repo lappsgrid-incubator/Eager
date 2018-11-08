@@ -81,7 +81,8 @@ class CompositeRankingEngine {
             logger.info("Ranking {}", key)
             engine.rank(query, documents)
         }
-        return documents.sort { a,b -> a.score <=> b.score }
+        logger.debug("Sorting {} documents.", documents.size())
+        return documents.sort { a,b -> b.score <=> a.score }
     }
 
     class Triple {

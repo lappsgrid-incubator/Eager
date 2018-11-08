@@ -89,10 +89,10 @@ class IntegrationTest {
 
         PostOffice po = new PostOffice(c.POSTOFFICE)
         po.send(c.BOX_ERROR, "collect $mbox")
-        po.close()
         if (!latch.await(5, TimeUnit.SECONDS)) {
             fail "No response from the error service!"
         }
+        po.close()
         println "Done."
     }
 

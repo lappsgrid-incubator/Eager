@@ -37,9 +37,9 @@ class Main {
 
         MBeanServer server = ManagementFactory.getPlatformMBeanServer()
         Manager manager = new Manager()
-                .filesQ(files)
-                .nodesQ(nodes)
-                .sectionsQ(sections)
+//                .filesQ(files)
+//                .nodesQ(nodes)
+//                .sectionsQ(sections)
         server.registerMBean(manager, new ObjectName(MANAGER_NAME))
 
         metrics.register(name("files", "size"), new SizeGauge(files))

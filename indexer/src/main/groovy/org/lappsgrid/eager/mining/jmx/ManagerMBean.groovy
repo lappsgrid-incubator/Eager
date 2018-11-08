@@ -7,7 +7,7 @@ interface ManagerMBean {
     
     void shutdown()
     
-    int getFilesQueueSize()
-    int getNodesQueueSize()
-    int getSinkQueueSize()
+//    int getFilesQueueSize()
+//    int getNodesQueueSize()
+//    int getSinkQueueSize()
 }

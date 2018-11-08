@@ -1,7 +1,12 @@
 package org.lappsgrid.eager.mining.solr
 
+import com.codahale.metrics.Meter
+import com.codahale.metrics.Timer
+import groovy.util.logging.Slf4j
 import org.apache.solr.client.solrj.impl.CloudSolrClient
 import org.apache.solr.client.solrj.response.UpdateResponse
+import org.lappsgrid.eager.core.jmx.Registry
+import org.lappsgrid.eager.core.solr.Fields
 import org.lappsgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.DummyLogger
 import org.lappsgrid.eager.mining.api.Sink
@@ -11,28 +16,25 @@ import java.util.concurrent.BlockingQueue
 /**
  *
  */
-//@Slf4j("logger")
+@Slf4j("logger")
 class SolrInserter extends Sink {
 
     public static final int COMMIT_INTERVAL = 100
-//    public static final String SOLR_ADDRESS = "http://149.165.169.127"
-//    public static final String SOLR_ADDRESS = "http://solr1.lappsgrid.org"
-
-    public static final int SOLR_PORT = 8983
     public static final String COLLECTION = "eager"
 
     public static final List SERVERS = [1,2].collect { "http://solr${it}.lappsgrid.org:8983/solr".toString() }
-//    SolrClient solr
+
+    final Meter documents = Registry.meter("solr.documents")
+    final Meter errors = Registry.meter("solr.errors")
+    final Timer timer = Registry.timer("solr.timer")
+
     CloudSolrClient solr
-//    HttpSolrClient solr
     int interval
 
     int count = 0
 
     private String username
     private String password
-
-    DummyLogger logger = new DummyLogger()
 
     public SolrInserter(BlockingQueue<Object> input) {
         this(COLLECTION, COMMIT_INTERVAL, input)
@@ -43,15 +45,10 @@ class SolrInserter extends Sink {
     }
 
     public SolrInserter(String core, int interval, BlockingQueue<Object> input) {
-        super("Inserter", input)
+        super("SolrInserter", input)
         this.interval = interval
-//        solr = new HttpSolrClient.Builder("/solr/$core").build();
-//        List servers = [ "http://localhost:8983/solr" ]
-
         solr = new CloudSolrClient.Builder(SERVERS).build()
-//        solr = HttpSolrClient.Builder('http://solr1.lappsgrid.org:8983/solr').build()
         solr.setDefaultCollection(core)
-
         init()
     }
 
@@ -63,68 +60,35 @@ class SolrInserter extends Sink {
         logger.debug("Solr username: {}", username)
         password = System.getenv("SOLR_PASS")
         if (password == null) {
-            // This is guaranteed to fail with a 401/403 error, but that is better than than a NPE.
-            logger.warn("Using default Solr password. This is will definitely fail later.")
+            // This is almost certain to fail with a 401/403 error, but that is better than than a NPE.
+            logger.warn("Using default Solr password. This is will likely fail later.")
             password = "SolrRocks"
         }
     }
 
     void store(Object item) {
-        logger.trace("{} {} storing an item", ++count, name)
+        documents.mark()
         LappsDocument document = (LappsDocument) item
-//        UpdateRequest request = new UpdateRequest()
-//        request.setBasicAuthCredentials(username, password)
-//        request.add(document.solr())
-        UpdateResponse response = solr.add(document.solr())
-//        UpdateResponse response = request.process(solr)
-        logger.trace("Indexed {}", response)
-        if (count % interval == 0) {
-            solr.commit()
-        }
-
-    }
-}
-/*
-class Inserter extends Haltable {
-
-    BlockingQueue<SolrInputDocument> q;
-
-    public Inserter(BlockingQueue<SolrInputDocument> q) {
-        this.q = q
-    }
-
-    void run() {
-        println "Solr update thread starting"
-        SolrClient solr = new HttpSolrClient.Builder('http://localhost:8983/solr/pmc').build();
-        int count = 0
-        int killed = 0
-        running = true
-        while (running) {
-            try {
-                SolrInputDocument document = q.take()
-                if (document == Parser.DONE) {
-                    ++killed
-                    if (killed == 2) {
-                        running = false
-                    }
-                    continue
-                }
-                UpdateResponse response = solr.add(document)
-                println "Inserter: " + response.toString()
-//                println "Inserter: added document ${document.getField('pmid')}"
-                if (++count % 100 == 0) {
-                    solr.commit()
-                }
-            }
-            catch (InterruptedException e) {
-                println "Solr update thread has been interrupted."
-                running = false
-                Thread.currentThread().interrupt()
+        logger.info("{} storing {}", ++count, document.document.getFieldValue(Fields.ID))
+        Timer.Context context = timer.time()
+        try {
+            UpdateResponse response = solr.add(document.solr())
+            logger.debug("Indexed {}", response)
+            if (count % interval == 0) {
+                solr.commit()
             }
         }
+        catch (Exception e) {
+            logger.error("Unable to save document", e)
+            errors.mark()
+        }
+        finally {
+            context.stop()
+        }
+    }
+
+    void finish() {
+        logger.info("Finished.")
         solr.commit()
-        println "Solr update thread terminated."
-        println "$count documents indexed."
     }
 }
-*/

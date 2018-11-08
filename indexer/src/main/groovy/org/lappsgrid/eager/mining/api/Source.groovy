@@ -1,5 +1,7 @@
 package org.lappsgrid.eager.mining.api
 
+import groovy.util.logging.Slf4j
+
 import java.util.concurrent.BlockingQueue
 
 //import groovy.util.logging.Slf4j
@@ -11,6 +13,7 @@ import java.util.concurrent.BlockingQueue
  * has finished generating objects.
  */
 //@Log4j2
+@Slf4j("logger")
 abstract class Source extends Haltable {
 
 //    static final Logger logger = LoggerFactory.getLogger(Source)
@@ -32,7 +35,7 @@ abstract class Source extends Haltable {
 
     @Override
     void run() {
-        //logger.info("Source {} starting", name)
+        logger.info("Source {} starting", name)
         int count = 0
         running = true
         while (running) {
@@ -53,9 +56,9 @@ abstract class Source extends Haltable {
         }
         // Tell the sink how many items it should expect.
         if (sink != null) {
-            //logger.info("Sent notification {} to {}", count, sink.name)
+            logger.info("Sent notification {} to {}", count, sink.name)
             sink.total = count
         }
-        //logger.info("Source {} terminated", name)
+        logger.info("Source {} terminated", name)
     }
 }

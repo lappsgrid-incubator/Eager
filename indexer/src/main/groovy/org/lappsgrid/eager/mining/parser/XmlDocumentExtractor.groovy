@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.mining.parser
 
+import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.core.solr.LappsDocument
 
 /**
@@ -10,9 +11,7 @@ abstract class XmlDocumentExtractor {
     int parserId
 
     public XmlDocumentExtractor() {
-        parser = new XmlParser();
-        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+        parser = Factory.createXmlParser()
     }
 
     abstract LappsDocument extractValues(Node root);

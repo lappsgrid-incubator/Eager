@@ -3,11 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!--
     <parent>
         <groupId>org.anc.maven</groupId>
         <artifactId>groovy-parent-pom</artifactId>
         <version>2.0.0</version>
     </parent>
+    -->
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>parent-pom</artifactId>
     <packaging>pom</packaging>
@@ -19,6 +21,7 @@
         <solr.version>7.4.0</solr.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <mining.version>1.0.0-SNAPSHOT</mining.version>
         <metrics.version>3.2.6</metrics.version>
     </properties>
     <modules>
@@ -28,6 +31,7 @@
         <module>api</module>
         <module>core</module>
         <module>rabbitmq</module>
+        <module>ranking</module>
         <module>retrieval</module>
         <module>error</module>
         <module>nlp</module>
@@ -36,7 +40,6 @@
     </modules>
     <build>
         <plugins>
-            <!--
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -53,7 +56,7 @@
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
                         <artifactId>groovy-eclipse-batch</artifactId>
-                        <version>2.5.0-01</version>
+                        <version>2.4.3-01</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -63,7 +66,6 @@
                 <version>2.9.2-01</version>
                 <extensions>true</extensions>
             </plugin>
-            -->
         </plugins>
     </build>
     <dependencyManagement>
@@ -78,6 +80,7 @@
                 <artifactId>solr-solrj</artifactId>
                 <version>${solr.version}</version>
             </dependency>
+            <!--
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -88,6 +91,23 @@
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+            -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.lappsgrid.eager.mining</groupId>
+                <artifactId>api</artifactId>
+                <version>${mining.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.lappsgrid.eager</groupId>
+                <artifactId>core</artifactId>
+                <version>${mining.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.dropwizard.metrics</groupId>
                 <artifactId>metrics-core</artifactId>
@@ -96,11 +116,10 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <!--
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>2.5.0</version>
+            <version>2.4.11</version>
             <type>pom</type>
             <exclusions>
                 <exclusion>
@@ -115,6 +134,7 @@
             <version>2.4.0</version>
             <scope>compile</scope>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-solrj</artifactId>

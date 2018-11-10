@@ -17,7 +17,7 @@ final class Fields {
     public static final String DISCUSSION = "discussion"
     public static final String INTRO = "intro"
     public static final String MESH = "mesh"
-    public static final String JOURNAL = "journal"
+    public static final String JOURNAL = "journalTitle"
     public static final String KEYWORDS = "keywords"
     public static final String TYPE = "type"
     public static final String PATH = "path"

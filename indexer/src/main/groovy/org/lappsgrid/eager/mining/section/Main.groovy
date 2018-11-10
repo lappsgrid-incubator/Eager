@@ -1,8 +1,10 @@
 package org.lappsgrid.eager.mining.section
 
-import groovy.util.logging.Slf4j
+import com.codahale.metrics.JmxReporter
+import com.codahale.metrics.MetricRegistry
 import org.lappsgrid.eager.mining.api.Haltable
 import org.lappsgrid.eager.mining.api.Worker
+import org.lappsgrid.eager.mining.io.IndexLister
 import org.lappsgrid.eager.mining.jmx.Manager
 import org.lappsgrid.eager.mining.jmx.SizeGauge
 
@@ -12,15 +14,13 @@ import java.lang.management.ManagementFactory
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
 
-import com.codahale.metrics.*
-
-import java.util.concurrent.TimeUnit
-
 /**
  *
  */
-@Slf4j("logger")
+//@Log4j2
 class Main {
+//    static final Logger logger = LoggerFactory.getLogger(Main)
+
     static final String MANAGER_NAME = "org.lappsgrid.eager.mining:type=Manager"
     public static final MetricRegistry metrics = new MetricRegistry()
 
@@ -37,9 +37,9 @@ class Main {
 
         MBeanServer server = ManagementFactory.getPlatformMBeanServer()
         Manager manager = new Manager()
-                .filesQ(files)
-                .nodesQ(nodes)
-                .sectionsQ(sections)
+//                .filesQ(files)
+//                .nodesQ(nodes)
+//                .sectionsQ(sections)
         server.registerMBean(manager, new ObjectName(MANAGER_NAME))
 
         metrics.register(name("files", "size"), new SizeGauge(files))
@@ -59,7 +59,7 @@ class Main {
         Worker extractor = new SectionExtractor(nodes, sections)
         SectionSink sink = new SectionSink(sections)
 //        DirectoryLister lister = new PmcDirectoryLister(source, sink, files)
-        RemoteDocumentProvider lister = new RemoteDocumentProvider(sink, files)
+        IndexLister lister = new IndexLister(sink, files)
 
         List<Haltable> threads = [ parser, extractor, sink, lister ]
 
@@ -69,19 +69,19 @@ class Main {
         // Wait on the sink. When it is done the pipeline has completed.
         sink.join()
 
-        logger.info("Sink has finished. Saving results to {}", target.path)
+        //logger.info("Sink has finished. Saving results to {}", target.path)
         sink.save(target)
 
         // Shut everything down.
-        logger.debug("Halting all threads")
+        //logger.debug("Halting all threads")
         threads.each { it.halt() }
 
-        logger.debug("Closing JMX reporter")
+        //logger.debug("Closing JMX reporter")
         jmx.stop()
 //        console.stop()
 
         long elapsed = System.currentTimeMillis() - startTime
-        logger.info("Elapsed time {}", format(elapsed))
+        //logger.info("Elapsed time {}", format(elapsed))
 //        File parent = target.parentFile
 //        File stats = new File(parent, "stats.txt")
 //        stats.withWriter { writer ->

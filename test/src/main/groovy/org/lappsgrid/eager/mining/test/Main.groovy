@@ -1,27 +1,73 @@
 package org.lappsgrid.eager.mining.test
 
-import groovy.json.JsonOutput
-import groovy.json.JsonParser
-import groovy.json.JsonParserType
-import groovy.json.JsonSlurper
-import org.lappsgrid.eager.rabbitmq.tasks.TaskQueue
-import org.lappsgrid.eager.rabbitmq.tasks.Worker
-import org.lappsgrid.eager.rabbitmq.topic.PostOffice
+import com.codahale.metrics.Meter
+import com.codahale.metrics.Slf4jReporter
+import com.codahale.metrics.Timer
+import groovy.util.logging.Slf4j
+import org.lappsgrid.eager.core.jmx.Registry
 
-import javax.net.ssl.HttpsURLConnection
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
-import javax.security.auth.login.AppConfigurationEntry
+import java.util.concurrent.TimeUnit
 
 /**
  *
  */
-class Main {
+@Slf4j("logger")
+class Main implements MainMBean {
 
+    String salutation
+    boolean running
+    final Meter meter
+    final Timer timer
+    Random random
+
+    Main() {
+        salutation = "Hello"
+        meter = Registry.meter("main.meter")
+        timer = Registry.timer("main.timer")
+    }
+
+    void run() {
+        logger.info("Process is starting.")
+        Registry.register(this, "org.lappsgrid.eager.mining.test.main:type=Main,name=TestMain")
+        Registry.startJmxReporter()
+        Registry.startLogReporter("org.lappgrid.eager.mining.metrics", 10, TimeUnit.SECONDS)
+//        Registry.startLogReporter(logger)
+
+        random = new Random()
+        running = true
+        while (running) {
+            meter.mark()
+            long delay = random.nextLong() % 10_000
+            if (delay < 0) {
+                delay = -delay
+            }
+            logger.info("Sleeping for {} msec", delay)
+            Timer.Context context = timer.time()
+            sleep(delay)
+            context.stop()
+        }
+        Registry.stopJmxReporter()
+        Registry.stopLogReporter()
+        logger.info("Process is terminating.")
+    }
+
+    void shutdown() {
+        logger.info "Shutting down."
+        running = false
+    }
+
+    String greet(String name) {
+        logger.info("Sending greeting for {}", name)
+        return "$salutation $name"
+    }
+
+    void salutation(String salutation) {
+        logger.info("Setting salutation to {}", salutation)
+        this.salutation = salutation
+    }
 
     static void main(String[] args) {
-
+        new Main().run()
     }
 }
 

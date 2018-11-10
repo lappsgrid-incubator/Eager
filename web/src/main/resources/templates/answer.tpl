@@ -21,6 +21,7 @@ content: {
     h1 'The Answers'
     table {
         tr {
+            th 'Index'
             th 'Score'
             th 'PMID'
             th 'Year'
@@ -30,15 +31,16 @@ content: {
             }
 
         }
-        data.documents.each { doc ->
+        data.documents.eachWithIndex { doc, i ->
             tr {
+                td String.format("%4d", i)
                 td String.format("%2.3f", doc.score)
                 td { a(href:"https://www.ncbi.nlm.nih.gov/pmc/articles/${doc.pmc}/?report=classic", doc.pmc) }
                 td doc.year
                 td doc.title
                 if (data.keys) {
                     data.keys.each { key ->
-                        td String.format("%2.3f", doc.scores[key])
+                        td String.format("%2.3f", doc.scores[key].sum())
                     }
                 }
             }

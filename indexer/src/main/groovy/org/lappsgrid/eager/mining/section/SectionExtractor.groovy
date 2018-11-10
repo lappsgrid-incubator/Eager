@@ -1,18 +1,19 @@
 package org.lappsgrid.eager.mining.section
 
-import com.codahale.metrics.*
-import groovy.util.logging.Slf4j
+import com.codahale.metrics.Meter
+import com.codahale.metrics.Timer
 import org.lappsgrid.eager.mining.api.Worker
 
 import java.util.concurrent.BlockingQueue
-import static Main.metrics
-import static Main.name
+import static org.lappsgrid.eager.mining.section.Main.metrics
+import static org.lappsgrid.eager.mining.section.Main.name
+
 /**
  *
  */
-@Slf4j('logger')
+//@Log4j2
 class SectionExtractor extends Worker {
-
+//    static final Logger logger = LoggerFactory.getLogger(SectionExtractor)
     final Meter requests
     final Meter badRequests
     final Timer timer
@@ -26,7 +27,7 @@ class SectionExtractor extends Worker {
     @Override
     Object work(Object item) {
         if (! (item instanceof Packet)) {
-            logger.error("Invalid object sent to SectionExtractor: {}", item)
+            //logger.error("Invalid object sent to SectionExtractor: {}", item)
             badRequests.mark()
             return null
         }
@@ -43,12 +44,12 @@ class SectionExtractor extends Worker {
                     sections.add(type)
                 }
             }
-            logger.info("extracted {} sections", sections.size())
+            //logger.info("extracted {} sections", sections.size())
             packet.set(sections)
             return packet
         }
         catch (Exception e) {
-            logger.error("Unable to extract sections", e)
+            //logger.error("Unable to extract sections", e)
         }
         finally {
             context.stop()

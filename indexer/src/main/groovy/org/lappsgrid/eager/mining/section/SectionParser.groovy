@@ -1,7 +1,7 @@
 package org.lappsgrid.eager.mining.section
 
-import com.codahale.metrics.*
-import groovy.util.logging.Slf4j
+import com.codahale.metrics.Meter
+import com.codahale.metrics.Timer
 import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.mining.api.Worker
 
@@ -13,8 +13,9 @@ import static org.lappsgrid.eager.mining.section.Main.name
 /**
  *
  */
-@Slf4j('logger')
+//@Log4j2
 class SectionParser extends Worker {
+//    static final Logger logger = LoggerFactory.getLogger(SectionParser)
 
     /** Stats about requests made to this service. */
     final Meter requests
@@ -39,7 +40,7 @@ class SectionParser extends Worker {
     @Override
     Object work(Object item) {
         if (! (item instanceof Packet)) {
-            logger.error("received data that was not a Packet")
+            //logger.error("received data that was not a Packet")
             badRequests.mark()
             return null
         }
@@ -49,7 +50,7 @@ class SectionParser extends Worker {
             ++count
             Packet packet = (Packet) item
             String xml = packet.asString()
-            logger.info("count: {} size: {}", count,xml.length())
+            //logger.info("count: {} size: {}", count,xml.length())
             Node node = parser.parseText(xml)
             packet.node(node)
             return packet

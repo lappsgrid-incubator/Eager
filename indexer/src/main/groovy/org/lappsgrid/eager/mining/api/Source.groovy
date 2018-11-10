@@ -4,14 +4,19 @@ import groovy.util.logging.Slf4j
 
 import java.util.concurrent.BlockingQueue
 
+//import groovy.util.logging.Slf4j
+//import org.slf4j.Logger
+//import org.slf4j.LoggerFactory
 /**
  * A Source object provides data and adds it to its output queue.  If a <tt>Sink</tt> is supplied
  * it will be notified of how many objects were placed on the output queue when the <tt>Source</tt>
  * has finished generating objects.
  */
+//@Log4j2
 @Slf4j("logger")
 abstract class Source extends Haltable {
 
+//    static final Logger logger = LoggerFactory.getLogger(Source)
     String name
     BlockingQueue<Object> output
     Sink sink

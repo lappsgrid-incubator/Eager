@@ -1,7 +1,11 @@
-package org.lappsgrid.eager.mining
+package org.lappsgrid.eager.mining.parser
 
-import org.lappsgrid.eager.core.Factory
+import com.codahale.metrics.Meter
+import com.codahale.metrics.Timer
+import groovy.util.logging.Slf4j
+import org.lappsgrid.eager.core.jmx.Registry
 import org.lappsgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.mining.api.Worker
 import org.lappsgrid.eager.mining.parser.XmlDocumentExtractor
 
@@ -11,7 +15,12 @@ import java.util.concurrent.BlockingQueue
  * Parses XML documents from the input queue and adds SolrInputDocuments on the
  * output queue.
  */
+@Slf4j("logger")
 class Parser extends Worker {
+
+    final Meter documentsProcessed = Registry.meter("parser.documents")
+    final Meter documentErrors = Registry.meter("parser.errors")
+    final Timer timer = Registry.timer("parser.timer")
 
     XmlParser parser
     XmlDocumentExtractor extractor
@@ -22,49 +31,27 @@ class Parser extends Worker {
         super("Parser$id", input, output)
         this.parserId = id
         this.extractor = extractor
-//        parser = new XmlParser();
-//        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-//        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
         this.parser = Factory.createXmlParser()
         this.count = 0
     }
 
     Object work(Object item) {
         File file = (File) item
-        println "${++count} Parser $parserId: parsing ${file.name}"
-        Node article = parser.parse(file)
-        /*
-        Node meta = article.front.'article-meta'[0]
-        String pmid = getIdValue(meta, 'pmid')
-        String pmc = getIdValue(meta, 'pmc')
-        String doi = getIdValue(meta, 'doi')
-        String title = meta.'title-group'.'article-title'.text()
-        String abs = meta.'abstract'.text()
-        String year = '0'
-        Node pubDate = meta.'pub-date'.find { it.@'pub-type' == 'ppub' }
-        if (pubDate == null) {
-            pubDate = meta.'pub-date'.find { it.@'pub-type' == 'epub' }
+        logger.info("{} Parsing {}", count++, file.name)
+        documentsProcessed.mark()
+        Timer.Context context = timer.time()
+        try {
+            Node article = parser.parse(file)
+            LappsDocument document = extractor.extractValues(article)
+            document.path(file.getPath())
+            return document
         }
-        if (pubDate != null) {
-            year = pubDate.year.text()
+        catch (Exception e) {
+            documentErrors.mark()
         }
-        title = title.replaceAll('\n', ' ').replaceAll('\r', ' ').replaceAll('\\s\\s+', ' ',)
-
-        String id = getId(pmid, pmc, doi)
-        SolrInputDocument document = new SolrInputDocument();
-        document.addField("id", id)
-        document.addField("pmid", pmid);
-        document.addField("pmc", pmc);
-        document.addField("doi", doi);
-        document.addField("title", title)
-        document.addField("year", year as int)
-        document.addField("abstract", abs)
-        document.addField("body", article.body.text())
-        document.addField("path", file.path)
-        */
-        LappsDocument document = extractor.extractValues(article)
-        document.path(file.getPath()).id()
-        return document
+        finally {
+            context.stop()
+        }
     }
 
     String getIdValue(Node node, String id) {

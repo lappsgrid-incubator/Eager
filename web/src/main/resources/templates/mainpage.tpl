@@ -3,11 +3,17 @@ title: 'LAPPS/EAGER',
 version: version,
 javascript: '''
 $(document).ready(function() {
-    $('#all').click(function() {
-        $('input:checkbox').prop('checked', true);
+    $('#all-title').click(function() {
+        $('.title-box').prop('checked', true);
     })
-    $('#none').click(function() {
-        $('input:checkbox').prop('checked', false);
+    $('#none-title').click(function() {
+        $('.title-box').prop('checked', false);
+    })
+    $('#all-abs').click(function() {
+        $('.abs-box').prop('checked', true);
+    })
+    $('#none-abs').click(function() {
+        $('.abs-box').prop('checked', false);
     })
     $('#domain').click(function() {
         console.log("Domain button clicked.")
@@ -26,44 +32,68 @@ $(document).ready(function() {
 })
 ''',
 content: {
-    form(action:'ask', method:'post') {
+    form(action:'question', method:'post') {
         h1 'I am eager to help'
         fieldset {
-            div {
+            div(class:"column") {
+                h3 "Title"
                 table {
                     tr {
                         th 'Enable'
                         th 'Algorithm'
                         th 'Weight'
                     }
-                    tr {
-                        td { input(type:'checkbox', name:'alg1', value:'1', checked:true) }
-                        td 'Number of consecutive terms in title'
-                        td { input(type:'text', name:'weight1', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg2', value:'2', checked:true) }
-                        td 'Total number of search terms in title'
-                        td { input(type:'text', name:'weight2', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg3', value:'3', checked:true) }
-                        td 'Term position in title, earlier in the text == better score'
-                        td { input(type:'text', name:'weight3', value:'1.0') }
-                    }
-                    tr {
-                        td { input(type:'checkbox', name:'alg4', value:'4', checked:true) }
-                        td 'Words in the title that are search terms'
-                        td { input(type:'text', name:'weight4', value:'1.0') }
+                    descriptions.eachWithIndex { desc, i ->
+                        tr {
+                            td { input(type:"checkbox", name:"title-checkbox-${i+1}", class:"title-box", value:(i+1), checked:true) }
+                            td desc
+                            td { input(type:'text', name:"title-weight-${i+1}", value:"1.0") }
+                        }
                     }
                     tr {
                         td(colspan:'3') {
-                            input(type:'button', id:'all', value:'Select All')
-                            input(type:'button', id:'none', value:'Clear All')
+                            input(type:'button', id:'all-title', value:'Select All')
+                            input(type:'button', id:'none-title', value:'Clear All')
+                        }
+                    }
+                    tr {
+                        td(colspan:'2') { label(for:'title-weight', 'Weight') }
+                        td {
+                            input(id:'title-weight', type:'text', name:'title-weight-x', value:'0.9')
                         }
                     }
                 }
-
+            }
+            div(class:"column") {
+                h3 "Abstract"
+                table {
+                    tr {
+                        th 'Enable'
+                        th 'Algorithm'
+                        th 'Weight'
+                    }
+                    descriptions.eachWithIndex { desc, i ->
+                        tr {
+                            td { input(type:"checkbox", name:"abstract-checkbox-${i+1}", class:"abs-box", value:(i+1), checked:true) }
+                            td desc
+                            td { input(type:'text', name:"abstract-weight-${i+1}", value:"1.0") }
+                        }
+                    }
+                    tr {
+                        td(colspan:'3') {
+                            input(type:'button', id:'all-abs', value:'Select All')
+                            input(type:'button', id:'none-abs', value:'Clear All')
+                        }
+                    }
+                    tr {
+                        td(colspan:'2') { label(for:'abstract-weight', 'Weight') }
+                        td {
+                            input(id:'abstract-weight', type:'text', name:'abstract-weight-x', value:'1.1')
+                        }
+                    }
+                }
+            }
+            div {
                 table {
                     tr {
                         td {

@@ -1,9 +1,8 @@
 package org.lappsgrid.eager.mining.section
 
-import com.codahale.metrics.*
 import com.codahale.metrics.Counter as MetricsCounter
-
-import groovy.util.logging.Slf4j
+import com.codahale.metrics.Meter
+import com.codahale.metrics.Timer
 import org.lappsgrid.eager.mining.api.Sink
 
 import java.util.concurrent.BlockingQueue
@@ -14,24 +13,22 @@ import static Main.name
 /**
  *
  */
-@Slf4j('logger')
+//@Log4j2
 class SectionSink extends Sink {
+//    static final Logger logger = LoggerFactory.getLogger(SectionSink)
 
     final Meter requests
-//    final Meter badRequests
     final Timer timer
     final MetricsCounter badRequests
     final MetricsCounter emptyFiles
 
     Set<String> sections
     Map<String,Counter> counters
-//    List<String> badFiles
 
     SectionSink(BlockingQueue<Packet> input) {
         super("SectionSink", input)
         sections = new HashSet<>()
         counters = new HashMap<>()
-//        badFiles = new ArrayList<>()
 
         requests = metrics.meter(name("sink", "requests"))
         timer = metrics.timer(name("sink", "timer"))
@@ -42,7 +39,7 @@ class SectionSink extends Sink {
     @Override
     void store(Object item) {
         if (!(item instanceof Packet)) {
-            logger.error("Invalid item : {}", item)
+            //logger.error("Invalid item : {}", item)
             badRequests.inc()
             return
         }
@@ -54,12 +51,12 @@ class SectionSink extends Sink {
         try {
             Set<String> set = packet.asSet()
             if (set.size() == 0) {
-                logger.warn("No sections found in: {}", packet.path)
+                //logger.warn("No sections found in: {}", packet.path)
                 emptyFiles.inc()
 //                badFiles.add(packet.path)
             }
             else {
-                logger.info("Saving {} items", set.size())
+                //logger.info("Saving {} items", set.size())
                 set.each { String section ->
                     Counter counter = counters[section]
                     if (counter == null) {
@@ -76,7 +73,7 @@ class SectionSink extends Sink {
     }
 
     void save(File destination) {
-        logger.info("Writing {} items to {}", counters.size(), destination.path)
+        //logger.info("Writing {} items to {}", counters.size(), destination.path)
         destination.withWriter { writer ->
             Closure comp = { a,b ->
                 b.value.count <=> a.value.count

@@ -79,7 +79,7 @@ class MessageHandler {
                     po.close()
                 }
                 else if (message.startsWith('collect')) {
-                    logger.info("Received a collect messag")
+                    logger.info("Received a collect message")
 //                    String[] parts = message.split("\\s+")
                     String address = parseCommand(message)
                     if (address != null) {

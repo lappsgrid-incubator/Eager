@@ -16,8 +16,17 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.lappsgrid.eager.mining</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lappsgrid</groupId>
+            <artifactId>serialization</artifactId>
+            <version>2.5.0</version>
         </dependency>
     </dependencies>
 </project>

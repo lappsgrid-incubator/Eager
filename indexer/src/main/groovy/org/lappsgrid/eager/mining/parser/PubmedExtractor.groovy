@@ -38,11 +38,18 @@ class PubmedExtractor extends XmlDocumentExtractor {
                 .theAbstract(articleAbstract)
                 .journal(journal.Title.text())
                 .year(year)
+                .id(getId(pmid, pmc.text()))
                 .pmid(pmid)
                 .pmc(pmc.text())
                 .mesh(mesh.join(" "))
                 .pubmed()
 
         return document
+    }
+
+    String getId(String pmid, String pmc) {
+        if (pmid) return pmid
+        if (pmc) return pmc
+        return UUID.randomUUID().toString()
     }
 }

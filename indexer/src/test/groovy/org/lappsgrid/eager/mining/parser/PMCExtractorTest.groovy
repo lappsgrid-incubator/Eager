@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining.parser
 
 import org.junit.*
+import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.core.solr.Fields
 import org.lappsgrid.eager.core.solr.LappsDocument
 
@@ -27,9 +28,10 @@ class PMCExtractorTest {
     void testExtractor() {
         InputStream stream = this.class.getResourceAsStream("/PMC4590010.nxml")
         assertNotNull(stream)
-        XmlParser parser = new XmlParser()
-        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+        XmlParser parser = Factory.createXmlParser()
+//        XmlParser parser = new XmlParser()
+//        parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+//        parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
         Node node = parser.parse(stream)
 
         PMCExtractor extractor = new PMCExtractor()

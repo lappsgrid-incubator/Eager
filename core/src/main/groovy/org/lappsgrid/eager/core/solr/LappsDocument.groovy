@@ -1,20 +1,21 @@
 package org.lappsgrid.eager.core.solr
 
-import org.apache.solr.common.SolrDocument
+import org.apache.solr.common.SolrInputDocument
 
 /**
  * Manages a SolrDocument instance and provides a fluent API for initialization.
  */
 class LappsDocument {
+
     public static final class Type {
         public static final String PMC = "pmc"
         public static final String PUBMED = "pubmed"
     }
 
-    SolrDocument document
+    SolrInputDocument document
 
     public LappsDocument() {
-        document = new SolrDocument()
+        document = new SolrInputDocument()
     }
 
     public LappsDocument(Map map) {
@@ -23,8 +24,13 @@ class LappsDocument {
         }
     }
 
-    SolrDocument solr() { return document }
+    SolrInputDocument solr() { return document }
+
     LappsDocument id(String id) {
+        if (id == null || id == 'null') {
+//            println "WARNING: ID is null. Generating a UUID"
+            id = UUID.randomUUID().toString()
+        }
         add(Fields.ID, id)
     }
 
@@ -55,13 +61,23 @@ class LappsDocument {
     LappsDocument theAbstract(String theAbstract) {
         add(Fields.ABSTRACT, theAbstract)
     }
-
-    LappsDocument body(String body) {
-        add(Fields.BODY, body)
+    LappsDocument articleAbstract(String articleAbstract) {
+        add(Fields.ABSTRACT, articleAbstract)
     }
 
     LappsDocument intro(String intro) {
         add(Fields.INTRO, intro)
+    }
+    LappsDocument introduction(String intro) {
+        add(Fields.INTRO, intro)
+    }
+
+    LappsDocument discussion(String discussion) {
+        add(Fields.DISCUSSION, discussion)
+    }
+
+    LappsDocument body(String body) {
+        add(Fields.BODY, body)
     }
 
     LappsDocument results(String results) {
@@ -105,7 +121,7 @@ class LappsDocument {
     }
 
     private LappsDocument add(String name, String value) {
-        document.addField(name, value)
+        document.setField(name, value)
         return this
     }
 }

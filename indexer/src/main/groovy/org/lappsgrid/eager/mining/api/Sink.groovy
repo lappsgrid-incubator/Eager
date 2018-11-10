@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue
  */
 @Slf4j("logger")
 abstract class Sink extends Haltable {
-
+//    static final Logger logger = LoggerFactory.getLogger(Sink)
     String name
     BlockingQueue<Object> input
     int total
@@ -47,8 +47,14 @@ abstract class Sink extends Haltable {
                 Thread.currentThread().interrupt()
             }
         }
+        finish()
         logger.info("Sink {} terminated.", name)
     }
 
     abstract void store(Object item)
+
+    /**
+     * Subclasses can overide this method to perform any clean up that is required.
+     */
+    void finish() { }
 }

@@ -6,15 +6,15 @@ import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 import org.lappsgrid.serialization.DataContainer
 import org.lappsgrid.serialization.Serializer
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+//import org.slf4j.Logger
+//import org.slf4j.LoggerFactory
 
 /**
  *
  */
 class Main {
 
-    public static final Logger logger = LoggerFactory.getLogger(Main)
+//    public static final Logger logger = LoggerFactory.getLogger(Main)
 
     /** The pipeline of Stanford services to be executed. */
     Pipeline pipeline
@@ -43,24 +43,24 @@ class Main {
     }
 
     void start() {
-        logger.info("Staring Standord NLP service.")
+        //logger.info("Staring Standord NLP service.")
         box = new MailBox(config.POSTOFFICE, config.BOX_NLP_STANFORD) {
             @Override
             void recv(String json) {
                 Message message = Serializer.parse(json, Message)
                 if ('shutdown' == message.command) {
-                    logger.info("Received a shutdown message.")
+                    //logger.info("Received a shutdown message.")
                     stop()
                     return
                 }
                 if (message.route.size() == 0) {
                     // If there is nowhere to send the result then we have nothing to do.
-                    logger.error("Message had no return address")
+                    //logger.error("Message had no return address")
                     error("NLP tools were sent data but have no route defined.")
                     return
                 }
 
-                logger.debug("Processing the payload.")
+                //logger.debug("Processing the payload.")
                 DataContainer data
                 try {
                     data = Serializer.parse(message.body, DataContainer)
@@ -69,11 +69,11 @@ class Main {
 
                 }
                 catch (Exception e) {
-                    logger.error("Unable to process input.", e)
+                    //logger.error("Unable to process input.", e)
                     error("NLP tools encountered an exception: " + e.message)
                     return
                 }
-                logger.info("Sending result to {}", message.route[0])
+                //logger.info("Sending result to {}", message.route[0])
                 message.body = data.asJson()
                 post.send(message)
 
@@ -82,7 +82,7 @@ class Main {
     }
 
     void stop() {
-        logger.info("Stopping the Stanford NLP service")
+        //logger.info("Stopping the Stanford NLP service")
         if (box) box.close()
         if (post) post.close()
         synchronized (semaphore) {
@@ -102,6 +102,6 @@ class Main {
         synchronized (app.semaphore) {
             app.semaphore.wait()
         }
-        logger.info("Stanford NLP service terminated.")
+        //logger.info("Stanford NLP service terminated.")
     }
 }

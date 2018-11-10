@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.web
 
 import groovy.json.JsonSlurper
+import groovy.util.logging.Slf4j
 import org.apache.solr.client.solrj.SolrClient
 import org.apache.solr.client.solrj.impl.CloudSolrClient
 import org.apache.solr.client.solrj.response.QueryResponse
@@ -21,19 +22,25 @@ import org.lappsgrid.eager.query.elasticsearch.GDDSnippetQueryProcessor
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
+import org.lappsgrid.eager.rank.CompositeRankingEngine
 import org.lappsgrid.eager.rank.RankingEngine
 import org.lappsgrid.eager.service.Version
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.ControllerAdvice
+import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.context.request.WebRequest
 
 /**
  *
  */
+@Slf4j("logger")
 @Controller
+@ControllerAdvice
 class AskController {
 
     private static final Configuration c = new Configuration()
@@ -45,7 +52,8 @@ class AskController {
     public AskController() {
         queryProcessor = new SimpleQueryProcessor()
         geoProcessor = new GDDSnippetQueryProcessor()
-        collection = "pubmed"
+        collection = "bioqa"
+//        collection = "eager"
         SSL.enable()
     }
 
@@ -72,10 +80,25 @@ class AskController {
 """
     }
 
+    /*
+                        td 'Number of consecutive terms in title'
+                        td 'Total number of search terms in title'
+                        td 'Term position in title, earlier in the text == better score'
+                        td 'Words in the title that are search terms'
+     */
     @GetMapping(path = "/ask", produces = ['text/html'])
     String get(Model model) {
+        logger.info("GET /ask")
         updateModel(model)
-        return "ask"
+        List<String> descriptions = [
+                "consecutive terms",
+                "total search terms",
+                "position",
+                "% search terms"
+        ]
+        model.addAttribute("descriptions", descriptions)
+        logger.debug("Rendering mainpage")
+        return "mainpage"
     }
 
     /*
@@ -93,17 +116,24 @@ class AskController {
     }
     */
 
-    @PostMapping(path="/ask", produces="text/html")
+    @PostMapping(path="/question", produces="text/html")
     String postHtml(@RequestParam Map<String,String> params, Model model) {
+        logger.info("POST /question")
         updateModel(model)
+//        if (true) {
+//            model.addAttribute("params", params)
+//            return "dump"
+//        }
         if (params.domain == 'geo') {
             //TODO Check that a question has been entered
-            model.data = geodeepdive(params, 1000)
-            return 'test'
+            model.addAttribute('data', geodeepdive(params, 1000))
+            logger.debug("Rendering geodd")
+            return 'geodd'
         }
 
-        Map reply = answer(params, 1000)
+        Map reply = answer(params, 100)
         model.addAttribute('data', reply)
+        logger.debug("Rendering data")
         return 'answer'
     }
 
@@ -116,19 +146,26 @@ class AskController {
     }
 
     private Map answer(Map params, int size) {
-        SolrClient solr = new CloudSolrClient.Builder(["http://149.165.169.127:8983/solr"]).build();
+//        SolrClient solr = new CloudSolrClient.Builder(["http://149.165.169.127:8983/solr"]).build();
+        logger.debug("Generating answer.")
+
+        logger.trace("Creating CloudSolrClient")
+        SolrClient solr = new CloudSolrClient.Builder(["http://129.114.16.34:8983/solr"]).build();
+        logger.trace("Generating query")
         Query query = queryProcessor.transform(params.question)
         Map solrParams = [:]
         solrParams.q = query.query
-        solrParams.fl = 'pmid,pmc,doi,year,title,path'
+        solrParams.fl = 'pmid,pmc,doi,year,title,path,abstract'
         solrParams.rows = '10000'
 
         MapSolrParams queryParams = new MapSolrParams(solrParams)
 
+        logger.trace("Sending query to Solr")
         final QueryResponse response = solr.query(collection, queryParams);
         final SolrDocumentList documents = response.getResults();
 
         int n = documents.size()
+        logger.trace("Received {} documents", n)
         Map result = [:]
         result.query = query
         result.size = n
@@ -141,7 +178,8 @@ class AskController {
 
         result.documents = rank(query, docs, params)
         if (result.documents.size() > size) {
-            result.documents = docs[0..size]
+            logger.debug("Trimming results to {}", size)
+            result.documents = result.documents[0..size]
         }
         if (result.documents.size() > 0) {
             Document exemplar = result.documents[0]
@@ -151,11 +189,15 @@ class AskController {
     }
 
     private List rank(Query query, List<Document> documents, Map params) {
-        RankingEngine ranker = new RankingEngine(params)
+//        RankingEngine ranker = new RankingEngine(params)
+//        return ranker.rank(query, documents)
+        logger.debug("Ranking {} documents", documents.size())
+        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
         return ranker.rank(query, documents)
     }
 
     private List rank(Query query, List<Document> documents, Map params, Closure getter) {
+        logger.debug("Ranking {} documents", documents.size())
         RankingEngine ranker = new RankingEngine(params)
         return ranker.rank(query, documents, getter)
     }
@@ -296,5 +338,10 @@ class AskController {
 
     private void updateModel(Model model) {
         model.addAttribute('version', Version.version)
+    }
+
+    @ExceptionHandler(Exception.class)
+    protected String handleAddExceptions(Exception ex, WebRequest request) {
+        logger.error("Caught an exception", ex)
     }
 }

@@ -7,8 +7,6 @@ import org.lappsgrid.eager.core.json.Serializer
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 import javax.management.MBeanServer
 import javax.management.ObjectName
@@ -21,7 +19,7 @@ class DocumentLoader implements DocumentLoaderMBean {
 
     static final MetricRegistry metrics = new MetricRegistry()
 
-    final Logger logger = LoggerFactory.getLogger(DocumentLoader)
+//    static final Logger logger = LoggerFactory.getLogger(DocumentLoader)
 
     /**
      * Semaphore object used to block the main thread until a shutdown
@@ -50,7 +48,7 @@ class DocumentLoader implements DocumentLoaderMBean {
             void recv(String message) {
                 if (message == 'shutdown') {
                     //stop()
-                    logger.warn 'Shutdown message ignored.'
+//                    logger.warn 'Shutdown message ignored.'
                     return
                 }
                 process(message)
@@ -74,11 +72,11 @@ class DocumentLoader implements DocumentLoaderMBean {
         catch (Exception e) {
             //TODO Send a message to the error service as well.
             exceptions.mark()
-            logger.error("Unable to deserialize JSON message", e)
+//            logger.error("Unable to deserialize JSON message", e)
             return
         }
         if (message.command == 'shutdown') {
-            logger.warn "Shutdown message ignored."
+//            logger.warn "Shutdown message ignored."
             return
         }
         else if (message.command == 'load') {
@@ -87,7 +85,7 @@ class DocumentLoader implements DocumentLoaderMBean {
                 // TODO Send a message to the error service.
                 errors.mark()
                 String error = "File not found: ${file.path}"
-                logger.warn(error)
+//                logger.warn(error)
                 message.command = 'error'
                 message.parameters['document.load.error'] = error
                 office.send(message)
@@ -96,15 +94,15 @@ class DocumentLoader implements DocumentLoaderMBean {
             message.command = 'loaded'
             message.body = file.text
             message.parameters.path = file.path
-            logger.info("Loaded {}", file.path)
-            logger.debug("Sending reply to {}", message.route[0])
+//            logger.info("Loaded {}", file.path)
+//            logger.debug("Sending reply to {}", message.route[0])
             office.send(message)
         }
         else {
             // TODO Send a message to the error service.
             errors.mark()
             String error = "Unknown command: ${message.command}"
-            logger.error(error)
+//            logger.error(error)
             message.command = 'error'
             message.parameters['document.load.error'] = error
             office.send(message)
@@ -113,14 +111,14 @@ class DocumentLoader implements DocumentLoaderMBean {
     }
 
     void stop() {
-        logger.info("Stopping")
+//        logger.info("Stopping")
         synchronized (semaphore) {
             semaphore.notifyAll()
         }
     }
 
     void close() {
-        logger.info("Closing")
+//        logger.info("Closing")
         office.close()
         box.close()
     }

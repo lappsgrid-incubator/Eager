@@ -10,7 +10,7 @@ import java.util.concurrent.BlockingQueue
  */
 @Slf4j("logger")
 abstract class Worker extends Haltable {
-    public static final Object DONE = new Object()
+    static final Object DONE = new Object()
 
     String name
     BlockingQueue<Object> input

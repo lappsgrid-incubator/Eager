@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch
  * The IndexLister does not actually "list" a directory, but instead delivers files from
  * the document retrieval service.
  */
-class IndexLister extends Source {
+class IndexLister extends Source implements Lister {
     static final String MAILBOX = "eager.document.provider"
 
     private static final Packet END = new Packet()
@@ -57,9 +57,12 @@ class IndexLister extends Source {
      */
     int currentIndex
 
+    private boolean terminated
+
     IndexLister(BlockingQueue<String> output) {
         super("RemoteDocumentProvider", output)
         queue = new ArrayBlockingQueue<>(1024)
+        terminated = false
         Thread.start { init() }
     }
 
@@ -67,18 +70,27 @@ class IndexLister extends Source {
         super("RemoteDocumentProvider", sink, output)
         queue = new ArrayBlockingQueue<>(1024)
         sampleSize = size
+        terminated = false
         Thread.start {
             init()
         }
     }
 
     Object produce() {
+        if (terminated) {
+            return Worker.DONE
+        }
+
         Packet next = queue.take()
         if (END == next) {
             //logger.info("RemoteDocumentProvider has run out of data.")
             return Worker.DONE
         }
         return next
+    }
+
+    void terminate() {
+        terminated = true
     }
 
     void init() {
@@ -106,14 +118,11 @@ class IndexLister extends Source {
         println "Sample size: $count"
         sink.total = count
 
-        po = new PostOffice(conf.POSTOFFICE)
-        requestNextDocument()
-
         //logger.debug("Requesting {} documents", count)
         CountDownLatch latch = new CountDownLatch(count)
         MailBox box = new MailBox(conf.POSTOFFICE, MAILBOX) {
             void recv(String json) {
-                println "Recevied $json"
+                println "Recevied ${json.size()} characters"
                 Message message = Serializer.parse(json, Message)
                 if (message.command == 'loaded') {
                     //println message.body
@@ -139,6 +148,8 @@ class IndexLister extends Source {
             }
         }
 
+        po = new PostOffice(conf.POSTOFFICE)
+        requestNextDocument()
 
 //        count.times { i ->
 //            int offset = random.nextInt(index.size())
@@ -164,7 +175,7 @@ class IndexLister extends Source {
             //logger.info("Latch was interrupted.")
             Thread.currentThread().interrupt()
         }
-        box.close()
+//        box.close()
     }
 
     void requestNextDocument() {

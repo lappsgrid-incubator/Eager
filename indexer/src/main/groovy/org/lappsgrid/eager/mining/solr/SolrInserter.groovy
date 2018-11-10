@@ -19,7 +19,7 @@ import java.util.concurrent.BlockingQueue
 @Slf4j("logger")
 class SolrInserter extends Sink {
 
-    public static final int COMMIT_INTERVAL = 100
+    public static final int COMMIT_INTERVAL = 5000
     public static final String COLLECTION = "eager"
 
     public static final List SERVERS = [1,2].collect { "http://solr${it}.lappsgrid.org:8983/solr".toString() }
@@ -69,6 +69,11 @@ class SolrInserter extends Sink {
     void store(Object item) {
         documents.mark()
         LappsDocument document = (LappsDocument) item
+        String path = document.getValue(Fields.PATH)
+        if (path == null|| path == '/error') {
+            return
+        }
+
         logger.info("{} storing {}", ++count, document.document.getFieldValue(Fields.ID))
         Timer.Context context = timer.time()
         try {

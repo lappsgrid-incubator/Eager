@@ -4,8 +4,10 @@ import com.codahale.metrics.Timer
 import org.lappsgrid.eager.core.jmx.Registry
 import org.lappsgrid.eager.mining.api.Haltable
 import org.lappsgrid.eager.mining.api.Sink
+import org.lappsgrid.eager.mining.api.Source
 import org.lappsgrid.eager.mining.io.DirectoryLister
 import org.lappsgrid.eager.mining.io.IndexLister
+import org.lappsgrid.eager.mining.io.Lister
 import org.lappsgrid.eager.mining.io.PmcDirectoryLister
 import org.lappsgrid.eager.mining.io.PubmedDirectoryLister
 import org.lappsgrid.eager.mining.jmx.Manager
@@ -60,9 +62,9 @@ class Indexer {
 
         // The last step in the pipeline is to index the document with Solr.
         Sink collector = new SolrInserter(collection, documents)
-        DirectoryLister lister = listerFactory(directory, collector, files)
+        Lister lister = listerFactory(directory, collector, files)
         threads.add(collector)
-        threads.add(lister)
+        threads.add((Source)lister)
 
         // Start the JMX manager and reporters.
         Manager manager = new Manager(lister)

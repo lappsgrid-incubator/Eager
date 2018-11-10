@@ -39,9 +39,14 @@ class Document {
     }
 
     Document(SolrDocument document) {
-        ['id', 'pmid','pmc','doi','year','title','path'].each { field ->
+        ['id', 'pmid','pmc','doi','year','path'].each { field ->
             this.setProperty(field, document.getFieldValue(field))
         }
+        String temp = document.getFieldValue(Fields.TITLE)
+        if (temp) {
+            title = temp.toLowerCase()
+        }
+
         intro = document.getFieldValue(Fields.INTRO)
         articleAbstract = document.getFieldValue(Fields.ABSTRACT)
         discussion = document.getFieldValue(Fields.DISCUSSION)

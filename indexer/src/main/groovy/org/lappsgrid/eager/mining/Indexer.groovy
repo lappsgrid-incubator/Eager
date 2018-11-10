@@ -34,9 +34,11 @@ class Indexer {
     Closure extractorFactory
     Closure listerFactory
     String collection
+    int nParsers
 
     Indexer() {
         timer = Registry.timer()
+        nParsers = 1
     }
 
     void run() {
@@ -44,22 +46,32 @@ class Indexer {
         BlockingQueue<Object> files = new ArrayBlockingQueue<>(10)
         BlockingQueue<Object> documents = new ArrayBlockingQueue<>(10)
 
-        boolean save = false
-        Parser parser1 = new Parser(1, files, documents, extractorFactory())
-        Parser parser2 = new Parser(2, files, documents, extractorFactory())
-        Parser parser3 = new Parser(3, files, documents, extractorFactory())
-        Parser parser4 = new Parser(4, files, documents, extractorFactory())
+//        boolean save = false
+//        Parser parser1 = new Parser(1, files, documents, extractorFactory())
+//        Parser parser2 = new Parser(2, files, documents, extractorFactory())
+//        Parser parser3 = new Parser(3, files, documents, extractorFactory())
+//        Parser parser4 = new Parser(4, files, documents, extractorFactory())
 
+        // Create the specified number of parser threads.
+        List<Haltable> threads = []
+        nParsers.times { i ->
+            threads.add(new Parser(i, files, documents, extractorFactory()))
+        }
+
+        // The last step in the pipeline is to index the document with Solr.
         Sink collector = new SolrInserter(collection, documents)
         DirectoryLister lister = listerFactory(directory, collector, files)
+        threads.add(collector)
+        threads.add(lister)
 
+        // Start the JMX manager and reporters.
         Manager manager = new Manager(lister)
         Registry.register(manager, "org.lappsgrid.eager.mining.Indexer:type=Indexer")
         Registry.startJmxReporter()
         Registry.startLogReporter("org.lappsgrid.eager.mining.metrics", 5, TimeUnit.MINUTES)
 
-        // Start all the threads
-        List<Haltable> threads = [ parser1, parser2, parser3, parser4, collector, lister ]
+
+        // Record the start time and start all the threads.
         long startTime = System.currentTimeMillis()
         threads*.start()
 
@@ -93,6 +105,7 @@ class Indexer {
         cli.i(longOpt:'indexed', 'use the PMC index to retrieve documents')
         cli.r(longOpt:'random', 'extract a random sample from PMC')
         cli.s(longOpt:'size', args:1, argName: 'NUM', 'sample size')
+        cli.p(longOpt: 'parsers', args:1, argName: 'NUM', 'the number of parser threads to spawn')
         cli.h(longOpt:"help", 'display this help message')
         cli.usageMessage.with {
             headerHeading("%n@|bold Description|@%n")
@@ -123,7 +136,10 @@ class Indexer {
         if (params.c) {
             collection = params.c
         }
-
+        int nThreads = 1
+        if (params.p) {
+            nThreads = params.p as int
+        }
 //        XmlDocumentExtractor extractor = null
         Closure extractor = null
         Closure lister = null

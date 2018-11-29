@@ -20,7 +20,7 @@ docker:
 	docker tag $(IMAGE) $(TAG)
 
 start:
-	docker run -d --name $(NAME) $(IMAGE)
+	docker run -d -p 11111:11111 --name $(NAME) $(IMAGE)
 
 stop:
 	docker rm -f $(NAME)

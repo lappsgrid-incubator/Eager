@@ -1,7 +1,10 @@
 FROM openjdk:8-jdk
 RUN useradd -ms /bin/bash eager
-USER eager
+COPY start.sh /home/eager/start.sh
+RUN chmod +x /home/eager/start.sh
 COPY *.jar /home/eager
+USER eager
 WORKDIR /home/eager
-CMD ["java","-jar", "stanford.jar"]
+CMD ["/home/eager/start.sh"]
+
 

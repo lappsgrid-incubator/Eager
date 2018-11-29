@@ -58,8 +58,8 @@ class IntegrationTest {
         assert message.route.size() == 2
         po.send(message)
 
-        if (!latch.await(5, TimeUnit.SECONDS)) {
-            fail 'No response from nlp service'
+        if (!latch.await(10, TimeUnit.SECONDS)) {
+            println 'No response from nlp service'
         }
 
         assert json != null

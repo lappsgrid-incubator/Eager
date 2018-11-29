@@ -40,6 +40,28 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.anc.maven.plugins</groupId>
+                <artifactId>anc-maven-plugin</artifactId>
+                <version>1.0.7</version>
+                <executions>
+                    <execution>
+                        <id>version-file</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>version</goal></goals>
+                    </execution>
+                    <execution>
+                        <id>version-class</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>version-class</goal>
+                        </goals>
+                        <configuration>
+                            <package>org.lappsgrid.eager.mining.error</package>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>

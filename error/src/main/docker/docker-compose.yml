@@ -1,0 +1,19 @@
+---
+version: 3
+services:
+  eager:
+    image: "docker.lappsgrid.org/mining/error-handler"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: 0.1
+          memory: 512M
+      restart_policy:
+        condition: "on-failure"
+      volumes:
+      - error_data:/tmp
+    ports:
+    - "11112:11111"
+volumes:
+  error_data: 

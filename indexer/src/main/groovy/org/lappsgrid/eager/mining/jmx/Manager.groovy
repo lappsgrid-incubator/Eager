@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining.jmx
 
 import org.lappsgrid.eager.mining.io.DirectoryLister
+import org.lappsgrid.eager.mining.io.Lister
 
 /**
  *
@@ -11,9 +12,9 @@ class Manager implements ManagerMBean{
 //    Queue<Node> nodeQueue
 //    Queue<Set> sectionsQueue
 
-    DirectoryLister lister
+    Lister lister
 
-    Manager(DirectoryLister lister) {
+    Manager(Lister lister) {
         this.lister = lister
     }
 

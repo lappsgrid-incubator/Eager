@@ -14,7 +14,7 @@ import java.util.concurrent.BlockingQueue
  * Traverse a directory hierarchy
  */
 @Slf4j("logger")
-abstract class DirectoryLister extends Source {
+abstract class DirectoryLister extends Source implements Lister {
 
     Stack<File> stack
     int count

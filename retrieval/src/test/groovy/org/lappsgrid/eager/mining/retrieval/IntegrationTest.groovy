@@ -57,7 +57,8 @@ class IntegrationTest {
     void pmc() {
         String mbox = 'integration.load'
         boolean received = false
-        String id = '/var/data/pmc/xml/non/Br_J_Cancer/PMC2376180.nxml'
+        //String id = '/var/data/pmc/xml/non/Br_J_Cancer/PMC2376180.nxml'
+        String id = '/var/data/pmc/xml/com/Inflamm_Regen/PMC5828134.nxml'
 
         Configuration c = new Configuration()
 //        String xml = rpc(c.POSTOFFICE, id)

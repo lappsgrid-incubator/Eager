@@ -8,6 +8,7 @@ import org.lappsgrid.eager.core.solr.LappsDocument
 import org.lappsgrid.eager.core.Factory
 import org.lappsgrid.eager.mining.api.Worker
 import org.lappsgrid.eager.mining.parser.XmlDocumentExtractor
+import org.lappsgrid.eager.mining.section.Packet
 
 import java.util.concurrent.BlockingQueue
 
@@ -36,18 +37,36 @@ class Parser extends Worker {
     }
 
     Object work(Object item) {
-        File file = (File) item
-        logger.info("{} Parsing {}", count++, file.name)
+        String path
+        String xml
+        if (item instanceof File) {
+            File file = (File) item
+            path = file.path
+            xml = file.text
+        }
+        else if (item instanceof Packet) {
+            Packet packet = (Packet) item
+            path = packet.path
+            xml = packet.asString()
+        }
+        else {
+            logger.error("Invalid input to the parser: {}", item.class)
+            return new LappsDocument().path("/error").id("-1")
+        }
+
+        logger.info("{} Parsing {}", count++, path)
         documentsProcessed.mark()
         Timer.Context context = timer.time()
         try {
-            Node article = parser.parse(file)
+            Node article = parser.parseText(xml)
             LappsDocument document = extractor.extractValues(article)
-            document.path(file.getPath())
+            document.path(path)
             return document
         }
         catch (Exception e) {
+            logger.error("Unable to parse {}", path, e)
             documentErrors.mark()
+            return new LappsDocument().path("/error").id("-1")
         }
         finally {
             context.stop()

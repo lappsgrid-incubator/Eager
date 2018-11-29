@@ -63,6 +63,21 @@ $> sudo -u solr bin/solr create -c <collection name> -n <config name> -shards <n
 ``` 
 $> sudo -u solr bin/solr delete -c <collection name>
 ```
+
+## RabbitMQ
+
+
+Most of the backend services exchange messages via RabbitMQ to coordinate processing.  
+
+### PostOffice
+
+Service messages are routed through the `eager.postoffice` exchange.  The following `MailBox`es have been defined:
+
+1. **load**<br/>loads a PubMed or PubMedCentral document.  Currently the service loads documents from the file system. Future versions will load documents from *redis*.
+1. **nlp.stanford**<br/>performs tokenization, sentence splitting, and part of speech tagging.
+1. **save**<br/>saves the input document to the *redis* store. *(not yet available)*
+1. **error**<br/>an error logging service. Any service that encounters an unrecoverable error should send an appropriate message to the **error** mail box so the condition can be logged in a central location.
+
 ## Docker Swarm
 
 Only the swarm manager (swarm-1) has been assigned an external IP address. To connect to one of the other swarm nodes first SSH in to swarm-1 and from there you can ssh to any other worker using its local IP address and the key file ~/.ssh/tacc-shared-key.pem

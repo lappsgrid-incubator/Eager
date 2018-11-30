@@ -126,7 +126,7 @@ class Main implements MainMBean {
         Registry.startJmxReporter()
         app.start()
 
-        // Wait forever, or at least until another thread notifies() us.
+        // Wait forever, or at least until another thread calls notify() or notifyAll() on the semaphore.
         synchronized (app.semaphore) {
             app.semaphore.wait()
         }

@@ -6,7 +6,39 @@ The `org.lappsgrid.eager.mining.rabbitmq` module provides a simplified API for a
 
 1. **Task Queues**<br/>messages are distributed to subscribed workers using a fair round robin algorithm.
 1. **Publish/Subscribe**<br/>broadcasters send messages to all subscribed listeners.
-1. **Routing**<br/>point-to-point communication between sender and receiver.
+1. **Topic Queues**<br/>point-to-point communication between sender and receiver.
+
+The most common use case (so far) is topic queues, for example to send a text to the Stanford NLP services before further processing:
+
+```
+final String EXCHANGE = "eager.postoffice"
+final String MBOX = "back.to.me"
+Object semaphore = new Object()
+
+// Define a MailBox that the response will be sent to.
+MessageBox box = new MessageBox(EXCHANGE, MBOX) {
+    void recv(Message message) {
+        System.out.println(message.getBody())
+        synchronized(semaphore) {
+            semaphore.notify()
+        }
+    }
+}
+
+// The message to be sent.
+Message message = new Message()
+    .body("Goodbye cruel world. I am leaving your today.")
+    .route("nlp.stanford")
+    .route(MBOX)
+     
+PostOffice po = new PostOffice(EXCHANGE)
+po.send(message)
+
+// Wait for the response.
+synchronized(semaphore) {
+    semaphore.wait()
+}
+```
 
 ## The RabbitMQ Server
 

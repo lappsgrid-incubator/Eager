@@ -66,7 +66,7 @@ $> sudo -u solr bin/solr delete -c <collection name>
 
 ## RabbitMQ
 
-
+[RabbitMQ](https://www.rabbitmq.com) is an open source message broker
 Most of the backend services exchange messages via RabbitMQ to coordinate processing.  
 
 ### PostOffice

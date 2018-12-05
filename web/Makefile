@@ -17,6 +17,9 @@ docker:
 	cd src/main/docker && docker build -t $(IMAGE) .
 	docker tag $(IMAGE) $(TAG)
 
+style:
+	cd src/main/resources/static/css && lessc main.less main.css
+
 run:
 	java -jar target/$(JAR)
 

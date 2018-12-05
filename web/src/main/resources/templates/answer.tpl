@@ -19,7 +19,7 @@ content: {
     }
 
     h1 'The Answers'
-    table {
+    table(class:'answers') {
         tr {
             th 'Index'
             th 'Score'
@@ -27,7 +27,12 @@ content: {
             th 'Year'
             th 'Title'
             if (data.keys) {
-                data.keys.each { th(it) }
+                data.keys.each { key ->
+                    data.documents[0].scores[key].each { e ->
+                        th(e.key)
+                    }
+                    th(key)
+                }
             }
 
         }
@@ -40,7 +45,10 @@ content: {
                 td doc.title
                 if (data.keys) {
                     data.keys.each { key ->
-                        td String.format("%2.3f", doc.scores[key].sum())
+                        doc.scores[key].each { e ->
+                            td String.format("%2.3f", e.value)
+                        }
+                        td class:'sum', String.format("%2.3f", doc.scores[key].sum())
                     }
                 }
             }

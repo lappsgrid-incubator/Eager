@@ -1,9 +1,11 @@
 package org.lappsgrid.eager.model
 
+import java.util.function.Consumer
+
 /**
  *
  */
-class Scores {
+class Scores implements Iterable<Map.Entry<String,Float>> {
     Map<String,Float> scores = [:]
 
     void put(String key, Float score) {
@@ -38,5 +40,15 @@ class Scores {
             total += value
         }
         return total
+    }
+
+    @Override
+    Iterator<Map.Entry<String,Float>> iterator() {
+        return scores.iterator()
+    }
+
+    @Override
+    void forEach(Consumer<? super Map.Entry> action) {
+        scores.forEach(action)
     }
 }

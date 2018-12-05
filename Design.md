@@ -13,5 +13,12 @@
   - Normalize scores
 1. Return sorted list of documents (document IDs). Limited to top 100.
 
+# Web Application
+
+The `web` modules contains a Spring Boot web application that provides a Web front and a REST API.  The web application is written in Groovy and also uses Groovy templates to generate the HTML UI.  The HTML UI uses [Less](http://lesscss.org) for CSS styling with some [JQuery](https://jquery.com) and JavaScript.
+
+# Query Processing
+
+The query processing module takes a single sentence (the question) and transforms it into a query for the search engine being used.  Currently only Solr is supported.
 
  

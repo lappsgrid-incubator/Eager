@@ -65,6 +65,9 @@ select {
 .clear {
   clear: both;
 }
+.sum {
+  background-color: #d7f7d4;
+}
 div.header {
   font-family: Helvetica, Verdana, sans-serif;
   color: white;
@@ -169,8 +172,8 @@ div.header .logout a {
   font-size: 10pt;
 }
 div.content {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 div.content h1,
 div.content h2,
@@ -231,6 +234,10 @@ div.content table tr th .warn,
 div.content table tr td .warn {
   color: #AD1F2B;
 }
+div.content table tr th .sum,
+div.content table tr td .sum {
+  background-color: #fbe9eb;
+}
 div.content table tr th {
   color: white;
   background-color: #a01d28;
@@ -249,6 +256,9 @@ div.content table tr:last-child td:last-child {
 }
 div.content table.grid tr:nth-child(even) {
   background-color: #fbe9eb;
+}
+div.content table.answers tr td {
+  border-bottom: 1px #AD1F2B;
 }
 div.content .slidercontainer {
   width: 100%;

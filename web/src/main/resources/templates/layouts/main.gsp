@@ -7,6 +7,9 @@ html {
         if (javascript) {
             script(javascript)
         }
+        if (css) {
+            style(css)
+        }
     }
     body {
         div(class:'header') {

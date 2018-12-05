@@ -100,6 +100,10 @@ input[type=text], select {
   clear: both;
 }
 
+.sum {
+  background-color: @hilight;
+}
+
 div.header {
   font-family: Helvetica, Verdana, sans-serif;
   color: white;
@@ -205,8 +209,8 @@ div.header {
 }
 
 div.content {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
 
   h1, h2, h3, h4, h5, h6 {
     color: @darker;
@@ -269,6 +273,9 @@ div.content {
         .warn {
           color: @theme;
         }
+        .sum {
+          background-color: @shade;
+        }
       }
       th {
         color: white;
@@ -287,6 +294,13 @@ div.content {
   table.grid {
     tr {
       &:nth-child(even) { background-color: @shade; }
+    }
+  }
+  table.answers {
+    tr {
+      td {
+        border-bottom: 1px @theme;
+      }
     }
   }
 

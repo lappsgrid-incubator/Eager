@@ -2,7 +2,9 @@ package org.lappsgrid.eager.mining.ranking
 
 import groovy.util.logging.Slf4j
 import org.lappsgrid.eager.mining.api.Query
-import org.lappsgrid.eager.model.Document
+import org.lappsgrid.eager.mining.scoring.ScoringAlgorithm
+import org.lappsgrid.eager.mining.scoring.WeightedAlgorithm
+import org.lappsgrid.eager.mining.model.Document
 
 /**
  *

@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.model
+package org.lappsgrid.eager.mining.model
 
 import org.apache.solr.common.SolrDocument
 import org.lappsgrid.eager.core.solr.Fields

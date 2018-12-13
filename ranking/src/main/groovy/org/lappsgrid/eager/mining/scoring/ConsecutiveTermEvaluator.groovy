@@ -9,20 +9,30 @@ class ConsecutiveTermEvaluator implements ScoringAlgorithm, Tokenizer {
     @Override
     float score(Query query, String input) {
         boolean seen = false
+        int total = 0
         int count = 0
         String[] tokens = tokenize(input)
         tokens.each { word ->
             if (query.terms.contains(word)) {
                 if (seen) {
+                    if (count == 0) {
+                        // This is the second consecutive occurence, so count the first.
+                        count = 1
+                    }
                     ++count
                 }
                 seen = true
             }
             else {
+                total += count
+                count = 0
                 seen = false
             }
         }
-        return ((float) count) / tokens.length
+        total += count
+        println "Count: $total"
+        println "Length: ${tokens.length}"
+        return ((float) total) / tokens.length
     }
 
     @Override

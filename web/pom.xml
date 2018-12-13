@@ -18,7 +18,7 @@
     </parent>
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>web</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <name>Web Service</name>
     <description>Web front end for the question answering system</description>
     <packaging>jar</packaging>
@@ -111,6 +111,11 @@
         <dependency>
             <groupId>org.lappsgrid.eager.mining</groupId>
             <artifactId>rabbitmq</artifactId>
+            <version>${mining.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lappsgrid.eager.mining</groupId>
+            <artifactId>ranking</artifactId>
             <version>${mining.version}</version>
         </dependency>
         <dependency>

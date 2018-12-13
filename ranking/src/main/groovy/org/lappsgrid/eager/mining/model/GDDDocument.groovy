@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.model
+package org.lappsgrid.eager.mining.model
 
 /**
  *

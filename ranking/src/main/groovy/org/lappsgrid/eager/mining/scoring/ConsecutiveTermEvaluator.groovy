@@ -30,8 +30,8 @@ class ConsecutiveTermEvaluator implements ScoringAlgorithm, Tokenizer {
             }
         }
         total += count
-        println "Count: $total"
-        println "Length: ${tokens.length}"
+//        println "Count: $total"
+//        println "Length: ${tokens.length}"
         return ((float) total) / tokens.length
     }
 

@@ -9,12 +9,13 @@ class TermFrequencyEvaluator implements ScoringAlgorithm, Tokenizer {
     @Override
     float score(Query query, String input) {
         int count = 0
-        tokenize(input).each { token ->
+        String[] tokens = tokenize(input)
+        tokens.each { token ->
             if (query.terms.contains(token)) {
                 ++count
             }
         }
-        return ((float)count) / input.length()
+        return ((float)count) / tokens.length
     }
 
     @Override

@@ -2,27 +2,16 @@ package org.lappsgrid.eager.mining.scoring
 
 import org.junit.*
 import org.lappsgrid.eager.mining.api.Query
-import org.lappsgrid.eager.mining.api.QueryProcessor
 
 //import static org.junit.Assert.*
 
 /**
  *
  */
-class ConsecutiveTermEvaluatorTest {
+class ConsecutiveTermEvaluatorTest extends TestBase {
 
-    ScoringAlgorithm evaluator
-    Query query
-
-    @Before
-    void setup() {
-        evaluator = new ConsecutiveTermEvaluator()
-        query = makeQuery('a b c')
-    }
-
-    @After
-    void teardown() {
-        evaluator = null
+    ScoringAlgorithm create() {
+        return new ConsecutiveTermEvaluator()
     }
 
     @Test
@@ -46,27 +35,12 @@ class ConsecutiveTermEvaluatorTest {
 
     @Test
     void twoSpans() {
-        assert closeEnough(4.0f/5.0f, evaluator.score(query, 'a b x a b'))
+        closeEnough(4.0f/5.0f, 'a b x a b')
     }
 
     @Test
     void twoSpansofConsecutiveTerms() {
-        assert (5.0/9.0) == evaluator.score(query, 'a b x x b x a b c')
+        closeEnough(5.0/9.0,'a b x x b x a b c')
     }
 
-    Query makeQuery(String question) {
-        List<String> tokens = question.trim().toLowerCase().split(/\s+/)
-        return new Query().question(question).terms(tokens)
-    }
-
-    boolean closeEnough(double expected, double actual) {
-        float delta = 0
-        if (actual < expected) {
-            delta = expected - actual
-        }
-        else {
-            delta = actual - expected
-        }
-        return delta < 0.00001f
-    }
 }

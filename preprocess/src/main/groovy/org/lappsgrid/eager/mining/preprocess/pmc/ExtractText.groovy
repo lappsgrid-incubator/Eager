@@ -31,7 +31,7 @@ import static org.lappsgrid.discriminator.Discriminators.*
  *
  */
 @Slf4j("logger")
-class ExtractText implements Runnable {
+class  ExtractText implements Runnable {
 
     static final String MAILBOX = "eager.preprocess.parsed"
     Meter documentCount

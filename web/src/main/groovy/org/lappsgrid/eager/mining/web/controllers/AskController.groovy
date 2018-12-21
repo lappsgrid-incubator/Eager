@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.web
+package org.lappsgrid.eager.mining.web.controllers
 
 import groovy.json.JsonSlurper
 import groovy.util.logging.Slf4j
@@ -18,6 +18,7 @@ import org.lappsgrid.eager.mining.model.Document
 import org.lappsgrid.eager.mining.model.GDDDocument
 import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
 import org.lappsgrid.eager.mining.ranking.RankingEngine
+import org.lappsgrid.eager.mining.web.nlp.DocumentProcessor
 import org.lappsgrid.eager.query.SimpleQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.ESQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.GDDSnippetQueryProcessor
@@ -47,11 +48,14 @@ class AskController {
 
     QueryProcessor queryProcessor
     QueryProcessor geoProcessor
+    DocumentProcessor documentProcessor
+
     String collection
 
     public AskController() {
         queryProcessor = new SimpleQueryProcessor()
         geoProcessor = new GDDSnippetQueryProcessor()
+        documentProcessor = new DocumentProcessor()
         collection = "bioqa"
 //        collection = "eager"
         SSL.enable()
@@ -170,11 +174,12 @@ class AskController {
         result.query = query
         result.size = n
 
-        List docs = []
-        for (int i = 0; i < n; ++i) {
-            SolrDocument doc = documents.get(i)
-             docs << new Document(doc)
-        }
+        List docs = documentProcessor.process(documents)
+//        List docs = []
+//        for (int i = 0; i < n; ++i) {
+//            SolrDocument doc = documents.get(i)
+//             docs << new Document(doc)
+//        }
 
         result.documents = rank(query, docs, params)
         if (result.documents.size() > size) {

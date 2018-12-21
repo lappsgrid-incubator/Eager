@@ -1,11 +1,8 @@
-package org.lappsgrid.eager.web
+package org.lappsgrid.eager.mining.web
 
 import org.junit.Ignore
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.lappsgrid.eager.mining.web.controllers.AskController
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.junit4.SpringRunner
 
 /**
  *

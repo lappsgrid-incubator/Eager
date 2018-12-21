@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.mining.nlp.stanford
+package org.lappsgrid.eager.mining.web.nlp.stanford
 
 /**
  *

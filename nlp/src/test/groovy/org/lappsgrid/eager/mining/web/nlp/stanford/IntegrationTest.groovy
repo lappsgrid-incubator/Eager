@@ -1,10 +1,8 @@
-package org.lappsgrid.eager.mining.nlp.stanford
+package org.lappsgrid.eager.mining.web.nlp.stanford
 
 import org.junit.*
 import org.lappsgrid.eager.core.json.Serializer
 import org.lappsgrid.serialization.DataContainer
-
-import static org.junit.Assert.*
 
 import static org.lappsgrid.discriminator.Discriminators.*
 

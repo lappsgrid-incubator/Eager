@@ -1,4 +1,4 @@
-package org.lappsgrid.eager.web
+package org.lappsgrid.eager.mining.web
 
 import org.apache.solr.client.solrj.SolrClient
 import org.apache.solr.client.solrj.impl.CloudSolrClient

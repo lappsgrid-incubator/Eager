@@ -1,11 +1,10 @@
-package org.lappsgrid.eager.nlp
+package org.lappsgrid.eager.mining.web.nlp
 
 import edu.stanford.nlp.ling.CoreLabel
 import edu.stanford.nlp.pipeline.CoreDocument
 import edu.stanford.nlp.pipeline.CoreSentence
 import edu.stanford.nlp.pipeline.StanfordCoreNLP
 import edu.stanford.nlp.util.Pair
-import groovy.util.logging.Log4j2
 import org.lappsgrid.discriminator.Discriminators
 import org.lappsgrid.serialization.LifException
 import org.lappsgrid.serialization.lif.Annotation
@@ -49,7 +48,8 @@ class Stanford {
         View sentences = container.newView();
         for (CoreSentence s : document.sentences()) {
             Pair<Integer,Integer> offsets = s.charOffsets();
-            sentences.newAnnotation("s-" + (id++), Discriminators.Uri.SENTENCE, offsets.first, offsets.second);
+            Annotation sentence = sentences.newAnnotation("s-" + (id++), Discriminators.Uri.SENTENCE, offsets.first, offsets.second);
+            sentence.addFeature('text', s.text())
         }
         if (id > 0) {
             sentences.addContains(Discriminators.Uri.SENTENCE, this.getClass().getName(), "stanford");

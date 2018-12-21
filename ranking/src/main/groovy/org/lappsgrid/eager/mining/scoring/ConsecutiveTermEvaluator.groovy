@@ -1,13 +1,14 @@
 package org.lappsgrid.eager.mining.scoring
 
 import org.lappsgrid.eager.mining.api.Query
+import org.lappsgrid.serialization.lif.Container
 
 /**
  * Count the number of times consecutive terms appear in the title.
  */
-class ConsecutiveTermEvaluator implements ScoringAlgorithm, Tokenizer {
+class ConsecutiveTermEvaluator implements ScoringAlgorithm {
     @Override
-    float score(Query query, String input) {
+    float score(Query query, Container container) {
         boolean seen = false
         int total = 0
         int count = 0

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><title>LAPPS/EAGER</title>
+    <link rel='stylesheet' type='text/css' href='css/main.css'/>
+    <script src='js/jquery.min.js'></script>
+    <script src="js/form.js"></script>
+    <script>
+        $(document).ready(function () {
+            disable('#submit');
+            console.log("Disabled the submit button.");
+        });
+    </script>
+</head>
+<body>
+<div class='header'><h1>The Language Applications Grid</h1>
+    <h2>Ask Me (almost) Anything</h2>
+    <p class='copyright'>version null</p></div>
+<div class='content'>
+    <div><h1>You previously entered</h1>
+        <table>
+            <tr>
+                <td>User name</td>
+                <td>uu@c.a</td>
+            </tr>
+            <tr>
+                <td>Dataset name</td>
+                <td>undefined</td>
+            </tr>
+        </table>
+    </div>
+    <h1>Testing</h1>
+    <form action='test' method='post'><label for='username'>User name:</label><input id='username' name='username'
+                                                                                     type='text' size='40'
+                                                                                     onkeyup='validate(this)'></input><label
+            for='dataset'>Dataset name: </label><input id='dataset' name='dataset' type='text' size='40'></input><input
+            type='submit' id='submit' class='button' value='Save'/></form>
+    <div class='copyright'><p>Copyright 2019 The Language Applications Grid</p></div>
+</div>
+</body>
+</html>

@@ -2,7 +2,7 @@ package org.lappsgrid.eager.mining.section
 
 import com.codahale.metrics.Meter
 import com.codahale.metrics.Timer
-import org.lappsgrid.eager.core.Factory
+import org.lappsgrid.eager.mining.core.Factory
 import org.lappsgrid.eager.mining.api.Worker
 
 import java.util.concurrent.BlockingQueue

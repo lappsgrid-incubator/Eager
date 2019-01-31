@@ -4,7 +4,7 @@ import com.codahale.metrics.Meter
 import com.codahale.metrics.Slf4jReporter
 import com.codahale.metrics.Timer
 import groovy.util.logging.Slf4j
-import org.lappsgrid.eager.core.jmx.Registry
+import org.lappsgrid.eager.mining.core.jmx.Registry
 
 import java.util.concurrent.TimeUnit
 

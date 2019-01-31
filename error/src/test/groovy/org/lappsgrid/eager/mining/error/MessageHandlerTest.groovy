@@ -2,7 +2,7 @@ package org.lappsgrid.eager.mining.error
 
 import org.junit.Ignore
 import org.junit.Test
-import org.lappsgrid.eager.core.Configuration
+import org.lappsgrid.eager.mining.core.Configuration
 import org.lappsgrid.eager.rabbitmq.pubsub.Publisher
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 

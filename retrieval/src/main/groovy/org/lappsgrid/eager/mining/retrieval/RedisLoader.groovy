@@ -1,7 +1,7 @@
 package org.lappsgrid.eager.mining.retrieval
 
-import org.lappsgrid.eager.core.Configuration
-import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.core.Configuration
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice

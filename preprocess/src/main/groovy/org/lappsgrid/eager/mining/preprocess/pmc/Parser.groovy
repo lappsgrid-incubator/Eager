@@ -1,7 +1,7 @@
 package org.lappsgrid.eager.mining.preprocess.pmc
 
-import org.lappsgrid.eager.core.Factory
-import org.lappsgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.mining.core.Factory
+import org.lappsgrid.eager.mining.core.solr.LappsDocument
 
 /**
  *

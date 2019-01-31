@@ -2,7 +2,7 @@ package org.lappsgrid.eager.mining.section
 
 import org.junit.Ignore
 import org.junit.Test
-import org.lappsgrid.eager.core.Configuration
+import org.lappsgrid.eager.mining.core.Configuration
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.MessageBox

@@ -2,7 +2,7 @@ package org.lappsgrid.eager.mining.preprocess.pmc
 
 import com.codahale.metrics.Meter
 import groovy.util.logging.Slf4j
-import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.DataContainer

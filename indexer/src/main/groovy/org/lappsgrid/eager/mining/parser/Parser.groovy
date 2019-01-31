@@ -3,9 +3,9 @@ package org.lappsgrid.eager.mining.parser
 import com.codahale.metrics.Meter
 import com.codahale.metrics.Timer
 import groovy.util.logging.Slf4j
-import org.lappsgrid.eager.core.jmx.Registry
-import org.lappsgrid.eager.core.solr.LappsDocument
-import org.lappsgrid.eager.core.Factory
+import org.lappsgrid.eager.mining.core.jmx.Registry
+import org.lappsgrid.eager.mining.core.solr.LappsDocument
+import org.lappsgrid.eager.mining.core.Factory
 import org.lappsgrid.eager.mining.api.Worker
 import org.lappsgrid.eager.mining.parser.XmlDocumentExtractor
 import org.lappsgrid.eager.mining.section.Packet

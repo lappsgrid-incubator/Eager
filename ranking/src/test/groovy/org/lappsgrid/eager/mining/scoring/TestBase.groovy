@@ -3,6 +3,9 @@ package org.lappsgrid.eager.mining.scoring
 import org.junit.After
 import org.junit.Before
 import org.lappsgrid.eager.mining.api.Query
+import org.lappsgrid.eager.mining.model.Section
+import org.lappsgrid.eager.mining.model.Sentence
+import org.lappsgrid.eager.mining.model.Token
 
 /**
  *
@@ -31,8 +34,27 @@ abstract class TestBase {
         return new Query().question(question).terms(tokens)
     }
 
+    Section makeSection(String input) {
+        Section section = new Section()
+        section.text = input
+        Sentence sentence = new Sentence()
+        sentence.text = input
+        List<String> words = input.tokenize(" ")
+        words.each { String word ->
+            Token token = new Token()
+            token.word = word
+            token.lemma = word
+            token.pos = 'NN'
+            token.category = 'category'
+            sentence.tokens.add(token)
+            section.tokens.add(token)
+        }
+        section.sentences.add(sentence)
+        return section
+    }
+
     void closeEnough(double expected, String question) {
-        assert closeEnough(expected, evaluator.score(query, question))
+        assert closeEnough(expected, evaluator.score(query, makeSection(question)))
     }
 
     boolean closeEnough(double expected, double actual) {

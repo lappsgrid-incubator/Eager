@@ -1,6 +1,7 @@
 package org.lappsgrid.eager.mining.scoring
 
 import org.lappsgrid.eager.mining.api.Query
+import org.lappsgrid.eager.mining.model.Section
 
 /**
  *
@@ -17,8 +18,8 @@ class WeightedAlgorithm implements ScoringAlgorithm {
         this.name = "Weighted " + algorithm.name()
     }
 
-    float score(Query query, String input) {
-        return weight * algorithm.score(query, input)
+    float score(Query query, Section section) {
+        return weight * algorithm.score(query, section)
     }
 
     String name() {

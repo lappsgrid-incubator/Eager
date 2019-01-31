@@ -1,19 +1,21 @@
 package org.lappsgrid.eager.mining.scoring
 
 import org.lappsgrid.eager.mining.api.Query
+import org.lappsgrid.eager.mining.model.Section
 
 /**
  * Count the number of times consecutive terms appear in the title.
  */
-class ConsecutiveTermEvaluator implements ScoringAlgorithm, Tokenizer {
+class ConsecutiveTermEvaluator extends AbstractScoringAlgorithm {
     @Override
-    float score(Query query, String input) {
+    float score(Query query, Section section) {
         boolean seen = false
         int total = 0
         int count = 0
-        String[] tokens = tokenize(input)
-        tokens.each { word ->
-            if (query.terms.contains(word)) {
+        int n = 0
+        section.tokens.each { word ->
+            ++n
+            if (contains(query.terms, word)) {
                 if (seen) {
                     if (count == 0) {
                         // This is the second consecutive occurence, so count the first.
@@ -29,10 +31,13 @@ class ConsecutiveTermEvaluator implements ScoringAlgorithm, Tokenizer {
                 seen = false
             }
         }
+        if (n == 0) {
+            return 0f
+        }
         total += count
 //        println "Count: $total"
 //        println "Length: ${tokens.length}"
-        return ((float) total) / tokens.length
+        return ((float) total) / n
     }
 
     @Override

@@ -1,8 +1,8 @@
 package org.lappsgrid.eager.mining.parser
 
 import org.junit.*
-import org.lappsgrid.eager.core.solr.Fields
-import org.lappsgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.mining.core.solr.Fields
+import org.lappsgrid.eager.mining.core.solr.LappsDocument
 import static org.junit.Assert.*
 
 /**

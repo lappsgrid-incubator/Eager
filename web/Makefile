@@ -21,10 +21,10 @@ style:
 	cd src/main/resources/static/css && lessc main.less main.css
 
 run:
-	java -jar target/$(JAR)
+	java -Xmx8G -jar target/$(JAR)
 
 start:
-	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)\
+	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)
 
 stop:
 	docker rm -f $(NAME)

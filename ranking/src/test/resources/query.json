@@ -1,0 +1,5 @@
+{
+  "question" : "What kinases phosphorylate AKT1 on threonine 308?",
+  "query" : "body:kinases AND body:phosphorylate AND body:akt1 AND body:threonine AND body:308",
+  "terms" : [ "kinases", "phosphorylate", "akt1", "threonine", "308" ]
+}

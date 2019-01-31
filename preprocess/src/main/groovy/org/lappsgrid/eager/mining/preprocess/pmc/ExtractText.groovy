@@ -7,10 +7,10 @@ import groovy.cli.picocli.*
 import groovy.util.logging.Slf4j
 import org.apache.commons.pool2.ObjectPool
 import org.apache.commons.pool2.impl.GenericObjectPool
-import org.lappsgrid.eager.core.Configuration
-import org.lappsgrid.eager.core.Utils
-import org.lappsgrid.eager.core.jmx.Registry
-import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.core.Configuration
+import org.lappsgrid.eager.mining.core.Utils
+import org.lappsgrid.eager.mining.core.jmx.Registry
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.mining.preprocess.jmx.Manager
 import org.lappsgrid.eager.mining.preprocess.jmx.ManagerMBean
 import org.lappsgrid.eager.mining.preprocess.pool.ParserFactory
@@ -31,7 +31,7 @@ import static org.lappsgrid.discriminator.Discriminators.*
  *
  */
 @Slf4j("logger")
-class ExtractText implements Runnable {
+class  ExtractText implements Runnable {
 
     static final String MAILBOX = "eager.preprocess.parsed"
     Meter documentCount

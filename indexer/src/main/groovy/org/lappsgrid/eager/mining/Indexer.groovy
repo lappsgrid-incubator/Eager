@@ -1,7 +1,8 @@
 package org.lappsgrid.eager.mining
 
 import com.codahale.metrics.Timer
-import org.lappsgrid.eager.core.jmx.Registry
+import org.lappsgrid.eager.mining.core.Utils
+import org.lappsgrid.eager.mining.core.jmx.Registry
 import org.lappsgrid.eager.mining.api.Haltable
 import org.lappsgrid.eager.mining.api.Sink
 import org.lappsgrid.eager.mining.api.Source
@@ -90,13 +91,14 @@ class Indexer {
     }
 
     static String format(long input) {
-        long msec = input % 1000
-        long seconds = input / 1000
-        long minutes = seconds / 60
-        seconds = seconds % 60
-        long hours = minutes / 60
-        minutes = minutes % 60
-        return String.format("%d:%02d:%02d.%03d", hours, minutes, seconds, msec);
+//        long msec = input % 1000
+//        long seconds = input / 1000
+//        long minutes = seconds / 60
+//        seconds = seconds % 60
+//        long hours = minutes / 60
+//        minutes = minutes % 60
+//        return String.format("%d:%02d:%02d.%03d", hours, minutes, seconds, msec);
+        return Utils.format(input)
     }
 
     static void main(String[] args) {

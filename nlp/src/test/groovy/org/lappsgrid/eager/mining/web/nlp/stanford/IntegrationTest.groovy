@@ -1,12 +1,12 @@
 package org.lappsgrid.eager.mining.web.nlp.stanford
 
 import org.junit.*
-import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.serialization.DataContainer
 
 import static org.lappsgrid.discriminator.Discriminators.*
 
-import org.lappsgrid.eager.core.Configuration
+import org.lappsgrid.eager.mining.core.Configuration
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
@@ -56,7 +56,7 @@ class IntegrationTest {
         assert message.route.size() == 2
         po.send(message)
 
-        if (!latch.await(10, TimeUnit.SECONDS)) {
+        if (!latch.await(30, TimeUnit.SECONDS)) {
             println 'No response from nlp service'
         }
 

@@ -2,9 +2,10 @@ package org.lappsgrid.eager.mining.ranking
 
 import groovy.util.logging.Slf4j
 import org.lappsgrid.eager.mining.api.Query
+import org.lappsgrid.eager.mining.model.Section
+import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.scoring.ScoringAlgorithm
 import org.lappsgrid.eager.mining.scoring.WeightedAlgorithm
-import org.lappsgrid.eager.mining.model.Document
 
 /**
  *
@@ -71,6 +72,9 @@ class RankingEngine {
                 float score = 0.0f
                 if (field instanceof String) {
 //                    score = algorithm.score(query, field)
+                    score = calculate(algorithm, query, field)
+                }
+                else if (field instanceof Section) {
                     score = calculate(algorithm, query, field)
                 }
                 else if (field instanceof Collection) {

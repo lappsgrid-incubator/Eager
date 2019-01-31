@@ -4,7 +4,7 @@ import org.junit.Ignore
 import org.junit.Test
 import static org.junit.Assert.*
 
-import org.lappsgrid.eager.core.Configuration
+import org.lappsgrid.eager.mining.core.Configuration
 import org.lappsgrid.eager.rabbitmq.pubsub.Publisher
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice

@@ -3,7 +3,7 @@ package org.lappsgrid.eager.rabbitmq.topic
 import com.rabbitmq.client.AMQP
 import com.rabbitmq.client.DefaultConsumer
 import com.rabbitmq.client.Envelope
-import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.RabbitMQ
 

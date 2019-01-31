@@ -3,7 +3,7 @@ package org.lappsgrid.eager.mining.web.nlp
 import groovy.util.logging.Slf4j
 import org.apache.solr.common.SolrDocument
 import org.apache.solr.common.SolrDocumentList
-import org.lappsgrid.eager.mining.model.Document
+import org.lappsgrid.eager.mining.ranking.model.Document
 
 import java.util.concurrent.ExecutorCompletionService
 import java.util.concurrent.Executors
@@ -46,8 +46,9 @@ class DocumentProcessor {
                 Document document = future.get()
                 result.add(document)
             }
-            catch (Exception e) {
-                logger.error(e)
+            catch (Throwable e) {
+                logger.error("Unable to get future document.", e)
+//                throw new IOException(e)
             }
         }
         return result

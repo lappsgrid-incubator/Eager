@@ -1,6 +1,6 @@
 package org.lappsgrid.eager.mining.section
 
-import org.lappsgrid.eager.core.Configuration
+import org.lappsgrid.eager.mining.core.Configuration
 import org.lappsgrid.eager.mining.index.PMCIndex
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MessageBox

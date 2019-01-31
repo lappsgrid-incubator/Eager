@@ -1,10 +1,9 @@
 package org.lappsgrid.eager.mining.web.nlp
 
 import org.apache.solr.common.SolrDocument
-import org.lappsgrid.eager.core.solr.Fields
-import org.lappsgrid.eager.mining.model.Document
-import org.lappsgrid.eager.mining.nlp.Stanford
-import org.lappsgrid.serialization.lif.Container
+import org.lappsgrid.eager.mining.core.solr.Fields
+import org.lappsgrid.eager.mining.model.Section
+import org.lappsgrid.eager.mining.ranking.model.Document
 
 import java.util.concurrent.Callable
 
@@ -39,10 +38,22 @@ class DocumentWorker implements Callable<Document> {
 
         document.title = process(Fields.TITLE)
         document.articleAbstract = process(Fields.ABSTRACT)
+//        document.body = process(Fields.BODY)
+        document.body = solr.getFieldValue(Fields.BODY)
         return document
     }
 
-    public Container process(String fieldName) {
-        return nlp.process(solr.getFieldValue(fieldName))
+    public Section process(String fieldName) {
+        Object text = solr.getFieldValue(fieldName)
+        if (text == null) {
+            Section section = new Section()
+            section.text = ''
+            return section
+        }
+        return nlp.process(text.toString())
     }
+
+//    public Container process(String fieldName) {
+//        return nlp.process(solr.getFieldValue(fieldName))
+//    }
 }

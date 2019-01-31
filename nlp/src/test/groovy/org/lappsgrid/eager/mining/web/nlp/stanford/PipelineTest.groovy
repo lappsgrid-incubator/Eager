@@ -2,7 +2,7 @@ package org.lappsgrid.eager.mining.web.nlp.stanford
 
 import org.junit.*
 import static org.lappsgrid.discriminator.Discriminators.*
-import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.serialization.lif.Container
 import org.lappsgrid.serialization.lif.View
 

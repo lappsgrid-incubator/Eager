@@ -1,8 +1,8 @@
 package org.lappsgrid.eager.mining.error
 
 import com.codahale.metrics.Meter
-import org.lappsgrid.eager.core.Configuration
-import org.lappsgrid.eager.core.jmx.Registry
+import org.lappsgrid.eager.mining.core.Configuration
+import org.lappsgrid.eager.mining.core.jmx.Registry
 import org.lappsgrid.eager.rabbitmq.pubsub.Subscriber
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice

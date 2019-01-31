@@ -16,31 +16,31 @@ class ConsecutiveTermEvaluatorTest extends TestBase {
 
     @Test
     void noTerms() {
-        float actual = evaluator.score(query, 'x y z')
+        float actual = evaluator.score(query, makeSection('x y z'))
         assert 0.0f == actual
     }
 
     @Test
     void oneTerm() {
-        assert 0 == evaluator.score(query, 'b x x')
-        assert 0 == evaluator.score(query, 'x b x a x')
-        assert 0 == evaluator.score(query, 'x x b')
+        assert 0 == evaluator.score(query, makeSection('b x x'))
+        assert 0 == evaluator.score(query, makeSection('x b x a x'))
+        assert 0 == evaluator.score(query, makeSection('x x b'))
     }
 
     @Test
     void allTerms() {
-        float actual = evaluator.score(query, 'a b c')
+        float actual = evaluator.score(query, makeSection('a b c'))
         assert 1.0f == actual
     }
 
     @Test
     void twoSpans() {
-        closeEnough(4.0f/5.0f, 'a b x a b')
+        closeEnough(4.0f/5.0f, makeSection('a b x a b'))
     }
 
     @Test
     void twoSpansofConsecutiveTerms() {
-        closeEnough(5.0/9.0,'a b x x b x a b c')
+        closeEnough(5.0/9.0,makeSection('a b x x b x a b c'))
     }
 
 }

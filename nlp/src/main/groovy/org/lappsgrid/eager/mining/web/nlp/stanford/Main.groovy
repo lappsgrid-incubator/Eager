@@ -3,8 +3,8 @@ package org.lappsgrid.eager.mining.web.nlp.stanford
 import com.codahale.metrics.Meter
 import com.codahale.metrics.Timer
 import groovy.util.logging.Slf4j
-import org.lappsgrid.eager.core.Configuration
-import org.lappsgrid.eager.core.jmx.Registry
+import org.lappsgrid.eager.mining.core.Configuration
+import org.lappsgrid.eager.mining.core.jmx.Registry
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice

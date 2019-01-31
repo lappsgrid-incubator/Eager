@@ -1,21 +1,21 @@
 package org.lappsgrid.eager.mining.scoring
 
 import org.lappsgrid.eager.mining.api.Query
+import org.lappsgrid.eager.mining.model.Section
 
 /**
  * How many words in the passage are terms in the question.
  */
-class TermFrequencyEvaluator implements ScoringAlgorithm, Tokenizer {
+class TermFrequencyEvaluator extends AbstractScoringAlgorithm {
     @Override
-    float score(Query query, String input) {
+    float score(Query query, Section section) {
         int count = 0
-        String[] tokens = tokenize(input)
-        tokens.each { token ->
-            if (query.terms.contains(token)) {
+        section.tokens.each { token ->
+            if (contains(query.terms, token)) {
                 ++count
             }
         }
-        return ((float)count) / tokens.length
+        return ((float)count) / section.tokens.size()
     }
 
     @Override

@@ -8,17 +8,18 @@ import org.apache.solr.client.solrj.response.QueryResponse
 import org.apache.solr.common.SolrDocument
 import org.apache.solr.common.SolrDocumentList
 import org.apache.solr.common.params.MapSolrParams
-import org.lappsgrid.eager.core.Configuration
-import org.lappsgrid.eager.core.Factory
-import org.lappsgrid.eager.core.json.Serializer
-import org.lappsgrid.eager.core.ssl.SSL
+import org.lappsgrid.discriminator.Discriminators
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.api.QueryProcessor
-import org.lappsgrid.eager.mining.model.Document
-import org.lappsgrid.eager.mining.model.GDDDocument
+import org.lappsgrid.eager.mining.core.Configuration
+import org.lappsgrid.eager.mining.core.json.Serializer
+import org.lappsgrid.eager.mining.core.ssl.SSL
 import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
 import org.lappsgrid.eager.mining.ranking.RankingEngine
+import org.lappsgrid.eager.mining.ranking.model.Document
+import org.lappsgrid.eager.mining.ranking.model.GDDDocument
 import org.lappsgrid.eager.mining.web.nlp.DocumentProcessor
+import org.lappsgrid.eager.mining.web.util.DataCache
 import org.lappsgrid.eager.query.SimpleQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.ESQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.GDDSnippetQueryProcessor
@@ -26,6 +27,8 @@ import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 import org.lappsgrid.eager.service.Version
+import org.lappsgrid.serialization.Data
+import org.lappsgrid.serialization.lif.Container
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -35,6 +38,9 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.context.request.WebRequest
+
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 /**
  *
@@ -49,6 +55,8 @@ class AskController {
     QueryProcessor queryProcessor
     QueryProcessor geoProcessor
     DocumentProcessor documentProcessor
+    DataCache cache
+    File workingDir
 
     String collection
 
@@ -58,6 +66,11 @@ class AskController {
         documentProcessor = new DocumentProcessor()
         collection = "bioqa"
 //        collection = "eager"
+        cache = new DataCache()
+        workingDir = new File("/tmp/eager/work")
+        if (!workingDir.exists()) {
+            workingDir.mkdirs()
+        }
         SSL.enable()
     }
 
@@ -120,6 +133,101 @@ class AskController {
     }
     */
 
+    @GetMapping(path = '/test', produces = "text/html")
+    String testGet() {
+        return 'test'
+    }
+
+    @PostMapping(path="/test", produces = "text/html")
+    String testPost(@RequestParam(defaultValue = 'undefined') String username, @RequestParam(defaultValue = 'undefined') String dataset, Model model) {
+        model.addAttribute('username', username)
+        model.addAttribute('dataset', dataset)
+        return 'test'
+    }
+
+    @PostMapping(path="/save", produces="text/html")
+    String saveDocuments(@RequestParam String key, @RequestParam String username, Model model) {
+//    String saveDocuments(@RequestParam Map<String,String> params, Model model) {
+        logger.debug("Sending documents to Galaxy.")
+        updateModel(model)
+
+        String json = cache.get(key)
+        if (json == null) {
+            logger.warn("Data for {} was not found in the cache.", key)
+            model.addAttribute('message', 'The data was not found in the cache!')
+            return 'error'
+        }
+
+        JsonSlurper parser = new JsonSlurper()
+        Map data = parser.parseText(json)
+
+        File zipFile = new File(workingDir, "${key}.zip")
+        ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(zipFile))
+
+//        String path = username + '/' + dataset
+        data.documents.each { doc ->
+            String id = getId(doc)
+            if (id) try {
+                Container container = new Container()
+                container.text = doc.body
+                container.language = 'en'
+                container.metadata.pmid = doc.pmid
+                container.metadata.title = doc.title
+                container.metadata.year = doc.year
+
+                String zipPath = "$username/${id}.lif"
+                ZipEntry entry = new ZipEntry(zipPath)
+                zip.putNextEntry(entry)
+                zip.write(payload(container))
+                zip.closeEntry()
+            }
+            catch (Exception e) {
+                logger.error("Unable to zip document {}", id, e)
+            }
+        }
+        zip.close()
+        PostOffice po
+        long nBytes = 0
+        try {
+            // Send the zip to the upload service.
+            po = new PostOffice('galaxy.upload.service')
+            po.send('zip', zipFile.bytes)
+            po.close()
+            nBytes = zipFile.bytes.length
+            logger.info("Posted {} bytes to Galaxy.", nBytes)
+        }
+        catch (Exception e) {
+            logger.error("Unable to post files to galaxy.", e)
+            model.addAttribute('error_message', e.getMessage())
+        }
+        finally {
+            if (po != null) {
+                po.close()
+            }
+        }
+        model.addAttribute('size', data.documents.size())
+        model.addAttribute('path', zipFile.path)
+        model.addAttribute('bytes', nBytes)
+        if (!zipFile.delete()) {
+            logger.error("Unable to delete {}", zipFile.path)
+            zipFile.deleteOnExit()
+        }
+        return 'saved'
+    }
+
+    String getId(Map doc) {
+        if (doc.pmid) return doc.pmid
+        if (doc.pmc) return doc.pmc
+        if (doc.doi) return doc.doi
+        if (doc.id) return doc.id
+        return null
+    }
+
+    byte[] payload(Container container) {
+        Data data = new Data(Discriminators.Uri.LIF, container)
+        return data.asJson().bytes
+    }
+
     @PostMapping(path="/question", produces="text/html")
     String postHtml(@RequestParam Map<String,String> params, Model model) {
         logger.info("POST /question")
@@ -136,7 +244,9 @@ class AskController {
         }
 
         Map reply = answer(params, 100)
+        String uuid = cache.add(reply)
         model.addAttribute('data', reply)
+        model.addAttribute('key', uuid)
         logger.debug("Rendering data")
         return 'answer'
     }
@@ -155,12 +265,14 @@ class AskController {
 
         logger.trace("Creating CloudSolrClient")
         SolrClient solr = new CloudSolrClient.Builder(["http://129.114.16.34:8983/solr"]).build();
+//        SolrClient solr = new CloudSolrClient.Builder(["http://solr1.lappsgrid.org:8983/solr"]).build();
+
         logger.trace("Generating query")
         Query query = queryProcessor.transform(params.question)
         Map solrParams = [:]
         solrParams.q = query.query
-        solrParams.fl = 'pmid,pmc,doi,year,title,path,abstract'
-        solrParams.rows = '10000'
+        solrParams.fl = 'pmid,pmc,doi,year,title,path,abstract,body'
+        solrParams.rows = '5000'
 
         MapSolrParams queryParams = new MapSolrParams(solrParams)
 
@@ -180,6 +292,11 @@ class AskController {
 //            SolrDocument doc = documents.get(i)
 //             docs << new Document(doc)
 //        }
+
+        File base = new File("/tmp/eager")
+        new File(base, 'query.json').text = Serializer.toPrettyJson(query)
+        new File(base, 'files.json').text = Serializer.toPrettyJson(docs)
+        new File(base, 'params.json').text = Serializer.toPrettyJson(params)
 
         result.documents = rank(query, docs, params)
         if (result.documents.size() > size) {

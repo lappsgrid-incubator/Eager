@@ -5,19 +5,19 @@
     <parent>
         <groupId>org.lappsgrid.eager.mining</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>rabbitmq</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.2.0</version>
 
     <dependencies>
         <dependency>
             <groupId>org.lappsgrid.eager.mining</groupId>
             <artifactId>core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.rabbitmq</groupId>

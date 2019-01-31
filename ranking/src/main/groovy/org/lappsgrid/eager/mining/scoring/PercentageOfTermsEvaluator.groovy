@@ -1,16 +1,19 @@
 package org.lappsgrid.eager.mining.scoring
 
 import org.lappsgrid.eager.mining.api.Query
+import org.lappsgrid.eager.mining.model.Section
+import org.lappsgrid.eager.mining.model.Token
 
 /**
  *  How many terms appear in the passage.
  */
-class PercentageOfTermsEvaluator implements ScoringAlgorithm {
+class PercentageOfTermsEvaluator extends AbstractScoringAlgorithm {
     @Override
-    float score(Query query, String input) {
+    float score(Query query, Section section) {
         int count = 0
         query.terms.each { term ->
-            if (input.contains(term)) {
+            Token token = section.tokens.find { it.word == term }
+            if (token) {
                 ++count
             }
         }
@@ -24,6 +27,6 @@ class PercentageOfTermsEvaluator implements ScoringAlgorithm {
 
     @Override
     String abbrev() {
-        return "% terms"
+        return "pterms"
     }
 }

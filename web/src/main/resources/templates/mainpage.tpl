@@ -32,9 +32,9 @@ $(document).ready(function() {
 })
 ''',
 content: {
-    form(action:'question', method:'post') {
+    form(action:'question', method:'post', class:'no-border') {
         h1 'I am eager to help'
-        fieldset {
+        fieldset(class:'no-border') {
             div(class:"column") {
                 h3 "Title"
                 table {
@@ -93,7 +93,9 @@ content: {
                     }
                 }
             }
-            div {
+            div(class:'clear') {
+                br()
+                br()
                 table {
                     tr {
                         td {
@@ -106,12 +108,12 @@ content: {
                     }
                     tr {
                         td(colspan:'2') {
-                            input(type:'text', name: 'question', id:'question', class:'form-control input-lg', placeholder:'Ask me a question', required:'true', '')
+                            input(type:'text', name: 'question', id:'question', placeholder:'Ask me a question.', required:'true', '')
                         }
                     }
                     tr {
                         td {
-                            input(type:'submit', class:'btn btl-lg btn-primary btn-block', value:'Ask', '')
+                            input(type:'submit', class:'btn-ok', value:'Ask', '')
                         }
                     }
                 }

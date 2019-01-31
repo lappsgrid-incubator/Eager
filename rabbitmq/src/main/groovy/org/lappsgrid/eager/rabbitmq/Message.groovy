@@ -22,6 +22,7 @@ class Message {
 
     Message(String command, String body, Map<String,String> parameters, String... route) {
         this(command, body, route.toList())
+        this.parameters = parameters
     }
 
     Message(String command, String body, List<String> route) {

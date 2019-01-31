@@ -82,7 +82,7 @@ input[type=text], select {
   box-sizing: border-box;
 }
 */
-input[type=text], select {
+input[type=text], input[type=email], select {
   width: 100%;
   padding: 5px 10px;
   margin: 4px 0;
@@ -236,6 +236,19 @@ div.content {
   //  text-decoration: none;
   //  color: @theme
   //}
+
+  .no-border {
+    border: none;
+  }
+
+  .section {
+    padding-top: 50px;
+  }
+
+  .box {
+    .rounded-corners;
+    padding: 10px 20px;
+  }
 
   .hidden {
     display: none;
@@ -431,6 +444,7 @@ div.content {
     width: 40%;
   }
 
+
   .column-mid {
     float: left;
     width: 20%;
@@ -439,6 +453,11 @@ div.content {
   .center {
     padding-top: 10px;
     text-align: center;
+  }
+
+  .right {
+    padding-top: 10px;
+    text-align: right;
   }
 
   .messagebox(@color, @hi) {
@@ -458,18 +477,41 @@ div.content {
     .messagebox(@hilight, @contrast);
   }
 
-  .button {
-    .rounded-corners(5px);
+  .button(@c: @lighter) {
+    .rounded-corners(5px, @c);
     text-decoration: none;
     padding: 2px 5px;
     color: white;
     font-size: 10pt;
-    background-color: @lighter;
+    background-color: @c;
     -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;
     &:hover {
       cursor: pointer;
     }
+  }
+
+  .submit {
+    .rounded-corners(5px, black);
+    text-decoration: none;
+    padding: 2px 5px;
+    color: white;
+    font-size: 10pt;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .btn-ok {
+    .button(@contrast);
+  }
+  .btn-disabled {
+    .button(#ccc);
+  }
+  .btn-error {
+    .button(@red);
   }
 
   //.button:hover {

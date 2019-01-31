@@ -31,6 +31,8 @@ $> sudo -u solr ./zkcli.sh -cmd upconfig -n eager -d /home/eager/Eager/solr/lapp
 - **-d** configuration directory.  This is the directory that contains the *conf* directory with the Solr configuration files (schema.xml, solconfig.xml, etc.)
 - **-z** address of the Zookeeper host
 
+Uploading a new configuration to Zookeeper is an execeeding rare occurrence.
+
 #### Remove (clear) a configuration
 
 ```
@@ -67,12 +69,26 @@ Add the following to `/etc/pam.d/common-session` and `/etc/pam.d/common-session-
 session required    pam_limits.so
 ```
 
-Reboot the server so the changes take effect. Check if the limit has been changed or the *solr* user:
+Reboot the server so the changes take effect. Check if the limit has been changed for the *solr* user:
+
 ```bash
 su solr --shell /bin/bash --command "ulimit -n"
 ```
 
+#### Solr Configuration
+
+Since the Solr cloud is managed by a Zookeeper instance all we need to do is tell Solr the IP address of Zookeeper.
+
+1. Edit the file `/etc/default/solr.in.sh`
+1. Set `ZK_HOST="129.114.17.81:2181"`
+1. It is highly recommended to set the Java heap size to at least 20GB<br/>`SOLR_JAVA_MEM="-Xmx20G -Xmx20G"`
+1. Set `SOLR_HOST=<user>:<password>@<host>` where &lt;user> and &lt;password> are the admin username and password you set in the Solr admin panel.  You **did** change the admin username and password *didn't you*?
+
+When `ZK_HOST` has been set Solr will automatically start up in Cloud mode.
+
 #### Create a collection
+
+Zookeeper will create the collection(s) for the Eager application.  But there are times one may want to create a separate collection.
 
 Log in to one of the Solr nodes (does not matter which one)
 

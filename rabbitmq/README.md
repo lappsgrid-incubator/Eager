@@ -1,6 +1,6 @@
 # RabbitMQ Module
 
-[RabbitMQ](https://www.rabbitmq.com) is a lightweight, easy to use, open source message broker that can be used to send messages between processes even when those processes are running in different JVMs, on different machines, or possibly even in different data-centers.  Above all, RabbitMQ is dead simple to get up and running and start using.
+[RabbitMQ](https://www.rabbitmq.com) is a lightweight, easy to use, open source message broker that can be used to send messages between processes even when those processes are running in different JVMs, on different machines, or possibly even in different data-centers.  Above all, RabbitMQ is dead simple to get up and running and start using. Zero configuration is required to create exchanges and message queues, they will be created and destroyed automatically on demand by the RabbitMQ server.
 
 The `org.lappsgrid.eager.mining.rabbitmq` module provides a simplified API for a subset of the RabbitMQ features.  Namely:
 
@@ -8,11 +8,16 @@ The `org.lappsgrid.eager.mining.rabbitmq` module provides a simplified API for a
 1. **Publish/Subscribe**<br/>broadcasters send messages to all subscribed listeners.
 1. **Topic Queues**<br/>point-to-point communication between sender and receiver.
 
-The most common use case (so far) is topic queues, for example to send a text to the Stanford NLP services before further processing:
+The most common use case (so far) is topic queues, for example to send a text to the Stanford NLP service:
 
 ```
+// All services use the eager.postoffice message exchange.
 final String EXCHANGE = "eager.postoffice"
+
+// The name of the mailbox were we will receive messages.
 final String MBOX = "back.to.me"
+
+// Used to synchronize the threads.
 Object semaphore = new Object()
 
 // Define a MailBox that the response will be sent to.
@@ -20,6 +25,7 @@ MessageBox box = new MessageBox(EXCHANGE, MBOX) {
     void recv(Message message) {
         System.out.println(message.getBody())
         synchronized(semaphore) {
+            // Wake the waiting thread.
             semaphore.notify()
         }
     }
@@ -28,9 +34,10 @@ MessageBox box = new MessageBox(EXCHANGE, MBOX) {
 // The message to be sent.
 Message message = new Message()
     .body("Goodbye cruel world. I am leaving you today.")
-    .route("nlp.stanford")
-    .route(MBOX)
+    .route("nlp.stanford")  // route the message to the Stanford service
+    .route(MBOX)            // and then back to our mailbox.
      
+// Send it
 PostOffice po = new PostOffice(EXCHANGE)
 po.send(message)
 
@@ -38,6 +45,11 @@ po.send(message)
 synchronized(semaphore) {
     semaphore.wait()
 }
+
+// Shutdown.
+box.close()
+po.close()
+System.out.println("Done.")
 ```
 
 ## The RabbitMQ Server
@@ -86,7 +98,7 @@ There are two ways to add a `Consumer` to a message queue:
    - `Publisher` -> `Subscriber`
    - `PostOffice` -> `MailBox`
 
-**NOTE** Due to the way that RabbitMQ wires together exchanges and queues the `register` methods can not be used with `PostOffice` instances.  The only way to receive messages from a `PostOffice` is to extend the `MailBox` class and implement the `recv(String)` method.
+**NOTE** Due to the way that RabbitMQ wires together exchanges and queues the `register` methods can not be used with `PostOffice` instances.  The only way to receive messages from a `PostOffice` is to extend the `MailBox`, `MessageBox`, or `DataBox` classes and implement one of the `recv(...)` methods.
 
 
 #### RabbitMQ.register()
@@ -96,6 +108,7 @@ The `RabbitMQ` class provides two overloaded `register` methods that can be used
 ```
 TaskQueue q = new TaskQueue('example')
 q.register { String message ->
+    // This closure will be called when a message arrives on the queue.
     System.out.println(message)
 }
 ```
@@ -104,51 +117,6 @@ q.register { String message ->
 TaskQueue q = new TaskQueue('example')
 Consumer consumer = new DefaultConsumer() { ... }
 q.register(consumer)
-```
-
-#### Worker Classes
-
-```
-    // Task Queue workers.
-    TaskQueue q = new TaskQueue('example.queue')
-    Worker worker1 = new Worker(q) {
-        public void work(String message) {
-            System.out.println(message);
-        }
-    }
-    Worker worker2 = new Worker('example.queue) {
-        public void work(String message) {
-            System.out.println(message);
-        }
-    }
-```
-
-```    
-    // Subscribers to publishers (broadcasters)
-    Subscriber subscriber = new Subscriber('example.broadcast') {
-        public void recv(String message) {
-            System.out.println(message)
-        }
-    }
-    Publisher pub = new Publisher('example.broadcast')
-    pub.send('Hello world.')
-```
-
-```
-    // Topic queues (routed messages)
-    MailBox box = new MailBox('example.exchange', 'alice') {
-        public void recv(String message) {
-            System.out.println("alice: $message")
-        }
-    }
-    MailBox box = new MailBox('example.exchange', 'bob') {
-        public void recv(String message) {
-            System.out.println("bob: $message")
-        }
-    }
-    PostOffice po = new PostOffice('example.exchange')
-    po.send('bob', 'Hi Bob')
-    po.send('alice', 'Hi Alice')
 ```
 
 ## Task Queues
@@ -183,7 +151,7 @@ Worker w = new Worker('testing') {
 
 ## Publisher/Subscriber
 
-Use the Publisher/Subscriber classes when messages need to be sent to all of the subscribers.
+Use the Publisher/Subscriber classes when messages need to be sent to a group of subscribers.
 
 ``` 
 // In Broadcaster.java
@@ -207,6 +175,8 @@ Subscriber sub = new Subscriber('pub.example') {
 ```
 
 ## Topic Queues
+
+Topic queues allow point to point communication between processes.  Classes that want to receive message extend one of the `MailBox`, `MessageBox`, or `DataBox` classes and send messages with the `PostOffice` class.  
 
 ``` 
 // In Main.java

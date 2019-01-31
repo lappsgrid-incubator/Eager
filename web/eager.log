@@ -1,0 +1,761 @@
+2019-01-30 17:03:50.416  INFO 7694 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Starting EntryPoint v1.3.2 on picard with PID 7694 (/Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web/target/eager.jar started by suderman in /Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web)
+2019-01-30 17:03:50.419 DEBUG 7694 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+2019-01-30 17:03:50.421  INFO 7694 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : No active profile set, falling back to default profiles: default
+2019-01-30 17:03:50.501  INFO 7694 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@402a079c: startup date [Wed Jan 30 17:03:50 EST 2019]; root of context hierarchy
+2019-01-30 17:03:51.982  INFO 7694 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-01-30 17:03:52.017  INFO 7694 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-01-30 17:03:52.018  INFO 7694 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-01-30 17:03:52.029  INFO 7694 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/suderman/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-30 17:03:52.120  INFO 7694 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-01-30 17:03:52.121  INFO 7694 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1620 ms
+2019-01-30 17:03:52.283  INFO 7694 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-01-30 17:03:52.288  INFO 7694 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-30 17:03:52.289  INFO 7694 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-30 17:03:52.289  INFO 7694 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-30 17:03:52.289  INFO 7694 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-30 17:03:52.661  INFO 7694 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator tokenize
+2019-01-30 17:03:52.673  INFO 7694 --- [main] e.s.nlp.pipeline.TokenizerAnnotator      : No tokenizer type provided. Defaulting to PTBTokenizer.
+2019-01-30 17:03:52.690  INFO 7694 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator ssplit
+2019-01-30 17:03:52.700  INFO 7694 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator pos
+2019-01-30 17:03:53.360  INFO 7694 --- [main] e.s.nlp.tagger.maxent.MaxentTagger       : Loading POS tagger from edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger ... done [0.6 sec].
+2019-01-30 17:03:53.361  INFO 7694 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator lemma
+2019-01-30 17:03:53.387  INFO 7694 --- [main] o.l.eager.mining.web.util.DataCache      : Data cache initialized.
+2019-01-30 17:03:53.561  INFO 7694 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 17:03:53.837  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@402a079c: startup date [Wed Jan 30 17:03:50 EST 2019]; root of context hierarchy
+2019-01-30 17:03:53.942  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ask],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.get(org.springframework.ui.Model)
+2019-01-30 17:03:53.943  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/show],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.show(java.lang.String)
+2019-01-30 17:03:53.944  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testGet()
+2019-01-30 17:03:53.944  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testPost(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 17:03:53.944  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/save],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.saveDocuments(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 17:03:53.945  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.postHtml(java.util.Map<java.lang.String, java.lang.String>,org.springframework.ui.Model)
+2019-01-30 17:03:53.947  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-30 17:03:53.948  INFO 7694 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-30 17:03:53.984  INFO 7694 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 17:03:53.984  INFO 7694 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 17:03:54.009  INFO 7694 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in askController
+2019-01-30 17:03:55.219  INFO 7694 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-01-30 17:03:55.273  INFO 7694 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-30 17:03:55.278  INFO 7694 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Started EntryPoint in 5.347 seconds (JVM running for 6.34)
+2019-01-30 17:04:07.256  INFO 7694 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-01-30 17:04:07.256  INFO 7694 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-30 17:04:07.275  INFO 7694 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
+2019-01-30 17:04:07.312  INFO 7694 --- [http-nio-8080-exec-4] o.l.e.m.web.controllers.AskController    : GET /ask
+2019-01-30 17:04:07.331 DEBUG 7694 --- [http-nio-8080-exec-4] o.l.e.m.web.controllers.AskController    : Rendering mainpage
+2019-01-30 17:06:05.364  INFO 7694 --- [Thread-3] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@402a079c: startup date [Wed Jan 30 17:03:50 EST 2019]; root of context hierarchy
+2019-01-30 17:06:05.371  INFO 7694 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-01-30 17:58:02.217  INFO 8516 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Starting EntryPoint v1.3.2 on picard with PID 8516 (/Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web/target/eager.jar started by suderman in /Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web)
+2019-01-30 17:58:02.221 DEBUG 8516 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+2019-01-30 17:58:02.223  INFO 8516 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : No active profile set, falling back to default profiles: default
+2019-01-30 17:58:02.301  INFO 8516 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@31ef45e3: startup date [Wed Jan 30 17:58:02 EST 2019]; root of context hierarchy
+2019-01-30 17:58:03.784  INFO 8516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-01-30 17:58:03.815  INFO 8516 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-01-30 17:58:03.815  INFO 8516 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-01-30 17:58:03.826  INFO 8516 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/suderman/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-30 17:58:03.902  INFO 8516 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-01-30 17:58:03.902  INFO 8516 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1601 ms
+2019-01-30 17:58:04.036  INFO 8516 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-01-30 17:58:04.040  INFO 8516 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-30 17:58:04.041  INFO 8516 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-30 17:58:04.041  INFO 8516 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-30 17:58:04.041  INFO 8516 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-30 17:58:04.384  INFO 8516 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator tokenize
+2019-01-30 17:58:04.398  INFO 8516 --- [main] e.s.nlp.pipeline.TokenizerAnnotator      : No tokenizer type provided. Defaulting to PTBTokenizer.
+2019-01-30 17:58:04.415  INFO 8516 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator ssplit
+2019-01-30 17:58:04.424  INFO 8516 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator pos
+2019-01-30 17:58:05.062  INFO 8516 --- [main] e.s.nlp.tagger.maxent.MaxentTagger       : Loading POS tagger from edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger ... done [0.6 sec].
+2019-01-30 17:58:05.063  INFO 8516 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator lemma
+2019-01-30 17:58:05.091  INFO 8516 --- [main] o.l.eager.mining.web.util.DataCache      : Data cache initialized.
+2019-01-30 17:58:05.265  INFO 8516 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 17:58:05.532  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@31ef45e3: startup date [Wed Jan 30 17:58:02 EST 2019]; root of context hierarchy
+2019-01-30 17:58:05.646  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ask],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.get(org.springframework.ui.Model)
+2019-01-30 17:58:05.648  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/show],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.show(java.lang.String)
+2019-01-30 17:58:05.649  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testGet()
+2019-01-30 17:58:05.649  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testPost(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 17:58:05.649  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/save],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.saveDocuments(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 17:58:05.649  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.postHtml(java.util.Map<java.lang.String, java.lang.String>,org.springframework.ui.Model)
+2019-01-30 17:58:05.652  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-30 17:58:05.652  INFO 8516 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-30 17:58:05.682  INFO 8516 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 17:58:05.683  INFO 8516 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 17:58:05.703  INFO 8516 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in askController
+2019-01-30 17:58:06.869  INFO 8516 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-01-30 17:58:06.919  INFO 8516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-30 17:58:06.923  INFO 8516 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Started EntryPoint in 5.257 seconds (JVM running for 6.506)
+2019-01-30 17:58:26.247  INFO 8516 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-01-30 17:58:26.247  INFO 8516 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-30 17:58:26.266  INFO 8516 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2019-01-30 17:58:26.308  INFO 8516 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : POST /question
+2019-01-30 17:58:26.323 DEBUG 8516 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating answer.
+2019-01-30 17:58:26.323 TRACE 8516 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Creating CloudSolrClient
+2019-01-30 17:58:26.554 TRACE 8516 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating query
+2019-01-30 17:58:26.583 TRACE 8516 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Sending query to Solr
+2019-01-30 17:58:55.284 TRACE 8516 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Received 10000 documents
+2019-01-30 17:58:56.895  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:58:58.371  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 17:58:58.581  WARN 8516 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:58:59.644  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:58:59.652  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:00.375  WARN 8516 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:00.606  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:00.638  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:00.942  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:01.591  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:01.596  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:01.893  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:01.941  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:02.509  WARN 8516 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 17:59:02.981  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:03.364  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:03.406  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:03.415  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:03.759  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:03.788  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:04.680  WARN 8516 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:04.683  WARN 8516 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:04.724  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 17:59:05.195  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 17:59:05.225  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:06.127  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 17:59:07.184  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:07.257  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:07.560  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:07.809  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 17:59:07.971  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:08.344  WARN 8516 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:08.359  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:09.006  WARN 8516 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:09.225  WARN 8516 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:09.334  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:09.757  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 17:59:09.878  WARN 8516 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:10.036  WARN 8516 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:11.144  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:11.764  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:11.840  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:11.843  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:12.581  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‫ (U+202B, decimal: 8235)
+2019-01-30 17:59:12.691  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:15.522  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:15.558  WARN 8516 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:15.560  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:15.630  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 17:59:15.739  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:16.480  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:16.985  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:17.070  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:17.400  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:18.289  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:18.295  WARN 8516 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:18.376  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:18.721  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:18.726  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:19.114  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:19.291  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:19.460  WARN 8516 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:19.829  WARN 8516 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 17:59:19.923  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:20.336  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:20.568  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:21.038  WARN 8516 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:21.430  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 17:59:21.592  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:21.597  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:22.982  WARN 8516 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‒ (U+2012, decimal: 8210)
+2019-01-30 17:59:23.335  WARN 8516 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:24.097  WARN 8516 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⿢ (U+2FE2, decimal: 12258)
+2019-01-30 17:59:25.285  WARN 8516 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 17:59:37.934 ERROR 8516 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Caught an exception
+
+org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.OutOfMemoryError: Java heap space
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1006) ~[spring-webmvc-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) [spring-webmvc-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) [spring-webmvc-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) [spring-webmvc-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_40]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_40]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar!/:8.5.29]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_40]
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at java.lang.AbstractStringBuilder.<init>(AbstractStringBuilder.java:68) ~[na:1.8.0_40]
+	at java.lang.StringBuilder.<init>(StringBuilder.java:101) ~[na:1.8.0_40]
+	at com.fasterxml.jackson.core.util.TextBuffer.contentsAsString(TextBuffer.java:394) ~[jackson-core-2.9.5.jar!/:2.9.5]
+	at com.fasterxml.jackson.core.io.SegmentedStringWriter.getAndClear(SegmentedStringWriter.java:83) ~[jackson-core-2.9.5.jar!/:2.9.5]
+	at com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(ObjectMapper.java:3213) ~[jackson-databind-2.9.5.jar!/:2.9.5]
+	at com.fasterxml.jackson.databind.ObjectMapper$writeValueAsString$2.call(Unknown Source) ~[na:na]
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47) ~[groovy-2.5.3.jar!/:2.5.3]
+	at com.fasterxml.jackson.databind.ObjectMapper$writeValueAsString$2.call(Unknown Source) ~[na:na]
+	at org.lappsgrid.eager.mining.core.json.Serializer.toPrettyJson(Serializer.groovy:57) ~[core-1.1.0.jar!/:na]
+	at org.lappsgrid.eager.mining.core.json.Serializer$toPrettyJson.call(Unknown Source) ~[na:na]
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:127) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.lappsgrid.eager.mining.web.controllers.AskController.answer(AskController.groovy:298) ~[classes!/:1.3.2]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:176) ~[groovy-2.5.3.jar!/:2.5.3]
+	at org.lappsgrid.eager.mining.web.controllers.AskController.postHtml(AskController.groovy:246) ~[classes!/:1.3.2]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.5.RELEASE.jar!/:5.0.5.RELEASE]
+
+2019-01-30 18:00:04.201  INFO 8516 --- [Thread-3] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@31ef45e3: startup date [Wed Jan 30 17:58:02 EST 2019]; root of context hierarchy
+2019-01-30 18:00:04.204  INFO 8516 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-01-30 18:00:16.689  INFO 8553 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Starting EntryPoint v1.3.2 on picard with PID 8553 (/Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web/target/eager.jar started by suderman in /Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web)
+2019-01-30 18:00:16.692 DEBUG 8553 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+2019-01-30 18:00:16.693  INFO 8553 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : No active profile set, falling back to default profiles: default
+2019-01-30 18:00:16.754  INFO 8553 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@146ba0ac: startup date [Wed Jan 30 18:00:16 EST 2019]; root of context hierarchy
+2019-01-30 18:00:18.084  INFO 8553 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-01-30 18:00:18.111  INFO 8553 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-01-30 18:00:18.111  INFO 8553 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-01-30 18:00:18.122  INFO 8553 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/suderman/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-30 18:00:18.198  INFO 8553 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-01-30 18:00:18.198  INFO 8553 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1444 ms
+2019-01-30 18:00:18.345  INFO 8553 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-01-30 18:00:18.350  INFO 8553 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-30 18:00:18.350  INFO 8553 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-30 18:00:18.350  INFO 8553 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-30 18:00:18.351  INFO 8553 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-30 18:00:18.664  INFO 8553 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator tokenize
+2019-01-30 18:00:18.673  INFO 8553 --- [main] e.s.nlp.pipeline.TokenizerAnnotator      : No tokenizer type provided. Defaulting to PTBTokenizer.
+2019-01-30 18:00:18.686  INFO 8553 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator ssplit
+2019-01-30 18:00:18.695  INFO 8553 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator pos
+2019-01-30 18:00:19.295  INFO 8553 --- [main] e.s.nlp.tagger.maxent.MaxentTagger       : Loading POS tagger from edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger ... done [0.6 sec].
+2019-01-30 18:00:19.296  INFO 8553 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator lemma
+2019-01-30 18:00:19.317  INFO 8553 --- [main] o.l.eager.mining.web.util.DataCache      : Data cache initialized.
+2019-01-30 18:00:19.477  INFO 8553 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:00:19.732  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@146ba0ac: startup date [Wed Jan 30 18:00:16 EST 2019]; root of context hierarchy
+2019-01-30 18:00:19.824  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ask],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.get(org.springframework.ui.Model)
+2019-01-30 18:00:19.826  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/show],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.show(java.lang.String)
+2019-01-30 18:00:19.826  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testGet()
+2019-01-30 18:00:19.826  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testPost(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:00:19.829  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/save],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.saveDocuments(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:00:19.829  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.postHtml(java.util.Map<java.lang.String, java.lang.String>,org.springframework.ui.Model)
+2019-01-30 18:00:19.832  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-30 18:00:19.832  INFO 8553 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-30 18:00:19.869  INFO 8553 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:00:19.869  INFO 8553 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:00:19.894  INFO 8553 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in askController
+2019-01-30 18:00:21.288  INFO 8553 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-01-30 18:00:21.334  INFO 8553 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-30 18:00:21.338  INFO 8553 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Started EntryPoint in 5.083 seconds (JVM running for 6.014)
+2019-01-30 18:00:32.003  INFO 8553 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-01-30 18:00:32.004  INFO 8553 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-30 18:00:32.021  INFO 8553 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2019-01-30 18:00:32.060  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : POST /question
+2019-01-30 18:00:32.075 DEBUG 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating answer.
+2019-01-30 18:00:32.075 TRACE 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Creating CloudSolrClient
+2019-01-30 18:00:32.299 TRACE 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating query
+2019-01-30 18:00:32.327 TRACE 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Sending query to Solr
+2019-01-30 18:01:01.667 TRACE 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Received 10000 documents
+2019-01-30 18:01:02.587  WARN 8553 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:04.626  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:01:04.817  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:06.067  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:06.070  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:06.730  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:06.942  WARN 8553 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:06.969  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:07.194  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:07.785  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:07.787  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:08.055  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:08.100  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:08.575  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:01:08.998  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:09.386  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:09.424  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:09.427  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:09.741  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:09.767  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:10.497  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:10.501  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:10.541  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:01:10.922  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:01:10.944  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:11.744  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:01:12.595  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:12.665  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:12.943  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:13.113  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:01:13.360  WARN 8553 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:13.679  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:13.695  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:14.123  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:14.311  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:14.405  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:14.756  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:01:14.771  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:14.902  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:15.385  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:15.956  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:16.027  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:16.030  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:16.621  WARN 8553 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‫ (U+202B, decimal: 8235)
+2019-01-30 18:01:16.721  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:19.280  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:19.310  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:19.312  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:19.372  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:01:19.457  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:19.988  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:20.360  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:20.422  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:20.668  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:21.426  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:21.428  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:21.489  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:21.754  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:21.758  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:22.015  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:22.071  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:22.138  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:22.408  WARN 8553 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:01:22.479  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:22.785  WARN 8553 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:22.979  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:23.293  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:23.563  WARN 8553 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:01:23.638  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:23.643  WARN 8553 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:24.541  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‒ (U+2012, decimal: 8210)
+2019-01-30 18:01:24.651  WARN 8553 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:24.999  WARN 8553 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⿢ (U+2FE2, decimal: 12258)
+2019-01-30 18:01:25.540  WARN 8553 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:01:44.927 DEBUG 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Ranking 10000 documents
+2019-01-30 18:01:44.970  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initializing engine: 20
+2019-01-30 18:01:44.976  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-1 value: 1
+2019-01-30 18:01:45.092  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-1 value: 1.0
+2019-01-30 18:01:45.092  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-2 value: 2
+2019-01-30 18:01:45.108  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-2 value: 1.0
+2019-01-30 18:01:45.108  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-3 value: 3
+2019-01-30 18:01:45.130  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-3 value: 1.0
+2019-01-30 18:01:45.130  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-4 value: 4
+2019-01-30 18:01:45.145  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-4 value: 1.0
+2019-01-30 18:01:45.146  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-x value: 0.9
+2019-01-30 18:01:45.146  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for title is 0.9
+2019-01-30 18:01:45.146  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-1 value: 1
+2019-01-30 18:01:45.147  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-1 value: 1.0
+2019-01-30 18:01:45.147  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-2 value: 2
+2019-01-30 18:01:45.147  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-2 value: 1.0
+2019-01-30 18:01:45.147  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-3 value: 3
+2019-01-30 18:01:45.148  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-3 value: 1.0
+2019-01-30 18:01:45.149  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-4 value: 4
+2019-01-30 18:01:45.150  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-4 value: 1.0
+2019-01-30 18:01:45.150  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-x value: 1.1
+2019-01-30 18:01:45.150  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for abstract is 1.1
+2019-01-30 18:01:45.150  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: domain value: bio
+2019-01-30 18:01:45.150  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: question value: What regulates the transcription of Myc?
+2019-01-30 18:01:45.151  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initialized 2 engines
+2019-01-30 18:01:45.164  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking title
+2019-01-30 18:01:45.165  INFO 8553 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 10000 documents.
+2019-01-30 18:01:46.166  INFO 8553 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking abstract
+2019-01-30 18:01:46.166  INFO 8553 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 10000 documents.
+2019-01-30 18:01:50.429 DEBUG 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Trimming results to 100
+2019-01-30 18:01:50.567  INFO 8553 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Scheduling 058c1639-09b1-4995-947f-b4a3e6edf846 for removal.
+2019-01-30 18:01:50.581  INFO 8553 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Added 5196984 bytes with key 058c1639-09b1-4995-947f-b4a3e6edf846
+2019-01-30 18:01:50.581 DEBUG 8553 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Rendering data
+2019-01-30 18:02:23.908  INFO 8553 --- [Thread-3] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@146ba0ac: startup date [Wed Jan 30 18:00:16 EST 2019]; root of context hierarchy
+2019-01-30 18:02:23.919  INFO 8553 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-01-30 18:02:49.664  INFO 8606 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Starting EntryPoint v1.3.2 on picard with PID 8606 (/Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web/target/eager.jar started by suderman in /Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web)
+2019-01-30 18:02:49.668 DEBUG 8606 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+2019-01-30 18:02:49.669  INFO 8606 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : No active profile set, falling back to default profiles: default
+2019-01-30 18:02:49.737  INFO 8606 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5f341870: startup date [Wed Jan 30 18:02:49 EST 2019]; root of context hierarchy
+2019-01-30 18:02:51.123  INFO 8606 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-01-30 18:02:51.149  INFO 8606 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-01-30 18:02:51.150  INFO 8606 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-01-30 18:02:51.159  INFO 8606 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/suderman/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-30 18:02:51.242  INFO 8606 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-01-30 18:02:51.243  INFO 8606 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1506 ms
+2019-01-30 18:02:51.388  INFO 8606 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-01-30 18:02:51.392  INFO 8606 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-30 18:02:51.392  INFO 8606 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-30 18:02:51.392  INFO 8606 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-30 18:02:51.393  INFO 8606 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-30 18:02:51.663  INFO 8606 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator tokenize
+2019-01-30 18:02:51.671  INFO 8606 --- [main] e.s.nlp.pipeline.TokenizerAnnotator      : No tokenizer type provided. Defaulting to PTBTokenizer.
+2019-01-30 18:02:51.683  INFO 8606 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator ssplit
+2019-01-30 18:02:51.691  INFO 8606 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator pos
+2019-01-30 18:02:52.328  INFO 8606 --- [main] e.s.nlp.tagger.maxent.MaxentTagger       : Loading POS tagger from edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger ... done [0.6 sec].
+2019-01-30 18:02:52.329  INFO 8606 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator lemma
+2019-01-30 18:02:52.963  INFO 8606 --- [main] o.l.eager.mining.web.util.DataCache      : Data cache initialized.
+2019-01-30 18:02:53.110  INFO 8606 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:02:53.347  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5f341870: startup date [Wed Jan 30 18:02:49 EST 2019]; root of context hierarchy
+2019-01-30 18:02:53.433  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ask],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.get(org.springframework.ui.Model)
+2019-01-30 18:02:53.434  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testGet()
+2019-01-30 18:02:53.434  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testPost(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:02:53.434  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/save],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.saveDocuments(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:02:53.435  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.postHtml(java.util.Map<java.lang.String, java.lang.String>,org.springframework.ui.Model)
+2019-01-30 18:02:53.435  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/show],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.show(java.lang.String)
+2019-01-30 18:02:53.437  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-30 18:02:53.438  INFO 8606 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-30 18:02:53.467  INFO 8606 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:02:53.467  INFO 8606 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:02:53.486  INFO 8606 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in askController
+2019-01-30 18:02:54.044  INFO 8606 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-01-30 18:02:54.098  INFO 8606 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-30 18:02:54.102  INFO 8606 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Started EntryPoint in 4.896 seconds (JVM running for 5.836)
+2019-01-30 18:02:59.821  INFO 8606 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-01-30 18:02:59.822  INFO 8606 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-30 18:02:59.839  INFO 8606 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2019-01-30 18:02:59.880  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : POST /question
+2019-01-30 18:02:59.894 DEBUG 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating answer.
+2019-01-30 18:02:59.895 TRACE 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Creating CloudSolrClient
+2019-01-30 18:03:00.114 TRACE 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating query
+2019-01-30 18:03:00.141 TRACE 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Sending query to Solr
+2019-01-30 18:03:15.246 TRACE 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Received 5000 documents
+2019-01-30 18:03:16.241  WARN 8606 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:18.254  WARN 8606 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:03:18.398  WARN 8606 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:19.339  WARN 8606 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:19.349  WARN 8606 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:19.913  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:20.112  WARN 8606 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:20.140  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:20.405  WARN 8606 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:20.965  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:20.967  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:21.246  WARN 8606 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:21.285  WARN 8606 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:21.837  WARN 8606 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:03:22.249  WARN 8606 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:22.553  WARN 8606 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:22.591  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:22.594  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:22.972  WARN 8606 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:22.992  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:23.763  WARN 8606 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:23.766  WARN 8606 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:23.813  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:03:24.263  WARN 8606 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:03:24.290  WARN 8606 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:25.035  WARN 8606 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:03:25.966  WARN 8606 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:26.043  WARN 8606 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:26.323  WARN 8606 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:26.464  WARN 8606 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:03:26.613  WARN 8606 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:26.939  WARN 8606 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:26.954  WARN 8606 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:27.429  WARN 8606 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:27.616  WARN 8606 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:27.711  WARN 8606 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:03:35.509 DEBUG 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Ranking 5000 documents
+2019-01-30 18:03:35.520  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initializing engine: 20
+2019-01-30 18:03:35.522  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-1 value: 1
+2019-01-30 18:03:36.744  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-1 value: 1.0
+2019-01-30 18:03:36.744  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-2 value: 2
+2019-01-30 18:03:36.750  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-2 value: 1.0
+2019-01-30 18:03:36.750  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-3 value: 3
+2019-01-30 18:03:36.755  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-3 value: 1.0
+2019-01-30 18:03:36.756  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-4 value: 4
+2019-01-30 18:03:36.761  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-4 value: 1.0
+2019-01-30 18:03:36.761  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-x value: 0.9
+2019-01-30 18:03:36.762  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for title is 0.9
+2019-01-30 18:03:36.762  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-1 value: 1
+2019-01-30 18:03:36.762  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-1 value: 1.0
+2019-01-30 18:03:36.762  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-2 value: 2
+2019-01-30 18:03:36.763  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-2 value: 1.0
+2019-01-30 18:03:36.763  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-3 value: 3
+2019-01-30 18:03:36.763  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-3 value: 1.0
+2019-01-30 18:03:36.764  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-4 value: 4
+2019-01-30 18:03:36.764  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-4 value: 1.0
+2019-01-30 18:03:36.765  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-x value: 1.1
+2019-01-30 18:03:36.765  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for abstract is 1.1
+2019-01-30 18:03:36.765  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: domain value: bio
+2019-01-30 18:03:36.765  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: question value: What regulates the transcription of Myc?
+2019-01-30 18:03:36.765  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initialized 2 engines
+2019-01-30 18:03:36.771  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking title
+2019-01-30 18:03:36.771  INFO 8606 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 5000 documents.
+2019-01-30 18:03:37.536  INFO 8606 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking abstract
+2019-01-30 18:03:37.536  INFO 8606 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 5000 documents.
+2019-01-30 18:03:38.791 DEBUG 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Trimming results to 100
+2019-01-30 18:03:38.920  INFO 8606 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Scheduling 895e1d47-db5f-4eaf-b3ed-1079a8058f24 for removal.
+2019-01-30 18:03:38.931  INFO 8606 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Added 5160218 bytes with key 895e1d47-db5f-4eaf-b3ed-1079a8058f24
+2019-01-30 18:03:38.931 DEBUG 8606 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Rendering data
+2019-01-30 18:07:17.074  INFO 8606 --- [Thread-3] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5f341870: startup date [Wed Jan 30 18:02:49 EST 2019]; root of context hierarchy
+2019-01-30 18:07:17.079  INFO 8606 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-01-30 18:08:18.194  INFO 8789 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Starting EntryPoint v1.3.2 on picard with PID 8789 (/Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web/target/eager.jar started by suderman in /Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web)
+2019-01-30 18:08:18.197 DEBUG 8789 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+2019-01-30 18:08:18.199  INFO 8789 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : No active profile set, falling back to default profiles: default
+2019-01-30 18:08:18.263  INFO 8789 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@754ba872: startup date [Wed Jan 30 18:08:18 EST 2019]; root of context hierarchy
+2019-01-30 18:08:19.589  INFO 8789 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-01-30 18:08:19.616  INFO 8789 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-01-30 18:08:19.616  INFO 8789 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-01-30 18:08:19.625  INFO 8789 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/suderman/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-30 18:08:19.704  INFO 8789 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-01-30 18:08:19.704  INFO 8789 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1441 ms
+2019-01-30 18:08:19.859  INFO 8789 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-01-30 18:08:19.863  INFO 8789 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-30 18:08:19.864  INFO 8789 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-30 18:08:19.864  INFO 8789 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-30 18:08:19.864  INFO 8789 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-30 18:08:20.183  INFO 8789 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator tokenize
+2019-01-30 18:08:20.195  INFO 8789 --- [main] e.s.nlp.pipeline.TokenizerAnnotator      : No tokenizer type provided. Defaulting to PTBTokenizer.
+2019-01-30 18:08:20.209  INFO 8789 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator ssplit
+2019-01-30 18:08:20.217  INFO 8789 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator pos
+2019-01-30 18:08:20.862  INFO 8789 --- [main] e.s.nlp.tagger.maxent.MaxentTagger       : Loading POS tagger from edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger ... done [0.6 sec].
+2019-01-30 18:08:20.863  INFO 8789 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator lemma
+2019-01-30 18:08:20.887  INFO 8789 --- [main] o.l.eager.mining.web.util.DataCache      : Data cache initialized.
+2019-01-30 18:08:21.059  INFO 8789 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:08:21.319  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@754ba872: startup date [Wed Jan 30 18:08:18 EST 2019]; root of context hierarchy
+2019-01-30 18:08:21.404  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ask],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.get(org.springframework.ui.Model)
+2019-01-30 18:08:21.405  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/show],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.show(java.lang.String)
+2019-01-30 18:08:21.406  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testGet()
+2019-01-30 18:08:21.406  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testPost(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:08:21.406  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/save],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.saveDocuments(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:08:21.406  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.postHtml(java.util.Map<java.lang.String, java.lang.String>,org.springframework.ui.Model)
+2019-01-30 18:08:21.409  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-30 18:08:21.409  INFO 8789 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-30 18:08:21.440  INFO 8789 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:08:21.440  INFO 8789 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:08:21.457  INFO 8789 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in askController
+2019-01-30 18:08:22.587  INFO 8789 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-01-30 18:08:22.640  INFO 8789 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-30 18:08:22.643  INFO 8789 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Started EntryPoint in 4.882 seconds (JVM running for 5.822)
+2019-01-30 18:08:29.495  INFO 8789 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-01-30 18:08:29.495  INFO 8789 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-30 18:08:29.514  INFO 8789 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
+2019-01-30 18:08:29.554  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : POST /question
+2019-01-30 18:08:29.568 DEBUG 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating answer.
+2019-01-30 18:08:29.569 TRACE 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Creating CloudSolrClient
+2019-01-30 18:08:29.791 TRACE 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating query
+2019-01-30 18:08:29.821 TRACE 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Sending query to Solr
+2019-01-30 18:08:47.869 TRACE 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Received 5000 documents
+2019-01-30 18:08:49.237  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:50.754  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:08:50.896  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:51.775  WARN 8789 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:51.786  WARN 8789 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:52.391  WARN 8789 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:52.596  WARN 8789 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:52.628  WARN 8789 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:52.852  WARN 8789 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:53.468  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:53.470  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:53.751  WARN 8789 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:53.793  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:54.367  WARN 8789 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:08:54.789  WARN 8789 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:55.104  WARN 8789 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:55.142  WARN 8789 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:55.145  WARN 8789 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:55.541  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:55.565  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:56.363  WARN 8789 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:56.366  WARN 8789 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:56.408  WARN 8789 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:08:56.893  WARN 8789 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:08:56.920  WARN 8789 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:57.696  WARN 8789 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:08:58.674  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:58.749  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:59.030  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:59.184  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:08:59.341  WARN 8789 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:59.686  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:08:59.704  WARN 8789 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:09:00.232  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:09:00.434  WARN 8789 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:09:00.536  WARN 8789 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:09:07.771 DEBUG 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Ranking 5000 documents
+2019-01-30 18:09:07.781  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initializing engine: 20
+2019-01-30 18:09:07.783  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-1 value: 1
+2019-01-30 18:09:07.816  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-1 value: 1.0
+2019-01-30 18:09:07.817  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-2 value: 2
+2019-01-30 18:09:07.821  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-2 value: 1.0
+2019-01-30 18:09:07.821  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-3 value: 3
+2019-01-30 18:09:07.826  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-3 value: 1.0
+2019-01-30 18:09:07.826  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-4 value: 4
+2019-01-30 18:09:07.830  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-4 value: 1.0
+2019-01-30 18:09:07.830  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-x value: 0.9
+2019-01-30 18:09:07.830  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for title is 0.9
+2019-01-30 18:09:07.830  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-1 value: 1
+2019-01-30 18:09:07.831  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-1 value: 1.0
+2019-01-30 18:09:07.831  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-2 value: 2
+2019-01-30 18:09:07.831  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-2 value: 1.0
+2019-01-30 18:09:07.831  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-3 value: 3
+2019-01-30 18:09:07.832  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-3 value: 1.0
+2019-01-30 18:09:07.832  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-4 value: 4
+2019-01-30 18:09:07.833  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-4 value: 1.0
+2019-01-30 18:09:07.833  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-x value: 1.1
+2019-01-30 18:09:07.833  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for abstract is 1.1
+2019-01-30 18:09:07.833  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: domain value: bio
+2019-01-30 18:09:07.834  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: question value: What regulates the transcription of Myc?
+2019-01-30 18:09:07.834  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initialized 2 engines
+2019-01-30 18:09:07.838  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking title
+2019-01-30 18:09:07.839  INFO 8789 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 5000 documents.
+2019-01-30 18:09:09.558  INFO 8789 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking abstract
+2019-01-30 18:09:09.560  INFO 8789 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 5000 documents.
+2019-01-30 18:09:11.004 DEBUG 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Trimming results to 100
+2019-01-30 18:09:11.138  INFO 8789 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Scheduling 539b54a7-aa27-4f36-853d-e8c9750d3696 for removal.
+2019-01-30 18:09:11.149  INFO 8789 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Added 5160218 bytes with key 539b54a7-aa27-4f36-853d-e8c9750d3696
+2019-01-30 18:09:11.150 DEBUG 8789 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Rendering data
+2019-01-30 18:12:39.448  INFO 8789 --- [Thread-3] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@754ba872: startup date [Wed Jan 30 18:08:18 EST 2019]; root of context hierarchy
+2019-01-30 18:12:39.450  INFO 8789 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-01-30 18:13:33.139  INFO 9044 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Starting EntryPoint v1.3.2 on picard with PID 9044 (/Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web/target/eager.jar started by suderman in /Users/suderman/Workspaces/IntelliJ/Lappsgrid/org.lappsgrid.eager.mining/web)
+2019-01-30 18:13:33.142 DEBUG 9044 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+2019-01-30 18:13:33.144  INFO 9044 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : No active profile set, falling back to default profiles: default
+2019-01-30 18:13:33.210  INFO 9044 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@14bf9759: startup date [Wed Jan 30 18:13:33 EST 2019]; root of context hierarchy
+2019-01-30 18:13:34.624  INFO 9044 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-01-30 18:13:34.651  INFO 9044 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-01-30 18:13:34.651  INFO 9044 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-01-30 18:13:34.659  INFO 9044 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/suderman/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-30 18:13:34.736  INFO 9044 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-01-30 18:13:34.737  INFO 9044 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1527 ms
+2019-01-30 18:13:34.896  INFO 9044 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-01-30 18:13:34.902  INFO 9044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-30 18:13:34.902  INFO 9044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-30 18:13:34.902  INFO 9044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-30 18:13:34.902  INFO 9044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-30 18:13:35.236  INFO 9044 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator tokenize
+2019-01-30 18:13:35.247  INFO 9044 --- [main] e.s.nlp.pipeline.TokenizerAnnotator      : No tokenizer type provided. Defaulting to PTBTokenizer.
+2019-01-30 18:13:35.261  INFO 9044 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator ssplit
+2019-01-30 18:13:35.269  INFO 9044 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator pos
+2019-01-30 18:13:35.891  INFO 9044 --- [main] e.s.nlp.tagger.maxent.MaxentTagger       : Loading POS tagger from edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger ... done [0.6 sec].
+2019-01-30 18:13:35.895  INFO 9044 --- [main] e.stanford.nlp.pipeline.StanfordCoreNLP  : Adding annotator lemma
+2019-01-30 18:13:35.919  INFO 9044 --- [main] o.l.eager.mining.web.util.DataCache      : Data cache initialized.
+2019-01-30 18:13:36.099  INFO 9044 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:13:36.354  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@14bf9759: startup date [Wed Jan 30 18:13:33 EST 2019]; root of context hierarchy
+2019-01-30 18:13:36.445  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ask],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.get(org.springframework.ui.Model)
+2019-01-30 18:13:36.446  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testGet()
+2019-01-30 18:13:36.447  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.testPost(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:13:36.447  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/save],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.saveDocuments(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2019-01-30 18:13:36.448  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question],methods=[POST],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.postHtml(java.util.Map<java.lang.String, java.lang.String>,org.springframework.ui.Model)
+2019-01-30 18:13:36.448  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/show],methods=[GET],produces=[text/html]}" onto public java.lang.String org.lappsgrid.eager.mining.web.controllers.AskController.show(java.lang.String)
+2019-01-30 18:13:36.450  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-30 18:13:36.451  INFO 9044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-30 18:13:36.483  INFO 9044 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:13:36.484  INFO 9044 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-30 18:13:36.505  INFO 9044 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in askController
+2019-01-30 18:13:37.133  INFO 9044 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-01-30 18:13:37.201  INFO 9044 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-30 18:13:37.204  INFO 9044 --- [main] o.lappsgrid.eager.mining.web.EntryPoint  : Started EntryPoint in 4.517 seconds (JVM running for 5.493)
+2019-01-30 18:14:01.057  INFO 9044 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-01-30 18:14:01.057  INFO 9044 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-30 18:14:01.075  INFO 9044 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2019-01-30 18:14:01.114  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : POST /question
+2019-01-30 18:14:01.129 DEBUG 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating answer.
+2019-01-30 18:14:01.130 TRACE 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Creating CloudSolrClient
+2019-01-30 18:14:01.351 TRACE 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Generating query
+2019-01-30 18:14:01.379 TRACE 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Sending query to Solr
+2019-01-30 18:14:17.858 TRACE 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Received 5000 documents
+2019-01-30 18:14:19.521  WARN 9044 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:20.908  WARN 9044 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:14:21.061  WARN 9044 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:22.048  WARN 9044 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:22.066  WARN 9044 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:22.684  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:22.895  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:22.928  WARN 9044 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:23.203  WARN 9044 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:23.813  WARN 9044 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:23.815  WARN 9044 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:24.102  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:24.143  WARN 9044 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:24.729  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:14:25.154  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:25.471  WARN 9044 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:25.514  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:25.519  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:25.931  WARN 9044 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:25.954  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:26.804  WARN 9044 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:26.812  WARN 9044 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:26.851  WARN 9044 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:14:27.366  WARN 9044 --- [pool-2-thread-1] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ⃞ (U+20DE, decimal: 8414)
+2019-01-30 18:14:27.392  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:28.170  WARN 9044 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:14:29.255  WARN 9044 --- [pool-2-thread-4] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:29.336  WARN 9044 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:29.633  WARN 9044 --- [pool-2-thread-6] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:29.796  WARN 9044 --- [pool-2-thread-2] edu.stanford.nlp.process.PTBLexer        : Untokenizable:   (U+202F, decimal: 8239)
+2019-01-30 18:14:29.972  WARN 9044 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:30.392  WARN 9044 --- [pool-2-thread-8] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:30.440  WARN 9044 --- [pool-2-thread-7] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:31.052  WARN 9044 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:31.464  WARN 9044 --- [pool-2-thread-5] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:31.658  WARN 9044 --- [pool-2-thread-3] edu.stanford.nlp.process.PTBLexer        : Untokenizable: ‐ (U+2010, decimal: 8208)
+2019-01-30 18:14:39.185 DEBUG 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Ranking 5000 documents
+2019-01-30 18:14:39.218  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initializing engine: 20
+2019-01-30 18:14:39.239  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-1 value: 1
+2019-01-30 18:14:39.313  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-1 value: 1.0
+2019-01-30 18:14:39.328  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-2 value: 2
+2019-01-30 18:14:39.336  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-2 value: 1.0
+2019-01-30 18:14:39.337  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-3 value: 3
+2019-01-30 18:14:39.342  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-3 value: 1.0
+2019-01-30 18:14:39.343  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-checkbox-4 value: 4
+2019-01-30 18:14:39.350  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-4 value: 1.0
+2019-01-30 18:14:39.350  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: title-weight-x value: 0.9
+2019-01-30 18:14:39.351  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for title is 0.9
+2019-01-30 18:14:39.351  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-1 value: 1
+2019-01-30 18:14:39.351  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-1 value: 1.0
+2019-01-30 18:14:39.352  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-2 value: 2
+2019-01-30 18:14:39.363  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-2 value: 1.0
+2019-01-30 18:14:39.363  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-3 value: 3
+2019-01-30 18:14:39.364  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-3 value: 1.0
+2019-01-30 18:14:39.364  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-checkbox-4 value: 4
+2019-01-30 18:14:39.365  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-4 value: 1.0
+2019-01-30 18:14:39.366  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: abstract-weight-x value: 1.1
+2019-01-30 18:14:39.366  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : weight for abstract is 1.1
+2019-01-30 18:14:39.366  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: domain value: bio
+2019-01-30 18:14:39.366  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : key: question value: What regulates the transcription of Myc?
+2019-01-30 18:14:39.366  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Initialized 2 engines
+2019-01-30 18:14:39.391  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking title
+2019-01-30 18:14:39.395  INFO 9044 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 5000 documents.
+2019-01-30 18:14:40.269  INFO 9044 --- [http-nio-8080-exec-1] o.l.e.m.ranking.CompositeRankingEngine   : Ranking abstract
+2019-01-30 18:14:40.269  INFO 9044 --- [http-nio-8080-exec-1] o.l.eager.mining.ranking.RankingEngine   : Ranking 5000 documents.
+2019-01-30 18:14:43.597 DEBUG 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Trimming results to 100
+2019-01-30 18:14:43.749  INFO 9044 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Scheduling 16061a9f-b42c-42d3-a68b-43b122d0c164 for removal.
+2019-01-30 18:14:43.762  INFO 9044 --- [http-nio-8080-exec-1] o.l.eager.mining.web.util.DataCache      : Added 5160218 bytes with key 16061a9f-b42c-42d3-a68b-43b122d0c164
+2019-01-30 18:14:43.762 DEBUG 9044 --- [http-nio-8080-exec-1] o.l.e.m.web.controllers.AskController    : Rendering data
+2019-01-30 18:19:43.752  INFO 9044 --- [pool-3-thread-1] o.l.eager.mining.web.util.DataCache      : Removing 16061a9f-b42c-42d3-a68b-43b122d0c164 from index.
+2019-01-30 18:19:43.758 DEBUG 9044 --- [pool-3-thread-1] o.l.eager.mining.web.util.DataCache      : 
+2019-01-30 18:21:24.639  INFO 9044 --- [Thread-3] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@14bf9759: startup date [Wed Jan 30 18:13:33 EST 2019]; root of context hierarchy
+2019-01-30 18:21:24.643  INFO 9044 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown

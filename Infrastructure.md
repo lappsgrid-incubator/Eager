@@ -50,6 +50,28 @@ There are currently two nodes in the Solr cloud
 | solr-1 | 129.114.16.34  | 10  | 30 GB  | 60 GB |
 | solr-2 | 129.114.16.102 | 10  | 30 GB  | 60 GB |
 
+#### Increase Open Files Limit
+
+Set the open file limit to 65000 to prevent problems running Solr.
+
+Add the following lines to the end of `/etc/security/limits.conf`
+
+```
+solr    soft    nofile  65000
+solr    hard    nofile  65000
+```
+
+Add the following to `/etc/pam.d/common-session` and `/etc/pam.d/common-session-noninteractive`
+
+``` 
+session required    pam_limits.so
+```
+
+Reboot the server so the changes take effect. Check if the limit has been changed or the *solr* user:
+```bash
+su solr --shell /bin/bash --command "ulimit -n"
+```
+
 #### Create a collection
 
 Log in to one of the Solr nodes (does not matter which one)

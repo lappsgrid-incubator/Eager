@@ -13,7 +13,7 @@
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>parent-pom</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -22,7 +22,6 @@
         <solr.version>7.4.0</solr.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <mining.version>1.0.0-SNAPSHOT</mining.version>
         <metrics.version>3.2.6</metrics.version>
     </properties>
     <modules>
@@ -39,6 +38,7 @@
         <module>test</module>
         <module>elasticsearch</module>
         <module>preprocess</module>
+        <module>upload</module>
     </modules>
     <build>
         <plugins>
@@ -103,12 +103,12 @@
             <dependency>
                 <groupId>org.lappsgrid.eager.mining</groupId>
                 <artifactId>api</artifactId>
-                <version>${mining.version}</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.lappsgrid.eager</groupId>
                 <artifactId>core</artifactId>
-                <version>${mining.version}</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>io.dropwizard.metrics</groupId>

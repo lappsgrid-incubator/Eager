@@ -4,9 +4,9 @@ import groovy.util.slurpersupport.NodeChild
 import groovy.xml.XmlUtil
 import org.junit.Ignore
 import org.junit.Test
-import org.lappsgrid.eager.core.Configuration
-import org.lappsgrid.eager.core.Factory
-import org.lappsgrid.eager.core.json.Serializer
+import org.lappsgrid.eager.mining.core.Configuration
+import org.lappsgrid.eager.mining.core.Factory
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice

@@ -5,9 +5,9 @@ import com.codahale.metrics.Timer
 import groovy.util.logging.Slf4j
 import org.apache.solr.client.solrj.impl.CloudSolrClient
 import org.apache.solr.client.solrj.response.UpdateResponse
-import org.lappsgrid.eager.core.jmx.Registry
-import org.lappsgrid.eager.core.solr.Fields
-import org.lappsgrid.eager.core.solr.LappsDocument
+import org.lappsgrid.eager.mining.core.jmx.Registry
+import org.lappsgrid.eager.mining.core.solr.Fields
+import org.lappsgrid.eager.mining.core.solr.LappsDocument
 import org.lappsgrid.eager.mining.DummyLogger
 import org.lappsgrid.eager.mining.api.Sink
 

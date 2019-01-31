@@ -27,7 +27,7 @@ MessageBox box = new MessageBox(EXCHANGE, MBOX) {
 
 // The message to be sent.
 Message message = new Message()
-    .body("Goodbye cruel world. I am leaving your today.")
+    .body("Goodbye cruel world. I am leaving you today.")
     .route("nlp.stanford")
     .route(MBOX)
      

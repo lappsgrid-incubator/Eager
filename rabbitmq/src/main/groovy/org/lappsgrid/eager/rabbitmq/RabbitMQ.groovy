@@ -57,11 +57,11 @@ class RabbitMQ {
     */
     void close() {
         if (channel.isOpen()) {
-            println "Closing channel " + channel.channelNumber
+//            println "Closing channel " + channel.channelNumber
             channel.close()
         }
         if (connection.isOpen()) {
-            println "Closing connection " + connection.address
+//            println "Closing connection " + connection.address
             connection.close()
         }
     }

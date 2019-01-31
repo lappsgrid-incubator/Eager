@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.lappsgrid.eager.mining</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>query</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <build>
         <plugins>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.lappsgrid.eager.mining</groupId>
             <artifactId>api</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

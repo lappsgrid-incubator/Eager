@@ -1,10 +1,10 @@
 package org.lappsgrid.eager.mining.io
 
-import org.lappsgrid.eager.core.Configuration
-import org.lappsgrid.eager.core.json.Serializer
 import org.lappsgrid.eager.mining.api.Sink
 import org.lappsgrid.eager.mining.api.Source
 import org.lappsgrid.eager.mining.api.Worker
+import org.lappsgrid.eager.mining.core.Configuration
+import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.mining.index.PMCIndex
 import org.lappsgrid.eager.mining.section.Packet
 import org.lappsgrid.eager.rabbitmq.Message

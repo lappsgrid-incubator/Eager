@@ -31,7 +31,8 @@ class DataCache {
         cacheDir = directory
         if (!cacheDir.exists()) {
             if (!cacheDir.mkdirs()) {
-                throw new IOException("Unable to create the data cache directory.")
+                logger.error("Unable to create cache directory {}", cacheDir.path)
+                throw new IOException("Unable to create the data cache directory " + cacheDir.path)
             }
         }
         cacheDir.deleteOnExit()
@@ -44,8 +45,15 @@ class DataCache {
         return add(Serializer.toJson(data))
     }
 
+    String add(String uuid, Map data) {
+        add(uuid, Serializer.toJson(data))
+    }
+
     String add(String data) {
-        String uuid = UUID.randomUUID()
+        add(UUID.randomUUID(), data)
+    }
+
+    String add(String uuid, String data) {
         File datafile = new File(cacheDir, uuid)
         datafile.text = data
         datafile.deleteOnExit()

@@ -17,7 +17,7 @@
     </parent>
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>web</artifactId>
-    <version>1.3.2</version>
+    <version>1.4.0-SNAPSHOT</version>
     <name>Web Service</name>
     <description>Web front end for the question answering system</description>
     <packaging>jar</packaging>

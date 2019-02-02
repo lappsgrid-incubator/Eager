@@ -82,7 +82,7 @@ class AskController {
     }
 
     @GetMapping(path="/show", produces = ['text/html'])
-    @ResponseBody String show(@RequestParam String path) {
+    @ResponseBody String getShow(@RequestParam String path) {
         String body = "<body><h1>Error</h1><p>An error occured retrieving $path</p></body>"
         String xml = fetch(path)
         if (xml) {
@@ -111,7 +111,7 @@ class AskController {
                         td 'Words in the title that are search terms'
      */
     @GetMapping(path = "/ask", produces = ['text/html'])
-    String get(Model model) {
+    String getAsk(Model model) {
         logger.info("GET /ask")
         updateModel(model)
         List<String> descriptions = [
@@ -141,19 +141,19 @@ class AskController {
     */
 
     @GetMapping(path = '/test', produces = "text/html")
-    String testGet() {
+    String getTest() {
         return 'test'
     }
 
     @PostMapping(path="/test", produces = "text/html")
-    String testPost(@RequestParam(defaultValue = 'undefined') String username, @RequestParam(defaultValue = 'undefined') String dataset, Model model) {
+    String postTest(@RequestParam(defaultValue = 'undefined') String username, @RequestParam(defaultValue = 'undefined') String dataset, Model model) {
         model.addAttribute('username', username)
         model.addAttribute('dataset', dataset)
         return 'test'
     }
 
     @GetMapping(path="/validate")
-    @ResponseBody String validate(@RequestParam String email) {
+    @ResponseBody String getValidate(@RequestParam String email) {
         String url = config.galaxy.host + '/api/users?key=' + config.galaxy.key + '&f_email=' + email
 //        String json = new URL(url).text
         logger.debug("Validating email {}", email)
@@ -167,7 +167,7 @@ class AskController {
             }
         }
         catch (Exception e) {
-            logger.warn("Unable to validate {}", email, e)
+            logger.warn("Unable to validate {}: {}", email, e.message)
         }
         String json = Serializer.toJson(status)
         logger.debug("Returning: {}", json)
@@ -175,7 +175,7 @@ class AskController {
     }
 
     @PostMapping(path="/save", produces="text/html")
-    String saveDocuments(@RequestParam String key, @RequestParam String username, Model model) {
+    String postSave(@RequestParam String key, @RequestParam String username, Model model) {
 //    String saveDocuments(@RequestParam Map<String,String> params, Model model) {
         logger.debug("Sending documents to Galaxy.")
         updateModel(model)
@@ -258,9 +258,11 @@ class AskController {
     }
 
     @PostMapping(path="/question", produces="text/html")
-    String postHtml(@RequestParam Map<String,String> params, Model model) {
+    String postQuestion(@RequestParam Map<String,String> params, Model model) {
         logger.info("POST /question")
         updateModel(model)
+        String uuid = UUID.randomUUID()
+        saveQuestion(uuid, params)
 //        if (true) {
 //            model.addAttribute("params", params)
 //            return "dump"
@@ -273,7 +275,7 @@ class AskController {
         }
 
         Map reply = answer(params, 100)
-        String uuid = cache.add(reply)
+        cache.add(uuid, reply)
         model.addAttribute('data', reply)
         model.addAttribute('key', uuid)
         logger.debug("Rendering data")
@@ -286,6 +288,21 @@ class AskController {
 
     private Map answer(Map params) {
         return answer(params, 100)
+    }
+
+    private void saveQuestion(String uuid, Map<String,String> data) {
+        Thread.start {
+            File directory = new File(config.question.dir)
+            if (!directory.exists()) {
+                if (!directory.mkdirs()) {
+                    logger.error("Unable to create directory {}", directory.path)
+                    return
+                }
+            }
+            File file = new File(directory, uuid + ".json")
+            file.text = Serializer.toPrettyJson(data)
+            logger.info("Saved question data {}", file.path)
+        }
     }
 
     private Map answer(Map params, int size) {

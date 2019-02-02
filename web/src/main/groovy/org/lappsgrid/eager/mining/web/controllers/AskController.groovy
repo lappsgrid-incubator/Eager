@@ -20,6 +20,7 @@ import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.ranking.model.GDDDocument
 import org.lappsgrid.eager.mining.web.nlp.DocumentProcessor
 import org.lappsgrid.eager.mining.web.util.DataCache
+import org.lappsgrid.eager.mining.web.util.Utils
 import org.lappsgrid.eager.query.SimpleQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.ESQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.GDDSnippetQueryProcessor
@@ -58,16 +59,22 @@ class AskController {
     DataCache cache
     File workingDir
 
-    String collection
+//    String collection
+//    String apiKey
+
+    ConfigObject config
 
     public AskController() {
         queryProcessor = new SimpleQueryProcessor()
         geoProcessor = new GDDSnippetQueryProcessor()
         documentProcessor = new DocumentProcessor()
-        collection = "bioqa"
+
+        config = Utils.loadConfiguration()
+
+//        collection = "bioqa"
 //        collection = "eager"
-        cache = new DataCache()
-        workingDir = new File("/tmp/eager/work")
+        cache = new DataCache(config.cache.dir)
+        workingDir = new File(config.work.dir)
         if (!workingDir.exists()) {
             workingDir.mkdirs()
         }
@@ -145,6 +152,28 @@ class AskController {
         return 'test'
     }
 
+    @GetMapping(path="/validate")
+    @ResponseBody String validate(@RequestParam String email) {
+        String url = config.galaxy.host + '/api/users?key=' + config.galaxy.key + '&f_email=' + email
+//        String json = new URL(url).text
+        logger.debug("Validating email {}", email)
+        Map status = [ valid: false]
+        try {
+            JsonSlurper parser = new JsonSlurper()
+            List users = parser.parse(new URL(url))
+            if (users.size() == 1 && users[0].email == email) {
+                logger.trace("Valid email {}", email)
+                status.valid = true
+            }
+        }
+        catch (Exception e) {
+            logger.warn("Unable to validate {}", email, e)
+        }
+        String json = Serializer.toJson(status)
+        logger.debug("Returning: {}", json)
+        return json
+    }
+
     @PostMapping(path="/save", produces="text/html")
     String saveDocuments(@RequestParam String key, @RequestParam String username, Model model) {
 //    String saveDocuments(@RequestParam Map<String,String> params, Model model) {
@@ -190,8 +219,8 @@ class AskController {
         long nBytes = 0
         try {
             // Send the zip to the upload service.
-            po = new PostOffice('galaxy.upload.service')
-            po.send('zip', zipFile.bytes)
+            po = new PostOffice(config.upload.postoffice)
+            po.send(config.upload.address, zipFile.bytes)
             po.close()
             nBytes = zipFile.bytes.length
             logger.info("Posted {} bytes to Galaxy.", nBytes)
@@ -264,7 +293,7 @@ class AskController {
         logger.debug("Generating answer.")
 
         logger.trace("Creating CloudSolrClient")
-        SolrClient solr = new CloudSolrClient.Builder(["http://129.114.16.34:8983/solr"]).build();
+        SolrClient solr = new CloudSolrClient.Builder([config.solr.host]).build();
 //        SolrClient solr = new CloudSolrClient.Builder(["http://solr1.lappsgrid.org:8983/solr"]).build();
 
         logger.trace("Generating query")
@@ -272,12 +301,12 @@ class AskController {
         Map solrParams = [:]
         solrParams.q = query.query
         solrParams.fl = 'pmid,pmc,doi,year,title,path,abstract,body'
-        solrParams.rows = '5000'
+        solrParams.rows = config.solr.rows
 
         MapSolrParams queryParams = new MapSolrParams(solrParams)
 
         logger.trace("Sending query to Solr")
-        final QueryResponse response = solr.query(collection, queryParams);
+        final QueryResponse response = solr.query(config.solr.collection, queryParams);
         final SolrDocumentList documents = response.getResults();
 
         int n = documents.size()
@@ -293,6 +322,7 @@ class AskController {
 //             docs << new Document(doc)
 //        }
 
+        // TODO We need a session managed bean so multiple users do not overwrite each other's files.
         File base = new File("/tmp/eager")
         new File(base, 'query.json').text = Serializer.toPrettyJson(query)
         new File(base, 'files.json').text = Serializer.toPrettyJson(docs)

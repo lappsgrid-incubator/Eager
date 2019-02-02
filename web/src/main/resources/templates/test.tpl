@@ -29,9 +29,10 @@ content: {
     h1 "Testing"
     form(action:'test', method:'post') {
         label(for:'username', 'User name:')
-        input(id:'username', name:'username', type:'text', size:40, onkeyup:'validate(this)', '')
+        input(id:'username', name:'username', type:'text', size:40, oninput:'validate(this)', '')
         label(for:'dataset', 'Dataset name: ')
         input(id:'dataset', name:'dataset', type:'text', size:40, '')
+        div(class:'alert hidden', id:'msgbox', '')
         input(type:'submit', id:'submit', class:'button', value:'Save')
     }
 }

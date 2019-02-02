@@ -24,11 +24,22 @@ function validateEmail(email)
 function validate(email) {
     //var email = $("#username").val();
     if (validateEmail(email.value)) {
-        enable('#submit');
+        //enable('#submit');
+        checkUser(email.value)
     }
     else {
         disable('#submit');
     }
+}
+
+function checkUser(email) {
+    var url = 'http://galaxy.lappsgrid.org/api/users?key=6f716395c326f6eda8bc4cec030f307f&f_email=' + email
+    var result = false
+    var handler = function(response) {
+        console.log(response)
+        result = false
+    }
+    $.ajax({url:url, success: handler});
 }
 
 

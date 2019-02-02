@@ -5,6 +5,7 @@ target/
 *.war
 *.jar
 *.gz
+*.log
 VERSION
 Version.java
 indexer/src/main/resources/pmc-index.txt

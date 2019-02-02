@@ -24,13 +24,14 @@ content: {
         }
     }
     h1 "Send Results To Galaxy"
+    div(id:'msgbox', class:'alert hidden', '')
     form(action:'save', method:'post', class:'box') {
         yieldUnescaped '''<p>To send data to <a href="https://galaxy.lappsgrid.org">LAPPS/Galaxy</a>
             you must be a registered user.  Enter you Galaxy username (email address) below and the files will be available
             in the <i>Upload file</i> dialog (click the <i>Choose FTP files</i> button). If files with the same name already exists on the Galaxy server
             they will be overwritten.</p>'''
         fieldset(class:'no-border') {
-            input(type:'email', id:'username', name:'username', required:'true', placeHolder:'Enter your Galaxy username', onkeyup:'validate(this)', size:40)
+            input(type:'email', id:'username', name:'username', required:'true', placeHolder:'Enter your Galaxy username', oninput:'validate(this)', size:40)
             input(type:'text', name:'key', id:'key', style:'display:none', value:key)
             input(type:'submit', id:'submit', class:'submit', value:'Send to Galaxy')
         }

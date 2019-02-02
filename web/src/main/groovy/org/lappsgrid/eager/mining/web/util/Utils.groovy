@@ -17,4 +17,46 @@ class Utils {
         View view = views[-1]
         return view.findByAtType(Uri.TOKEN)
     }
+
+    static ConfigObject loadConfiguration() {
+        ConfigSlurper parser = new ConfigSlurper()
+
+        String filename = "eager-web.conf"
+
+        // Look for the config file in the local (working) directory.
+        File file = new File(filename)
+        if (file.exists()) {
+            return parser.parse(file.text)
+        }
+
+        // Look in a few other default locations.
+        file  = new File("/etc/defaults", filename)
+        if (file.exists()) {
+            return parser.parse(file.text)
+        }
+        file = new File("/etc/eager", filename)
+        if (file.exists()) {
+            return parser.parse(file.text)
+        }
+
+        // Use the bundled config
+        InputStream stream = this.class.getResourceAsStream('/' + filename)
+        if (stream != null) {
+            return parser.parse(stream.text)
+        }
+
+        // This is bad...
+        String script = '''
+solr.host = "http://129.114.16.34:8983/solr"
+solr.collection = "bioqa"
+solr.rows = "5000"
+galaxy.host = "https://jetstream.lappsgrid.org"
+galaxy.key = System.getenv("GALAXY_API_KEY")
+work.dir = "/tmp/eager/work"
+cache.dir = "/tmp/eager/cache" 
+upload.postoffice = "galaxy.upload.service"
+upload.address = "zip"
+'''
+        return parser.parse(script)
+    }
 }

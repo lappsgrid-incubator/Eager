@@ -42,9 +42,9 @@ content: {
     }
     h3 "Rate These Answers"
     div id:'rating-buttons', class:'box', {
-        input id:'rate-good', type:'button', class:'btn-ok', value:'Good', onclick:"rate('abc', 1)", ''
-        input id:'rate-meh', type:'button', class:'btn-warn', value:'Meh', onclick:"rate('abc', 0)", ''
-        input id:'rate-bad', type:'button', class:'btn-error', value:'Bad', onclick:"rate('abc', -1)", ''
+        input id:'rate-good', type:'button', class:'btn-ok', value:'Good', onclick:"rate('$key', 1)", ''
+        input id:'rate-meh', type:'button', class:'btn-warn', value:'Meh', onclick:"rate('$key', 0)", ''
+        input id:'rate-bad', type:'button', class:'btn-error', value:'Bad', onclick:"rate('$key', -1)", ''
     }
     div id:'rating-display', class:'box hidden', {
         p id:'rating', 'Not yet rated.'

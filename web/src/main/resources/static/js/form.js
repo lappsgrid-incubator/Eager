@@ -28,7 +28,7 @@ function validate(email) {
     }
     else {
         disable('#submit');
-        $("msgbox").hide()
+        $("#msgbox").hide()
     }
 }
 

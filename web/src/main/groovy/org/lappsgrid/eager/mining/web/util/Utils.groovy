@@ -63,6 +63,7 @@ galaxy.host = "https://jetstream.lappsgrid.org"
 galaxy.key = System.getenv("GALAXY_API_KEY")
 work.dir = "/tmp/eager/work"
 cache.dir = "/tmp/eager/cache" 
+cache.ttl = 10
 question.dir = "/tmp/eager/questions"
 upload.postoffice = "galaxy.upload.service"
 upload.address = "zip"

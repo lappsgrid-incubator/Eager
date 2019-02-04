@@ -204,6 +204,7 @@ div.content .box {
   border-spacing: 0;
   border: 1px solid #AD1F2B;
   padding: 10px 20px;
+  margin-bottom: 10px;
 }
 div.content .hidden {
   display: none;
@@ -424,9 +425,9 @@ div.content .submit {
   border-spacing: 0;
   border: 1px solid black;
   text-decoration: none;
-  padding: 2px 5px;
+  padding: 4px 10px;
   color: white;
-  font-size: 10pt;
+  font-size: 12pt;
   -webkit-transition-duration: 0.2s;
   /* Safari */
   transition-duration: 0.2s;
@@ -441,9 +442,11 @@ div.content .btn-ok {
   border-spacing: 0;
   border: 1px solid #2bad1f;
   text-decoration: none;
-  padding: 2px 5px;
+  text-shadow: 2px 2px black;
+  padding: 4px 10px;
+  margin-right: 4px;
   color: white;
-  font-size: 10pt;
+  font-size: 12pt;
   background-color: #2bad1f;
   -webkit-transition-duration: 0.2s;
   /* Safari */
@@ -452,22 +455,24 @@ div.content .btn-ok {
 div.content .btn-ok:hover {
   cursor: pointer;
 }
-div.content .btn-disabled {
+div.content .btn-warn {
   moz-border-radius: 5px;
   webkit-border-radius: 5px;
   border-radius: 5px;
   border-spacing: 0;
-  border: 1px solid #ccc;
+  border: 1px solid #f1c40f;
   text-decoration: none;
-  padding: 2px 5px;
+  text-shadow: 2px 2px black;
+  padding: 4px 10px;
+  margin-right: 4px;
   color: white;
-  font-size: 10pt;
-  background-color: #ccc;
+  font-size: 12pt;
+  background-color: #f1c40f;
   -webkit-transition-duration: 0.2s;
   /* Safari */
   transition-duration: 0.2s;
 }
-div.content .btn-disabled:hover {
+div.content .btn-warn:hover {
   cursor: pointer;
 }
 div.content .btn-error {
@@ -477,15 +482,37 @@ div.content .btn-error {
   border-spacing: 0;
   border: 1px solid #e74c3c;
   text-decoration: none;
-  padding: 2px 5px;
+  text-shadow: 2px 2px black;
+  padding: 4px 10px;
+  margin-right: 4px;
   color: white;
-  font-size: 10pt;
+  font-size: 12pt;
   background-color: #e74c3c;
   -webkit-transition-duration: 0.2s;
   /* Safari */
   transition-duration: 0.2s;
 }
 div.content .btn-error:hover {
+  cursor: pointer;
+}
+div.content .btn-disabled {
+  moz-border-radius: 5px;
+  webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-spacing: 0;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  text-shadow: 2px 2px black;
+  padding: 4px 10px;
+  margin-right: 4px;
+  color: white;
+  font-size: 12pt;
+  background-color: #ccc;
+  -webkit-transition-duration: 0.2s;
+  /* Safari */
+  transition-duration: 0.2s;
+}
+div.content .btn-disabled:hover {
   cursor: pointer;
 }
 div.dialog {

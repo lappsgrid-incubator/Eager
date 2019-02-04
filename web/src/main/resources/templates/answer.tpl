@@ -22,6 +22,10 @@ content: {
             td 'Size'
             td data.size
         }
+        tr {
+            td 'Time'
+            td duration
+        }
     }
     h1 "Send Results To Galaxy"
     div(id:'msgbox', class:'alert hidden', '')
@@ -36,6 +40,16 @@ content: {
             input(type:'submit', id:'submit', class:'submit', value:'Send to Galaxy')
         }
     }
+    h3 "Rate These Answers"
+    div id:'rating-buttons', class:'box', {
+        input id:'rate-good', type:'button', class:'btn-ok', value:'Good', onclick:"rate('abc', 1)", ''
+        input id:'rate-meh', type:'button', class:'btn-warn', value:'Meh', onclick:"rate('abc', 0)", ''
+        input id:'rate-bad', type:'button', class:'btn-error', value:'Bad', onclick:"rate('abc', -1)", ''
+    }
+    div id:'rating-display', class:'box hidden', {
+        p id:'rating', 'Not yet rated.'
+    }
+
     h1 'The Answers'
     table(class:'answers grid') {
         tr {

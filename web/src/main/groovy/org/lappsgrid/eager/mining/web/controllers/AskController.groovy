@@ -18,6 +18,10 @@ import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
 import org.lappsgrid.eager.mining.ranking.RankingEngine
 import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.ranking.model.GDDDocument
+import org.lappsgrid.eager.mining.web.db.Database
+import org.lappsgrid.eager.mining.web.db.Question
+import org.lappsgrid.eager.mining.web.db.Rating
+import org.lappsgrid.eager.mining.web.db.RatingRepository
 import org.lappsgrid.eager.mining.web.nlp.DocumentProcessor
 import org.lappsgrid.eager.mining.web.util.DataCache
 import org.lappsgrid.eager.mining.web.util.Utils
@@ -30,6 +34,7 @@ import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 import org.lappsgrid.eager.service.Version
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.lif.Container
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -53,6 +58,10 @@ class AskController {
 
     private static final Configuration c = new Configuration()
 
+    @Autowired
+    Database db
+    RatingRepository ratings
+
     QueryProcessor queryProcessor
     QueryProcessor geoProcessor
     DocumentProcessor documentProcessor
@@ -73,7 +82,12 @@ class AskController {
 
 //        collection = "bioqa"
 //        collection = "eager"
-        cache = new DataCache(config.cache.dir)
+        if (config.cache.ttl) {
+            cache = new DataCache(config.cache.dir, config.cache.ttl)
+        }
+        else {
+            cache = new DataCache(config.cache.dir)
+        }
         workingDir = new File(config.work.dir)
         if (!workingDir.exists()) {
             workingDir.mkdirs()
@@ -118,7 +132,10 @@ class AskController {
                 "consecutive terms",
                 "total search terms",
                 "position",
-                "% search terms"
+                "% search terms",
+                "term order",
+                "1st sentence",
+                "sentence count"
         ]
         model.addAttribute("descriptions", descriptions)
         logger.debug("Rendering mainpage")
@@ -172,6 +189,41 @@ class AskController {
         String json = Serializer.toJson(status)
         logger.debug("Returning: {}", json)
         return json
+    }
+
+    @GetMapping(path='/rate')
+    @ResponseBody String getRate(@RequestParam String key, @RequestParam String score) {
+        int value = score as int
+        db.rate(key, value)
+//        ratings.save(new Rating(key, value))
+        String result = 'Unknown'
+        switch (value) {
+            case -1:
+                result = "Bad"
+                break
+            case 0:
+                result = "Meh"
+                break
+            case 1:
+                result = "Good"
+                break
+        }
+        return result
+    }
+
+    @GetMapping(path='/ratings', produces='text/html')
+    String getRatings(Model model) {
+//        List<Rating> all = ratings.findAll()
+        updateModel(model)
+        model.addAttribute('data', db.ratings())
+        return 'ratings'
+    }
+
+    @GetMapping(path='/questions', produces = 'text/html')
+    String getQuestions(Model model) {
+        updateModel(model)
+        model.addAttribute('data', db.questions())
+        return 'questions'
     }
 
     @PostMapping(path="/save", produces="text/html")
@@ -274,10 +326,13 @@ class AskController {
             return 'geodd'
         }
 
+        long start = System.currentTimeMillis()
         Map reply = answer(params, 100)
+        long duration = System.currentTimeMillis() - start
         cache.add(uuid, reply)
         model.addAttribute('data', reply)
         model.addAttribute('key', uuid)
+        model.addAttribute('duration', org.lappsgrid.eager.mining.core.Utils.format(duration))
         logger.debug("Rendering data")
         return 'answer'
     }
@@ -292,6 +347,14 @@ class AskController {
 
     private void saveQuestion(String uuid, Map<String,String> data) {
         Thread.start {
+            String question = data.question
+            db.save(new Question(uuid, question))
+            data.each { k,v ->
+                if (k.contains('weight')) {
+                    String name = k.replace('weight-', '')
+                    db.saveSettings(uuid, name, v)
+                }
+            }
             File directory = new File(config.question.dir)
             if (!directory.exists()) {
                 if (!directory.mkdirs()) {

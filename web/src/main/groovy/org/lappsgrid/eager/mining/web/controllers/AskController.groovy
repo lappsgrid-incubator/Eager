@@ -213,7 +213,6 @@ class AskController {
 
     @GetMapping(path='/ratings', produces='text/html')
     String getRatings(Model model) {
-//        List<Rating> all = ratings.findAll()
         updateModel(model)
         model.addAttribute('data', db.ratings())
         return 'ratings'
@@ -245,7 +244,7 @@ class AskController {
         File zipFile = new File(workingDir, "${key}.zip")
         ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(zipFile))
 
-//        String path = username + '/' + dataset
+        // Create the zip file.
         data.documents.each { doc ->
             String id = getId(doc)
             if (id) try {
@@ -267,6 +266,8 @@ class AskController {
             }
         }
         zip.close()
+
+        // Send the zip file to the upload service.
         PostOffice po
         long nBytes = 0
         try {

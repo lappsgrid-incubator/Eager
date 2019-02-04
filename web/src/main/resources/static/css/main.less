@@ -248,6 +248,7 @@ div.content {
   .box {
     .rounded-corners;
     padding: 10px 20px;
+    margin-bottom: 10px;
   }
 
   .hidden {
@@ -480,9 +481,11 @@ div.content {
   .button(@c: @lighter) {
     .rounded-corners(5px, @c);
     text-decoration: none;
-    padding: 2px 5px;
+    text-shadow: 2px 2px black;
+    padding: 4px 10px;
+    margin-right: 4px;
     color: white;
-    font-size: 10pt;
+    font-size: 12pt;
     background-color: @c;
     -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;
@@ -494,9 +497,9 @@ div.content {
   .submit {
     .rounded-corners(5px, black);
     text-decoration: none;
-    padding: 2px 5px;
+    padding: 4px 10px;
     color: white;
-    font-size: 10pt;
+    font-size: 12pt;
     -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;
     &:hover {
@@ -507,11 +510,14 @@ div.content {
   .btn-ok {
     .button(@contrast);
   }
-  .btn-disabled {
-    .button(#ccc);
+  .btn-warn {
+    .button(@yellow)
   }
   .btn-error {
     .button(@red);
+  }
+  .btn-disabled {
+    .button(#ccc);
   }
 
   //.button:hover {

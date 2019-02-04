@@ -414,6 +414,51 @@ div.content .button {
   /* Safari */
   transition-duration: 0.2s;
 }
+div.content .btn-ok{
+  moz-border-radius: 5px;
+  webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-spacing: 0;
+  border: 1px solid green;
+  text-decoration: none;
+  padding: 2px 5px;
+  color: white;
+  font-size: 10pt;
+  background-color: green;
+  -webkit-transition-duration: 0.2s;
+  /* Safari */
+  transition-duration: 0.2s;
+}
+div.content .btn-warn{
+  moz-border-radius: 5px;
+  webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-spacing: 0;
+  border: 1px solid yellow;
+  text-decoration: none;
+  padding: 2px 5px;
+  color: white;
+  font-size: 10pt;
+  background-color: yellow;
+  -webkit-transition-duration: 0.2s;
+  /* Safari */
+  transition-duration: 0.2s;
+}
+div.content .btn-error{
+  moz-border-radius: 5px;
+  webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-spacing: 0;
+  border: 1px solid #AD1F2B;
+  text-decoration: none;
+  padding: 2px 5px;
+  color: white;
+  font-size: 10pt;
+  background-color: red;
+  -webkit-transition-duration: 0.2s;
+  /* Safari */
+  transition-duration: 0.2s;
+}
 div.content .button:hover {
   cursor: pointer;
 }

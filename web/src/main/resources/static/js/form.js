@@ -28,6 +28,7 @@ function validate(email) {
     }
     else {
         disable('#submit');
+        $("msgbox").hide()
     }
 }
 
@@ -47,4 +48,13 @@ function checkUser(email) {
     }});
 }
 
+function rate(id, score) {
+    console.log("rated " + id + " score: " + score);;
+    var url = 'rate?key=' + id + '&score=' + score;
+    $.ajax({url:url, success: function(rating) {
+        $("#rating").text("You rated " + id + " as " + rating);
+        $("#rating-display").show();
+        $("#rating-buttons").hide();
+    }});
+}
 

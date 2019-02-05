@@ -34,3 +34,6 @@ tag:
 
 push:
 	docker push $(TAG)
+
+upload:
+	scp -i ~/.ssh/lappsgrid-shared-key.pem target/eager.jar root@149.165.156.190:/home/eager

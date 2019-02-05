@@ -6,7 +6,7 @@ import org.lappsgrid.eager.mining.model.Sentence
 import org.lappsgrid.eager.mining.model.Token
 
 /**
- * Returns 1 if the first sentence in the section contains any search terms.
+ * Returns the perctage of query terms found in the first sentence.
  */
 class FirstSentenceEvaluator extends AbstractScoringAlgorithm {
     @Override

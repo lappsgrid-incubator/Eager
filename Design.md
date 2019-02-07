@@ -17,6 +17,7 @@ Current workflow for the site at https://services.lappsgrid.org/eager/ask is:
     - Normalize scores
 - Return sorted list of documents (document IDs). Limited to top 100.
 
+![AskMe-Workflow](AskMe-Workflow.png)
 
 ### Proposed full workflow
 

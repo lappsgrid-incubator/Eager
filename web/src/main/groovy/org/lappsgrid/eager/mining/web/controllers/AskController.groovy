@@ -18,8 +18,13 @@ import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
 import org.lappsgrid.eager.mining.ranking.RankingEngine
 import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.ranking.model.GDDDocument
+import org.lappsgrid.eager.mining.web.db.Database
+import org.lappsgrid.eager.mining.web.db.Question
+import org.lappsgrid.eager.mining.web.db.Rating
+import org.lappsgrid.eager.mining.web.db.RatingRepository
 import org.lappsgrid.eager.mining.web.nlp.DocumentProcessor
 import org.lappsgrid.eager.mining.web.util.DataCache
+import org.lappsgrid.eager.mining.web.util.Utils
 import org.lappsgrid.eager.query.SimpleQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.ESQueryProcessor
 import org.lappsgrid.eager.query.elasticsearch.GDDSnippetQueryProcessor
@@ -29,6 +34,7 @@ import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 import org.lappsgrid.eager.service.Version
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.lif.Container
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -52,22 +58,37 @@ class AskController {
 
     private static final Configuration c = new Configuration()
 
+    @Autowired
+    Database db
+    RatingRepository ratings
+
     QueryProcessor queryProcessor
     QueryProcessor geoProcessor
     DocumentProcessor documentProcessor
     DataCache cache
     File workingDir
 
-    String collection
+//    String collection
+//    String apiKey
+
+    ConfigObject config
 
     public AskController() {
         queryProcessor = new SimpleQueryProcessor()
         geoProcessor = new GDDSnippetQueryProcessor()
         documentProcessor = new DocumentProcessor()
-        collection = "bioqa"
+
+        config = Utils.loadConfiguration()
+
+//        collection = "bioqa"
 //        collection = "eager"
-        cache = new DataCache()
-        workingDir = new File("/tmp/eager/work")
+        if (config.cache.ttl) {
+            cache = new DataCache(config.cache.dir, config.cache.ttl)
+        }
+        else {
+            cache = new DataCache(config.cache.dir)
+        }
+        workingDir = new File(config.work.dir)
         if (!workingDir.exists()) {
             workingDir.mkdirs()
         }
@@ -75,7 +96,7 @@ class AskController {
     }
 
     @GetMapping(path="/show", produces = ['text/html'])
-    @ResponseBody String show(@RequestParam String path) {
+    @ResponseBody String getShow(@RequestParam String path) {
         String body = "<body><h1>Error</h1><p>An error occured retrieving $path</p></body>"
         String xml = fetch(path)
         if (xml) {
@@ -104,14 +125,17 @@ class AskController {
                         td 'Words in the title that are search terms'
      */
     @GetMapping(path = "/ask", produces = ['text/html'])
-    String get(Model model) {
+    String getAsk(Model model) {
         logger.info("GET /ask")
         updateModel(model)
         List<String> descriptions = [
                 "consecutive terms",
                 "total search terms",
                 "position",
-                "% search terms"
+                "% search terms",
+                "term order",
+                "1st sentence",
+                "sentence count"
         ]
         model.addAttribute("descriptions", descriptions)
         logger.debug("Rendering mainpage")
@@ -134,19 +158,75 @@ class AskController {
     */
 
     @GetMapping(path = '/test', produces = "text/html")
-    String testGet() {
+    String getTest() {
         return 'test'
     }
 
     @PostMapping(path="/test", produces = "text/html")
-    String testPost(@RequestParam(defaultValue = 'undefined') String username, @RequestParam(defaultValue = 'undefined') String dataset, Model model) {
+    String postTest(@RequestParam(defaultValue = 'undefined') String username, @RequestParam(defaultValue = 'undefined') String dataset, Model model) {
         model.addAttribute('username', username)
         model.addAttribute('dataset', dataset)
         return 'test'
     }
 
+    @GetMapping(path="/validate")
+    @ResponseBody String getValidate(@RequestParam String email) {
+        String url = config.galaxy.host + '/api/users?key=' + config.galaxy.key + '&f_email=' + email
+//        String json = new URL(url).text
+        logger.debug("Validating email {}", email)
+        Map status = [ valid: false]
+        try {
+            JsonSlurper parser = new JsonSlurper()
+            List users = parser.parse(new URL(url))
+            if (users.size() == 1 && users[0].email == email) {
+                logger.trace("Valid email {}", email)
+                status.valid = true
+            }
+        }
+        catch (Exception e) {
+            logger.warn("Unable to validate {}: {}", email, e.message)
+        }
+        String json = Serializer.toJson(status)
+        logger.debug("Returning: {}", json)
+        return json
+    }
+
+    @GetMapping(path='/rate')
+    @ResponseBody String getRate(@RequestParam String key, @RequestParam String score) {
+        int value = score as int
+        db.rate(key, value)
+//        ratings.save(new Rating(key, value))
+        String result = 'Unknown'
+        switch (value) {
+            case -1:
+                result = "Bad"
+                break
+            case 0:
+                result = "Meh"
+                break
+            case 1:
+                result = "Good"
+                break
+        }
+        return result
+    }
+
+    @GetMapping(path='/ratings', produces='text/html')
+    String getRatings(Model model) {
+        updateModel(model)
+        model.addAttribute('data', db.ratings())
+        return 'ratings'
+    }
+
+    @GetMapping(path='/questions', produces = 'text/html')
+    String getQuestions(Model model) {
+        updateModel(model)
+        model.addAttribute('data', db.questions())
+        return 'questions'
+    }
+
     @PostMapping(path="/save", produces="text/html")
-    String saveDocuments(@RequestParam String key, @RequestParam String username, Model model) {
+    String postSave(@RequestParam String key, @RequestParam String username, Model model) {
 //    String saveDocuments(@RequestParam Map<String,String> params, Model model) {
         logger.debug("Sending documents to Galaxy.")
         updateModel(model)
@@ -164,7 +244,7 @@ class AskController {
         File zipFile = new File(workingDir, "${key}.zip")
         ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(zipFile))
 
-//        String path = username + '/' + dataset
+        // Create the zip file.
         data.documents.each { doc ->
             String id = getId(doc)
             if (id) try {
@@ -186,12 +266,14 @@ class AskController {
             }
         }
         zip.close()
+
+        // Send the zip file to the upload service.
         PostOffice po
         long nBytes = 0
         try {
             // Send the zip to the upload service.
-            po = new PostOffice('galaxy.upload.service')
-            po.send('zip', zipFile.bytes)
+            po = new PostOffice(config.upload.postoffice)
+            po.send(config.upload.address, zipFile.bytes)
             po.close()
             nBytes = zipFile.bytes.length
             logger.info("Posted {} bytes to Galaxy.", nBytes)
@@ -229,9 +311,11 @@ class AskController {
     }
 
     @PostMapping(path="/question", produces="text/html")
-    String postHtml(@RequestParam Map<String,String> params, Model model) {
+    String postQuestion(@RequestParam Map<String,String> params, Model model) {
         logger.info("POST /question")
         updateModel(model)
+        String uuid = UUID.randomUUID()
+        saveQuestion(uuid, params)
 //        if (true) {
 //            model.addAttribute("params", params)
 //            return "dump"
@@ -243,10 +327,13 @@ class AskController {
             return 'geodd'
         }
 
+        long start = System.currentTimeMillis()
         Map reply = answer(params, 100)
-        String uuid = cache.add(reply)
+        long duration = System.currentTimeMillis() - start
+        cache.add(uuid, reply)
         model.addAttribute('data', reply)
         model.addAttribute('key', uuid)
+        model.addAttribute('duration', org.lappsgrid.eager.mining.core.Utils.format(duration))
         logger.debug("Rendering data")
         return 'answer'
     }
@@ -259,12 +346,35 @@ class AskController {
         return answer(params, 100)
     }
 
+    private void saveQuestion(String uuid, Map<String,String> data) {
+        Thread.start {
+            String question = data.question
+            db.save(new Question(uuid, question))
+            data.each { k,v ->
+                if (k.contains('weight')) {
+                    String name = k.replace('weight-', '')
+                    db.saveSettings(uuid, name, v)
+                }
+            }
+            File directory = new File(config.question.dir)
+            if (!directory.exists()) {
+                if (!directory.mkdirs()) {
+                    logger.error("Unable to create directory {}", directory.path)
+                    return
+                }
+            }
+            File file = new File(directory, uuid + ".json")
+            file.text = Serializer.toPrettyJson(data)
+            logger.info("Saved question data {}", file.path)
+        }
+    }
+
     private Map answer(Map params, int size) {
 //        SolrClient solr = new CloudSolrClient.Builder(["http://149.165.169.127:8983/solr"]).build();
         logger.debug("Generating answer.")
 
         logger.trace("Creating CloudSolrClient")
-        SolrClient solr = new CloudSolrClient.Builder(["http://129.114.16.34:8983/solr"]).build();
+        SolrClient solr = new CloudSolrClient.Builder([config.solr.host]).build();
 //        SolrClient solr = new CloudSolrClient.Builder(["http://solr1.lappsgrid.org:8983/solr"]).build();
 
         logger.trace("Generating query")
@@ -272,12 +382,12 @@ class AskController {
         Map solrParams = [:]
         solrParams.q = query.query
         solrParams.fl = 'pmid,pmc,doi,year,title,path,abstract,body'
-        solrParams.rows = '5000'
+        solrParams.rows = config.solr.rows
 
         MapSolrParams queryParams = new MapSolrParams(solrParams)
 
         logger.trace("Sending query to Solr")
-        final QueryResponse response = solr.query(collection, queryParams);
+        final QueryResponse response = solr.query(config.solr.collection, queryParams);
         final SolrDocumentList documents = response.getResults();
 
         int n = documents.size()
@@ -293,6 +403,7 @@ class AskController {
 //             docs << new Document(doc)
 //        }
 
+        // TODO We need a session managed bean so multiple users do not overwrite each other's files.
         File base = new File("/tmp/eager")
         new File(base, 'query.json').text = Serializer.toPrettyJson(query)
         new File(base, 'files.json').text = Serializer.toPrettyJson(docs)

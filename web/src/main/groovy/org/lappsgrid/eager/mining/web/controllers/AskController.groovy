@@ -60,16 +60,13 @@ class AskController {
 
     @Autowired
     Database db
-    RatingRepository ratings
+
 
     QueryProcessor queryProcessor
     QueryProcessor geoProcessor
     DocumentProcessor documentProcessor
     DataCache cache
     File workingDir
-
-//    String collection
-//    String apiKey
 
     ConfigObject config
 
@@ -80,8 +77,6 @@ class AskController {
 
         config = Utils.loadConfiguration()
 
-//        collection = "bioqa"
-//        collection = "eager"
         if (config.cache.ttl) {
             cache = new DataCache(config.cache.dir, config.cache.ttl)
         }

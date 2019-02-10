@@ -54,24 +54,14 @@ class RankingEngine {
     }
 
     List<Document> rank(Query query, List<Document> documents) {
-//        return rank(query, documents, { doc -> doc.title })
-//    }
-//
-//    List<Document> rank(Query query, List<Document> documents, Closure getField) {
-//        rank(query, documents, getField, 1.0f)
-//    }
-//
-//    List<Document> rank(Query query, List<Document> documents, Closure getField, Float weight) {
         logger.info("Ranking {} documents.", documents.size())
         documents.each { Document document ->
-//            logger.trace("Document {}", document.path)
             float total = 0.0f
             algorithms.each { algorithm ->
                 def field = field(document)
 
                 float score = 0.0f
                 if (field instanceof String) {
-//                    score = algorithm.score(query, field)
                     score = calculate(algorithm, query, field)
                 }
                 else if (field instanceof Section) {

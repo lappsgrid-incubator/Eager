@@ -27,7 +27,7 @@ class Stanford {
         pipeline = new StanfordCoreNLP(props);
     }
 
-    public Section process(String text) {
+    Section process(String text) {
         Section section = new Section()
         section.text = text
 

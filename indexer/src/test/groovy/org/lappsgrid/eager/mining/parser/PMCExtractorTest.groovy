@@ -11,6 +11,7 @@ import static org.junit.Assert.*
 /**
  *
  */
+@Ignore
 class PMCExtractorTest {
 
     LappsDocument document

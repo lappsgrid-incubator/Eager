@@ -29,11 +29,22 @@
         </table>
     </div>
     <h1>Testing</h1>
-    <form action='test' method='post'><label for='username'>User name:</label><input id='username' name='username'
-                                                                                     type='text' size='40'
-                                                                                     onkeyup='validate(this)'></input><label
-            for='dataset'>Dataset name: </label><input id='dataset' name='dataset' type='text' size='40'></input><input
-            type='submit' id='submit' class='button' value='Save'/></form>
+    <div class="alert hidden">
+        <p>That is not a valid username on our Galaxy instance.  Please check your spelling or register for an account.</p>
+    </div>
+    <h1>Rate These Answers</h1>
+    <div class="box">
+        <input class="btn-error" type="button" value="Bad"/>
+        <input class="btn-warn" type="button" value="Meh"/>
+        <input class="btn-ok" type="button" value="Good"/>
+    </div>
+    <form action='test' method='post'>
+        <label for='username'>User name:</label>
+        <input id='username' name='username' type='text' size='40' onkeyup='validate(this)'></input>
+        <label for='dataset'>Dataset name: </label>
+        <input id='dataset' name='dataset' type='text' size='40'></input>
+        <input type='submit' id='submit' class='button' value='Save'/>
+    </form>
     <div class='copyright'><p>Copyright 2019 The Language Applications Grid</p></div>
 </div>
 </body>

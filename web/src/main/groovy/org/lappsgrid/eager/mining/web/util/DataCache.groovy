@@ -14,38 +14,66 @@ import java.util.concurrent.TimeUnit
 @Slf4j("logger")
 class DataCache {
 
+    static final int DEFAULT_TTL = 5
+    static final String DEFAULT_DIR = "/tmp/eager/cache"
+
+    /** Disk cache */
     File cacheDir
+    /** In memory cache */
     Map<String,String> index
 
+    /** Executor service used to schedule cleanup tasks. */
     ScheduledExecutorService executor
 
+    /** How many minutes items will live in the cache before being removed. */
+    int ttl
+
     DataCache() throws IOException {
-        this("/tmp/eager/cache")
+        this(new File(DEFAULT_DIR), DEFAULT_TTL)
+    }
+
+    DataCache(int ttl) throws IOException {
+        this(new File(DEFAULT_DIR), ttl)
     }
 
     DataCache(String path) throws IOException {
-        this(new File(path))
+        this(new File(path), DEFAULT_TTL)
     }
 
-    DataCache(File directory) throws IOException {
+    DataCache(String path, int ttl) throws IOException {
+        this(new File(path), ttl)
+    }
+
+    DataCache(File directory, int ttl) throws IOException {
+        this.ttl = ttl
         cacheDir = directory
         if (!cacheDir.exists()) {
             if (!cacheDir.mkdirs()) {
-                throw new IOException("Unable to create the data cache directory.")
+                logger.error("Unable to create cache directory {}", cacheDir.path)
+                throw new IOException("Unable to create the data cache directory " + cacheDir.path)
             }
         }
         cacheDir.deleteOnExit()
         index = new HashMap<>()
         executor = Executors.newScheduledThreadPool(1)
         logger.info("Data cache initialized.")
+        logger.debug("Cache directory: {}", cacheDir.path)
+        logger.debug("Cache TTL: {}", ttl)
     }
 
     String add(Map data) {
         return add(Serializer.toJson(data))
     }
 
+    String add(String uuid, Map data) {
+        return add(uuid, Serializer.toJson(data))
+    }
+
     String add(String data) {
-        String uuid = UUID.randomUUID()
+        return add(UUID.randomUUID(), data)
+    }
+
+    String add(String uuid, String data) {
         File datafile = new File(cacheDir, uuid)
         datafile.text = data
         datafile.deleteOnExit()
@@ -76,7 +104,7 @@ class DataCache {
             }
         }
         logger.info("Scheduling {} for removal.", key)
-        executor.schedule(task, 5, TimeUnit.MINUTES)
+        executor.schedule(task, ttl, TimeUnit.MINUTES)
     }
 
     void remove(String key) {

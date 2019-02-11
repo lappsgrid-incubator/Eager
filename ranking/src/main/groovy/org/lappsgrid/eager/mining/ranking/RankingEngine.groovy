@@ -14,7 +14,7 @@ import org.lappsgrid.eager.mining.scoring.WeightedAlgorithm
 class RankingEngine {
 
     String section
-    List<WeightedAlgorithm> algorithms
+    List<ScoringAlgorithm> algorithms
     Closure field
     float weight
 

@@ -72,7 +72,7 @@ content: {
             tr {
                 td String.format("%4d", i)
                 td String.format("%2.3f", doc.score)
-                td { a(href:"https://www.ncbi.nlm.nih.gov/pmc/articles/${doc.pmc}/?report=classic", doc.pmc) }
+                td { a(href:"https://www.ncbi.nlm.nih.gov/pmc/articles/${doc.pmc}/?report=classic", target:'_blank', doc.pmc) }
                 td doc.year
                 td doc.title.text
                 if (data.keys) {

@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.mining
 
+import org.junit.Ignore
 import org.junit.Test
 import org.lappsgrid.eager.mining.core.Configuration
 import org.lappsgrid.eager.mining.core.json.Serializer
@@ -12,6 +13,7 @@ import java.util.concurrent.CountDownLatch
 /**
  *
  */
+@Ignore
 class Experimental {
 
     @Test

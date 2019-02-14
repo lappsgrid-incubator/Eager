@@ -2,11 +2,13 @@ package org.lappsgrid.eager.mining.index
 
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 
 /**
  *
  */
+@Ignore
 class IndexTest {
 
     PMCIndex index

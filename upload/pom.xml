@@ -71,12 +71,12 @@
         <dependency>
             <groupId>org.lappsgrid.eager.mining</groupId>
             <artifactId>rabbitmq</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.lappsgrid.eager.mining</groupId>
             <artifactId>core</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.lappsgrid</groupId>
@@ -98,12 +98,6 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.lappsgrid.eager.mining</groupId>
-            <artifactId>rabbitmq</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

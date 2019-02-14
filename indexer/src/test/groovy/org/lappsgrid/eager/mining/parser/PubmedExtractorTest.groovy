@@ -8,7 +8,7 @@ import static org.junit.Assert.*
 /**
  *
  */
-
+@Ignore
 class PubmedExtractorTest {
 
     LappsDocument document

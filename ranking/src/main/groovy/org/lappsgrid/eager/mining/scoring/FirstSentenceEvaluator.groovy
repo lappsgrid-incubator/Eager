@@ -8,14 +8,14 @@ import org.lappsgrid.eager.mining.model.Token
 /**
  * Returns the perctage of query terms found in the first sentence.
  */
-class FirstSentenceEvaluator extends AbstractScoringAlgorithm {
+class FirstSentenceEvaluator implements ScoringAlgorithm {
     @Override
     float score(Query query, Section section) {
         Set<String> found = new HashSet<>()
         if (section.sentences.size() > 0) {
             Sentence s = section.sentences[0]
             for (Token t : s.tokens) {
-                if (contains(query.terms, t)) {
+                if (query.contains(t)) {
                     found.add(t.lemma)
                 }
             }

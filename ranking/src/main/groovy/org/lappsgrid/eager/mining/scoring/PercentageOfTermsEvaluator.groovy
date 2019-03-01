@@ -7,7 +7,7 @@ import org.lappsgrid.eager.mining.model.Token
 /**
  *  How many terms appear in the passage.
  */
-class PercentageOfTermsEvaluator extends AbstractScoringAlgorithm {
+class PercentageOfTermsEvaluator implements ScoringAlgorithm {
     @Override
     float score(Query query, Section section) {
         int count = 0

@@ -1,4 +1,4 @@
 mouse stranded random primed RNA-seq experiments performed Illumina
-anayze data from SRA dataset SRR435567
+anayze json from SRA dataset SRR435567
 eukaryotic complete genomes assembly tools
 genomes assembled from Oxford nanopore reads

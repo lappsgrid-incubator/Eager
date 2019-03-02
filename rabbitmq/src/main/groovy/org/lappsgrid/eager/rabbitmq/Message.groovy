@@ -26,9 +26,6 @@ class Message {
     }
 
     Message(String command, String body, List<String> route) {
-//        this.command = command
-//        this.body = body
-//        this.route = route
         this(command, body, [:], route)
     }
 

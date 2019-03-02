@@ -49,4 +49,4 @@ The query processing module takes a single sentence (the question) and transform
 
 ### Data creation
 
-The Ask Me Server and the LAPPS/Galaxy server have access to the same documents. These documents are preprocessed off line and then index by Solr on one end and entered as LIF files into a data source on the other end. Typically, the data embedded in the LAPPS data sources will be richer.
+The Ask Me Server and the LAPPS/Galaxy server have access to the same documents. These documents are preprocessed off line and then index by Solr on one end and entered as LIF files into a json source on the other end. Typically, the json embedded in the LAPPS json sources will be richer.

@@ -10,7 +10,7 @@ The current configuration consists of:
 
 ## Zookeeper
 
-[Apache Zookeeper](https://zookeeper.apache.org) is a service for configuring and managing clusters.  In our case Zookeeper stores Solr configuration data and the only configuration a Sorl node needs is the address of the Zookeeper service.
+[Apache Zookeeper](https://zookeeper.apache.org) is a service for configuring and managing clusters.  In our case Zookeeper stores Solr configuration json and the only configuration a Sorl node needs is the address of the Zookeeper service.
 
 Configuration for the Solr cloud is stored in a single node zookeeper *ensemble*.
 

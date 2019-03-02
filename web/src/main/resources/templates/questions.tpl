@@ -8,7 +8,7 @@ content: {
             th 'UUID'
             th 'Question'
         }
-        data.each { q ->
+        json.each { q ->
             tr {
                 td q.uuid
                 td q.text

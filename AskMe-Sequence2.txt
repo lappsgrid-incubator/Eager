@@ -1,0 +1,23 @@
+User->Server:Asks a question
+par:Query Processing
+Server->"Query Manager":question
+"Query Manager"->Solr:Solr query
+Solr-->"Query Manager":ID list
+"Query Manager"-->Server:ID list
+end
+par:Document Retreival
+Server->DB:ID list)
+DB-->Server:Document list
+par:NLP
+Server->NLP:Document list
+loop:In parallel
+NLP->Stanford:Document
+Stanford-->NLP:Document'
+end
+NLP-->Server:Document list
+end
+par:Document Ranking
+Server->Ranker:Document list
+Ranker-->Server:Ranked Document list
+end
+Server-->User:Best answer

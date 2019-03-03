@@ -15,6 +15,9 @@ class RabbitMQ {
     public static final String DEFAULT_HOST = 'rabbitmq.lappsgrid.org'
 //    public static final String DEFAULT_HOST = 'localhost'
 
+    public static final String USERNAME_PROPERTY = 'RABBIT_USERNAME'
+    public static final String PASSWORD_PROPERTY = 'RABBIT_PASSWORD'
+
     String queueName
     String exchange
     Connection connection
@@ -25,15 +28,36 @@ class RabbitMQ {
     }
 
     RabbitMQ(String queueName, String host) {
+        String username = get(USERNAME_PROPERTY)
+        String passord = get(PASSWORD_PROPERTY)
+        init(queueName, host, username, passord)
+    }
+
+    RabbitMQ(String queueName, String host, String username, String password) {
+        init(queueName, host, username, password)
+    }
+
+    private void init(String queueName, String host, String username, String password) {
         ConnectionFactory factory = new ConnectionFactory()
         factory.setHost(host)
-        factory.setUsername('eager')
-        factory.setPassword('eager')
+        factory.setUsername(username)
+        factory.setPassword(password)
         connection = factory.newConnection()
         channel = connection.createChannel()
         this.queueName = queueName
     }
 
+    private String get(String key) {
+        String value = System.getProperty(key);
+        if (value) {
+            return value
+        }
+        value = System.getenv(key)
+        if (value) {
+            return value
+        }
+        return 'eager'
+    }
     /*
     void register(Consumer consumer) {
         channel.basicConsume(queueName, false, consumer)

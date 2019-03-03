@@ -81,7 +81,7 @@ class Main implements MainMBean {
         }
         else {
             maxCores = totalCores // 2
-            minCores = maxCores / 2
+            minCores = maxCores // 2
         }
 
 //        pool = Executors.newWorkStealingPool(maxCores)

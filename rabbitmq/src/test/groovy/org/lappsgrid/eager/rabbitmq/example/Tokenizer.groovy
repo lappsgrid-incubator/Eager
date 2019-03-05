@@ -32,5 +32,15 @@ class Tokenizer extends Worker {
         message.body(tokens)
         // Forward the message.
         po.send(message)
+        stats()
+    }
+
+    void stats() {
+        Map data = [
+                id: "Tokenizer $id",
+                thread: Thread.currentThread().name
+        ]
+        Message message = new Message().body(data).route('stats.mbox')
+        po.send(message)
     }
 }

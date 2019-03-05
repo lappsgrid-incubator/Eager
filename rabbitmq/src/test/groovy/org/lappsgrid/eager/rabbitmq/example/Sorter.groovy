@@ -30,5 +30,14 @@ class Sorter extends Worker {
         message.body = tokens.sort()
         // And forward the message
         po.send(message)
+        stats()
+    }
+    void stats() {
+        Map data = [
+                id: "Sorter $id",
+                thread: Thread.currentThread().name
+        ]
+        Message message = new Message().body(data).route('stats.mbox')
+        po.send(message)
     }
 }

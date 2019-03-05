@@ -20,6 +20,6 @@ class ReporterFactory implements IWorkerFactory<Reporter> {
 
     @Override
     Reporter create(PostOffice po, TaskQueue queue) {
-        return new Reporter(++id, latch, queue)
+        return new Reporter(++id, latch, po, queue)
     }
 }

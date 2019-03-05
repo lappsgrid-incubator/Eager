@@ -5,6 +5,7 @@ import org.lappsgrid.eager.rabbitmq.RabbitMQ
 import org.lappsgrid.eager.rabbitmq.example.factory.ReporterFactory
 import org.lappsgrid.eager.rabbitmq.example.factory.SorterFactory
 import org.lappsgrid.eager.rabbitmq.example.factory.TokenizerFactory
+import org.lappsgrid.eager.rabbitmq.topic.MessageBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 
 import java.util.concurrent.CountDownLatch
@@ -40,6 +41,8 @@ class DistributedTaskExample {
         // The number of iterations to run.
         int N = 10
 
+        ThreadStatistics stats = new ThreadStatistics()
+
         // Latch used to track the work completed.
         CountDownLatch latch = new CountDownLatch(N * DATA.length)
 
@@ -50,6 +53,14 @@ class DistributedTaskExample {
         QueueManager tokenMaster = new QueueManager(EXCHANGE, TOKENIZERS_MBOX, HOST, TOKENIZER_Q, new TokenizerFactory(), 3)
         QueueManager sortMaster = new QueueManager(EXCHANGE, SORTERS_MBOX, HOST, SORTER_Q, new SorterFactory(), 4)
         QueueManager reportMaster = new QueueManager(EXCHANGE, REPORTERS_MBOX, HOST, REPORTER_Q, new ReporterFactory(latch), 2)
+
+        // Set up a mailbox to record the thread usage statistic sent by workers.
+        MessageBox statsBox = new MessageBox(EXCHANGE, "stats.mbox", HOST) {
+            @Override
+            void recv(Message message) {
+                stats.record(message)
+            }
+        }
 
         // Send out all the data for processing.
         int id = 0
@@ -67,7 +78,7 @@ class DistributedTaskExample {
         // Wait for all the data to reach the reporters
         println "Waiting for the latch"
         if (!latch.await(60, TimeUnit.SECONDS)) {
-            println "ERROR waiting for latch"
+            println "ERROR timeout waiting for latch"
         }
 
         // Since the workers decrement the latch before the super class can ACK the message we need to give
@@ -79,6 +90,8 @@ class DistributedTaskExample {
         tokenMaster.close()
         sortMaster.close()
         reportMaster.close()
+        statsBox.close()
+        stats.print(System.out)
         println "Done"
     }
 

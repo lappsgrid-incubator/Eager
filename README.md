@@ -3,7 +3,7 @@ Biomedical text mining and question answering.
 
 ## Modules
 
-- **api**<br/>Interface definitions.
+- **api**<br/>Interface definitions.<br/>*This package will likely be removed.*
 - **core**<br/>Common classes and utilities.
 - **docs**<br/>Documentation.
 - **elasticsearch** *Not Used*<br/>A placeholder project for eventual indexing and searching with ElasticSearch.

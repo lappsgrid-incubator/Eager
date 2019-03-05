@@ -17,13 +17,15 @@ Current workflow for the site at https://services.lappsgrid.org/eager/ask is:
     - Normalize scores
 - Return sorted list of documents (document IDs). Limited to top 100.
 
-![AskMe-Workflow](AskMe-Workflow.png)
+![AskMe-Workflow](images/AskMe-Workflow.png)
 
 ### Proposed full workflow
 
 The proposed workflow for the entire EAGER application is:
 
-<img src="docs/images/design.png" width=600>
+<img src="images/design.png" width=600>
+
+![Proposed design](images/design.png)
 
 The part on the left is very much the same as the current workflow:
 

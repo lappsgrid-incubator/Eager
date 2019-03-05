@@ -103,7 +103,7 @@ There are two ways to add a `Consumer` to a message queue:
 
 #### RabbitMQ.register()
 
-The `RabbitMQ` class provides two overloaded `register` methods that can be used to add consumers to a message queue; one takes a Groovy Closure and the other a `DefaultConsumer`:
+The `RabbitMQ` class provides two overloaded `register` methods that can be used to add consumers to a message queue; one takes a Groovy Closure and the other a `DefaultConsumer` instance:
 
 ```
 TaskQueue q = new TaskQueue('example')
@@ -198,3 +198,7 @@ MailBox box = new MailBox('stanford', 'splitter') {
     }
 }
 ```
+
+# Example Distributed Pipeline
+
+There is an [example distributed pipeline](src/test/groovy/org/lappsgrid/eager/rabbitmq/example/README.md) in the [org.lappsgrid.eager.rabbitmq.example](src/test/groovy/org/lappsgrid/eager/rabbitmq/example) packae found in the `src/test/groovy` directory. The example implements a simple processing pipeline with several worker threads for each stage of pipeline the pipeline.

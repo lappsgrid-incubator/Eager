@@ -5,7 +5,7 @@ package org.lappsgrid.eager.rabbitmq
  */
 class Message {
     String command
-    String body
+    Object body
     List<String> route
     Map<String,String> parameters
 
@@ -16,20 +16,20 @@ class Message {
         parameters = [:]
     }
 
-    Message(String command, String body, String... route) {
+    Message(String command, Object body, String... route) {
         this(command, body, [:], route.toList())
     }
 
-    Message(String command, String body, Map<String,String> parameters, String... route) {
+    Message(String command, Object body, Map<String,String> parameters, String... route) {
         this(command, body, route.toList())
         this.parameters = parameters
     }
 
-    Message(String command, String body, List<String> route) {
+    Message(String command, Object body, List<String> route) {
         this(command, body, [:], route)
     }
 
-    Message(String command, String body, Map<String, String> paramters, List<String> route) {
+    Message(String command, Object body, Map<String, String> paramters, List<String> route) {
         this.command = command
         this.body = body
         this.route = route
@@ -37,7 +37,7 @@ class Message {
     }
 
     Message command(String command) { this.command = command ; this }
-    Message body(String body)       { this.body = body       ; this }
+    Message body(Object body)       { this.body = body       ; this }
     Message route(String route)     { this.route.add(route)  ; this}
     Message route(String... route) {
         route.each { this.route.add(it) }

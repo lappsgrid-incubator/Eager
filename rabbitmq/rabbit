@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# A simple script to start a local RabbitMQ server for testing.
+#
+# USAGE
+#
+# $> rabbit [start|stop|status]
+#
+# When using `rabbit start` the default admin username and password for the
+# RabbitMQ servert can be specified as well.
+#
+# $> rabbit start username password
+#
+# If a password is not specified then the username and password will be the same.
+#
+# $> rabbit start lappsgrid
+
+command=$1
+shift
+
+user=guest
+pass=guest
+if [ -n "$1" ] ; then
+	user=$1
+	shift
+	if [ -n "$1" ] ; then
+		pass=$1
+		shift
+	else
+		pass=$user
+	fi
+fi
+
+NAME=rabbit
+USER="-e RABBITMQ_DEFAULT_USER=$user"
+PASS="-e RABBITMQ_DEFAULT_PASS=$pass"
+PORTS="-p 5672:5672 -p 15672:15672"
+
+case $command in
+	start)
+		docker run -d --hostname localhost --name $NAME $PORTS $USER $PASS rabbitmq:3-management
+		;;
+	stop)
+		docker rm -f $NAME
+		;;
+	status)
+		docker ps
+		;;
+	*)
+		echo "Unknown command $command"
+		;;
+esac

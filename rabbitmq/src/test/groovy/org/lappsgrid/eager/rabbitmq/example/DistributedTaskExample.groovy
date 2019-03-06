@@ -16,6 +16,9 @@ import java.util.concurrent.TimeUnit
  *
  *  $> docker run -d --hostname localhost --name rabbit -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=lappsgrid -e RABBITMQ_DEFAULT_PASS=lappgrid rabbitmq:3-management
  *
+ *  If using the rabbit script (found in the root of this project) the above can be done with:
+ *
+ *  $> rabbit start lappsgrid
  */
 class DistributedTaskExample {
     static final String HOST = "localhost"
@@ -25,9 +28,9 @@ class DistributedTaskExample {
     static final String SORTER_Q = "sort.q"
     static final String REPORTER_Q = "reporter.q"
 
-    static final String TOKENIZERS_MBOX = "tokenizers"
-    static final String SORTERS_MBOX = "sorters"
-    static final String REPORTERS_MBOX = "reporters"
+    static final String TOKENIZERS_MBOX = "token.mailbox"
+    static final String SORTERS_MBOX = "sort.mailbox"
+    static final String REPORTERS_MBOX = "report.mailbox"
 
     static final String[] DATA = [
             "d e f c b a",
@@ -62,7 +65,7 @@ class DistributedTaskExample {
             }
         }
 
-        // Send out all the data for processing.
+        // Send all the data for processing.
         int id = 0
         N.times {
             DATA.each { String s ->
@@ -82,10 +85,11 @@ class DistributedTaskExample {
         }
 
         // Since the workers decrement the latch before the super class can ACK the message we need to give
-        // the threads a little grace time to clean up.
+        // the threads a little grace period to ACK all their messages.
         println "Thread cool down period"
         sleep(1000)
         println "Shutting down."
+        // Close everything we have created in an orderly fashion.
         po.close()
         tokenMaster.close()
         sortMaster.close()

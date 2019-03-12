@@ -6,6 +6,10 @@ import org.lappsgrid.eager.mining.model.Section
 import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.scoring.ScoringAlgorithm
 import org.lappsgrid.eager.mining.scoring.WeightedAlgorithm
+@Grab('org.lappsgrid.eager.mining:rabbitmq:1.2.0')
+import org.lappsgrid.eager.rabbitmq.Message
+import org.lappsgrid.eager.rabbitmq.topic.*
+
 
 /**
  *

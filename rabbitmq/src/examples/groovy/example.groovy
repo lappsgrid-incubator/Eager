@@ -1,7 +1,7 @@
 import groovy.json.JsonOutput
 @Grab('org.lappsgrid:discriminator:2.3.3')
 import org.lappsgrid.discriminator.Discriminators
-@Grab('org.lappsgrid.eager.mining:rabbitmq:1.1.0')
+@Grab('org.lappsgrid.eager.mining:rabbitmq:1.2.0')
 import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.*
 

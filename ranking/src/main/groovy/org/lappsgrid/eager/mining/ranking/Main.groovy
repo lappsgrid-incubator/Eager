@@ -10,20 +10,13 @@ import org.lappsgrid.eager.rabbitmq.Message
 import org.lappsgrid.eager.rabbitmq.topic.MailBox
 import org.lappsgrid.eager.rabbitmq.topic.PostOffice
 
+import java.util.concurrent.CountDownLatch
+
 
 class Main {
-    /** The number of documents processed. */
-    final Meter count = Registry.meter('nlp', 'count')
-    /** The number of errors encountered. */
-    final Meter errors = Registry.meter('nlp', 'errors')
-    /** Processing time for documents. */
-    final Timer timer = Registry.timer('nlp', 'timer')
-    /** Object used to block/wait until the queue is closed. */
-    Object semaphore
-    /** Where outgoing messages are sent. */
-    PostOffice post
-    /** Where we receive incoming messages. */
-    MailBox box
+
+    final String EXCHANGE = 'ranking.postoffice'
+    PostOffice po = new PostOffice(EXCHANGE)
 
     /** Sure what section is **/
     String section
@@ -35,15 +28,11 @@ class Main {
     float weight
 
 
-    //NEXT STEP - CREATE WORKERS FOR EACH ALGORITHM AND LOOP MESSAGES BACK TO CALCULATE SCORE
-
-
     Main(String section) {
         this.section = section
         algorithms = []
 
     }
-
     void add(ScoringAlgorithm algorithm) {
         algorithms.add(algorithm)
     }
@@ -55,6 +44,30 @@ class Main {
         return result
     }
 
+    // Need to define routes
+    CountDownLatch latch = new CountDownLatch(routes.size())
+
+    // Make one of these for each algorithm, then sum the scores after they are all sent back to origin
+    // Questions:
+    // 1) Need to find way to send message to correct location (algorithm) based on algorithms needed
+    // 2) Need to keep track of score after receive
+    //    Maybe have one worker aggregate the scores then send message to main telling it to process next document?
+    // 3) Fix these import issues
+    float calculate_update(algorithms, document){
+        //send to each algorithm
+        // wait for response
+        // sum scores and return total score for document
+    }
+
+
+
+    MessageBox abox = new MessageBox(EXCHANGE, 'a') {
+        @Override
+        void recv(Message message) {
+            message.body += 'a'
+            po.send(message)
+        }
+    }
 
     public static void main(String[] args) {
 

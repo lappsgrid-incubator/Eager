@@ -56,12 +56,15 @@ class Main {
     // 3) Fix the import issues
 
     //ConsecutiveTermEvaluator
+    // How are algorithms represented?
     MessageBox box1 = new MessageBox(EXCHANGE, '1') {
         @Override
         void recv(Message message) {
+            // Convert message.body string back to document
             def field = field(message.body)
             float score = 0.0f
 
+            //Change all algorithms into consecutive term one (back to representation)
             if (field instanceof String) {
                 score = calculate(algorithm, query, field)
             }
@@ -75,31 +78,35 @@ class Main {
             }
             total += score
 
-            //Send back value to calculate total
             message.body = total
             po.send(message)
         }
     }
 
+    // Should this be a method?
     float calculate_update(algorithms, document){
         float weight = 0.0f
 
+        //Again how are algorithms represented
+        //How to send full document instead of text of that document? override message constructor?
         algorithms.each { algorithm ->
-            def field = field(document)
             route = algorithm + 's'
             x = new Message('', document, route)
             po.send(x)
 
         }
 
-
+        //After
         MessageBox sum = new MessageBox(EXCHANGE, 's') {
             @Override
             void recv(Message message) {
-                weight += message.body
+
+                weight += Float.parseFloat(message.body)
+
                 latch.countDown()
             }
         }
+        //Make sure countdown latch is done (all document scores have been sent back) then return weight
         return weight
 
     }

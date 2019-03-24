@@ -46,25 +46,20 @@ class Main {
     }
 
     // Need to define routes
+    // How are algorithms represented?
+
     CountDownLatch latch = new CountDownLatch(algorithms.size())
 
-    // Make one of these for each algorithm, then sum the scores after they are all sent back to origin
-    // Questions:
-    // 1) Need to find way to send message to correct location (algorithm) based on algorithms needed
-    // 2) Need to keep track of score after receive
-    //    Maybe have one worker aggregate the scores then send message to main telling it to process next document?
-    // 3) Fix the import issues
 
     //ConsecutiveTermEvaluator
-    // How are algorithms represented?
     MessageBox box1 = new MessageBox(EXCHANGE, '1') {
         @Override
         void recv(Message message) {
             // Convert message.body string back to document
+            // algorithm = consecutiveTermEvaluator
             def field = field(message.body)
             float score = 0.0f
 
-            //Change all algorithms into consecutive term one (back to representation)
             if (field instanceof String) {
                 score = calculate(algorithm, query, field)
             }
@@ -82,6 +77,13 @@ class Main {
             po.send(message)
         }
     }
+    //FirstSentenceEvaluator
+    //PercentageOfTermsEvaluator
+    //SentenceCountEvaluator
+    //TermFrequencyEvaluator
+    //TermOrderEvaluator
+    //TermPositionEvaluator
+
 
     // Should this be a method?
     float calculate_update(algorithms, document){

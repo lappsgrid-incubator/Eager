@@ -1,10 +1,11 @@
 package org.lappsgrid.eager.mining.ranking
-
+import org.lappsgrid.eager.mining.api.Query
 import com.codahale.metrics.Meter
 import com.codahale.metrics.Timer
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.core.jmx.Registry
 import org.lappsgrid.eager.mining.model.Section
+import org.lappsgrid.eager.mining.scoring.ConsecutiveTermEvaluator
 import org.lappsgrid.eager.mining.scoring.ScoringAlgorithm
 import org.lappsgrid.eager.mining.scoring.WeightedAlgorithm
 import org.lappsgrid.eager.rabbitmq.Message
@@ -52,28 +53,27 @@ class Main {
 
 
     //ConsecutiveTermEvaluator
-    MessageBox box1 = new MessageBox(EXCHANGE, '1') {
+    MessageBox CTE = new MessageBox(EXCHANGE, 'ConsecutativeTermEvaluator') {
         @Override
         void recv(Message message) {
+            ScoringAlgorithm algorithm = new ConsecutiveTermEvaluator()
             // Convert message.body string back to document
-            // algorithm = consecutiveTermEvaluator
             def field = field(message.body)
             float score = 0.0f
 
             if (field instanceof String) {
-                score = calculate(algorithm, query, field)
+                score = algorithm.score(query, field)
             }
             else if (field instanceof Section) {
-                score = calculate(algorithm, query, field)
+                score = algorithm.score(query, field)
             }
             else if (field instanceof Collection) {
                 field.each { item ->
-                    score += calculate(algorithm, query, item)
+                    score += algorithm.score(query, field)
                 }
             }
-            total += score
 
-            message.body = total
+            message.body = score
             po.send(message)
         }
     }
@@ -89,10 +89,9 @@ class Main {
     float calculate_update(algorithms, document){
         float weight = 0.0f
 
-        //Again how are algorithms represented
         //How to send full document instead of text of that document? override message constructor?
         algorithms.each { algorithm ->
-            route = algorithm + 's'
+            route = [algorithm.name(), 's']
             x = new Message('', document, route)
             po.send(x)
 

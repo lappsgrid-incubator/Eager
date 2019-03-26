@@ -8,6 +8,11 @@ import org.lappsgrid.eager.mining.scoring.ConsecutiveTermEvaluator
 import org.lappsgrid.eager.mining.scoring.ScoringAlgorithm
 import org.lappsgrid.eager.mining.scoring.WeightedAlgorithm
 @Grab('org.lappsgrid.eager.mining:rabbitmq:1.2.0')
+import org.lappsgrid.eager.rabbitmq.Message
+import org.lappsgrid.eager.rabbitmq.topic.MailBox
+import org.lappsgrid.eager.rabbitmq.topic.PostOffice
+
+import java.util.concurrent.CountDownLatch
 
 
 /**
@@ -69,6 +74,7 @@ class MainTwo {
     List<Document> rank(Query query, List<Document> documents) {
         logger.info("Ranking {} documents.", documents.size())
         documents.each { Document document ->
+            CountDownLatch latch = new CountDownLatch(algorithms.size())
             float total = 0.0f
             algorithms.each { algorithm ->
                 route = [algorithm.name(), 's']
@@ -85,12 +91,15 @@ class MainTwo {
 
                     total += Float.parseFloat(message.body)
 
-                    //Does this work within messagebox?
+                    //Does this work within message box? Probably not because algorithm will change
+                    // What is section?
                     document.addScore(section, algorithm.abbrev(), Float.parseFloat(message.body))
 
                     latch.countDown()
                 }
             }
+
+            // check if latch is fully count down, then all algorithms have finished
 
             document.score += total * weight
             logger.trace("Document {} {}", document.id, document.score)

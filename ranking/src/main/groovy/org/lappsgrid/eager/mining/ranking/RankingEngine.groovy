@@ -20,60 +20,27 @@ class RankingEngine {
     Closure field
     float weight
 
-//    RankingEngine() {
-//        this("default")
-//    }
-
     RankingEngine(String section) {
         this.section = section
         algorithms = []
-//        algorithms << new WeightedAlgorithm(new ConsecutiveTermEvaluator())
-//        algorithms << new WeightedAlgorithm(new TermFrequencyEvaluator())
-//        algorithms << new WeightedAlgorithm(new PercentageOfTermsEvaluator())
-//        algorithms << new WeightedAlgorithm(new TermPositionEvaluator())
     }
-
-//    RankingEngine(Map params) {
-//        this("default", params)
-//    }
-
-//    RankingEngine(String name, Map params) {
-//        this.name = name
-//        algorithms = []
-//        AlgorithmRegistry registry = new AlgorithmRegistry()
-//        params.each { String key, String value ->
-//            if (key.startsWith('alg')) {
-//                float weight = params.get('weight' + value) as Float
-//                ScoringAlgorithm algorithm = registry.get(value)
-//                println "Registering $name algorithm ${algorithm.name()} x $weight"
-//                algorithms << new WeightedAlgorithm(algorithm, weight)
-//            }
-//        }
-//    }
 
     void add(ScoringAlgorithm algorithm) {
         algorithms.add(algorithm)
     }
 
+
+
+    //Change this code to only process a single document at a time
     List<Document> rank(Query query, List<Document> documents) {
-//        return rank(query, documents, { doc -> doc.title })
-//    }
-//
-//    List<Document> rank(Query query, List<Document> documents, Closure getField) {
-//        rank(query, documents, getField, 1.0f)
-//    }
-//
-//    List<Document> rank(Query query, List<Document> documents, Closure getField, Float weight) {
         logger.info("Ranking {} documents.", documents.size())
         documents.each { Document document ->
-//            logger.trace("Document {}", document.path)
             float total = 0.0f
             algorithms.each { algorithm ->
                 def field = field(document)
 
                 float score = 0.0f
                 if (field instanceof String) {
-//                    score = algorithm.score(query, field)
                     score = calculate(algorithm, query, field)
                 }
                 else if (field instanceof Section) {
@@ -81,7 +48,6 @@ class RankingEngine {
                 }
                 else if (field instanceof Collection) {
                     field.each { item ->
-//                        score += algorithm.score(query, item)
                         score += calculate(algorithm, query, item)
                     }
                 }
@@ -93,6 +59,8 @@ class RankingEngine {
             logger.trace("Document {} {}", document.id, document.score)
         }
     }
+
+
 
     float calculate(WeightedAlgorithm algorithm, Query query, field) {
         float result = algorithm.score(query, field)

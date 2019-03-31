@@ -24,6 +24,11 @@
             <artifactId>core</artifactId>
              <version>1.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.lappsgrid.eager.mining</groupId>
+            <artifactId>rabbitmq</artifactId>
+            <version>1.2.0</version>
+        </dependency>
     </dependencies>
 
 </project>

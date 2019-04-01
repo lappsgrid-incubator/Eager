@@ -1,7 +1,5 @@
 package org.lappsgrid.eager.mining.ranking
 
-import org.apache.solr.common.SolrDocument
-import org.apache.solr.common.SolrDocumentList
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.ranking.model.Document
 
@@ -46,7 +44,9 @@ class RankingProcessor {
 //                throw new IOException(e)
             }
         }
-        return result
+        //sort and return all documents
+        //logger.debug("Sorting {} documents.", documents.size())
+        return documents.sort { a,b -> b.score <=> a.score }
     }
 
 

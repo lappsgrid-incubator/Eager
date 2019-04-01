@@ -1,7 +1,6 @@
 package org.lappsgrid.eager.mining.ranking
 
 import org.lappsgrid.eager.mining.api.Query
-import org.lappsgrid.eager.mining.core.solr.Fields
 import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.model.Section
 import org.lappsgrid.eager.mining.ranking.model.Document
@@ -21,9 +20,11 @@ class RankingWorker implements Callable<Document> {
     }
 
     Document call() {
-
+        //cycle through all engines (really maps)
+        //for each engine, call rank document
+        //return document
     }
     public Section rank(Document document, RankingEngine engine, Query query) {
-
+        return engine.scoreDocument(query, document)
     }
 }

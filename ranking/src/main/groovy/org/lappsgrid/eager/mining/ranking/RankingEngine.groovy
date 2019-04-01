@@ -53,6 +53,37 @@ class RankingEngine {
         algorithms.add(algorithm)
     }
 
+    Document scoreDocument(Query query, Document document){
+        float total = 0.0f
+        algorithms.each { algorithm ->
+            def field = field(document)
+
+            float score = 0.0f
+            if (field instanceof String) {
+//                    score = algorithm.score(query, field)
+                score = calculate(algorithm, query, field)
+            }
+            else if (field instanceof Section) {
+                score = calculate(algorithm, query, field)
+            }
+            else if (field instanceof Collection) {
+                field.each { item ->
+//                        score += algorithm.score(query, item)
+                    score += calculate(algorithm, query, item)
+                }
+            }
+            logger.trace("{} -> {}", algorithm.abbrev(), score)
+            total += score
+            document.addScore(section, algorithm.abbrev(), score)
+        }
+        document.score += total * weight
+        logger.trace("Document {} {}", document.id, document.score)
+    }
+
+
+
+
+
     List<Document> rank(Query query, List<Document> documents) {
 //        return rank(query, documents, { doc -> doc.title })
 //    }

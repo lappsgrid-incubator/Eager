@@ -87,6 +87,16 @@ class CompositeRankingEngine {
         return documents.sort { a,b -> b.score <=> a.score }
     }
 
+    List<Document> calcScores(Query query, Document document, Map<String,RankingEngine> engines) {
+        engines.each { String key, RankingEngine engine ->
+            logger.info("Ranking {}", key)
+            engine.rank(query, document)
+        }
+        return document
+    }
+
+
+
     class Triple {
         String section
         String control

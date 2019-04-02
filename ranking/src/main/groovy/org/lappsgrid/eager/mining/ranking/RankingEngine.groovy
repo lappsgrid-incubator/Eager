@@ -78,6 +78,7 @@ class RankingEngine {
         }
         document.score += total * weight
         logger.trace("Document {} {}", document.id, document.score)
+        return document
     }
 
 

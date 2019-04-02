@@ -46,7 +46,7 @@ class RankingProcessor {
         }
         //sort and return all documents
         //logger.debug("Sorting {} documents.", documents.size())
-        return documents.sort { a,b -> b.score <=> a.score }
+        return result.sort { a,b -> b.score <=> a.score }
     }
 
 

@@ -14,9 +14,8 @@ class RankingProcessor {
     ExecutorCompletionService<Document> executor
     CompositeRankingEngine engines
 
-    //What causes this error?
-    RankingProcessor() {
-        //this(Runtime.getRuntime().availableProcessors())
+    RankingProcessor(Map params) {
+        this(Runtime.getRuntime().availableProcessors(), params)
      }
 
     RankingProcessor(int nThreads, Map params) {

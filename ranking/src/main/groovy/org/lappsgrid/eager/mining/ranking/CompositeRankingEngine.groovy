@@ -86,7 +86,7 @@ class CompositeRankingEngine {
         logger.debug("Sorting {} documents.", documents.size())
         return documents.sort { a,b -> b.score <=> a.score }
     }
-
+    /**
     List<Document> calcScores(Query query, Document document, Map<String,RankingEngine> engines) {
         engines.each { String key, RankingEngine engine ->
             logger.info("Ranking {}", key)
@@ -94,7 +94,7 @@ class CompositeRankingEngine {
         }
         return document
     }
-
+    **/
 
 
     class Triple {

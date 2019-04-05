@@ -2,18 +2,9 @@ package org.lappsgrid.eager.mining.ranking
 
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.ranking.model.Document
-import org.lappsgrid.eager.mining.model.Section
-import org.lappsgrid.eager.mining.ranking.model.Document
-
-import java.awt.Composite
 import java.util.concurrent.Callable
 
 class RankingWorker implements Callable<Document> {
-
-    //given document and compositerankingengine
-    // for each engine in engines
-    //calculate score and update document score fields
-    //return document
 
     Document document
     CompositeRankingEngine engines
@@ -25,13 +16,17 @@ class RankingWorker implements Callable<Document> {
         this.query = query
     }
 
+    //Are the things done to the document in RankingEngine still done on the document?
+    // - i.e. document.addScore
     Document call() {
         engines.each {RankingEngine engine ->
-            rank(document, engine, query)
+            float result = 0.0f
+            result += score(document, engine, query)
+            document.score += result
         }
         return document
     }
-    public void rank(Document document, RankingEngine engine, Query query) {
-        engine.scoreDocument(query, document)
+    public float score(Document document, RankingEngine engine, Query query) {
+        return engine.scoreDocument(query, document)
     }
 }

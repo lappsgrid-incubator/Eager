@@ -53,7 +53,7 @@ class RankingEngine {
         algorithms.add(algorithm)
     }
 
-    Document scoreDocument(Query query, Document document){
+    float scoreDocument(Query query, Document document){
         float total = 0.0f
         algorithms.each { algorithm ->
             def field = field(document)
@@ -76,9 +76,10 @@ class RankingEngine {
             total += score
             document.addScore(section, algorithm.abbrev(), score)
         }
-        document.score += total * weight
+        //document.score += total * weight
         logger.trace("Document {} {}", document.id, document.score)
-        return document
+        return total * weight
+        //return document
     }
 
 

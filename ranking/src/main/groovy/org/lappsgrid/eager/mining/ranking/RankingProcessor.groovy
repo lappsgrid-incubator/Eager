@@ -1,5 +1,6 @@
 package org.lappsgrid.eager.mining.ranking
 
+import groovy.util.logging.Slf4j
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.ranking.model.Document
 
@@ -7,14 +8,16 @@ import java.util.concurrent.ExecutorCompletionService
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 
+@Slf4j('logger')
 class RankingProcessor {
 
     ExecutorCompletionService<Document> executor
     CompositeRankingEngine engines
 
-//  DocumentProcessor() {
-//      this(Runtime.getRuntime().availableProcessors())
-//  }
+    //What causes this error?
+    RankingProcessor() {
+        //this(Runtime.getRuntime().availableProcessors())
+     }
 
     RankingProcessor(int nThreads, Map params) {
         executor = new ExecutorCompletionService<>(Executors.newFixedThreadPool(nThreads))
@@ -44,8 +47,7 @@ class RankingProcessor {
 //                throw new IOException(e)
             }
         }
-        //sort and return all documents
-        //logger.debug("Sorting {} documents.", documents.size())
+        logger.debug("Sorting {} documents.", documents.size())
         return result.sort { a,b -> b.score <=> a.score }
     }
 

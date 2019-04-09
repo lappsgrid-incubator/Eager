@@ -16,8 +16,6 @@ class RankingWorker implements Callable<Document> {
         this.query = query
     }
 
-    //Are the things done to the document in RankingEngine still done on the document?
-    // - i.e. document.addScore
     Document call() {
         engines.each {RankingEngine engine ->
             float result = 0.0f
@@ -26,6 +24,7 @@ class RankingWorker implements Callable<Document> {
         }
         return document
     }
+
     public float score(Document document, RankingEngine engine, Query query) {
         return engine.scoreDocument(query, document)
     }

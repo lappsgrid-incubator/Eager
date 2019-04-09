@@ -16,6 +16,7 @@ import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.mining.core.ssl.SSL
 import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
 import org.lappsgrid.eager.mining.ranking.RankingEngine
+import org.lappsgrid.eager.mining.ranking.RankingProcessor
 import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.ranking.model.GDDDocument
 import org.lappsgrid.eager.mining.web.db.Database
@@ -429,11 +430,23 @@ class AskController {
         return ranker.rank(query, documents)
     }
 
+    //Updated version, uses RankingProcessor to distribute scoring across multiple threads.
+    //Still need to test
+    private List rank2(Query query, List<Document> documents, Map params){
+        logger.debug("Ranking {} documents", documents.size())
+        RankingProcessor ranker = new RankingProcessor(params)
+        return ranker.rank(query, documents)
+    }
+
+
+
+
     private List rank(Query query, List<Document> documents, Map params, Closure getter) {
         logger.debug("Ranking {} documents", documents.size())
         RankingEngine ranker = new RankingEngine(params)
         return ranker.rank(query, documents, getter)
     }
+
 
     private String transform(String xml) {
         XmlParser parser = Factory.createXmlParser()

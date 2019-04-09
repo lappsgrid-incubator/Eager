@@ -30,7 +30,11 @@ class RankingWorkerTests extends TestBase{
 
         //Need to figure out params, then run
         //RankingProcessor process = new RankingProcessor(1, params)
-        //process.rank(query, params)
+        //List<Document> resultNew = process.rank(query, test)
+        //CompositeRankingEngine ranker = new CompositeRankingEngine(params)
+        //List<Document> resultOld =  ranker.rank(query, documents)
+        //Then compare to see if they are similar
+
     }
 
 

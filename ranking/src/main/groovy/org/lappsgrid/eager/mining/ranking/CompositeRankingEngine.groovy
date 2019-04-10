@@ -26,7 +26,8 @@ class CompositeRankingEngine {
             logger.info("key: {} value: {}", key, value)
             Triple triple = new Triple(key)
             if (triple.control == 'checkbox') {
-                logger.trace("processing checkbox")
+                //FIXME Shouldn't we check if the box has been selected?
+                logger.trace("processing checkbox {} {}", key, value)
                 ScoringAlgorithm algorithm = AlgorithmRegistry.get(value)
                 if (algorithm != null) {
                     RankingEngine engine = engines[triple.section]

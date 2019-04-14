@@ -4,6 +4,7 @@ import org.junit.Test
 import org.lappsgrid.eager.mining.api.Query
 import org.lappsgrid.eager.mining.model.Section
 import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
+import org.lappsgrid.eager.mining.ranking.RankingProcessor
 import org.lappsgrid.eager.mining.ranking.model.Document
 
 class RankingWorkerTests extends TestBase{
@@ -28,12 +29,32 @@ class RankingWorkerTests extends TestBase{
         test.add(document1)
         test.add(document2)
 
-        //Need to figure out params, then run
-        //RankingProcessor process = new RankingProcessor(1, params)
-        //List<Document> resultNew = process.rank(query, test)
-        //CompositeRankingEngine ranker = new CompositeRankingEngine(params)
-        //List<Document> resultOld =  ranker.rank(query, documents)
-        //Then compare to see if they are similar
+        Map<String, Float> params = [
+                'abstract-checkbox-1': 1.0f,
+                'abstract-checkbox-2': 1.0f,
+                'abstract-checkbox-3': 1.0f,
+                'abstract-checkbox-4': 1.0f,
+                'abstract-checkbox-5': 1.0f,
+                'abstract-checkbox-6': 1.0f,
+                'abstract-checkbox-7': 1.0f,
+                'abstract-weight-' : 1.0f,
+                'title-checkbox-1': 1.0f,
+                'title-checkbox-2': 1.0f,
+                'title-checkbox-3': 1.0f,
+                'title-checkbox-4': 1.0f,
+                'title-checkbox-5': 1.0f,
+                'title-checkbox-6': 1.0f,
+                'title-checkbox-7': 1.0f,
+                'title-weight-': 1.0f
+        ]
+
+        RankingProcessor process = new RankingProcessor(1, params)
+        List<Document> resultNew = process.rank(query, test)
+        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
+        List<Document> resultOld =  ranker.rank(query, test)
+
+        assert(resultNew[0].getScore() == resultOld[0].getScore())
+
 
     }
 

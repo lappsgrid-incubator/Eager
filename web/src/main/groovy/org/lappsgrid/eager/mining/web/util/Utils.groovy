@@ -23,6 +23,39 @@ class Utils {
     }
 
     static ConfigObject loadConfiguration() {
+
+        ConfigObject config = new ConfigObject()
+        config.put('solr.host')
+
+        /*
+        #
+# Values migrated from the eager-web.conf file.
+#
+solr.host=http://129.114.16.34:8983/solr
+solr.collection=bioqa
+solr.rows=5000
+
+
+galaxy.host="https://galaxy.lappsgrid.org"
+#galaxy.key = System.getenv("GALAXY_API_KEY")
+
+# Working directories
+root=/tmp/eager
+work.dir=${root}/work
+question.dir=${root}/questions
+
+# Cache configuration
+cache.dir=${root}/cache
+cache.ttl=30
+
+# RabbitMQ information to send json to Galaxy
+upload.postoffice=galaxy.upload.service
+upload.address=zip
+
+
+
+         */
+        /*
         ConfigSlurper parser = new ConfigSlurper()
 
         String filename = "eager-web.conf"
@@ -69,5 +102,6 @@ upload.postoffice = "galaxy.upload.service"
 upload.address = "zip"
 '''
         return parser.parse(script)
+        */
     }
 }

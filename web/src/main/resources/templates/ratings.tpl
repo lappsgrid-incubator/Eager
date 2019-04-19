@@ -3,14 +3,14 @@ title: "LAPPS/EAGER Ratings",
 version: version,
 content: {
     h1 'Ratings'
-    p "Size: ${json.size()}"
+    p "Size: ${data.size()}"
 
     table {
         tr {
             th 'UUID'
             th 'Score'
         }
-        json.each { r ->
+        data.each { r ->
             tr {
                 td r.uuid
                 td r.rating

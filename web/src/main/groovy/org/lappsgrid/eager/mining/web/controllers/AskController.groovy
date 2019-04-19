@@ -35,6 +35,7 @@ import org.lappsgrid.eager.service.Version
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.lif.Container
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.core.env.Environment
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -45,6 +46,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.context.request.WebRequest
 
+import javax.annotation.PostConstruct
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
@@ -61,6 +63,8 @@ class AskController {
     @Autowired
     Database db
 
+    @Autowired
+    Environment env
 
     QueryProcessor queryProcessor
     QueryProcessor geoProcessor
@@ -75,19 +79,64 @@ class AskController {
         geoProcessor = new GDDSnippetQueryProcessor()
         documentProcessor = new DocumentProcessor()
 
-        config = Utils.loadConfiguration()
+//        config = loadConfiguration()
 
+        SSL.enable()
+    }
+
+    @PostConstruct
+    private void init() {
+        config = new ConfigObject()
+        Map m = [:]
+        set(m, 'solr.host')
+        set(m, 'solr.collection')
+        set(m, 'solr.rows')
+        set(m, 'galaxy.host')
+        set(m, 'galaxy.key', System.getenv('GALAXY_API_KEY'))
+        set(m, 'root')
+        set(m, 'work.dir')
+        set(m, 'question.dir')
+        set(m, 'cache.dir')
+        set(m, 'cache.ttl')
+        set(m, 'upload.postoffice')
+        set(m, 'upload.address')
+        config.putAll(m)
         if (config.cache.ttl) {
-            cache = new DataCache(config.cache.dir, config.cache.ttl)
+            cache = new DataCache(config.cache.dir, Integer.parseInt(config.cache.ttl.trim()))
         }
         else {
+            logger.warn("Cache TTL was not found in the configuration")
             cache = new DataCache(config.cache.dir)
         }
+
         workingDir = new File(config.work.dir)
         if (!workingDir.exists()) {
             workingDir.mkdirs()
         }
-        SSL.enable()
+    }
+
+    void set(Map map, String key) {
+        String value = env.getProperty(key)
+        set(map, key, value)
+    }
+
+    void set(Map map, String key, String value) {
+        set(map, key.tokenize('.'), value)
+    }
+
+    void set(Map map, List parts, String value) {
+        if (parts.size() == 1) {
+            map[parts[0]] = value
+        }
+        else {
+            String key = parts.remove(0)
+            Map current = map[key]
+            if (current == null) {
+                current = [:]
+                map[key] = current
+            }
+            set(current, parts, value)
+        }
     }
 
     @GetMapping(path="/show", produces = ['text/html'])

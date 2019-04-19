@@ -12,15 +12,15 @@ content: {
     table {
         tr {
             td 'Question'
-            td json.query.question
+            td data.query.question
         }
         tr {
             td 'Query'
-            td json.query.query
+            td data.query.query
         }
         tr {
             td 'Size'
-            td json.size
+            td data.size
         }
         tr {
             td 'Time'
@@ -58,9 +58,9 @@ content: {
             th 'PMID'
             th 'Year'
             th 'Title'
-            if (json.keys) {
-                json.keys.each { key ->
-                    json.documents[0].scores[key].each { e ->
+            if (data.keys) {
+                data.keys.each { key ->
+                    data.documents[0].scores[key].each { e ->
                         th(e.key)
                     }
                     th(key)
@@ -68,15 +68,15 @@ content: {
             }
 
         }
-        json.documents.eachWithIndex { doc, i ->
+        data.documents.eachWithIndex { doc, i ->
             tr {
                 td String.format("%4d", i)
                 td String.format("%2.3f", doc.score)
                 td { a(href:"https://www.ncbi.nlm.nih.gov/pmc/articles/${doc.pmc}/?report=classic", target:'_blank', doc.pmc) }
                 td doc.year
                 td doc.title.text
-                if (json.keys) {
-                    json.keys.each { key ->
+                if (data.keys) {
+                    data.keys.each { key ->
                         doc.scores[key].each { e ->
                             td String.format("%2.3f", e.value)
                         }

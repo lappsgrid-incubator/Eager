@@ -17,15 +17,10 @@ class RankingWorker implements Callable<Document> {
     }
 
     Document call() {
-        engines.each {RankingEngine engine ->
-            float result = 0.0f
-            result += score(document, engine, query)
-            document.score += result
-        }
-        return document
+        return score(document, engines, query)
     }
 
-    public float score(Document document, RankingEngine engine, Query query) {
-        return engine.scoreDocument(query, document)
+    public Document score(Document document, CompositeRankingEngine engines, Query query) {
+        return engines.rank2(query, document)
     }
 }

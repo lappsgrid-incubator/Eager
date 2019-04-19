@@ -27,7 +27,9 @@ class CompositeRankingEngine {
             Triple triple = new Triple(key)
             if (triple.control == 'checkbox') {
                 logger.trace("processing checkbox")
-                ScoringAlgorithm algorithm = AlgorithmRegistry.get(value)
+                //Kevin's change, not sure how params work otherwise (based on GenerateProcessed params)
+                //ScoringAlgorithm algorithm = AlgorithmRegistry.get(value)
+                ScoringAlgorithm algorithm = AlgorithmRegistry.get(triple.id)
                 if (algorithm != null) {
                     RankingEngine engine = engines[triple.section]
                     if (engine == null) {
@@ -38,7 +40,9 @@ class CompositeRankingEngine {
                         engines.put(triple.section, engine)
                     }
                     String weightKey = key.replace("checkbox", "weight")
-                    String weight = params.get(weightKey)
+                    //Kevin's change, not sure how params work otherwise (based on GenerateProcessed params)
+                    //String weight = params.get(weightKey)
+                    String weight = value
                     if (weight) {
                         logger.debug("Adding algorithm {}:{}", algorithm.abbrev(), weight)
                         engine.add(new WeightedAlgorithm(algorithm, weight as float))
@@ -86,6 +90,17 @@ class CompositeRankingEngine {
         logger.debug("Sorting {} documents.", documents.size())
         return documents.sort { a,b -> b.score <=> a.score }
     }
+
+    Document rank2(Query query, Document document) {
+        engines.each { String key, RankingEngine engine ->
+            logger.info("Scoring {}", key)
+            engine.scoreDocument(query, document)
+        }
+        //logger.debug("Sorting {} documents.", documents.size())
+        return document
+    }
+
+
     /**
     List<Document> calcScores(Query query, Document document, Map<String,RankingEngine> engines) {
         engines.each { String key, RankingEngine engine ->

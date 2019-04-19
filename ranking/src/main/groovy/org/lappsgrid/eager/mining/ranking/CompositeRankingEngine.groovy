@@ -28,8 +28,8 @@ class CompositeRankingEngine {
             if (triple.control == 'checkbox') {
                 logger.trace("processing checkbox")
                 //Kevin's change, not sure how params work otherwise (based on GenerateProcessed params)
-                //ScoringAlgorithm algorithm = AlgorithmRegistry.get(value)
-                ScoringAlgorithm algorithm = AlgorithmRegistry.get(triple.id)
+                //ScoringAlgorithm algorithm = AlgorithmRegistry.get(triple.id)
+                ScoringAlgorithm algorithm = AlgorithmRegistry.get(value)
                 if (algorithm != null) {
                     RankingEngine engine = engines[triple.section]
                     if (engine == null) {
@@ -41,8 +41,8 @@ class CompositeRankingEngine {
                     }
                     String weightKey = key.replace("checkbox", "weight")
                     //Kevin's change, not sure how params work otherwise (based on GenerateProcessed params)
-                    //String weight = params.get(weightKey)
-                    String weight = value
+                    //String weight = value
+                    String weight = params.get(weightKey)
                     if (weight) {
                         logger.debug("Adding algorithm {}:{}", algorithm.abbrev(), weight)
                         engine.add(new WeightedAlgorithm(algorithm, weight as float))

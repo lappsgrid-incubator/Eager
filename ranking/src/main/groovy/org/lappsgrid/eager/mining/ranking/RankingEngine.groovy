@@ -53,7 +53,7 @@ class RankingEngine {
         algorithms.add(algorithm)
     }
 
-    float scoreDocument(Query query, Document document){
+    Document scoreDocument(Query query, Document document){
         float total = 0.0f
         algorithms.each { algorithm ->
             def field = field(document)
@@ -76,10 +76,10 @@ class RankingEngine {
             total += score
             document.addScore(section, algorithm.abbrev(), score)
         }
-        //document.score += total * weight
+        document.score += total * weight
         logger.trace("Document {} {}", document.id, document.score)
-        return total * weight
-        //return document
+        //return total * weight
+        return document
     }
 
 
@@ -100,20 +100,25 @@ class RankingEngine {
 //            logger.trace("Document {}", document.path)
             float total = 0.0f
             algorithms.each { algorithm ->
+                logger.info("Calculating Score for {} .", algorithm.name())
                 def field = field(document)
-
                 float score = 0.0f
                 if (field instanceof String) {
 //                    score = algorithm.score(query, field)
                     score = calculate(algorithm, query, field)
+                    logger.info("Field is string")
                 }
                 else if (field instanceof Section) {
                     score = calculate(algorithm, query, field)
+                    logger.info("Field is section")
+
                 }
                 else if (field instanceof Collection) {
                     field.each { item ->
 //                        score += algorithm.score(query, item)
                         score += calculate(algorithm, query, item)
+                        logger.info("Field is collection")
+
                     }
                 }
                 logger.trace("{} -> {}", algorithm.abbrev(), score)
@@ -125,9 +130,11 @@ class RankingEngine {
         }
     }
 
-    float calculate(WeightedAlgorithm algorithm, Query query, field) {
+    float calculate(WeightedAlgorithm algorithm, Query query, Section field) {
+        logger.info("Calc score for {}.", algorithm.name())
         float result = algorithm.score(query, field)
         if (Float.isNaN(result)) {
+            logger.debug("NaN weight for {}.", algorithm.name())
             return 0f
         }
         return result

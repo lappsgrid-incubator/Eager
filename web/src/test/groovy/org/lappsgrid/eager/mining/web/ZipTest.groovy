@@ -94,4 +94,36 @@ class ZipTest {
         }
         zip.close()
     }
+
+    @Test
+    void config() {
+        ConfigObject config = new ConfigObject()
+        Map map = set([:], 'cache.dir', '/tmp')
+        set(map, 'cache.ttl', '5')
+        set(map, 'work.dir', '/tmp')
+        config.putAll(map)
+        println config.cache.dir
+        println config.cache.ttl
+        println config.work.dir
+    }
+
+    Map set(Map map, String key, String value) {
+        set(map, key.tokenize('.'), value)
+        return map
+    }
+
+    void set(Map map, List parts, String value) {
+        if (parts.size() == 1) {
+            map[parts[0]] = value
+        }
+        else {
+            String key = parts.remove(0)
+            Map current = map[key]
+            if (current == null) {
+                current = [:]
+                map[key] = current
+            }
+            set(current, parts, value)
+        }
+    }
 }

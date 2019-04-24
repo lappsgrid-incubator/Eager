@@ -30,7 +30,7 @@ content: {
     h1 "Send Results To Galaxy"
     div(id:'msgbox', class:'alert hidden', '')
     form(action:'save', method:'post', class:'box') {
-        yieldUnescaped '''<p>To send data to <a href="https://galaxy.lappsgrid.org">LAPPS/Galaxy</a>
+        yieldUnescaped '''<p>To send json to <a href="https://galaxy.lappsgrid.org">LAPPS/Galaxy</a>
             you must be a registered user.  Enter you Galaxy username (email address) below and the files will be available
             in the <i>Upload file</i> dialog (click the <i>Choose FTP files</i> button). If files with the same name already exists on the Galaxy server
             they will be overwritten.</p>'''
@@ -72,7 +72,7 @@ content: {
             tr {
                 td String.format("%4d", i)
                 td String.format("%2.3f", doc.score)
-                td { a(href:"https://www.ncbi.nlm.nih.gov/pmc/articles/${doc.pmc}/?report=classic", doc.pmc) }
+                td { a(href:"https://www.ncbi.nlm.nih.gov/pmc/articles/${doc.pmc}/?report=classic", target:'_blank', doc.pmc) }
                 td doc.year
                 td doc.title.text
                 if (data.keys) {

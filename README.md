@@ -3,7 +3,7 @@ Biomedical text mining and question answering.
 
 ## Modules
 
-- **api**<br/>Interface definitions.
+- **api**<br/>Interface definitions.<br/>*This package will likely be removed.*
 - **core**<br/>Common classes and utilities.
 - **docs**<br/>Documentation.
 - **elasticsearch** *Not Used*<br/>A placeholder project for eventual indexing and searching with ElasticSearch.
@@ -21,7 +21,7 @@ Biomedical text mining and question answering.
 - **scraper-pubmedmedline**<br/>Python script used to download and extract PubMed documents from the NIH FTP server.
 - **solr**<br/>Solr configuration files.
 - **test** *(To be removed)*<br/>Experimental programming.  This module has nothing to do with actual testing.
-- **upload**<br/>Upload service for loading data into Galaxy.
+- **upload**<br/>Upload service for loading json into Galaxy.
 - **web**<br/>Spring Boot application that provides a web user interface and REST API.
 
 ## Building

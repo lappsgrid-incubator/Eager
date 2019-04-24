@@ -32,8 +32,8 @@
     <dependencies>
         <dependency>
             <groupId>org.lappsgrid.eager.mining</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0.0</version>
+            <artifactId>core</artifactId>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

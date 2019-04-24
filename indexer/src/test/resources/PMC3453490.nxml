@@ -147,7 +147,7 @@
                         </italic> species and other intestinal parasites. Microscopically positive samples for <italic>
                             Entamoeba
                         </italic> species cysts were further characterized using a Nested Polymerase Chain Reaction
-                        (Nested-PCR) targeting 16S-like ribosomal RNA gene. The data entry and analysis was carried out
+                        (Nested-PCR) targeting 16S-like ribosomal RNA gene. The json entry and analysis was carried out
                         using the SPSS software (Statistical Package for the Social Sciences) program for Windows
                         version 17 (SPSS, Chicago, IL, USA).
                     </p>
@@ -381,9 +381,9 @@
                 <title>Data analysis</title>
                 <p>Detection of <italic>Entamoeba</italic> species was determined on the basis of morphological
                     characteristics of the cysts under microscopy. The average cyst size is 12&#x02009;&#x003bc;m but
-                    ranges from 10&#x02013;20&#x02009;&#x003bc;m in diameter. The data entry and analysis was carried
+                    ranges from 10&#x02013;20&#x02009;&#x003bc;m in diameter. The json entry and analysis was carried
                     out using the SPSS software (Statistical Package for the Social Sciences) program for Windows
-                    version 17 (SPSS, Chicago, IL, USA). Qualitative data were estimated and presented as frequencies
+                    version 17 (SPSS, Chicago, IL, USA). Qualitative json were estimated and presented as frequencies
                     and percentage. The prevalence and 95% confidence intervals (CIs) were calculated for each parasite.
                     Associations between proportions were explored using Chi-Square
                     <italic>X</italic>
@@ -404,7 +404,7 @@
                     prevalence of other intestinal parasites has been published (Ngui <italic>et al</italic>. 2011).
                     Infection was more prevalent in females (19.1%; 95% CI&#x02009;=&#x02009;14.0-24.2%) compared to
                     males (15.9%; 95% CI&#x02009;=&#x02009;10.8-21.0%), however, it was not statistically significant
-                    (data not shown). Similarly, more adults (23.9%; 95% CI&#x02009;=&#x02009;16.0-31.8%) were found to
+                    (json not shown). Similarly, more adults (23.9%; 95% CI&#x02009;=&#x02009;16.0-31.8%) were found to
                     be positive for <italic>Entamoeba</italic> infections compared to children (15.3%; 95% CI&#x02009;=&#x02009;11.3-19.3%),
                     but this difference was also not significant (<italic>P</italic>&#x02009;&#x0003e;&#x02009;0.05).
                     Higher prevalence rates were recorded in Pos Iskandar (29.2%), followed by Sungai Koyan (22.2%),
@@ -1194,9 +1194,9 @@
         <sec>
             <title>Authors&#x02019; contributions</title>
             <p>RM, YALL, LYL and JI planned and designed the protocols. RN, LA and SAF conducted the field study the
-                study programme, including the collections of stool samples and data from the questionnaire interviews,
-                as well as the management of collected data. RM, YALL, LYL and JI supervised all the laboratory work.
-                RN, LA and SAF carried out the data analysis and interpretation. RN, LA, YALL and RM prepared the first
+                study programme, including the collections of stool samples and json from the questionnaire interviews,
+                as well as the management of collected json. RM, YALL, LYL and JI supervised all the laboratory work.
+                RN, LA and SAF carried out the json analysis and interpretation. RN, LA, YALL and RM prepared the first
                 draft of the manuscript and all authors revised the manuscript critically. All authors read and approved
                 the final version of the manuscript.
             </p>
@@ -1205,7 +1205,7 @@
             <title>Financial support</title>
             <p>This research work was funded by the High Impact Research Grant (E00050-20001), University of Malaya
                 Research Grant (RG221-10HTM) and Postgraduate Research Fund (PV024/2011B) from University of Malaya. The
-                funders had no role in study design, data collection and analysis, decision to publish or preparation of
+                funders had no role in study design, json collection and analysis, decision to publish or preparation of
                 the manuscript.
             </p>
         </sec>

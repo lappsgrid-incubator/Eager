@@ -6,12 +6,12 @@ import org.lappsgrid.eager.mining.model.Section
 /**
  * How many words in the passage are terms in the question.
  */
-class TermFrequencyEvaluator extends AbstractScoringAlgorithm {
+class TermFrequencyEvaluator implements ScoringAlgorithm {
     @Override
     float score(Query query, Section section) {
         int count = 0
         section.tokens.each { token ->
-            if (contains(query.terms, token)) {
+            if (query.contains(token)) {
                 ++count
             }
         }

@@ -93,12 +93,12 @@
 
   <!-- Data Directory
 
-       Used to specify an alternate directory to hold all index data
-       other than the default ./data under the Solr home.  If
+       Used to specify an alternate directory to hold all index json
+       other than the default ./json under the Solr home.  If
        replication is in use, this should match the replication
        configuration.
     -->
-  <dataDir>${solr.data.dir:}</dataDir>
+  <dataDir>${solr.json.dir:}</dataDir>
 
 
   <!-- The DirectoryFactory to use for indexes.
@@ -275,7 +275,7 @@
          uncommitted changes to the index, so use of a hard autoCommit
          is recommended (see below).
          "dir" - the target directory for transaction logs, defaults to the
-                solr data directory.
+                solr json directory.
          "numVersionBuckets" - sets the number of buckets used to keep
                 track of max version values when checking for re-ordered
                 updates; increase this value to reduce the cost of
@@ -318,7 +318,7 @@
 
     <!-- softAutoCommit is like autoCommit except it causes a
          'soft' commit which only ensures that changes are visible
-         but does not ensure that data is synced to disk.  This is
+         but does not ensure that json is synced to disk.  This is
          faster and more near-realtime friendly than a hard commit.
       -->
 
@@ -394,7 +394,7 @@
          Cache used by SolrIndexSearcher for filters (DocSets),
          unordered sets of *all* documents that match a query.  When a
          new searcher is opened, its caches may be prepopulated or
-         "autowarmed" using data from caches in the old searcher.
+         "autowarmed" using json from caches in the old searcher.
          autowarmCount is the number of items to prepopulate.  For
          LRUCache, the autowarmed items will be the most recently
          accessed items.
@@ -466,7 +466,7 @@
          Example of a generic cache.  These caches may be accessed by
          name through SolrIndexSearcher.getCache(),cacheLookup(), and
          cacheInsert().  The purpose is to enable easy caching of
-         user/application level data.  The regenerator argument should
+         user/application level json.  The regenerator argument should
          be specified as an implementation of solr.CacheRegenerator
          if autowarming is desired.
       -->
@@ -536,7 +536,7 @@
 
          firstSearcher - fired whenever a new searcher is being
          prepared but there is no current registered searcher to handle
-         requests or to gain autowarming data from.
+         requests or to gain autowarming json from.
 
 
       -->
@@ -593,7 +593,7 @@
          Multipart File Uploads that Solr will allow in a Request.
 
          formdataUploadLimitInKB - specifies the max size (in KiB) of
-         form data (application/x-www-form-urlencoded) sent via
+         form json (application/x-www-form-urlencoded) sent via
          POST. You can use POST to pass request parameters not
          fitting into the URL.
 

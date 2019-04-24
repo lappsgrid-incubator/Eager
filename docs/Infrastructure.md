@@ -10,7 +10,7 @@ The current configuration consists of:
 
 ## Zookeeper
 
-[Apache Zookeeper](https://zookeeper.apache.org) is a service for configuring and managing clusters.  In our case Zookeeper stores Solr configuration data and the only configuration a Sorl node needs is the address of the Zookeeper service.
+[Apache Zookeeper](https://zookeeper.apache.org) is a service for configuring and managing clusters.  In our case Zookeeper stores Solr configuration json and the only configuration a Sorl node needs is the address of the Zookeeper service.
 
 Configuration for the Solr cloud is stored in a single node zookeeper *ensemble*.
 
@@ -51,6 +51,8 @@ There are currently two nodes in the Solr cloud
 |--------|----------------|-----|--------|-------|
 | solr-1 | 129.114.16.34  | 10  | 30 GB  | 60 GB |
 | solr-2 | 129.114.16.102 | 10  | 30 GB  | 60 GB |
+
+To add additional nodes to the Solr Cloud launch a new server and install Solr using the [Solr service installation script](https://lucene.apache.org/solr/guide/7_5/taking-solr-to-production.html#taking-solr-to-production).  Use the default installation location (*/opt/solr-7.5.0*)
 
 #### Increase Open Files Limit
 

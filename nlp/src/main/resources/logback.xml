@@ -24,7 +24,7 @@
 	<logger name="org.lappsgrid" level="warn"/>
 	<logger name="org.lappsgrid.eager" level="debug"/>
 
-	<root level="info">
+	<root level="debug">
 		<appender-ref ref="STDOUT" />
 		<!-- <appender-ref ref="FILE"/>  -->
 	</root>

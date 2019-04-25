@@ -81,7 +81,8 @@ class CompositeRankingEngine {
         }
     }
 
-    List<Document> rank(Query query, List<Document> documents) {
+    //Old ranking algorithm
+    List<Document> rankOld(Query query, List<Document> documents) {
         engines.each { String key, RankingEngine engine ->
             logger.info("Ranking {}", key)
             engine.rank(query, documents)
@@ -90,7 +91,8 @@ class CompositeRankingEngine {
         return documents.sort { a,b -> b.score <=> a.score }
     }
 
-    Document rank2(Query query, Document document) {
+    //New ranking algorithm, used with RankingProcessor
+    Document rank(Query query, Document document) {
         engines.each { String key, RankingEngine engine ->
             logger.info("Scoring {}", key)
             engine.scoreDocument(query, document)

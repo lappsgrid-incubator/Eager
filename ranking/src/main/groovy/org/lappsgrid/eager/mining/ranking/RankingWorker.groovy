@@ -21,6 +21,6 @@ class RankingWorker implements Callable<Document> {
     }
 
     public Document score(Document document, CompositeRankingEngine engines, Query query) {
-        return engines.rank2(query, document)
+        return engines.rank(query, document)
     }
 }

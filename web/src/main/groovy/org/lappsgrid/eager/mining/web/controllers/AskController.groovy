@@ -470,20 +470,18 @@ class AskController {
 //        RankingEngine ranker = new RankingEngine(params)
 //        return ranker.rank(query, documents)
         logger.debug("Ranking {} documents", documents.size())
-        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
-        return ranker.rank(query, documents)
+
+//        Old code, before optimization using RankingProcessor
+//        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
+//        return ranker.rank(query, documents)
+
+//        New code using RankingProcessor
+        RankingProcessor process = new RankingProcessor(params)
+        return process.rank(query, documents)
+
+
+
     }
-
-    //Updated version, uses RankingProcessor to distribute scoring across multiple threads.
-    //Still need to test
-    private List rank2(Query query, List<Document> documents, Map params){
-        logger.debug("Ranking {} documents", documents.size())
-        RankingProcessor ranker = new RankingProcessor(params)
-        return ranker.rank(query, documents)
-    }
-
-
-
 
     private List rank(Query query, List<Document> documents, Map params, Closure getter) {
         logger.debug("Ranking {} documents", documents.size())

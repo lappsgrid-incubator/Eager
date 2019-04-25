@@ -77,7 +77,7 @@ class GenerateProcessed {
         List<Document> resultNew = process.rank(query, processed)
 
         CompositeRankingEngine ranker = new CompositeRankingEngine(params)
-        List<Document> resultOld =  ranker.rank(query, processed)
+        List<Document> resultOld =  ranker.rankOld(query, processed)
 
 
         println(resultOld[0].getScore())

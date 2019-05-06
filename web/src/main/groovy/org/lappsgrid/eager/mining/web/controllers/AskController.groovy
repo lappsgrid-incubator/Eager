@@ -16,6 +16,7 @@ import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.mining.core.ssl.SSL
 import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
 import org.lappsgrid.eager.mining.ranking.RankingEngine
+import org.lappsgrid.eager.mining.ranking.RankingProcessor
 import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.ranking.model.GDDDocument
 import org.lappsgrid.eager.mining.web.db.Database
@@ -469,8 +470,17 @@ class AskController {
 //        RankingEngine ranker = new RankingEngine(params)
 //        return ranker.rank(query, documents)
         logger.debug("Ranking {} documents", documents.size())
-        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
-        return ranker.rank(query, documents)
+
+//        Old code, before optimization using RankingProcessor
+//        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
+//        return ranker.rank(query, documents)
+
+//        New code using RankingProcessor
+        RankingProcessor process = new RankingProcessor(params)
+        return process.rank(query, documents)
+
+
+
     }
 
     private List rank(Query query, List<Document> documents, Map params, Closure getter) {
@@ -478,6 +488,7 @@ class AskController {
         RankingEngine ranker = new RankingEngine(params)
         return ranker.rank(query, documents, getter)
     }
+
 
     private String transform(String xml) {
         XmlParser parser = Factory.createXmlParser()

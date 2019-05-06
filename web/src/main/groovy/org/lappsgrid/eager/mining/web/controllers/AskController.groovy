@@ -450,6 +450,9 @@ class AskController {
 
         // TODO We need a session managed bean so multiple users do not overwrite each other's files.
         File base = new File("/tmp/eager")
+        if (!base.exists()) {
+            base.mkdirs()
+        }
         new File(base, 'query.json').text = Serializer.toPrettyJson(query)
         new File(base, 'files.json').text = Serializer.toPrettyJson(docs)
         new File(base, 'params.json').text = Serializer.toPrettyJson(params)

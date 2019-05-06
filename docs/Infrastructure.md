@@ -137,7 +137,7 @@ Portainer is a simple management UI for Docker swarms available on [http://129.1
 
 | Name    | IP Address     | CPU | Memory | Disk  |
 |---------|----------------|-----|--------|-------|
-| swarm-1 | 129.114.17.83  | 10  | 30 GB  | 60 GB |
+| swarm-1 | 129.114.17.83, 10.1.1.11  | 10  | 30 GB  | 60 GB |
 | swarm-2 | 10.1.1.3       | 10  | 30 GB  | 60 GB |
 | swarm-3 | 10.1.1.17      | 10  | 30 GB  | 60 GB |
 | swarm-4 | 10.1.1.12      | 10  | 30 GB  | 60 GB |

@@ -9,16 +9,19 @@ import org.lappsgrid.eager.mining.core.jmx.Registry
 import java.util.concurrent.TimeUnit
 
 /**
- *
+ * A simple JMX example.  Run this program and then launch jVisualVM to connect to
+ * the application via JMX and check the metrics or interact with it via the methods
+ * defined in teh MainMBean interface.
  */
 @Slf4j("logger")
 class Main implements MainMBean {
 
     String salutation
     boolean running
+    Random random
+
     final Meter meter
     final Timer timer
-    Random random
 
     Main() {
         salutation = "Hello"

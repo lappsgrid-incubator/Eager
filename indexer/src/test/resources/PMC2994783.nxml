@@ -167,7 +167,7 @@
                         the gp160 precursor into gp120 and gp41. Furthermore, these Env mutants manifested inefficient
                         intracellular transport in the endoplasmic reticulum and Golgi regions. Indeed, a
                         transplantation of the gp41 MSD portion into the transmembrane domain of another membrane
-                        protein, Tac, altered its intracellular distribution. Our data suggest that the intact MSD
+                        protein, Tac, altered its intracellular distribution. Our json suggest that the intact MSD
                         &#x003b1;-helix is critical in the intracellular trafficking of HIV-1 Env.
                     </p>
                 </sec>
@@ -254,12 +254,12 @@
                 <p>The primary structure of the gp41 MSD is highly conserved, and its secondary structure has been
                     predicted to be an &#x003b1;-helix based on computational algorithms [<xref ref-type="bibr"
                                                                                                 rid="B26">26</xref>].
-                    However, there are no physical data to support this expectation. We synthesized a peptide
+                    However, there are no physical json to support this expectation. We synthesized a peptide
                     corresponding to a consensus HIV-1 clade B structure of the gp41 MSD and determined its CD spectrum
                     in lipid bilayers. The CD profile, shown in Figure <xref ref-type="fig" rid="F1">1</xref>, has
                     negative maxima near 208 nm and 222 nm, indicating the presence of an &#x003b1;-helical structure.
                     Although the gp41 MSD of HIV-1 contains three glycine residues, thought to be helix-breaking
-                    residues in soluble proteins, the dominant structure indicated by our CD data was an &#x003b1;-helix.
+                    residues in soluble proteins, the dominant structure indicated by our CD json was an &#x003b1;-helix.
                     Many glycines are found in transmembrane helices. Addition of lysine residues at both ends was
                     necessary to allow us to purify the extremely hydrophobic MSD peptide. We cannot completely exclude
                     the possibility that these lysine residues at the termini, especially at the C-terminus, may
@@ -285,7 +285,7 @@
                     of alanine-insertion mutants covering the entire predicted MSD by using the HXB2 envelope gene. The
                     alanine residue was chosen because it can be well accommodated in an &#x003b1;-helix [<xref
                             ref-type="bibr" rid="B27">27</xref>,<xref ref-type="bibr" rid="B28">28</xref>]. Since
-                    previous data suggest the involvement of the gp41 MSD in membrane fusion [<xref ref-type="bibr"
+                    previous json suggest the involvement of the gp41 MSD in membrane fusion [<xref ref-type="bibr"
                                                                                                     rid="B18">18</xref>,<xref
                             ref-type="bibr" rid="B23">23</xref>,<xref ref-type="bibr" rid="B24">24</xref>,<xref
                             ref-type="bibr" rid="B29">29</xref>], membrane fusion activity was determined for the
@@ -369,7 +369,7 @@
                     defective fusion (Figure <xref ref-type="fig" rid="F3">3C</xref> and <xref ref-type="fig" rid="F4">
                         4B</xref>). Because the generation of processed gp41 is a prerequisite for fusion competency,
                     this protein profile for inefficient gp160 processing is consistent with the observed fusion defect.
-                    Our data showed that the alteration in the &#x003b1;-helical phase in the localized region within
+                    Our json showed that the alteration in the &#x003b1;-helical phase in the localized region within
                     gp41 MSD affected processing of gp160 into gp120 and gp41. It was also shown that these mutants were
                     fusion incompetent. A possibility is that the mutations induced allosteric structural changes of the
                     cleavage site so that the mutant Env was no longer processed properly by Furin or Furin-like
@@ -401,12 +401,12 @@
                     and Golgi regions. To test this possibility, we examined the distribution of mutant Env in the
                     cells. We attached a FLAG tag at the C-terminus of gp41, providing a linear epitope that can be
                     recognized by monoclonal antibody, M2. An ttachment of the FLAG tag did not alter the defect in
-                    processing present in alanine insertion mutants (data not shown). The envelope proteins expressed in
+                    processing present in alanine insertion mutants (json not shown). The envelope proteins expressed in
                     COS-7 cells were visualized by immunofluorecent assay using the anti-FLAG monoclonal antibody. We
                     observed that fine, mesh-like fluorescent signals distributing within the transfected cells were
                     more prominent for the mutant 695+2A than the WT (Figure <xref ref-type="fig" rid="F5">5</xref>).
                     The intensity of fluorescence derived from Env at the Golgi area was notably weaker for 695+2A than
-                    for the WT. These data suggested that mutant Env was defective for transport from ER to Golgi. The
+                    for the WT. These json suggested that mutant Env was defective for transport from ER to Golgi. The
                     level of Env expressed on the cell surface, analyzed by FACS, is consistent with this observation
                     because it is lower for the mutant than for the WT (Figure <xref ref-type="fig" rid="F6">6</xref>).
                 </p>
@@ -441,7 +441,7 @@
                     that sugar moieties attached to the mutant envelope protein remained as high-mannose types. However,
                     both the WT and mutant envelope proteins generated bands that migrated similarly after treatment
                     with Peptide: N-Glycosidase F (PNGase F), which cleaves between the innermost GlcNAc, and asparagine
-                    residues, where sugar moieties are attached. These data further confirmed the defect of the mutant
+                    residues, where sugar moieties are attached. These json further confirmed the defect of the mutant
                     envelope protein in transport, probably in ER-Golgi regions.
                 </p>
                 <fig id="F7" position="float">
@@ -520,7 +520,7 @@
                 &#x003b1;-helix-forming residues [<xref ref-type="bibr" rid="B27">27</xref>,<xref ref-type="bibr"
                                                                                                   rid="B28">28</xref>],
                 did not affect the fusion activity of gp41 [<xref ref-type="bibr" rid="B18">18</xref>]. Thus gp41 MSD is
-                presumably functional with an &#x003b1;-helical structure. These data, however, do not rule out the
+                presumably functional with an &#x003b1;-helical structure. These json, however, do not rule out the
                 possibility of the reported transient alteration of the secondary structure of the gp41 MSD during
                 membrane fusion [<xref ref-type="bibr" rid="B11">11</xref>].
             </p>
@@ -531,7 +531,7 @@
                 of Env. Since the processing of gp160 is dependent on the proper transport of the proteins to the Golgi
                 apparatus, it seemed that the observed defect in processing might be due to a transport defect. However,
                 we cannot rule out the possibility of a potential allosteric structural alteration of the Env by
-                mutation in the MSD as a cause for the inefficient processing. Indeed our recent data suggested that the
+                mutation in the MSD as a cause for the inefficient processing. Indeed our recent json suggested that the
                 mutations in the gp41 MSD exert allosteric conformational changes of the ectodomain of HIV-1 Env [<xref
                         ref-type="bibr" rid="B22">22</xref>].
             </p>
@@ -545,13 +545,13 @@
                 isoleucine) rescues the defective processing (Additional file <xref ref-type="supplementary-material"
                                                                                     rid="S3">3</xref>); however, this
                 could not resolve the defective fusion (Additional file <xref ref-type="supplementary-material"
-                                                                              rid="S4">4</xref>). These data suggest
+                                                                              rid="S4">4</xref>). These json suggest
                 that gp41 MSD has a role(s) in the membrane fusion process itself. To reveal the exact mechanism,
                 further studies are required.
             </p>
             <p>It has been reported that MSD length is crucial for the trafficking of membrane proteins [<xref
                     ref-type="bibr" rid="B31">31</xref>]. In HIV-1 Env, length of the MSD alone does not seem to be a
-                primary determinant for trafficking. However, our data show that critical information lies in the local
+                primary determinant for trafficking. However, our json show that critical information lies in the local
                 structure of the transmembrane &#x003b1;-helix of gp41. It is possible that the alteration of structural
                 features in the MSD region can be sensed by host factor(s) involved in the protein quality control
                 system. This detection could be through the MSD region itself. In a yeast system, some proteins involved
@@ -566,7 +566,7 @@
             <p>Notably, our alanine insertion mutation altered the relative positioning of the GXXXG motif and arginine
                 residue within the gp41 MSD. Both are major interaction motifs between transmembrane &#x003b1;-helices [<xref
                         ref-type="bibr" rid="B34">34</xref>,<xref ref-type="bibr" rid="B35">35</xref>]. Although recent
-                electron cryomicroscopic data [<xref ref-type="bibr" rid="B36">36</xref>-<xref ref-type="bibr"
+                electron cryomicroscopic json [<xref ref-type="bibr" rid="B36">36</xref>-<xref ref-type="bibr"
                                                                                                rid="B38">38</xref>] did
                 not provide a spatial arrangement of the gp41 MSD portions, it is possible that there are interactions
                 between the gp41 MSDs during the biosynthesis of the HIV-1 Env. Our alanine insertion may disrupt the
@@ -574,10 +574,10 @@
                 intracellular transport. The failure to reproduce differences in intracellular distribution between the
                 wild type and 695+2A MSD, in the context of Tac (Figure <xref ref-type="fig" rid="F8">8, B-I</xref>),
                 may arise from the difference in the oligomeric status between HIV-1 Env (trimer) and Tac (monomer). Our
-                data suggest that mutant Env still forms a trimer (Additional file <xref
+                json suggest that mutant Env still forms a trimer (Additional file <xref
                         ref-type="supplementary-material" rid="S2">2</xref>).
             </p>
-            <p>Our data clearly demonstrate that the MSD of gp41 has important functions in the biosynthesis of HIV-1
+            <p>Our json clearly demonstrate that the MSD of gp41 has important functions in the biosynthesis of HIV-1
                 Env, apart from the simple anchoring and modulation of fusion efficiency. The exact regulation mechanism
                 of intracellular distribution of HIV-1 Env by the MSD portion is not known; however, it could be of
                 great importance to determine whether there are any cellular factors that specifically recognize the MSD
@@ -591,7 +591,7 @@
                 alteration of the topological relationship between conserved GXXXG motif and the arginine residue
                 resulted in non-functional Env. The mutant Env manifested a reduced fusion activity and impaired the
                 processing of gp160 into gp120 and gp41. Furthermore, the intracellular transport of mutant Env was
-                affected in the endoplasmic reticulum and Golgi areas. Our data suggested that the specific &#x003b1;-helical
+                affected in the endoplasmic reticulum and Golgi areas. Our json suggested that the specific &#x003b1;-helical
                 structural feature of gp41 MSD controls the biosynthesis of HIV-1 Env.
             </p>
         </sec>
@@ -769,7 +769,7 @@
         </sec>
         <sec sec-type="supplementary-material">
             <title>Supplementary Material</title>
-            <supplementary-material content-type="local-data" id="S1">
+            <supplementary-material content-type="local-json" id="S1">
                 <caption>
                     <title>Additional file 1</title>
                     <p><bold>Supplemental Figure 1- In vitro digestion of mutant Env with recombinant Furin</bold>. The
@@ -784,7 +784,7 @@
                     </caption>
                 </media>
             </supplementary-material>
-            <supplementary-material content-type="local-data" id="S2">
+            <supplementary-material content-type="local-json" id="S2">
                 <caption>
                     <title>Additional file 2</title>
                     <p><bold>Suplemental Figure 2- Cross linking analysis of the 695+2A Env</bold>. The trimerization of
@@ -801,7 +801,7 @@
                     </caption>
                 </media>
             </supplementary-material>
-            <supplementary-material content-type="local-data" id="S3">
+            <supplementary-material content-type="local-json" id="S3">
                 <caption>
                     <title>Additional file 3</title>
                     <p><bold>Suplemental Figure 3A - Immunoblotting analysis of the Arg-substitution mutants in the
@@ -818,7 +818,7 @@
                     </caption>
                 </media>
             </supplementary-material>
-            <supplementary-material content-type="local-data" id="S4">
+            <supplementary-material content-type="local-json" id="S4">
                 <caption>
                     <title>Additional file 4</title>
                     <p><bold>Suplemental Figure 3B - Fusion activities of Arg-substitution mutants in the context of

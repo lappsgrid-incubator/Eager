@@ -27,18 +27,8 @@ class DocumentWorker implements Callable<Document> {
             document.setProperty(field, solr.getFieldValue(field))
         }
 
-//        String temp = document.getFieldValue(Fields.TITLE)
-//        if (temp) {
-//            title = temp.toLowerCase()
-//        }
-//
-//        intro = document.getFieldValue(Fields.INTRO)
-//        articleAbstract = document.getFieldValue(Fields.ABSTRACT)
-//        discussion = document.getFieldValue(Fields.DISCUSSION)
-
         document.title = process(Fields.TITLE)
         document.articleAbstract = process(Fields.ABSTRACT)
-//        document.body = process(Fields.BODY)
         document.body = solr.getFieldValue(Fields.BODY)
         return document
     }

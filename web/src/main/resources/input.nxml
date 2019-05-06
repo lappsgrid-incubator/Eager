@@ -367,7 +367,7 @@
                 </italic> (AB699356, amino acids 11&#x02013;19) and myristoylated at the N-terminus of the peptide
                     (Peptide Institute Inc., Osaka, Japan) to enable it to permeate cell membranes (Eichholtz <italic>et
                         al</italic>., <xref rid="ref020" ref-type="bibr">1993</xref>). Recombinant protein of Hp&#x003b2;-catenin
-                    was expressed bacterially by using the sequence data from the cDNA clone (AB699355) isolated from
+                    was expressed bacterially by using the sequence json from the cDNA clone (AB699355) isolated from
                     the <italic>H. pulcherrimus</italic> gastrula cDNA library (Fuchikami <italic>et al</italic>., <xref
                             rid="ref023" ref-type="bibr">2002</xref>). The cDNA fragment encoding the N-terminal region
                     of Hp&#x003b2;-catenin (1&#x02013;250 amino acids) was inserted into the pET42b/GST vector and
@@ -540,7 +540,7 @@
                     <xref ref-type="fig" rid="fig001">Fig. 1</xref>
                     <italic>B</italic>). In contrast, when the myristoylated pseudosubstrate of human PKC differing by
                     only one amino acid was used (Calbiochem), cell division of sea urchin embryos was not affected,
-                    even at 28 &#x003bc;M (data not shown). This finding suggested that the inhibitory effect on the
+                    even at 28 &#x003bc;M (json not shown). This finding suggested that the inhibitory effect on the
                     target enzyme requires highly stringent specificity.
                     <fig id="fig001" orientation="portrait" position="float">
                         <label>Figure 1</label>
@@ -658,7 +658,7 @@
                     stage, nuclear &#x003b2;-catenin was usually detected only in the macromeres (Mac) (
                     <xref ref-type="fig" rid="fig004">Fig. 4</xref>
                     <italic>A</italic>), although in some batches of embryos it was detectable also in the micromeres,
-                    but its fluorescence intensity was always much weaker than in the macromeres (data not shown). In
+                    but its fluorescence intensity was always much weaker than in the macromeres (json not shown). In
                     the late 16-cell stage (
                     <xref ref-type="fig" rid="fig004">Fig. 4</xref>
                     <italic>B</italic>), the macromeres and mesomeres entered the next cleavage cycle (anaphase
@@ -938,7 +938,7 @@
                     the 8&#x02013;60-cell stages (
                     <xref ref-type="fig" rid="fig006">Fig. 6</xref>
                     <italic>C</italic>). In contrast, in all these conditions, PMC ingression took place on a normal
-                    schedule (data not shown), analogous to the results obtained with GdCl<sub>3</sub> (
+                    schedule (json not shown), analogous to the results obtained with GdCl<sub>3</sub> (
                     <xref ref-type="fig" rid="fig006">Fig. 6</xref>
                     <italic>A</italic>). Hence, inhibition of the stretch-activated Ca<sup>2+</sup> channel (GdCl<sub>
                         3</sub>) and PKC (HpPKC-I) both led to a delay in gastrulation but not to alteration of the
@@ -959,7 +959,7 @@
                     discernible. When quartet micromeres isolated from a 16-cell stage embryo were recombined to an
                     animal cap, the plutei that derived from the recombinant embryo displayed a normal distribution of
                     alkaline phosphatase-positive cells (gut marker) and formation of functional guts regardless of
-                    pretreatment with HpPKC-I (data not shown). Thus, HpPKC-I does not appear to interfere with the
+                    pretreatment with HpPKC-I (json not shown). Thus, HpPKC-I does not appear to interfere with the
                     ability of micromeres to induce mesoderm. However, HpPKC-I caused morphological shifts at the
                     pluteus stage. When the skeletal size of plutei was measured with regard to the post-oral rod (por),
                     body rod (br) and antero-lateral rod (alr) (nomenclature identified in
@@ -1081,7 +1081,7 @@
                     after the 4th cleavage but to a lesser extent (
                     <xref ref-type="fig" rid="fig008">Fig. 8</xref>
                     <italic>C</italic>). Again, added after the 7th cleavage, HpPKC-I had no effect on the morphology of
-                    the embryos (data not shown).
+                    the embryos (json not shown).
                     <fig id="fig008" orientation="portrait" position="float">
                         <label>Figure 8</label>
                         <caption>
@@ -1108,7 +1108,7 @@
                     expressed in the oral ectoderm, <italic>Nodal, Deadringer</italic> and <italic>Lim</italic>,
                     markedly increased their expression after the embryos were exposed to HpPKC-I, while the transcripts
                     of the aboral ectoderm genes, <italic>NK2.2</italic> and <italic>Coquilette</italic>, decreased. In
-                    accordance with the morphology data (<xref ref-type="table" rid="tbl002">Table 2</xref>), the
+                    accordance with the morphology json (<xref ref-type="table" rid="tbl002">Table 2</xref>), the
                     skeletogenic genes also decreased in expression. However, we need to pay special attention to those
                     genes whose expression is linked to the timing of gastrulation. As the addition of HpPKC-I delayed
                     gastrulation, the genes linked to gastrulation are likely to display an altered expression profile
@@ -1127,7 +1127,7 @@
                     expressed from the blastula stage (Takacs <italic>et al</italic>., <xref rid="ref060"
                                                                                              ref-type="bibr">2004</xref>;
                     Croce <italic>et al</italic>., <xref rid="ref013" ref-type="bibr">2003</xref>), and accordingly we
-                    have found that HpPKC-I treatment suppressed their expression. Thus, our data with HpPKC-I are in
+                    have found that HpPKC-I treatment suppressed their expression. Thus, our json with HpPKC-I are in
                     line with these previous observations, and suggest that PKC signalling may contribute to the fine
                     regulation of gene expression before gastrulation.
                     <table-wrap id="tbl003" orientation="portrait" position="float">

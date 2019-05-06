@@ -16,6 +16,7 @@ import org.lappsgrid.eager.mining.core.json.Serializer
 import org.lappsgrid.eager.mining.core.ssl.SSL
 import org.lappsgrid.eager.mining.ranking.CompositeRankingEngine
 import org.lappsgrid.eager.mining.ranking.RankingEngine
+import org.lappsgrid.eager.mining.ranking.RankingProcessor
 import org.lappsgrid.eager.mining.ranking.model.Document
 import org.lappsgrid.eager.mining.ranking.model.GDDDocument
 import org.lappsgrid.eager.mining.web.db.Database
@@ -35,6 +36,7 @@ import org.lappsgrid.eager.service.Version
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.lif.Container
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.core.env.Environment
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -45,6 +47,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.context.request.WebRequest
 
+import javax.annotation.PostConstruct
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
@@ -60,16 +63,15 @@ class AskController {
 
     @Autowired
     Database db
-    RatingRepository ratings
+
+    @Autowired
+    Environment env
 
     QueryProcessor queryProcessor
     QueryProcessor geoProcessor
     DocumentProcessor documentProcessor
     DataCache cache
     File workingDir
-
-//    String collection
-//    String apiKey
 
     ConfigObject config
 
@@ -78,21 +80,64 @@ class AskController {
         geoProcessor = new GDDSnippetQueryProcessor()
         documentProcessor = new DocumentProcessor()
 
-        config = Utils.loadConfiguration()
+//        config = loadConfiguration()
 
-//        collection = "bioqa"
-//        collection = "eager"
+        SSL.enable()
+    }
+
+    @PostConstruct
+    private void init() {
+        config = new ConfigObject()
+        Map m = [:]
+        set(m, 'solr.host')
+        set(m, 'solr.collection')
+        set(m, 'solr.rows')
+        set(m, 'galaxy.host')
+        set(m, 'galaxy.key', System.getenv('GALAXY_API_KEY'))
+        set(m, 'root')
+        set(m, 'work.dir')
+        set(m, 'question.dir')
+        set(m, 'cache.dir')
+        set(m, 'cache.ttl')
+        set(m, 'upload.postoffice')
+        set(m, 'upload.address')
+        config.putAll(m)
         if (config.cache.ttl) {
-            cache = new DataCache(config.cache.dir, config.cache.ttl)
+            cache = new DataCache(config.cache.dir, Integer.parseInt(config.cache.ttl.trim()))
         }
         else {
+            logger.warn("Cache TTL was not found in the configuration")
             cache = new DataCache(config.cache.dir)
         }
+
         workingDir = new File(config.work.dir)
         if (!workingDir.exists()) {
             workingDir.mkdirs()
         }
-        SSL.enable()
+    }
+
+    void set(Map map, String key) {
+        String value = env.getProperty(key)
+        set(map, key, value)
+    }
+
+    void set(Map map, String key, String value) {
+        set(map, key.tokenize('.'), value)
+    }
+
+    void set(Map map, List parts, String value) {
+        if (parts.size() == 1) {
+            map[parts[0]] = value
+        }
+        else {
+            String key = parts.remove(0)
+            Map current = map[key]
+            if (current == null) {
+                current = [:]
+                map[key] = current
+            }
+            set(current, parts, value)
+        }
     }
 
     @GetMapping(path="/show", produces = ['text/html'])
@@ -405,6 +450,9 @@ class AskController {
 
         // TODO We need a session managed bean so multiple users do not overwrite each other's files.
         File base = new File("/tmp/eager")
+        if (!base.exists()) {
+            base.mkdirs()
+        }
         new File(base, 'query.json').text = Serializer.toPrettyJson(query)
         new File(base, 'files.json').text = Serializer.toPrettyJson(docs)
         new File(base, 'params.json').text = Serializer.toPrettyJson(params)
@@ -425,8 +473,17 @@ class AskController {
 //        RankingEngine ranker = new RankingEngine(params)
 //        return ranker.rank(query, documents)
         logger.debug("Ranking {} documents", documents.size())
-        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
-        return ranker.rank(query, documents)
+
+//        Old code, before optimization using RankingProcessor
+//        CompositeRankingEngine ranker = new CompositeRankingEngine(params)
+//        return ranker.rank(query, documents)
+
+//        New code using RankingProcessor
+        RankingProcessor process = new RankingProcessor(params)
+        return process.rank(query, documents)
+
+
+
     }
 
     private List rank(Query query, List<Document> documents, Map params, Closure getter) {
@@ -434,6 +491,7 @@ class AskController {
         RankingEngine ranker = new RankingEngine(params)
         return ranker.rank(query, documents, getter)
     }
+
 
     private String transform(String xml) {
         XmlParser parser = Factory.createXmlParser()

@@ -302,7 +302,7 @@
                     <xref rid="cit0022" ref-type="bibr">
                         <sup>22</sup>
                     </xref>
-                    (data available from GenBank/EMBL/ DDBJ under accession #AF068719), by identifying the sequence
+                    (json available from GenBank/EMBL/ DDBJ under accession #AF068719), by identifying the sequence
                     alterations corresponding to 6 <italic>unc</italic>-<italic>23</italic> alleles. Two of the
                     mutations identified are deletions of 117 (<italic>ra801</italic>) and 155 (<italic>ra806</italic>)
                     bps and a third mutation (<italic>rh192</italic>) is a 4&#x000a0;bp insertion (
@@ -412,13 +412,13 @@
                     </xref>
                     The partial sequences of several other cDNA clones are available at <ext-link ext-link-type="uri"
                                                                                                   xlink:href="http://www.wormbase.org">
-                        www.wormbase.org</ext-link>, and these data reveal the presence of mRNA species encoding
+                        www.wormbase.org</ext-link>, and these json reveal the presence of mRNA species encoding
                     alternative translation start sites (see for example yk1007e10 and yk1745g09). The <italic>unc-23
                     </italic> gene consists of 5 exons (
                     <xref ref-type="fig" rid="f0001">
                         <bold>Fig. 1</bold>
                     </xref>
-                    ) and, based on the cDNA sequence data, can potentially encode 3 different protein isoforms of 458,
+                    ) and, based on the cDNA sequence json, can potentially encode 3 different protein isoforms of 458,
                     457 and 399 amino acids, respectively. A search of the database using the BLAST server at NIH
                     identified a 211 amino acid human protein called BAG-2 with significant sequence similarity to the
                     UNC-23 protein (
@@ -974,11 +974,11 @@
                     </xref>
                     ). The disruption in MH4 staining observed in affected areas can range from mild to full detachment.
                     Homozygous <italic>unc-23(e25)</italic> liquid grown mutants stained with either MH5 (our
-                    unpublished data) or MH4 (
+                    unpublished json) or MH4 (
                     <xref ref-type="fig" rid="f0005">
                         <bold>Fig. 5F</bold>
                     </xref>
-                    ) show no disorganization or detachment and resemble wild type animals. These data show that at
+                    ) show no disorganization or detachment and resemble wild type animals. These json show that at
                     least some components of the basement membrane and hypodermis remain attached to the body wall
                     muscle cells after they separate from the hypodermis. This result is consistent with the earlier
                     conclusion of Waterston et&#x000a0;al.
@@ -1037,7 +1037,7 @@
                     <xref ref-type="fig" rid="f0006">
                         <bold>Fig. 6</bold>
                     </xref>
-                    ; data available from GenBank/EMBL/ DDBJ under accession #Z80223). The first 386 amino acids of the
+                    ; json available from GenBank/EMBL/ DDBJ under accession #Z80223). The first 386 amino acids of the
                     HSP-1 protein comprise the ATPase domain, while amino acids 384 to 543 are involved in substrate
                     binding. The sequence alterations corresponding to the <italic>ra807</italic> and <italic>ra808
                     </italic> suppressor mutations have been identified and both are GC to AT point mutations that
@@ -1096,7 +1096,7 @@
                     </xref>
                     ). This region is part of the ATPase domain of HSP-1 and includes the amino acids affected by the <italic>
                         ra807
-                    </italic> and <italic>ra808</italic> suppressor mutations. Thus, our data reveal that the
+                    </italic> and <italic>ra808</italic> suppressor mutations. Thus, our json reveal that the
                     carboxy-terminus of UNC-23 potentially interacts with the ATPase domain of HSP-1. This result is in
                     agreement with the mammalian results that identify BAG-2 as an Hsc70 interacting protein
                     <xref rid="cit0024" ref-type="bibr">
@@ -1621,7 +1621,7 @@
         </sec>
         <sec id="s0006" sec-type="other">
             <title>Authors' Contributions</title>
-            <p>Conceived and designed experiments: PR, DM. Performed the experiments: PR, TR. Analyzed the data: PR, TR,
+            <p>Conceived and designed experiments: PR, DM. Performed the experiments: PR, TR. Analyzed the json: PR, TR,
                 DM. Wrote the paper: PR, TR, DM.
             </p>
         </sec>

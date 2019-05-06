@@ -68,6 +68,7 @@ class IntegrationTest {
 
         println Serializer.toPrettyJson(data.payload)
 
-//        def map = Serializer(msg.body, Data)
+        box.close()
+        po.close()
     }
 }

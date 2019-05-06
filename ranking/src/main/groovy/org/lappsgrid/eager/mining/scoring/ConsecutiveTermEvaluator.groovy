@@ -6,7 +6,7 @@ import org.lappsgrid.eager.mining.model.Section
 /**
  * Count the number of times consecutive terms appear in the title.
  */
-class ConsecutiveTermEvaluator extends AbstractScoringAlgorithm {
+class ConsecutiveTermEvaluator implements ScoringAlgorithm {
     @Override
     float score(Query query, Section section) {
         boolean seen = false
@@ -15,7 +15,7 @@ class ConsecutiveTermEvaluator extends AbstractScoringAlgorithm {
         int n = 0
         section.tokens.each { word ->
             ++n
-            if (contains(query.terms, word)) {
+            if (query.contains(word)) {
                 if (seen) {
                     if (count == 0) {
                         // This is the second consecutive occurence, so count the first.

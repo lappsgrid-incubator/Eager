@@ -1,6 +1,6 @@
 # Galaxy Upload Service
 
-The Galaxy upload service waits for data (zip files) to arrive from the RabbitMQ server and unzips them into Galaxy's FTP directory.
+The Galaxy upload service waits for json (zip files) to arrive from the RabbitMQ server and unzips them into Galaxy's FTP directory.
 
 Note that this service does not interact directly with Galaxy, it simply unzips files into Galaxy's FTP directory.
 

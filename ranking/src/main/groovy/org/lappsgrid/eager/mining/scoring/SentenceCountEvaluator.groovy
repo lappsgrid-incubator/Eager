@@ -8,13 +8,13 @@ import org.lappsgrid.eager.mining.model.Token
 /**
  *
  */
-class SentenceCountEvaluator extends AbstractScoringAlgorithm {
+class SentenceCountEvaluator implements ScoringAlgorithm {
     @Override
     float score(Query query, Section section) {
         int count = 0
         for (Sentence s : section.sentences) {
             for (Token t : s.tokens) {
-                if (contains(query.terms, t)) {
+                if (query.contains(t)) {
                     ++count
                     break
                 }

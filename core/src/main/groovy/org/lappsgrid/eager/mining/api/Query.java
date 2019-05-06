@@ -1,5 +1,7 @@
 package org.lappsgrid.eager.mining.api;
 
+import org.lappsgrid.eager.mining.model.Token;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,5 +74,13 @@ public class Query
 	public List<String> getTerms()
 	{
 		return terms;
+	}
+
+	public boolean contains(String term) {
+		return terms.contains(term);
+	}
+
+	public boolean contains(Token token) {
+		return terms.contains(token.getWord()) || terms.contains(token.getLemma());
 	}
 }

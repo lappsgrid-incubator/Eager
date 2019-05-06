@@ -1,7 +1,6 @@
 package org.lappsgrid.eager.rabbitmq.tasks
 
 import com.rabbitmq.client.AMQP
-import com.rabbitmq.client.Channel
 import com.rabbitmq.client.DefaultConsumer
 import com.rabbitmq.client.Envelope
 import org.lappsgrid.eager.rabbitmq.RabbitMQ
@@ -11,24 +10,28 @@ import org.lappsgrid.eager.rabbitmq.RabbitMQ
  */
 abstract class Worker extends DefaultConsumer {
 
-    private TaskQueue queue
+    protected TaskQueue queue
+    // Only close the queue if we created the queue.
+    protected boolean autoclose = false
 
     Worker(String name) {
         this(new TaskQueue(name, RabbitMQ.DEFAULT_HOST))
+        autoclose = true
     }
     Worker(String name, String host) {
         this(new TaskQueue(name, host))
+        autoclose = true
     }
-    Worker(TaskQueue tq) {
-        super(tq.channel)
-        this.queue = tq
-        //this.queue.register(this)
-        queue.channel.basicConsume(tq.queueName, true, this)
-
+    Worker(TaskQueue queue) {
+        super(queue.channel)
+        queue.register(this)
+        this.queue = queue
     }
 
     void close() {
-        queue.close()
+        if (autoclose) {
+            queue.close()
+        }
     }
 
     void handleDelivery(String consumerTag, Envelope envelope,
@@ -39,9 +42,10 @@ abstract class Worker extends DefaultConsumer {
             work(message)
         }
         catch (Exception e) {
-            e.printStackTrace()
+            // TODO Add proper logging.
+            System.err.println("Error working on message: ${e.message}")
         }
-        this.channel.basicAck(envelope.deliveryTag, false)
+//            this.channel.basicAck(envelope.deliveryTag, false)
     }
 
     abstract void work(String message)

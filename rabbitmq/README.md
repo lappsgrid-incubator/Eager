@@ -1,6 +1,6 @@
 # RabbitMQ Module
 
-[RabbitMQ](https://www.rabbitmq.com) is a lightweight, easy to use, open source message broker that can be used to send messages between processes even when those processes are running in different JVMs, on different machines, or possibly even in different data-centers.  Above all, RabbitMQ is dead simple to get up and running and start using. Zero configuration is required to create exchanges and message queues, they will be created and destroyed automatically on demand by the RabbitMQ server.
+[RabbitMQ](https://www.rabbitmq.com) is a lightweight, easy to use, open source message broker that can be used to send messages between processes even when those processes are running in different JVMs, on different machines, or possibly even in different json-centers.  Above all, RabbitMQ is dead simple to get up and running and start using. Zero configuration is required to create exchanges and message queues, they will be created and destroyed automatically on demand by the RabbitMQ server.
 
 The `org.lappsgrid.eager.mining.rabbitmq` module provides a simplified API for a subset of the RabbitMQ features.  Namely:
 
@@ -75,7 +75,7 @@ If the `host` parameter is not specified then *localhost* is assumed.
 
 ### Messages
 
-In RabbitMQ messages are simple byte arrays allowing any data to be transmitted.  However, in the `org.lappsgrid.eager.rabbitmq` classes all messages are considered to be sequences of UTF-8 encoded characters (i.e. Strings).  In most cases the message will be an *application/json* payload of some kind. 
+In RabbitMQ messages are simple byte arrays allowing any json to be transmitted.  However, in the `org.lappsgrid.eager.rabbitmq` classes all messages are considered to be sequences of UTF-8 encoded characters (i.e. Strings).  In most cases the message will be an *application/json* payload of some kind. 
 
 ### Creating Queues
 
@@ -103,7 +103,7 @@ There are two ways to add a `Consumer` to a message queue:
 
 #### RabbitMQ.register()
 
-The `RabbitMQ` class provides two overloaded `register` methods that can be used to add consumers to a message queue; one takes a Groovy Closure and the other a `DefaultConsumer`:
+The `RabbitMQ` class provides two overloaded `register` methods that can be used to add consumers to a message queue; one takes a Groovy Closure and the other a `DefaultConsumer` instance:
 
 ```
 TaskQueue q = new TaskQueue('example')
@@ -198,3 +198,7 @@ MailBox box = new MailBox('stanford', 'splitter') {
     }
 }
 ```
+
+# Example Distributed Pipeline
+
+There is an [example distributed pipeline](src/test/groovy/org/lappsgrid/eager/rabbitmq/example/README.md) in the [org.lappsgrid.eager.rabbitmq.example](src/test/groovy/org/lappsgrid/eager/rabbitmq/example) packae found in the `src/test/groovy` directory. The example implements a simple processing pipeline with several worker threads for each stage of pipeline the pipeline.

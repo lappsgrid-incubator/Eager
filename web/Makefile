@@ -13,7 +13,7 @@ clean:
 	if [ ! -e src/main/docker/$(JAR) ] ; then rm src/main/docker/$(JAR) ; fi
 	
 docker:
-	if [ ! -e src/main/docker/$(JAR) ] ; then cp target/$(JAR) src/main/docker ; fi
+	if [ ! -e src/main/docker/$(JAR) ] || [ target/$(JAR) -nt src/main/docker/$(JAR) ] ; then echo "Copying JAR file" ; cp target/$(JAR) src/main/docker ; fi
 	cd src/main/docker && docker build -t $(IMAGE) .
 	docker tag $(IMAGE) $(TAG)
 
@@ -22,6 +22,9 @@ style:
 
 run:
 	java -Xmx8G -jar target/$(JAR)
+
+dev:
+	java -Xmx8G -Dspring.profiles.active=dev -jar target/$(JAR)
 
 start:
 	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)

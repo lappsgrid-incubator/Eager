@@ -53,34 +53,62 @@ class RankingEngine {
         algorithms.add(algorithm)
     }
 
+    Document scoreDocument(Query query, Document document){
+        float total = 0.0f
+        algorithms.each { algorithm ->
+            def field = field(document)
+
+            float score = 0.0f
+            if (field instanceof String) {
+//                    score = algorithm.score(query, field)
+                score = calculate(algorithm, query, field)
+            }
+            else if (field instanceof Section) {
+                score = calculate(algorithm, query, field)
+            }
+            else if (field instanceof Collection) {
+                field.each { item ->
+//                        score += algorithm.score(query, item)
+                    score += calculate(algorithm, query, item)
+                }
+            }
+            logger.trace("{} -> {}", algorithm.abbrev(), score)
+            total += score
+            document.addScore(section, algorithm.abbrev(), score)
+        }
+        document.score += total * weight
+        logger.trace("Document {} {}", document.id, document.score)
+        //return total * weight
+        return document
+    }
+
+
+
+
+
     List<Document> rank(Query query, List<Document> documents) {
-//        return rank(query, documents, { doc -> doc.title })
-//    }
-//
-//    List<Document> rank(Query query, List<Document> documents, Closure getField) {
-//        rank(query, documents, getField, 1.0f)
-//    }
-//
-//    List<Document> rank(Query query, List<Document> documents, Closure getField, Float weight) {
         logger.info("Ranking {} documents.", documents.size())
         documents.each { Document document ->
-//            logger.trace("Document {}", document.path)
             float total = 0.0f
             algorithms.each { algorithm ->
+                logger.info("Calculating Score for {} .", algorithm.name())
                 def field = field(document)
-
                 float score = 0.0f
                 if (field instanceof String) {
-//                    score = algorithm.score(query, field)
                     score = calculate(algorithm, query, field)
+                    logger.info("Field is string")
                 }
                 else if (field instanceof Section) {
                     score = calculate(algorithm, query, field)
+                    logger.info("Field is section")
+
                 }
                 else if (field instanceof Collection) {
                     field.each { item ->
 //                        score += algorithm.score(query, item)
                         score += calculate(algorithm, query, item)
+                        logger.info("Field is collection")
+
                     }
                 }
                 logger.trace("{} -> {}", algorithm.abbrev(), score)
@@ -92,9 +120,11 @@ class RankingEngine {
         }
     }
 
-    float calculate(WeightedAlgorithm algorithm, Query query, field) {
+    float calculate(WeightedAlgorithm algorithm, Query query, Section field) {
+        logger.info("Calc score for {}.", algorithm.name())
         float result = algorithm.score(query, field)
         if (Float.isNaN(result)) {
+            logger.debug("NaN weight for {}.", algorithm.name())
             return 0f
         }
         return result

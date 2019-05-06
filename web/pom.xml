@@ -17,7 +17,7 @@
     </parent>
     <groupId>org.lappsgrid.eager.mining</groupId>
     <artifactId>web</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
     <name>Web Service</name>
     <description>Web front end for the question answering system</description>
     <packaging>jar</packaging>
@@ -181,12 +181,6 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.0.1.RELEASE</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
     <repositories>

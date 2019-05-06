@@ -26,7 +26,8 @@ class CompositeRankingEngine {
             logger.info("key: {} value: {}", key, value)
             Triple triple = new Triple(key)
             if (triple.control == 'checkbox') {
-                logger.trace("processing checkbox")
+                //FIXME Shouldn't we check if the box has been selected?
+                logger.trace("processing checkbox {} {}", key, value)
                 ScoringAlgorithm algorithm = AlgorithmRegistry.get(value)
                 if (algorithm != null) {
                     RankingEngine engine = engines[triple.section]
@@ -38,6 +39,8 @@ class CompositeRankingEngine {
                         engines.put(triple.section, engine)
                     }
                     String weightKey = key.replace("checkbox", "weight")
+                    //Kevin's change, not sure how params work otherwise (based on GenerateProcessed params)
+                    //String weight = value
                     String weight = params.get(weightKey)
                     if (weight) {
                         logger.debug("Adding algorithm {}:{}", algorithm.abbrev(), weight)
@@ -78,7 +81,8 @@ class CompositeRankingEngine {
         }
     }
 
-    List<Document> rank(Query query, List<Document> documents) {
+    //Old ranking algorithm
+    List<Document> rankOld(Query query, List<Document> documents) {
         engines.each { String key, RankingEngine engine ->
             logger.info("Ranking {}", key)
             engine.rank(query, documents)
@@ -86,6 +90,28 @@ class CompositeRankingEngine {
         logger.debug("Sorting {} documents.", documents.size())
         return documents.sort { a,b -> b.score <=> a.score }
     }
+
+    //New ranking algorithm, used with RankingProcessor
+    Document rank(Query query, Document document) {
+        engines.each { String key, RankingEngine engine ->
+            logger.info("Scoring {}", key)
+            engine.scoreDocument(query, document)
+        }
+        //logger.debug("Sorting {} documents.", documents.size())
+        return document
+    }
+
+
+    /**
+    List<Document> calcScores(Query query, Document document, Map<String,RankingEngine> engines) {
+        engines.each { String key, RankingEngine engine ->
+            logger.info("Ranking {}", key)
+            engine.rank(query, document)
+        }
+        return document
+    }
+    **/
+
 
     class Triple {
         String section

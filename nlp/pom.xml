@@ -14,7 +14,7 @@
     <version>1.0.0</version>
 
     <properties>
-        <stanford.version>3.9.1</stanford.version>
+        <stanford.version>4.4.0</stanford.version>
     </properties>
     <build>
         <plugins>

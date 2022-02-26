@@ -25,7 +25,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <stanford.version>3.9.1</stanford.version>
+        <stanford.version>4.4.0</stanford.version>
         <groovy.version>2.5.3</groovy.version>
     </properties>
     <build>
